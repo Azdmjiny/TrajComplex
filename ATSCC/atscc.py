@@ -1,0 +1,254 @@
+from config import EncoderConfig, EmbeddingConfig, TrainingConfig
+from inference import build_model, load_model, save_model, encode_scene
+from pooling import pool_hidden
+from datautils import *
+from plotutils import *
+from losses.losses import *
+from umap import UMAP
+import tasks
+from pathlib import Path
+import warnings
+import pickle
+import time
+warnings.filterwarnings("ignore", category=FutureWarning)
+warnings.filterwarnings("ignore", category=UserWarning)
+
+def reproducibility(SEED):
+    random.seed(SEED)
+    np.random.seed(SEED)
+    torch.manual_seed(SEED)
+    torch.cuda.manual_seed(SEED)
+    torch.backends.cudnn.deterministic = True
+
+def scoredict_to_str(score):
+    score_str = ''
+    for key, val in score.items():
+        score_str += f'{key}: {val:.6f} '
+    return score_str
+
+
+def data_to_path(data):
+    if data == 'RKSIa':
+        return 'data/RKSI/arrival'
+    elif data == 'RKSId':
+        return 'data/RKSI/departure'
+    elif data == 'ESSA':
+        return 'data/ESSA/arrival'
+    elif data == 'LSZH':
+        return 'data/LSZH/arrival'
+    elif data == 'RKSIa_v':
+        return 'data/RKSI/arrival_v'
+    elif data == 'RKSId_v':
+        return 'data/RKSI/departure_v'
+    elif data == 'ESSA_v':
+        return 'data/ESSA/arrival_v'
+    elif data == 'LSZH_v':
+        return 'data/LSZH/arrival_v'
+    else:
+        raise ValueError('Invalid data')
+
+def load_data(dataset, split_point, downsample=2, size_lim=None, rdp_epsilon=0.005, batch_size=32, device='cuda:1', direction=False, polar=False, shuffle=True, x=None):
+
+    if x is not None:
+        x_train, x_test, y_train, y_test = x
+    else:
+        datapath = data_to_path(dataset)
+        x_train, x_test, y_train, y_test = load_ATFM_data(datapath, split_point, downsample=downsample, size_lim=size_lim)
+
+    train_dataset = ATPCCDataset(x_train, y_train, rdp_epsilon, False, device, direction=direction, polar=polar)
+    test_dataset = ATPCCDataset(x_test, y_test, rdp_epsilon, True, device, direction=direction, polar=polar, fitted_scaler=train_dataset.scaler)
+
+    train_loader = data.DataLoader(train_dataset, batch_size=batch_size, shuffle=shuffle, collate_fn=pad_stack_train, pin_memory=True, num_workers=4)
+    test_loader = data.DataLoader(test_dataset, batch_size=batch_size, shuffle=False, collate_fn=pad_stack_test, pin_memory=True, num_workers=4)
+
+    return train_loader, test_loader
+
+
+def apply_pooling(out, proc_label, pooling='sum', gem_p=2.0):
+    # TUNE: sum primary; mean and signed GeM-p2 controls. See doc/atscc-handoff.md.
+    return pool_hidden(out, ~proc_label.isnan(), pooling=pooling, gem_p=gem_p)
+
+
+def encode(model, loader, device, pooling='sum', gem_p=2.0):
+    """Legacy five-value return; use encode_scene for the lightweight scene API."""
+    org_training = model.training
+    has_eval = hasattr(loader.dataset, 'eval')
+    org_eval = getattr(loader.dataset, 'eval', None)
+    org_collate = loader.collate_fn
+    output, traj, full_encode, label_list, split_ind = [], [], [], [], []
+    try:
+        model.eval()
+        if has_eval:
+            loader.dataset.eval = True
+            loader.collate_fn = pad_stack_test
+        with torch.no_grad():
+            for batch, proc_label, label in loader:
+                x = batch.to(device)
+                traj.append(x.cpu().numpy().copy())
+                out = model(x)
+                full_encode.append(out.cpu().numpy())
+                output.append(apply_pooling(out, proc_label, pooling=pooling, gem_p=gem_p))
+                split_ind.extend([find_split_indices(row[~row.isnan()]) for row in proc_label])
+                if label is None:
+                    label_list = None
+                elif label_list is not None:
+                    label_list.append(label)
+            if not traj:
+                raise ValueError('cannot encode an empty loader; use encode_scene for empty scenes')
+            max_T = max(t.shape[1] for t in traj)
+            traj = np.vstack([np.pad(t, ((0, 0), (0, max_T - t.shape[1]), (0, 0)),
+                                    constant_values=np.nan) for t in traj])
+            full_encode = np.vstack([np.pad(t, ((0, 0), (0, max_T - t.shape[1]), (0, 0)),
+                                           constant_values=np.nan) for t in full_encode])
+            output = torch.cat(output).cpu().numpy()
+            label_list = torch.cat(label_list).cpu().numpy() if label_list is not None else None
+            return output, traj, full_encode, split_ind, label_list
+    finally:
+        model.train(org_training)
+        if has_eval:
+            loader.dataset.eval = org_eval
+        loader.collate_fn = org_collate
+
+
+def get_loader_label(loader):
+    labels = []
+    for _, _, label in loader:
+
+        # if label is none exit loop and return none
+        if label is None:
+            return None
+
+        labels.append(label)
+    return torch.cat(labels, dim=0).cpu().numpy()
+
+
+def evaluate(train_loader, test_loader, Encoder, device, epoch, datapath, clus_model, pooling='sum', eval_method='clustering', visualize=False):
+    # If path does not exist, create it
+    Path(f'figures/{datapath}/UMAP').mkdir(parents=True, exist_ok=True)
+    Path(f'figures/{datapath}/trajectories').mkdir(parents=True, exist_ok=True)
+    Path(f'figures/{datapath}/clustered').mkdir(parents=True, exist_ok=True)
+    Path(f'figures/{datapath}/dendrogram').mkdir(parents=True, exist_ok=True)
+    Path(f'figures/{datapath}/scores').mkdir(parents=True, exist_ok=True)
+
+    ori_train_loader_eval = train_loader.dataset.eval
+    ori_train_collate_fn = train_loader.collate_fn
+    train_loader.dataset.eval = True
+    train_loader.collate_fn = pad_stack_test
+
+    train_repr, train_traj, train_full_encode, split_ind_train, train_label = encode(Encoder, train_loader, device, pooling=pooling)
+    test_repr, test_traj, test_full_encode, split_ind_test, test_label = encode(Encoder, test_loader, device, pooling=pooling)
+
+    # Inverse transform the data traj
+    test_traj = test_loader.dataset.time_series
+
+    # Export test representations as pickle
+    Path(f'figures/{datapath}/test_repr').mkdir(parents=True, exist_ok=True)
+    with open(f'figures/{datapath}/test_repr/test_repr_epoch_{epoch}.pkl', 'wb') as f:
+        pickle.dump(test_repr, f)
+
+    if visualize:
+        if test_label is not None:
+            index_to_sample = range(len(test_full_encode))[::50]
+            index_to_sample = sorted(index_to_sample, key=lambda x: test_label[x])
+        else:
+            index_to_sample = range(len(test_full_encode))[::50]
+        for i in index_to_sample:
+            visualize_encoding_ADSB(test_full_encode[i], test_traj[i][~np.isnan(test_traj[i]).all(axis=1)], split_ind_test[i], datapath, i)
+
+    n_cluster = len(set(test_label)) if test_label is not None else 16
+    clus_model.n_clusters = n_cluster
+    umap = UMAP(n_components=2)
+
+    if test_label is None:
+        raise ValueError('Test labels are not provided')
+
+    out, eval_res = tasks.eval_classification(train_repr, train_label, test_repr, test_label, eval_protocol='svm')
+    acc = eval_res['acc']
+    auprc = eval_res['auprc']
+
+    cluster_assignments = clus_model.fit_predict(test_repr)
+
+    if test_label is not None:
+        max_nmi, max_ari, max_mi, best_num_clusters_nmi, best_num_clusters_ari, best_num_clusters_mi = (
+            calculate_NMI_ARI(clus_model, test_repr, Path(f'figures/{datapath}/scores') / f'scores_epoch_{epoch}.png', test_label))
+        score = {'NMI': max_nmi, 'ARI': max_ari, 'MI': max_mi, 'ACC': acc, 'AUPRC': auprc}
+        clus_model.n_clusters = best_num_clusters_nmi
+    else:
+        score = None
+        ValueError('Test labels are not provided')
+
+    if visualize:
+        umap_result = umap.fit_transform(test_repr)
+        plot_umap_embeddings(umap_result, test_label, Path(f'figures/{datapath}/UMAP') / f'UMAP_true_epoch_{epoch}.png')
+        plot_umap_embeddings(umap_result, cluster_assignments, Path(f'figures/{datapath}/UMAP') / f'UMAP_epoch_{epoch}.png')
+        plot_2d_trajectories(test_traj, cluster_assignments, Path(f'figures/{datapath}/trajectories') / f'Trajectories_epoch_{epoch}.png')
+        plot_clustered_trajectories(test_traj, cluster_assignments, Path(f'figures/{datapath}/clustered') / f'Clustered_Trajectories_epoch_{epoch}.png')
+
+    train_loader.dataset.eval = ori_train_loader_eval
+    train_loader.collate_fn = ori_train_collate_fn
+
+    return score
+
+def epoch_run(Encoder, loader, device, optim, scheduler, local_temp, current_iter, max_iter):
+
+    epoch_loss = 0.0
+    Encoder.train()
+
+    iter_elapsed = 0
+    for aug1, proc_label1 in loader:
+
+        aug1 = aug1.to(device)
+        proc_label1 = proc_label1.to(device)
+        out1 = Encoder(aug1)
+        #out1 = Encoder.final_projection(out1)
+        loss = flat_snnl(out1, proc_label1, temperature=local_temp, portion=1.0) #if not isinstance(out1, list) else (layer_wise_snnl(out1, proc_label1, temperature=local_temp, portion=1.0))
+
+        if current_iter < max_iter:
+            optim.zero_grad()
+            loss.backward()
+            optim.step()
+
+            if scheduler is not None:
+                scheduler.step()
+
+            current_iter += 1
+            iter_elapsed += 1
+        else:
+            break
+
+        epoch_loss += loss.item()
+
+    epoch_loss = epoch_loss / iter_elapsed
+    return epoch_loss, Encoder, current_iter
+
+
+def fit(Encoder, train_loader, test_loader, optim, scheduler, num_epochs, max_iter, eval_every, local_temp, device, data, clus_model, pooling='sum', eval_method='clustering', verbose=True, visualize=False):
+    loss_log, score_log = [], []
+    datapath = data_to_path(data)
+
+    if not os.path.exists(os.path.join(f'ckpt/{datapath}')):
+        os.makedirs(os.path.join(f'ckpt/{datapath}'))
+
+    current_iter = 0
+    num_epochs = int(num_epochs)
+    for epoch in range(num_epochs):
+        st = time.time()
+        epoch_loss, Encoder, current_iter = epoch_run(Encoder, train_loader, device, optim, scheduler, local_temp, current_iter, max_iter)  # Train model
+        loss_log.append(epoch_loss)  # Log loss
+
+        if epoch % eval_every == 0 or epoch == num_epochs - 1 or current_iter >= max_iter:
+            epoch = epoch + 1 if epoch == num_epochs - 1 else epoch  # Epoch num correction
+            save_model(Encoder, os.path.join(f'ckpt/{datapath}/encoder_epoch_{epoch}.pt'),
+                       embedding_config=EmbeddingConfig(pooling=pooling), metadata={'epoch': epoch, 'dataset': data})
+            score = evaluate(train_loader, test_loader, Encoder, device, epoch, datapath, clus_model, pooling=pooling, eval_method=eval_method, visualize=visualize)
+            score_log.append(score)
+            print(f'Epoch: {epoch}, Iter: {current_iter} ==> Loss: {epoch_loss:.6f} {scoredict_to_str(score)}')
+
+        if epoch % 10 == 0 and verbose:
+            et = time.time()
+            print(f'Epoch: {epoch} ==> Loss: {epoch_loss:.6f} Time elapsed: {et - st:.2f} seconds')
+
+        if current_iter >= max_iter:
+            break
+
+    return loss_log, score_log

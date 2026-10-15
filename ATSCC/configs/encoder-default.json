@@ -1,0 +1,28 @@
+{
+  "encoder": {
+    "input_dims": 9,
+    "output_dims": 8,
+    "embed_dim": 256,
+    "num_heads": 4,
+    "num_layers": 4,
+    "hidden_dim": 512,
+    "dropout": 0.35,
+    "mask_probability": 0.2
+  },
+  "training": {
+    "epochs": 30,
+    "batch_size": 16,
+    "learning_rate": 0.00001,
+    "weight_decay": 0.00001,
+    "temperature": 0.01,
+    "rdp_epsilon": 0.1,
+    "downsample": 5,
+    "seed": 0,
+    "max_steps": 500000
+  },
+  "embedding": {
+    "pooling": "sum",
+    "gem_p": 2.0,
+    "batch_size": 16
+  }
+}
