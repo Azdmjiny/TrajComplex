@@ -1,4 +1,4 @@
-"""Run from the workspace root: python -m complexity scene.npy -o result.json."""
+"""Run from the workspace root: python -m Complexity scene.npy -o result.json."""
 
 import argparse
 import json

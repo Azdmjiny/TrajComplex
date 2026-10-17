@@ -24,7 +24,7 @@ Python 3.10。先将仓库下载到本地，在独立环境安装 CPU 推理依�
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install torch==2.7.1 --index-url https://download.pytorch.org/whl/cpu
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
+.\.venv\Scripts\python.exe -m pip install -r ..\requirements.txt
 .\.venv\Scripts\python.exe example.py
 .\.venv\Scripts\python.exe verify_delivery.py
 ```

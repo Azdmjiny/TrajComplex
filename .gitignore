@@ -5,3 +5,11 @@ artifacts/
 __pycache__/
 .pytest_cache/
 *.egg-info/
+# macOS Finder metadata
+.DS_Store
+# Python test/build artifacts
+.coverage
+htmlcov/
+build/
+dist/
+.pi/

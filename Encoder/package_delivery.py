@@ -6,9 +6,10 @@ from trajectory_encoder.common import ROOT, read_json, write_json, file_hash
 
 if read_json(ROOT / "reports" / "completion_status.json")["state"] != "complete":
     raise RuntimeError("Training, final evaluation and export checks must finish first")
-top = ["README.md", "PLAN.md", "PROTOCOL.md", "CITATION.md", "THIRD_PARTY_LICENSE_ATSCC.md", "config.json", "requirements.txt", ".gitignore",
+top = ["README.md", "PLAN.md", "PROTOCOL.md", "CITATION.md", "THIRD_PARTY_LICENSE_ATSCC.md", "config.json", ".gitignore",
        "example.py", "run_offline.py", "complete_local.py", "posthoc_diagnostics.py", "make_report.py", "verify_delivery.py", "package_delivery.py"]
 paths = [ROOT / name for name in top]
+paths.append(ROOT.parent / "requirements.txt")
 excluded = {"blob_receipts.json", "early_export_manifest.json", "pipeline_status.json", "completion_status.json", "artifact_transfer_checks.json", "repository_delivery.json", "delivery_archive.json"}
 for directory in ("trajectory_encoder", "offline_guard", "encoder", "checkpoints", "reports"):
     paths += [p for p in (ROOT / directory).rglob("*") if p.is_file() and "__pycache__" not in p.parts

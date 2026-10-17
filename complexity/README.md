@@ -1,13 +1,13 @@
 # 场景复杂度组件
 
-独立于 `ATSCC/` 的 Python 组件，按 `doc/trajectory-embedding-point-cloud-complexity.md` 的定义计算 **trajectory embedding 点云的经验关联维数**。
+独立于 `Encoder/` 的 Python 组件，按 `doc/trajectory-embedding-point-cloud-complexity.md` 的定义计算 **trajectory embedding 点云的经验关联维数**。
 
 ## 边界与输入约定
 
 - 输入：实数数组 `(N, D)`；一行是一架飞机在一个小时窗口内的 **pooled trajectory embedding**。
-- `N` 是该小时飞机数，`D` 不固定，可为 8、128、320 等。
+- `N` 是该小时飞机数，`D` 不固定；当前冻结 Encoder 为 16 维，也接受其他维数。
 - 不接受 `(N, T, D)` 的逐时间步输出，不自动 flatten、pooling、切时间窗口或混合不同场景。
-- **不加载 Encoder、不训练、不修改 ATSCC。** checkpoint 加载、特征转换及 pooling 由上游提供。
+- **不加载 Encoder、不训练、不修改 Encoder。** checkpoint 加载、特征转换及 pooling 由上游提供。
 - 上游必须保证同一场景中每架飞机只有一个点；组件不接收飞机 ID，无法判断重复 ID。不同飞机出现相同 embedding 时保留两行，不擅自去重。
 - 输入必须有限，不接受 NaN padding、Inf、复数或字符串；非法输入抛出 `ValueError`，不悄悄删除飞机。
 - 默认不对点云标准化、不做 PCA、不做 L2 归一化。可显式选择逐点 L2 归一化，零向量会报错。它会改变点云几何；整个实验应固定同一种规则。
@@ -17,20 +17,20 @@
 Python 3.9+，只依赖 NumPy、SciPy；不依赖 Torch、W&B、sklearn。
 
 ```bash
-python -m pip install -r complexity/requirements.txt
+python -m pip install -r requirements.txt
 ```
 
-在仓库根目录使用。当前也可复用已有环境：
+在仓库根目录使用，包名与目录名一致，均为大写 `Complexity`：
 
 ```bash
-ATSCC/.venv/bin/python -m complexity --help
+python -m Complexity --help
 ```
 
 ## Python 接口
 
 ```python
 import numpy as np
-from complexity import ComplexityConfig, estimate_complexity, correlation_integral
+from Complexity import ComplexityConfig, estimate_complexity, correlation_integral
 
 # 替换为 Encoder 上游提供的某一小时 embedding，不能把所有小时混成一个点云。
 scene_embeddings = np.load("hour_01.npy", allow_pickle=False)  # (N, D)
@@ -137,42 +137,50 @@ np.savez("hours.npz", hour_01=embeddings_hour_01, hour_02=embeddings_hour_02)
 
 ```bash
 # 单小时
-python -m complexity hour_01.npy -o result.json
+python -m Complexity hour_01.npy -o result.json
 
 # 多小时，逐场景计算并保留 ID
-python -m complexity hours.npz -o results.json
+python -m Complexity hours.npz -o results.json
 
 # 明确指定尺度区间；可选 L2 归一化
-python -m complexity hours.npz --fit-range 0.05 0.5 --normalize -o results.json
+python -m Complexity hours.npz --fit-range 0.05 0.5 --normalize -o results.json
 ```
 
 JSON 顶层包含 `schema_version`、`method`、`metric`、`input` 和 `results` 列表。不指定 `-o` 时写标准输出。不支持 pickle；NumPy 文件以 `allow_pickle=False` 加载。
 
 成功处理的文件返回退出码 0（包括包含 `unestimable` 场景的文件，调用者必须检查各场景状态）；格式/参数/资源上限错误返回 2。批量中有非法输入时整个命令失败，不输出不完整结果。输出目录需预先存在；禁止输出覆盖输入文件。
 
-## 和 ATSCC 对接
+## 和 Encoder 对接
 
-推荐在仓库根目录使用 ATSCC 的轻量加载/场景编码入口：
+在仓库根目录使用当前冻结编码器；联合运行还需按 [Encoder/README.md](../Encoder/README.md) 安装 Torch 和 Encoder 依赖：
 
 ```python
-from ATSCC import load_model, encode_scene
+import numpy as np
+from Encoder.trajectory_encoder.inference import FrozenEncoder
+from Complexity import estimate_complexity
 
-model = load_model("artifacts/run/best.pt", device="cpu")
-# features 已切成一个小时、每架飞机一段，并按训练规则预处理成 9 维。
-encoded = encode_scene(model, features, scene_id="hour_01")
-result = estimate_complexity(encoded.embeddings, scene_id=encoded.scene_id)
+encoder = FrozenEncoder("Encoder/encoder/encoder.pt", pooling="sum", device="cpu")
+# hour_tracks 必须由上游提供：同一小时、每架飞机一条的 ENU 米制轨迹列表。
+# 这里假设原始坐标为 1 Hz；已按训练规则采样的 5s 坐标应设为 False。
+vectors = [encoder.encode(track, resample_from_1hz=True)["embedding"]
+           for track in hour_tracks]
+points = np.stack(vectors) if vectors else np.empty((0, encoder.settings["dimension"]))
+result = estimate_complexity(points, scene_id="hour_01")
+print(result.status, result.dimension, result.reason)
 ```
 
-ATSCC 当前训练计划初始输出是 8 维，主干 256 维 / 4 层，默认 **sum pooling**；mean 与带符号 GeM-p2 为对照。模型逐时间步输出 `(B,T,D)`，编码入口仅对有效时间步 pooling，返回有限 `(N,D)` 点云。`encoded` 本身是结果对象，传入本组件的是 `encoded.embeddings`。旧 `atscc.encode()` 的第一个返回值也为 `(N,D)`，默认同样改为 sum；复现旧实验的 last pooling 请显式指定。
+当前选定模型为 **16 维、sum pooling、seed 43**。`FrozenEncoder.encode()` 一次接收一条 `(T,3)` 轨迹，返回字典：`tokens` 为 `(T_sampled,16)`，`embedding` 为 `(16,)`，并附采样点数、pooling 与预处理 ID。传给本组件的是多个轨迹向量堆叠的 `(N,16)`，不是逐 token 输出或整个字典。
 
-checkpoint 加载、预处理与 pooling 均由 ATSCC 侧负责；本组件仍不依赖 Torch。上游必须确认这些行属于同一个小时、每架飞机只有一行。同一实验固定 checkpoint、预处理、pooling、归一化和距离规则，不强制沿用旧 320 维，也不把逐时间步编码当成飞机点。完整调参及模型加载交接见 [`doc/atscc-handoff.md`](../doc/atscc-handoff.md)。
+checkpoint 加载、9 维特征转换、训练统计量标准化与 pooling 由 Encoder 负责；本组件仍不依赖 Torch。上游负责时间切窗、飞机 ID 去重及坐标转换，采样后每条轨迹至少 30 点。固定 checkpoint、预处理、pooling、归一化和距离规则。
+
+**不要把 `Encoder/encoder/embeddings.npz` 直接作为小时场景档案输入。** 该文件的键是 `sum/mean/gem2`，每个值包含全部 16183 条轨迹；它不是 `scene_id -> (N,D)`。当前数据缺绝对时间及真实航班 ID，无法还原真实小时场景。默认至少 30 架飞机且需通过拟合质量门槛；`unestimable` 不是复杂度 0。当前加载与接口交接见 [doc/atscc-handoff.md](../doc/atscc-handoff.md)；旧 `ATSCC.load_model/encode_scene` 入口已不适用。
 
 ## 测试
 
 在仓库根目录：
 
 ```bash
-ATSCC/.venv/bin/python -m unittest discover -s complexity/tests -v
+python -m unittest discover -s Complexity/tests -v
 ```
 
 测试覆盖：手算点对和严格边界、暴力计算对照、直线/平面经验维数、平移/整体缩放/置换、显式尺度和 OLS 对照、重复点/坍塌/空场景、NaN/Inf/非法格式、L2 归一化、质量拒绝、资源上限、单/多场景 CLI 和 JSON 输出。
