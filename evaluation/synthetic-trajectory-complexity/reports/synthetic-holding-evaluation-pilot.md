@@ -49,11 +49,11 @@
 
 12 个场景中 6 个基线 D 可估计。60 条曲线的 Spearman 中位数为 0.872，其中 96% 为正；在 6 个基线可估计小时中，平均 D 相对基线从 25%、50%、75%、100% 注入剂量分别变化 25% +0.022, 50% +0.058, 75% +0.082, 100% +0.100。方向上比 holding 实验更一致，但这是 6 个小时、单一绕行强度的合成几何实验，不能解释为真实 vectoring 工作负荷已经得到验证。2,800 个剂量点中 1858 个（66.4%）通过拟合门槛；基线可估计率仍为 6/12。
 
-Vectoring 保持每条输入轨迹点数不变，因此减少了 holding 实验中 sum pooling 的长度混杂；但横向变形仍会改变轨迹方向、路程和 Encoder 表示。详细逐剂量结果见 `vectoring-dose-response.csv` 和 `synthetic-vectoring-evaluation-pilot.json`。
+Vectoring 保持每条输入轨迹点数不变，因此减少了 holding 实验中 sum pooling 的长度混杂；但横向变形仍会改变轨迹方向、路程和 Encoder 表示。详细逐剂量结果见 `../results/vectoring-dose-response.csv` 和 `../results/synthetic-vectoring-evaluation-pilot.json`。
 
-![Vectoring 注入剂量与 D 变化](vectoring-dose-response.png)
+![Vectoring 注入剂量与 D 变化](../figures/vectoring-dose-response.png)
 
-![Vectoring 下 D 可估计比例](vectoring-d-estimability.png)
+![Vectoring 下 D 可估计比例](../figures/vectoring-d-estimability.png)
 
 ## 飞机数量敏感性（同一批场景的随机子采样）
 
@@ -62,7 +62,7 @@ Vectoring 保持每条输入轨迹点数不变，因此减少了 holding 实验�
 - 这 6 个小时里，D 可估计比例的场景中位数：30 架时 47%，40 架时 74%，50 架时 90%。
 - 与完整小时 D 的绝对差异中位数：30 架时 0.202，40 架时 0.129，50 架时 0.072；估计值的场景内 IQR 中位数也从 0.346 降到 0.104。
 
-这说明当前 D 对每小时飞机样本数较敏感：样本少时，估计更容易无法通过拟合门槛，且数值波动更大。因此“飞机数增加时 D 是否增加”不能作为复杂度有效性的预设检验；飞机数在本轮更适合作为估计稳定性控制因素。详细结果见 `aircraft-count-sensitivity.csv`、`aircraft-count-sensitivity.json` 与 [图](aircraft-count-sensitivity.png)。
+这说明当前 D 对每小时飞机样本数较敏感：样本少时，估计更容易无法通过拟合门槛，且数值波动更大。因此“飞机数增加时 D 是否增加”不能作为复杂度有效性的预设检验；飞机数在本轮更适合作为估计稳定性控制因素。详细结果见 `../results/aircraft-count-sensitivity.csv`、`../results/aircraft-count-sensitivity.json` 与 [图](../figures/aircraft-count-sensitivity.png)。
 
 ## 下一步建议
 
@@ -70,6 +70,7 @@ Vectoring 保持每条输入轨迹点数不变，因此减少了 holding 实验�
 
 ## 图
 
-- [Holding 剂量与 D 变化](holding-dose-response.png)
-- [不同剂量下 D 的可估计比例](holding-d-estimability.png)
-- [逐场景、逐重复结果 CSV](holding-dose-response.csv)
+- [Holding 剂量与 D 变化](../figures/holding-dose-response.png)
+- [不同剂量下 D 的可估计比例](../figures/holding-d-estimability.png)
+- [逐场景、逐重复结果 CSV](../results/holding-dose-response.csv)
+
