@@ -1,0 +1,319 @@
+{
+  "pilot_scope": {
+    "n_scenes": 12,
+    "repeats_per_scene": 5,
+    "scene_replicates": 60,
+    "dose_points": 3915,
+    "encoder_checkpoint": "encoder.pt (provided checkpoint; not included)",
+    "device": "cuda"
+  },
+  "dose_response_statistics": {
+    "n_scene_replicates_with_at_least_5_finite_doses": 60,
+    "median_spearman_rho": -0.05226271942155095,
+    "fraction_positive": 0.45
+  },
+  "delta_D_by_holding_fraction": [
+    {
+      "holding_fraction": 0,
+      "mean_delta_D": -3.700743415417188E-17,
+      "n_hours": 6,
+      "hour_sd": 9.064933036736789E-17
+    },
+    {
+      "holding_fraction": 0.25,
+      "mean_delta_D": 0.27170461724398304,
+      "n_hours": 6,
+      "hour_sd": 0.09940088131042893
+    },
+    {
+      "holding_fraction": 0.5,
+      "mean_delta_D": 0.4577181648025391,
+      "n_hours": 6,
+      "hour_sd": 0.12587013502972977
+    },
+    {
+      "holding_fraction": 0.75,
+      "mean_delta_D": 0.3575925429085733,
+      "n_hours": 6,
+      "hour_sd": 0.10456276546609256
+    },
+    {
+      "holding_fraction": 1,
+      "mean_delta_D": 0.08456626663450267,
+      "n_hours": 4,
+      "hour_sd": 0.056859792560292555
+    }
+  ],
+  "D_estimability_by_holding_fraction_bins": [
+    {
+      "dose_midpoint": 0.05,
+      "n": 425,
+      "estimable": 249,
+      "rate": 0.5858823529411765
+    },
+    {
+      "dose_midpoint": 0.15000000000000002,
+      "n": 380,
+      "estimable": 282,
+      "rate": 0.7421052631578947
+    },
+    {
+      "dose_midpoint": 0.25,
+      "n": 390,
+      "estimable": 318,
+      "rate": 0.8153846153846154
+    },
+    {
+      "dose_midpoint": 0.35000000000000003,
+      "n": 375,
+      "estimable": 312,
+      "rate": 0.832
+    },
+    {
+      "dose_midpoint": 0.45,
+      "n": 375,
+      "estimable": 326,
+      "rate": 0.8693333333333333
+    },
+    {
+      "dose_midpoint": 0.55,
+      "n": 400,
+      "estimable": 360,
+      "rate": 0.9
+    },
+    {
+      "dose_midpoint": 0.6500000000000001,
+      "n": 375,
+      "estimable": 337,
+      "rate": 0.8986666666666666
+    },
+    {
+      "dose_midpoint": 0.75,
+      "n": 390,
+      "estimable": 360,
+      "rate": 0.9230769230769231
+    },
+    {
+      "dose_midpoint": 0.8500000000000001,
+      "n": 380,
+      "estimable": 352,
+      "rate": 0.9263157894736842
+    },
+    {
+      "dose_midpoint": 0.95,
+      "n": 425,
+      "estimable": 385,
+      "rate": 0.9058823529411765
+    }
+  ],
+  "scene_summaries": [
+    {
+      "scene_id": "2026-09-01T01Z",
+      "n_aircraft": 57,
+      "baseline_D": 1.1991853715922285,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 1.1991853715922285,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 1.426525765420424,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 1.6710508120631622,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.6161352738906138,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": null,
+      "D_at_100pct_n": 0
+    },
+    {
+      "scene_id": "2026-09-04T08Z",
+      "n_aircraft": 74,
+      "baseline_D": 0.9017779118529192,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 0.9017779118529192,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 1.1692880965954313,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 1.291091827531203,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.2715895382142373,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.0390206103447857,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-07T10Z",
+      "n_aircraft": 62,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": 1.402365198722828,
+      "D_at_25pct_n": 1,
+      "D_at_50pct_mean": 1.759013472607488,
+      "D_at_50pct_n": 3,
+      "D_at_75pct_mean": 1.5286536630375926,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.2494813306917012,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-10T06Z",
+      "n_aircraft": 71,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": 2.298995353934247,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 2.227308487171495,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.932855302049108,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.6823949791351418,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-12T15Z",
+      "n_aircraft": 51,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": 1.4185213445499156,
+      "D_at_25pct_n": 3,
+      "D_at_50pct_mean": 1.7668248262130848,
+      "D_at_50pct_n": 4,
+      "D_at_75pct_mean": 1.5737712997628017,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.175350600849955,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-15T06Z",
+      "n_aircraft": 88,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": 1.9484666648647824,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 2.0174163996879235,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.7894946642460379,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.4648435629564525,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-18T00Z",
+      "n_aircraft": 64,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": 1.83734643232316,
+      "D_at_25pct_n": 4,
+      "D_at_50pct_mean": 2.0718565392728876,
+      "D_at_50pct_n": 4,
+      "D_at_75pct_mean": 2.0480267284679368,
+      "D_at_75pct_n": 2,
+      "D_at_100pct_mean": 1.4816249255083347,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-20T04Z",
+      "n_aircraft": 67,
+      "baseline_D": 1.4649957500330217,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 1.4649957500330217,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 1.6839033535851027,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 1.913626756044677,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.834573781843384,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.4688543621249623,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-23T10Z",
+      "n_aircraft": 63,
+      "baseline_D": 1.4590496179114563,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 1.4590496179114563,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 1.7477599940458213,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 2.0401053156236033,
+      "D_at_50pct_n": 4,
+      "D_at_75pct_mean": 1.8503461539872708,
+      "D_at_75pct_n": 4,
+      "D_at_100pct_mean": 1.554656488964206,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-25T23Z",
+      "n_aircraft": 51,
+      "baseline_D": 1.9106520744039999,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 1.9106520744039996,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 2.081733320277328,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 2.1691948756012556,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 2.0632576357402694,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": null,
+      "D_at_100pct_n": 0
+    },
+    {
+      "scene_id": "2026-09-28T07Z",
+      "n_aircraft": 72,
+      "baseline_D": 1.3718728667913394,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_at_0pct_mean": 1.3718728667913394,
+      "D_at_0pct_n": 5,
+      "D_at_25pct_mean": 1.828550766124756,
+      "D_at_25pct_n": 5,
+      "D_at_50pct_mean": 1.9687729945362982,
+      "D_at_50pct_n": 5,
+      "D_at_75pct_mean": 1.817186466360629,
+      "D_at_75pct_n": 5,
+      "D_at_100pct_mean": 1.4734297516927932,
+      "D_at_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-30T15Z",
+      "n_aircraft": 51,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_at_0pct_mean": null,
+      "D_at_0pct_n": 0,
+      "D_at_25pct_mean": null,
+      "D_at_25pct_n": 0,
+      "D_at_50pct_mean": 1.8414757040682297,
+      "D_at_50pct_n": 2,
+      "D_at_75pct_mean": 1.4294173929200478,
+      "D_at_75pct_n": 4,
+      "D_at_100pct_mean": 1.1391803186128389,
+      "D_at_100pct_n": 5
+    }
+  ],
+  "checkpoint_sha256": "d3abfc192a2e7a0f84bb1c4207ee04cfc4a4880755530da475124c5f711753ea",
+  "preprocessor_id": "d69735dd5a1587c6720a4f5867a860e6a3b47fdb9ba81b239f80e1dfa5afeb35",
+  "torch_version": "2.14.0+cu130",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU"
+}

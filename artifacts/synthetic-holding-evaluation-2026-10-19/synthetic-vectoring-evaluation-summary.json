@@ -1,0 +1,335 @@
+{
+  "n_scenes": 12,
+  "n_replicates": 60,
+  "n_estimate_points": 2800,
+  "valid_points": 1858,
+  "valid_rate": 0.6635714285714286,
+  "baseline_estimable_scenes": 6,
+  "per_curve_spearman": {
+    "n_curves": 46,
+    "median": 0.8718538047711801,
+    "fraction_positive": 0.9565217391304348
+  },
+  "dose_response": [
+    {
+      "fraction": 0,
+      "mean_delta_D": -3.700743415417188e-17,
+      "n_hours": 6,
+      "hour_sd": 9.064933036736789e-17
+    },
+    {
+      "fraction": 0.25,
+      "mean_delta_D": 0.022468335020292125,
+      "n_hours": 6,
+      "hour_sd": 0.030554133780414078
+    },
+    {
+      "fraction": 0.5,
+      "mean_delta_D": 0.05846419426681058,
+      "n_hours": 6,
+      "hour_sd": 0.04759489510018916
+    },
+    {
+      "fraction": 0.75,
+      "mean_delta_D": 0.08213084444322648,
+      "n_hours": 6,
+      "hour_sd": 0.06610281755493515
+    },
+    {
+      "fraction": 1,
+      "mean_delta_D": 0.09950329532541526,
+      "n_hours": 6,
+      "hour_sd": 0.06624039963869667
+    }
+  ],
+  "estimability_bins": [
+    {
+      "midpoint": 0.05,
+      "n": 305,
+      "estimable": 143,
+      "rate": 0.46885245901639344
+    },
+    {
+      "midpoint": 0.15000000000000002,
+      "n": 260,
+      "estimable": 126,
+      "rate": 0.4846153846153846
+    },
+    {
+      "midpoint": 0.25,
+      "n": 280,
+      "estimable": 171,
+      "rate": 0.6107142857142858
+    },
+    {
+      "midpoint": 0.35000000000000003,
+      "n": 285,
+      "estimable": 182,
+      "rate": 0.6385964912280702
+    },
+    {
+      "midpoint": 0.45,
+      "n": 260,
+      "estimable": 182,
+      "rate": 0.7
+    },
+    {
+      "midpoint": 0.55,
+      "n": 265,
+      "estimable": 185,
+      "rate": 0.6981132075471698
+    },
+    {
+      "midpoint": 0.6500000000000001,
+      "n": 285,
+      "estimable": 207,
+      "rate": 0.7263157894736842
+    },
+    {
+      "midpoint": 0.75,
+      "n": 265,
+      "estimable": 208,
+      "rate": 0.7849056603773585
+    },
+    {
+      "midpoint": 0.8500000000000001,
+      "n": 275,
+      "estimable": 213,
+      "rate": 0.7745454545454545
+    },
+    {
+      "midpoint": 0.95,
+      "n": 245,
+      "estimable": 183,
+      "rate": 0.746938775510204
+    }
+  ],
+  "scenes": [
+    {
+      "scene_id": "2026-09-01T01Z",
+      "n_scene_aircraft": 57,
+      "n_vectoring_eligible": 38,
+      "baseline_D": 1.1991853715922285,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 1.1991853715922285,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 1.1966542787287753,
+      "D_25pct_n": 5,
+      "D_50pct_mean": 1.2455541880256313,
+      "D_50pct_n": 5,
+      "D_75pct_mean": 1.268430495842639,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.2697072011416626,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-04T08Z",
+      "n_scene_aircraft": 74,
+      "n_vectoring_eligible": 55,
+      "baseline_D": 0.9017779118529192,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 0.9017779118529192,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 0.9226764754118758,
+      "D_25pct_n": 5,
+      "D_50pct_mean": 0.9275163818231608,
+      "D_50pct_n": 5,
+      "D_75pct_mean": 0.9311328973244951,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 0.9531121038192795,
+      "D_100pct_n": 3
+    },
+    {
+      "scene_id": "2026-09-07T10Z",
+      "n_scene_aircraft": 62,
+      "n_vectoring_eligible": 43,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": null,
+      "D_25pct_n": 0,
+      "D_50pct_mean": null,
+      "D_50pct_n": 0,
+      "D_75pct_mean": null,
+      "D_75pct_n": 0,
+      "D_100pct_mean": null,
+      "D_100pct_n": 0
+    },
+    {
+      "scene_id": "2026-09-10T06Z",
+      "n_scene_aircraft": 71,
+      "n_vectoring_eligible": 53,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": 1.8483631836980312,
+      "D_25pct_n": 3,
+      "D_50pct_mean": 1.8573447208895004,
+      "D_50pct_n": 4,
+      "D_75pct_mean": 1.8609568126780665,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.8638767843242459,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-12T15Z",
+      "n_scene_aircraft": 51,
+      "n_vectoring_eligible": 38,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": 1.1995134020417826,
+      "D_25pct_n": 2,
+      "D_50pct_mean": 1.2507284341972404,
+      "D_50pct_n": 3,
+      "D_75pct_mean": 1.2946392532363302,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.3571601944450502,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-15T06Z",
+      "n_scene_aircraft": 88,
+      "n_vectoring_eligible": 63,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": 1.5846404208190432,
+      "D_25pct_n": 3,
+      "D_50pct_mean": 1.5822460532296518,
+      "D_50pct_n": 4,
+      "D_75pct_mean": 1.5849622556263072,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.6042529498949833,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-18T00Z",
+      "n_scene_aircraft": 64,
+      "n_vectoring_eligible": 38,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": null,
+      "D_25pct_n": 0,
+      "D_50pct_mean": null,
+      "D_50pct_n": 0,
+      "D_75pct_mean": 1.4295138317481526,
+      "D_75pct_n": 1,
+      "D_100pct_mean": 1.4672247203992712,
+      "D_100pct_n": 2
+    },
+    {
+      "scene_id": "2026-09-20T04Z",
+      "n_scene_aircraft": 67,
+      "n_vectoring_eligible": 44,
+      "baseline_D": 1.4649957500330217,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 1.4649957500330217,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 1.463236316381724,
+      "D_25pct_n": 5,
+      "D_50pct_mean": 1.5334438752889097,
+      "D_50pct_n": 5,
+      "D_75pct_mean": 1.5547818230435988,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.6030178956308103,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-23T10Z",
+      "n_scene_aircraft": 63,
+      "n_vectoring_eligible": 43,
+      "baseline_D": 1.4590496179114563,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 1.4590496179114563,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 1.490700628054679,
+      "D_25pct_n": 5,
+      "D_50pct_mean": 1.4991213150876688,
+      "D_50pct_n": 5,
+      "D_75pct_mean": 1.5237440272349885,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.53914654942494,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-25T23Z",
+      "n_scene_aircraft": 51,
+      "n_vectoring_eligible": 35,
+      "baseline_D": 1.9106520744039999,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 1.9106520744039996,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 1.9185498871049655,
+      "D_25pct_n": 5,
+      "D_50pct_mean": 1.9314876697171701,
+      "D_50pct_n": 5,
+      "D_75pct_mean": 1.9419375554819667,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.9518982787579493,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-28T07Z",
+      "n_scene_aircraft": 72,
+      "n_vectoring_eligible": 55,
+      "baseline_D": 1.3718728667913394,
+      "baseline_status": "ok",
+      "baseline_reason": null,
+      "D_0pct_mean": 1.3718728667913394,
+      "D_0pct_n": 5,
+      "D_25pct_mean": 1.450526017024698,
+      "D_25pct_n": 3,
+      "D_50pct_mean": 1.5211953282432877,
+      "D_50pct_n": 4,
+      "D_75pct_mean": 1.5802918603166358,
+      "D_75pct_n": 5,
+      "D_100pct_mean": 1.587671335762815,
+      "D_100pct_n": 5
+    },
+    {
+      "scene_id": "2026-09-30T15Z",
+      "n_scene_aircraft": 51,
+      "n_vectoring_eligible": 43,
+      "baseline_D": null,
+      "baseline_status": "unestimable",
+      "baseline_reason": "poor_linear_fit",
+      "D_0pct_mean": null,
+      "D_0pct_n": 0,
+      "D_25pct_mean": null,
+      "D_25pct_n": 0,
+      "D_50pct_mean": null,
+      "D_50pct_n": 0,
+      "D_75pct_mean": null,
+      "D_75pct_n": 0,
+      "D_100pct_mean": null,
+      "D_100pct_n": 0
+    }
+  ],
+  "maneuver": {
+    "outbound_seconds": 300,
+    "return_seconds": 300,
+    "max_lateral_offset_m": 5000.0,
+    "profile": "offset = max/2 * (1 - cos(2*pi*u)), u from 0 to 1 over 10 minutes; smooth start, midpoint, and return",
+    "side": "randomly selected left/right for each aircraft intervention",
+    "altitude": "unchanged",
+    "speed": "original sample times and speed retained; coordinates shifted laterally",
+    "insertion": "centered on trajectory midpoint; original start/end positions preserved"
+  }
+}
