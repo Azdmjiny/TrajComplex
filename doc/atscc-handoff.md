@@ -22,6 +22,25 @@
 
 上游负责按 `[t_s,t_s+1h)` 切窗、坐标转换和飞机 ID 去重；每架飞机在一个小时场景中只贡献一个向量。模型不会推断小时或航班身份，也不会自动删掉过短轨迹。
 
+## OpenSky 接入
+
+`Encoder/opensky_scene.py` 将忽略的 `data/OpenSky_Changi_2026-09/sampled_10s/` 逐小时 CSV.gz 接入现有冻结 Encoder 与 Complexity。它筛选空中且位置/几何高度/时间有效的观测，按 ICAO24 和 UTC 小时分组，遇到超过 60 秒的断点即分段；每机每小时仅保留最长且至少含 16 个真实观测的片段。
+
+脚本把 WGS84 转为相对 WSSS ARP 的 ENU 米制坐标，再在观测间线性插值到模型要求的 5 秒间隔，调用现有 checkpoint 的 `sum` pooling，并把每小时 `(N,16)` 向量送入既有复杂度质量门槛。生成 `hourly_embeddings.npz` 和含逐场景诊断/筛选轨迹清单的 `hourly_complexity.json`。所有结果默认写在被忽略的 `data/.../encoder_scenes/`。
+
+先仅跑一小时试算：
+
+```bash
+python Encoder/opensky_scene.py --pattern '2026-09-01T00Z.csv.gz'
+```
+
+确认输出后处理全部月份（720 小时）：
+
+```bash
+python Encoder/opensky_scene.py
+```
+
+可用 `--input-dir`、`--output-dir`、`--checkpoint`、`--device`、`--max-gap-seconds` 覆盖默认值。当前 checkpoint 在韩国 RKSI 数据训练，而此数据来自新加坡 WSSS；10 秒轨迹的 5 秒中间点是线性估计，几何高度基准也可能与机场标高存在偏差。因此这条链路已能运行，但输出应视为域迁移探索结果，不应当作经验证的 WSSS 复杂度结论；报告会保留这些限制，并仅在既有质量门槛通过时给出维数。
 ## 从轨迹接入复杂度
 
 在仓库根目录执行，`hour_tracks` 为上游已经组织好的同一小时 1 Hz 轨迹列表：
