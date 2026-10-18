@@ -8,7 +8,7 @@
 - 主干：9 维特征输入，256 宽、4 层、4 头、FFN 512；逐 token L2，pooled embedding 不额外 L2。
 - 仓库根目录导入：`from Encoder.trajectory_encoder.inference import FrozenEncoder` 和 `from Complexity import estimate_complexity`。
 - 在 `Encoder/` 内运行原有示例时，仍使用 `from trajectory_encoder.inference import FrozenEncoder`；见 `Encoder/example.py`。
-- Complexity 独立只需 NumPy/SciPy；联合推理还需 Torch 和 Encoder 依赖。环境安装与重训以 [Encoder/README.md](../Encoder/README.md)、[PLAN.md](../Encoder/PLAN.md)、[PROTOCOL.md](../Encoder/PROTOCOL.md) 为准。
+- Complexity 实现仅直接依赖 NumPy/SciPy；全项目统一安装根目录 `requirements.txt`，其中包含 Torch。环境安装见[根 README](../README.md#installation)，重训见[Encoder 部分](../README.md#encoder)、[PLAN.md](../Encoder/PLAN.md)、[PROTOCOL.md](../Encoder/PROTOCOL.md)。
 
 ## 输入与预处理契约
 
@@ -61,7 +61,7 @@ print(result.status, result.dimension, result.reason)
 np.save("hour_01.npy", points)
 ```
 
-传递的是 `(N,16)` 数组，不是 token 序列、返回字典或单条 `(16,)` 向量。空场景可传 `(0,16)`；不足样本或拟合不合格返回 `unestimable`，不能记为复杂度 0。默认门槛、显式尺度及 JSON 字段见 [Complexity/README.md](../Complexity/README.md)。
+传递的是 `(N,16)` 数组，不是 token 序列、返回字典或单条 `(16,)` 向量。空场景可传 `(0,16)`；不足样本或拟合不合格返回 `unestimable`，不能记为复杂度 0。默认门槛、显式尺度及 JSON 字段见[根 README 的 Complexity 部分](../README.md#complexity)。
 
 单小时保存为 `.npy`，多小时保存为 `scene_id -> (N_s,D)` 的 `.npz`：
 
