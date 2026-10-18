@@ -1,0 +1,18 @@
+\section{Problem Formulation}
+\label{sec:problem}
+Let $\Window_s=[t_s,t_s+\Delta)$ denote a traffic window, with
+$\Delta=1\,\mathrm{hour}$, and let $\mathcal{A}_s$ be its set of observed
+aircraft. For each aircraft $i\in\mathcal{A}_s$, the input
+$X_{i,s}=(x_{i,s,1},\ldots,x_{i,s,T_{i,s}})$ contains only its valid
+observations inside $\Window_s$. A shared encoder and temporal pooling
+operator produce
+\begin{equation}
+z_{i,s}=\operatorname{Pool}(f_\theta(X_{i,s}))\in\R^d.
+\end{equation}
+The scene point cloud is
+$\Embeddings_s=\{z_{i,s}:i\in\mathcal{A}_s\}$, with
+$N_s=|\mathcal{A}_s|$ points.
+% d is configurable. Initial experiments consider d in {4,8,16}; 8 is
+% a starting configuration, not an established optimum.
+\draftnote{Specify airport/airspace boundaries, aircraft and flight identity,
+window stride, inclusion rules, and the meaning of the proposed scene metric.}

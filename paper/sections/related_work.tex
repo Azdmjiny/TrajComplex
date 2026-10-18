@@ -1,0 +1,112 @@
+\section{Related Work}
+\label{sec:related-work}
+% Source status: the two author-supplied Lim manuscripts are cited as
+% manuscripts, without inferring a publication venue or an unknown year.
+% This section describes planned positioning, not completed experiments.
+
+\subsection{Traffic Complexity and Operational Validation}
+\label{sec:rw-complexity}
+Historical trajectories provide observable evidence of how arrival traffic
+has been managed. Lim et al.~\cite{lim2024datadriven} quantify terminal manoeuvring
+area (TMA) complexity through vectoring and holding, using normalized arc
+length, normalized total curvature, and holding duration. Their framework
+applies principal component analysis (PCA) to these three features,
+clusters trajectories with $k$-means, ranks the clusters by operational
+complexity, and aggregates their assigned weights over one-hour scenes.
+This construction incorporates both traffic volume and the prevalence of
+operational interventions. It provides an interpretable reference for
+scene assessment, although its feature set explicitly determines which
+aspects of trajectory behaviour contribute to the score.
+
+The subsequent retrospective study by Lim et al.~\cite{lim2026retrospective}
+compares the model with six rated approach controllers assessing twenty
+historical one-hour scenarios, with complementary eye-tracking measures.
+The continuous model score achieves a mean Spearman correlation of
+$0.746$ with individual controller ratings. These results support its
+operational relevance within the studied TMA, while the retrospective
+playback setting and limited scenario set constrain broader conclusions.
+Together, these studies establish useful operational comparators for a
+new geometric descriptor. They also motivate a distinction between
+trajectory-derived complexity and controller workload: agreement with
+trajectory features alone does not establish agreement with human
+judgements or workload under active control.
+
+\subsection{Self-Supervised Aircraft Trajectory Representations}
+\label{sec:rw-representation}
+Aircraft Trajectory Segmentation-Based Contrastive Coding (ATSCC)
+learns representations from unlabelled trajectories using a causal
+Transformer encoder \cite{phisannupawong2025atscc}. It derives segment
+identities through Ramer--Douglas--Peucker simplification and uses a
+modified soft nearest-neighbour objective to bring representations from
+the same segment together while separating other segments and
+trajectories. Its route classification and clustering evaluations show
+that this supervision can recover meaningful trajectory structure.
+However, route discrimination does not by itself validate a
+representation of operational complexity.
+
+Lim et al.~\cite{limcontrastive} directly investigate this distinction by probing
+ATSCC-derived embeddings for holding detection and regression of
+trajectory-based operational indicators. Their comparison identifies
+temporal pooling as a major determinant of downstream performance, with
+sum pooling performing particularly well on complexity-related regression
+tasks. Crucially, evaluation within individual standard terminal arrival
+routes (STARs) reveals weaker sensitivity to some operational variations:
+holding-duration $R^2$ falls from $0.6820$ in the global evaluation to
+$0.3315$ within STARs, whereas holding-detection AUC remains $0.9539$.
+This evidence motivates evaluation beyond route identity and scrutiny of
+duration-related information introduced by pooling. For the present
+study, an additional question is whether representations learned from
+trajectories retain useful behavioural differences when applied to
+fragments clipped to hourly windows. The existing evaluations do not
+establish the reliability of a geometric statistic computed across those
+fragment embeddings.
+
+\subsection{Correlation Dimension and Learned Point-Cloud Geometry}
+\label{sec:rw-dimension}
+Grassberger and Procaccia~\cite{grassberger1983measuring} introduced the correlation-dimension
+approach, which characterizes how the probability of two points lying
+within distance $r$ scales with $r$. In empirical applications, the slope
+of a log--log correlation-sum curve over a suitable scale interval
+provides an estimate of this scaling behaviour. This offers a way to
+describe the geometry of an embedding population beyond its number of
+coordinates. Related work on neural representations also demonstrates
+that estimated intrinsic dimension can differ substantially from layer
+width and change across learned representations
+\cite{ansuini2019intrinsic}. Such findings motivate studying embedding
+geometry, but do not imply that its dimension measures operational
+difficulty in air traffic.
+
+Finite-sample estimation is a central limitation.
+Erba et al.~\cite{erba2019intrinsic} show how local undersampling can bias
+correlation-based dimension estimates, particularly as intrinsic
+dimension increases, and propose an estimator based on the full
+correlation integral under additional geometric assumptions. A
+complementary approach, TWO-NN, estimates intrinsic dimension from ratios
+of first- and second-nearest-neighbour distances
+\cite{facco2017estimating}. These approaches provide methodological
+comparisons rather than interchangeable definitions: their assumptions
+and finite-sample behaviour differ, and agreement is not guaranteed for
+heterogeneous traffic scenes. In particular, reducing the encoder output
+dimension does not establish that an hourly point cloud contains enough
+aircraft for reliable estimation. We therefore treat the fitted
+correlation slope as a finite-scale empirical descriptor whose
+stability must be assessed against sample size, scale selection, and
+representation choices.
+
+\subsection{Positioning of the Present Study}
+\label{sec:rw-positioning}
+The proposed unit of analysis is an hourly scene represented by a point
+cloud with one embedding per aircraft trajectory fragment. The points
+describe a population of aircraft behaviours; they are not delay
+coordinates reconstructed from a single dynamical trajectory, and the
+analysis makes no claim about chaotic traffic dynamics. We investigate
+whether empirical correlation dimension captures scene variation that
+adds information beyond aircraft count, route composition, and simple
+embedding dispersion. A fixed encoder, pooling rule, and distance
+definition make comparisons across scenes interpretable. The proposed
+validation separates geometric stability from operational relevance,
+using traffic-volume and route-composition controls, fragment-duration
+and coverage checks, and independent operational or controller-based
+comparisons where available. A higher estimated dimension is thus a
+hypothesis about richer latent structure, whose relationship to
+operational complexity remains to be established.

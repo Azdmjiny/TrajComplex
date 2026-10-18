@@ -1,0 +1,49 @@
+% AICAP 2027 paper. Compile this main file with pdfLaTeX and BibTeX.
+\documentclass[conference]{IEEEtran}
+
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsthm}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{microtype}
+\usepackage{url}
+\usepackage[hidelinks]{hyperref}
+\usepackage[capitalize,noabbrev]{cleveref}
+\input{macros}
+\graphicspath{{figures/}}
+
+\begin{document}
+
+\title{Quantifying Terminal Airspace Traffic Complexity through
+Trajectory Embeddings and Correlation Dimension}
+
+% Replace these placeholders with the confirmed author list and affiliation.
+% The public AICAP guidelines do not currently specify anonymous review.
+\author{
+  \IEEEauthorblockN{Author Names to Be Confirmed}
+  \IEEEauthorblockA{Affiliation to be confirmed}
+}
+\maketitle
+
+\input{sections/abstract}
+\begin{IEEEkeywords}
+air traffic management, terminal manoeuvring area, trajectory
+representation learning, correlation dimension
+\end{IEEEkeywords}
+
+\input{sections/introduction}
+\input{sections/related_work}
+\input{sections/problem_formulation}
+\input{sections/method}
+\input{sections/experiments}
+\input{sections/discussion}
+\input{sections/conclusion}
+
+% Appendices remain in two columns and count towards the eight-page limit.
+\appendices
+\input{sections/appendix}
+
+\bibliographystyle{IEEEtran}
+\bibliography{references}
+
+\end{document}

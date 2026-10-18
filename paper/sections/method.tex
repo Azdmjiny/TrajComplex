@@ -1,0 +1,43 @@
+\section{Method}
+\label{sec:method}
+
+\subsection{Trajectory Preprocessing and Window Construction}
+% Freeze coordinate origin and units, resampling, scaling, missing-data
+% policy, minimum usable fragment criteria, and duplicate-flight handling.
+% Record one aircraft-window per output embedding.
+\draftnote{Describe the versioned transformation from observations to nine-dimensional states.}
+
+\subsection{Self-Supervised Trajectory Encoder}
+% Describe RDP segment identities, positive/negative pairs, causal
+% Transformer architecture, masking, and the exact contrastive loss.
+% Record the difference from ATSCC/ITSC configurations.
+% Freeze the selected encoder before comparing scenes.
+\draftnote{Specify the training objective, architecture, and checkpoint-selection protocol.}
+
+\subsection{Temporal Pooling and Distance Geometry}
+% Define sum, mean, and signed GeM pooling, including padding masks.
+% Record whether pooled embeddings are L2-normalized.
+% Under final per-vector L2 normalization, sum and mean are identical
+% for the same nonzero hidden-state sum.
+\draftnote{Define the pooling and distance choices used by each experiment.}
+
+\subsection{Empirical Correlation Dimension}
+For a fixed distance function $d(\cdot,\cdot)$ and $N_s\geq2$, the
+empirical correlation sum is
+\begin{equation}
+\Corr_s(r)=
+\frac{2}{N_s(N_s-1)}
+\sum_{i<j}\indic{d(z_{i,s},z_{j,s})<r}.
+\label{eq:correlation-sum}
+\end{equation}
+Following the correlation-dimension construction
+\cite{grassberger1983measuring}, an empirical slope can be estimated over
+a prespecified admissible scale interval:
+\begin{equation}
+\log\Corr_s(r)\approx \Dscene(s)\log r+b_s.
+\label{eq:empirical-slope}
+\end{equation}
+This finite-sample slope is a candidate geometric descriptor. Its
+association with operational complexity remains an empirical question.
+\draftnote{Specify scale selection, sample-size checks, slope stability,
+normalization, and conditions under which a scene is unestimable.}

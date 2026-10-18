@@ -1,0 +1,43 @@
+\section{Experiments}
+\label{sec:experiments}
+
+\subsection{Research Questions}
+% RQ1: Can the descriptor be estimated reproducibly at observed hourly N?
+% RQ2: Does it retain operational information after controlling for traffic
+% count, route mixture, fragment duration, and data coverage?
+% RQ3: Does it add information beyond simpler scene descriptors?
+\draftnote{Finalize the questions before inspecting held-out test results.}
+
+\subsection{Data and Evaluation Protocol}
+% Report source/access/license, airports, dates, flight counts, coverage,
+% preprocessing, date/flight-group splits, and exclusions.
+% Keep overlapping scenes and shared flights from leaking across splits.
+% All learned scalers/encoders/clusterers are fitted on training data only.
+\draftnote{Document the data and chronological, grouped evaluation protocol.}
+
+\subsection{Baselines}
+% Include traffic count, route/cluster diversity, embedding dispersion,
+% covariance effective rank, and the supplied trajectory-outcome measure
+% when its inputs and normalization are available.
+\draftnote{Define comparable baselines using the same aircraft and windows.}
+
+\subsection{Representation Quality}
+% Held-out linear/ridge probes and within-route analysis.
+% Evaluation-only proxy labels do not enter self-supervised training.
+\draftnote{Report representation quality, non-collapse diagnostics, and seed variation.}
+
+\subsection{Estimator Reliability and Sensitivity}
+% Compare d=4/8/16, pooling, normalization, N, scale intervals, and coverage.
+% Use known-structure synthetic point clouds and scene-level subsampling.
+% Report unestimable scenes, not just the accepted subset.
+\draftnote{Measure finite-sample reliability and sensitivity to design choices.}
+
+\subsection{Operational Validation}
+% Compare with independently defined maneuver proxies and, if obtainable,
+% controller ratings. Report confound-controlled and within-route results.
+\draftnote{Test whether the new metric adds operational information.}
+
+\subsection{Results and Ablations}
+% Populate only after experiments. No invented numbers or unsupported
+% claims of improvements. Report failed estimation and negative findings.
+\draftnote{Insert measured results, uncertainty, and ablation findings.}
