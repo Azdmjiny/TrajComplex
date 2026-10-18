@@ -1,4 +1,4 @@
-"""Run: python -m unittest discover -s complexity/tests -v."""
+"""Run: python -m unittest discover -s Complexity/tests -v."""
 
 import json
 import os
@@ -10,7 +10,7 @@ import unittest
 
 import numpy as np
 
-from complexity import ComplexityConfig, correlation_integral, estimate_complexity
+from Complexity import ComplexityConfig, correlation_integral, estimate_complexity
 
 
 class CorrelationTests(unittest.TestCase):
@@ -177,7 +177,7 @@ class CommandLineTests(unittest.TestCase):
         self.project = Path(__file__).resolve().parents[2]
 
     def run_cli(self, *args):
-        return subprocess.run([sys.executable, "-m", "complexity", *map(str, args)],
+        return subprocess.run([sys.executable, "-m", "Complexity", *map(str, args)],
                               cwd=self.project, capture_output=True, text=True)
 
     def test_single_scene(self):
