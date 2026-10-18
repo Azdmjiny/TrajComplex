@@ -16,25 +16,16 @@ class FrozenEncoder:
         self.model.eval().to(self.device).requires_grad_(False)
 
     @torch.inference_mode()
-    def encode(self, enu_m, resample_from_1hz=True):
-        """Return per-token unit vectors and one trajectory vector.
+    def encode(self, enu_m):
+        """Encode finite ENU metre positions already sampled every five seconds.
 
-        enu_m: finite (N,3) east/north/up positions in metres relative to RKSI.
-        1 Hz input is reduced to every fifth point plus the final endpoint.
-        With resample_from_1hz=False the caller supplies the same 5s cadence
-        (plus optional final endpoint). Do not pass latitude/longitude here.
-        Direction is the forward difference; a final direction is repeated.
-        No timestamp/flight-ID or hour-scene inference is performed.
+        This core API does not resample or infer timestamps. Do not pass
+        latitude/longitude here. Direction uses forward differences, repeating
+        the final direction. No flight or scene inference is performed.
         """
         p = np.asarray(enu_m, dtype=np.float64)
         if p.ndim != 2 or p.shape[1] != 3 or len(p) < 2 or not np.isfinite(p).all():
             raise ValueError("Expected at least two finite ENU metre XYZ points")
-        if resample_from_1hz:
-            step = self.preprocess["preprocessing"]["stride_s"]
-            indices = np.arange(0, len(p), step)
-            if indices[-1] != len(p) - 1:
-                indices = np.append(indices, len(p) - 1)
-            p = p[indices]
         if len(p) < self.preprocess["preprocessing"]["min_points"]:
             raise ValueError("Trajectory is shorter than the trained minimum of 30 sampled points")
         x = (features(p) - np.array(self.preprocess["mean"])) / np.array(self.preprocess["std"])

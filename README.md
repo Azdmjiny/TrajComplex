@@ -1,8 +1,8 @@
 # Trajectory Representation and Scene Complexity
 
-This project includes a trained trajectory Encoder, a scene-embedding point-cloud complexity estimator, OpenSky data around Singapore Changi Airport, and method and experiment records. The repository maintains a single top-level README and a single dependency manifest at `requirements.txt`.
+This project includes a trained trajectory Encoder, a scene-embedding point-cloud complexity estimator, and method and experiment records. The repository maintains a single top-level README and a single dependency manifest at `requirements.txt`.
 
-The Encoder maps an individual trajectory to a vector; `Complexity` estimates the empirical correlation dimension of multiple vectors from one scene. The OpenSky integration script is runnable, but transfer from RKSI to WSSS and hourly complexity results have not been conclusively validated. Proxy metrics are not ground-truth human complexity labels.
+The Encoder maps an individual trajectory to a vector; `Complexity` estimates the empirical correlation dimension of multiple vectors from one scene. Proxy metrics are not ground-truth human complexity labels.
 
 ## Contents
 
@@ -10,7 +10,6 @@ The Encoder maps an individual trajectory to a vector; `Complexity` estimates th
 - [Quick Start](#quick-start)
 - [Encoder: Inference, Experiments, and Retraining](#encoder)
 - [Complexity: Interface and Quality Rules](#complexity)
-- [OpenSky Data: Definition and Usage](#opensky-data)
 - [Validation](#validation)
 - [Methods, Licensing, and Limitations](#methods)
 
@@ -18,7 +17,6 @@ The Encoder maps an individual trajectory to a vector; `Complexity` estimates th
 |---|---|
 | `Encoder/` | Frozen weights, inference interface, training implementation, experiment logs, and reports |
 | `Complexity/` | NumPy/SciPy complexity estimator, Python/CLI interfaces, and tests |
-| `data/OpenSky_Changi_2026-09/` | September 2026 OpenSky data around Changi, quality records, and extraction tools |
 | `doc/` | Methodology, training plans, and integration notes |
 | `requirements.txt` | The single dependency manifest for the project, including PyTorch |
 
@@ -50,7 +48,7 @@ Run subsequent commands in the activated environment. Recreate an existing Pytho
 
 ### 1. Prepare trajectories
 
-Save each aircraft trajectory as a separate `.npy` file containing a finite real-valued `(T, 3)` array of local ENU coordinates in metres (east, north, up), ordered by time and sampled at 5-second intervals. The current checkpoint uses RKSI-local coordinates; do not pass latitude/longitude or unprocessed OpenSky columns directly. Each trajectory must contain at least 30 points after sampling.
+Save each aircraft trajectory as a separate `.npy` file containing finite `(T, 3)` ENU coordinates in metres, already sampled at 5-second intervals, with at least 30 points.
 
 ```text
 trajectories/
@@ -63,29 +61,13 @@ Upstream processing must handle time-window assignment, coordinate and altitude-
 
 ### 2. Encode and pool
 
-Save the following as `encode_scene.py` in the repository root, then run `python encode_scene.py`:
+Run the repository-root script directly. Place one `.npy` file per aircraft in `trajectories/`. Each file must contain finite `(T, 3)` local ENU coordinates in metres, already sampled at 5-second intervals, with at least 30 points. All files in this folder are treated as one scene and must come from the same time window.
 
-```python
-from pathlib import Path
-import numpy as np
-from Encoder.trajectory_encoder.inference import FrozenEncoder
-
-encoder = FrozenEncoder(
-    "Encoder/encoder/encoder.pt", pooling="sum", device="cpu"
-)
-vectors = []
-for path in sorted(Path("trajectories").glob("*.npy")):
-    enu_m = np.load(path, allow_pickle=False)
-    result = encoder.encode(enu_m, resample_from_1hz=False)
-    vectors.append(result["embedding"])
-
-scene_embeddings = np.stack(vectors) if vectors else np.empty((0, 16))
-Path("artifacts").mkdir(exist_ok=True)
-np.save("artifacts/scene_001_embeddings.npy", scene_embeddings)
-print(scene_embeddings.shape)
+```bash
+python encode_scene.py
 ```
 
-This example treats every file in `trajectories/` as one scene. `FrozenEncoder.encode()` returns both per-token vectors and a pooled trajectory embedding; pass an `(N, D)` array made from the pooled embeddings to `Complexity`.
+The script stacks one pooled embedding per input aircraft. The resulting array is ready for the complexity step below.
 
 ### 3. Estimate complexity
 
@@ -115,32 +97,18 @@ The 12 independent experiments in [PLAN.md](Encoder/PLAN.md) are complete, with 
 | [experiment_logs/](Encoder/experiment_logs/) | Per-epoch losses, settings, and validation records |
 | [RESULTS_ZH.md](Encoder/reports/RESULTS_ZH.md) | Results report (Chinese) |
 
-The inference input is an `(T, 3)` array of RKSI-local ENU coordinates in metres. Each trajectory must have at least 30 sampled points. The model constructs nine input features internally and uses the training-set mean and standard deviation stored in the checkpoint; preprocessing statistics are not refit during inference. The model runs in evaluation mode with frozen parameters. Token vectors are L2-normalized; the sum-pooled vector is not additionally L2-normalized.
+The inference input is a finite `(T, 3)` array of ENU coordinates in metres, already sampled at five-second intervals. Each trajectory must have at least 30 points. The model constructs nine input features internally and uses the training-set mean and standard deviation stored in the checkpoint; preprocessing statistics are not refit during inference. The model runs in evaluation mode with frozen parameters. Token vectors are L2-normalized; the sum-pooled vector is not additionally L2-normalized.
 
 ```python
 from Encoder.trajectory_encoder.inference import FrozenEncoder
 
 encoder = FrozenEncoder("Encoder/encoder/encoder.pt", pooling="sum", device="cpu")
-result = encoder.encode(enu_m, resample_from_1hz=False)
-print(result["tokens"].shape)     # (T_sampled, 16)
+result = encoder.encode(enu_m)
+print(result["tokens"].shape)     # (T, 16)
 print(result["embedding"].shape)  # (16,)
 ```
 
 Supported pooling modes are `sum`, `mean`, and `gem2` (signed GeM-p2). The result also includes the sampled point count, pooling mode, and preprocessing ID. Checkpoints are loaded with `weights_only=False`; **load only trusted checkpoint files**. The current interface does not automatically adapt legacy bare `state_dict` files.
-
-### Experiments and results
-
-Training data came from RKSIa in the public [ATFMTraj dataset](https://huggingface.co/datasets/petchthwr/ATFMTraj). The train/validation/test split contains 6,877 / 1,214 / 8,092 trajectories. The validation set was split from the official TRAIN set; the official TEST set was reserved for final evaluation. SHA256 hashes for six local TSV files match the public dataset version; see [public_data_verification.json](Encoder/reports/public_data_verification.json). The original TSV files are not included in the repository.
-
-The model uses nine input features, a four-layer causal Transformer, width 256, FFN 512, four heads, dropout 0.35, 20% input masking, and RDP flat-SNN. Four 8-dimensional screening runs varied ε=120/1200m and τ=0.01/0.05; then dimensions 4/8/16 were compared across three seeds each. Training used batch size 16, AdamW with learning rate 1e-5, and bf16. The historical training device was an RTX 5060 Laptop GPU with 8 GB. Sum pooling was fixed in advance as the primary method; mean and signed GeM-p2 were sensitivity analyses.
-
-Hyperparameters, embedding dimension, and representative seed were selected using validation data only, before TEST evaluation. See [PROTOCOL.md](Encoder/PROTOCOL.md) for the protocol, [implementation_checks.json](Encoder/reports/implementation_checks.json) for implementation checks, and [export_verification.json](Encoder/reports/export_verification.json) for export validation. The selected model did not outperform the stronger of the two baselines on any of the four proxies; these results do not establish that self-supervised training adds geometric-proxy prediction capability.
-
-![Training curves](Encoder/reports/training_curves.png)
-
-![Test results and baselines](Encoder/reports/baseline_comparison.png)
-
-![Dimension and pooling comparison](Encoder/reports/dimension_pooling.png)
 
 ### Retraining
 
@@ -269,92 +237,10 @@ Successful processing returns exit code 0, including files with `unestimable` sc
 
 ### Connecting to the Encoder
 
-Stack each aircraft's `result["embedding"]` from the same hour into an `(N, 16)` array. An empty scene may use `(0, 16)`. Do not pass tokens, dictionaries, or a single `(16,)` vector. Each trajectory must have at least 30 sampled points; by default each scene also needs at least 30 aircraft and must pass fit-quality checks. See the [handoff notes](doc/atscc-handoff.md) for integration details and OpenSky processing. The legacy `ATSCC.load_model/encode_scene` entry points no longer apply.
+Stack each aircraft's `result["embedding"]` from the same hour into an `(N, 16)` array. An empty scene may use `(0, 16)`. Do not pass tokens, dictionaries, or a single `(16,)` vector. Each trajectory must have at least 30 sampled points; by default each scene also needs at least 30 aircraft and must pass fit-quality checks. See the [handoff notes](doc/atscc-handoff.md) for integration details. The legacy `ATSCC.load_model/encode_scene` entry points no longer apply.
 
 **Do not use `Encoder/encoder/embeddings.npz` directly as an hourly scene archive.** Its keys are `sum`, `mean`, and `gem2`, and each value contains all 16,183 trajectories; it is not a `scene_id -> (N, D)` archive. Training data lacks absolute timestamps and real flight IDs, so true hourly scenes cannot be reconstructed from it. Different pooling outputs are not different scenes.
 
-<a id="opensky-data"></a>
-## OpenSky Data
-
-The files described below are in `data/OpenSky_Changi_2026-09/`. Use `progress.json` and the final `data_quality.json` to check status. The month is considered complete only after all 720 hours finish and pass local validation.
-
-### Extraction definition
-
-- Singapore local time: 2026-09-01 00:00:00 inclusive to 2026-10-01 00:00:00 exclusive (Asia/Singapore, UTC+08:00).
-- UTC: 2026-08-31 16:00:00 to 2026-09-30 16:00:00, covering 720 complete hours.
-- Center: WSSS Airport Reference Point (control tower), 1.3592111111° N, 103.989325° E; airport elevation 6.66 m.
-- Coverage: a circular research area within 100 km of the center. This is an extraction definition, not the official TMA boundary.
-- Altitude is not truncated and on-ground records are retained. The data includes all aircraft actually received within the area, potentially including nearby-airport and overflight traffic; it does not mean every aircraft arrived at or departed from Changi.
-- States whose Unix second is divisible by 10 are retained as observed. No points are added, interpolated, or fabricated during this raw extraction. Interpolation used in later Encoder integration is a separate step.
-
-### Files
-
-| Path | Contents |
-|---|---|
-| `raw/` | UTC-hour CSV.gz files with raw 10-second sampled states, including stale positions and missing fields |
-| `sampled_10s/` | Excludes records with unknown position/receive time or lag over 15 seconds; keeps the last observed record per aircraft per 10-second bucket; other missing fields remain |
-| `manifest/` | Per-hour row counts, aircraft counts, interval statistics, query IDs, execution details, and SHA256 |
-| `queries/` | Prepared SQL; completed queries are identified by manifest IDs and explicitly filter hour partitions, time, geographic bounds, and circular distance |
-| `config.json` | Airport, time, area, sampling, and cleaning parameters |
-| `progress.json` | Monthly download status |
-| `flight_metadata/` | OpenSky-inferred WSSS arrival/departure information by UTC end date, with an extra following day; not a complete airport flight list |
-| `hourly_summary.csv`, `data_quality.json` | Local hourly statistics and quality report |
-| `extract.mjs` | Reusable extraction module; credentials remain in memory and are not included in delivered files |
-
-### Fields and reading data
-
-| Field | Meaning / units |
-|---|---|
-| `time` | State time, UTC Unix seconds |
-| `icao24` | Transponder address; hexadecimal string, preserving leading zeros |
-| `callsign` | Broadcast callsign; may be empty or contain trailing spaces and is not guaranteed unique |
-| `lat / lon` | WGS84 latitude / longitude, degrees |
-| `baroaltitude / geoaltitude` | Barometric / geometric altitude, metres |
-| `velocity` | Ground speed, m/s |
-| `heading` | Direction of motion relative to true north, degrees |
-| `vertrate` | Vertical speed, m/s; positive means climbing |
-| `onground` | Ground state, true / false |
-| `lastposupdate / lastcontact` | Most recent position update / signal reception time, UTC Unix seconds |
-| `hour` | Database UTC-hour partition, Unix seconds |
-
-Empty CSV fields mean missing values; do not replace them with zero. Read one hour at a time rather than loading the whole month. Run this example from the repository root:
-
-```python
-import pandas as pd
-
-df = pd.read_csv(
-    "data/OpenSky_Changi_2026-09/sampled_10s/2026-08-31T16Z.csv.gz",
-    dtype={"icao24": "string", "callsign": "string"},
-)
-df["time_sgt"] = pd.to_datetime(df["time"], unit="s", utc=True).dt.tz_convert("Asia/Singapore")
-```
-
-Each file covers a half-open one-hour window; aircraft spanning hours have a segment in each file. Do not identify flights by callsign alone, connect trajectories across long gaps, or label nearby/overflight traffic as WSSS flights without verification. Metadata first/last observations are not actual takeoff/landing times, and estimated airport fields may be missing.
-
-### Encoder integration for hourly scenes
-
-The raw data has not been converted into the nine features used in the training pipeline, and normalization parameters have not been fitted. Check altitude datum, direction calculations, missing values, continuous trajectory segments, and date/flight splits; then freeze a preprocessing version.
-
-`Encoder/opensky_scene.py` filters valid airborne observations, groups by ICAO24 and UTC hour, and splits segments at gaps over 60 seconds. It keeps the longest segment per aircraft per hour with at least 16 real observations. After converting WGS84 to WSSS ENU, it linearly interpolates to the model's 5-second cadence, applies frozen sum pooling, and applies the existing Complexity quality checks.
-
-```bash
-# Trial one hour first
-python Encoder/opensky_scene.py --pattern '2026-09-01T00Z.csv.gz'
-# After review, process all inputs
-python Encoder/opensky_scene.py
-```
-
-Options include `--input-dir`, `--output-dir`, `--checkpoint`, `--device`, and `--max-gap-seconds`. By default, output is written to the ignored directory `data/OpenSky_Changi_2026-09/encoder_scenes/` and includes `hourly_embeddings.npz`, `hourly_complexity.json`, diagnostics, and a trajectory filtering manifest.
-
-Inference transfers the model from RKSI training to WSSS. Five-second points interpolated between 10-second observations are estimates, and altitude datum may differ. Outputs are exploratory, not validated WSSS complexity results. OpenSky receiver coverage is incomplete; handle empty/sparse windows and missing fields using the quality report, and do not claim complete coverage of all airport flights.
-
-### Query and usage references
-
-- [OpenSky historical data and efficient queries](https://openskynetwork.github.io/opensky-api/trino.html)
-- [Singapore AIP WSSS, September 2026 edition](https://aim-sg.caas.gov.sg/aim-content/uploads/aip/17-SEP-2026/AIP/2026-09-03-000000/html/eAIP/SG-AD-2-WSSS-en-GB.html)
-- [Trino `great_circle_distance`, which returns kilometres](https://trino.io/docs/current/functions/geospatial.html#great_circle_distance)
-
-This extraction follows the approved non-commercial research use. It allows at most two concurrent queries, each covering a small number of explicit hourly partitions. If a query has not completed after five minutes, stop and inspect it rather than expanding the query.
 
 <a id="validation"></a>
 ## Validation

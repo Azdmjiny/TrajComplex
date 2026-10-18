@@ -14,7 +14,7 @@ spec = read_json(ROOT / "reports" / "export_verification.json")
 assert file_hash(ROOT / "encoder" / "encoder.pt") == spec["selected_weights_sha256"]
 example = np.load(ROOT / "encoder" / "example_input_output.npz")
 encoder = FrozenEncoder(ROOT / "encoder" / "encoder.pt")
-out = encoder.encode(example["enu_m"], resample_from_1hz=False)
+out = encoder.encode(example["enu_m"])
 np.testing.assert_allclose(out["tokens"], example["tokens"], rtol=1e-5, atol=1e-6)
 np.testing.assert_allclose(out["embedding"], example["embedding"], rtol=1e-5, atol=1e-5)
 print("FROZEN ENCODER EXAMPLE OK", out["tokens"].shape, out["embedding"].shape)

@@ -75,7 +75,7 @@ def main():
     loader = FrozenEncoder(export / "encoder.pt", device="cpu")
     i = next(i for i, r in enumerate(records) if r["split"] == "test")
     a, b = arrays["offsets"][i:i+2]
-    encoded = loader.encode(arrays["p"][a:b], resample_from_1hz=False)
+    encoded = loader.encode(arrays["p"][a:b])
     expected_model = TrajectoryEncoder(selection["selected_dimension"], **cfg["model"]).eval()
     checkpoint = torch.load(export / "encoder.pt", map_location="cpu", weights_only=False)
     expected_model.load_state_dict(checkpoint["state_dict"])
