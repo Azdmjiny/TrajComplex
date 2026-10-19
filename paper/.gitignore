@@ -14,4 +14,5 @@
 *.bcf
 *.run.xml
 build/
-*.pdf
+/main.pdf
+# PDF figure assets under figures/ remain trackable.

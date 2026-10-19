@@ -25,6 +25,8 @@ IEEE 官方模板入口：https://www.ieee.org/conferences/publishing/templates
 ```text
 paper/
   main.tex                       论文总入口
+  .latexmkrc                     本地编译配置，输出到 build/
+  build/                         本地编译产物，不提交
   IEEEtran.cls                   IEEE 官方文档类
   IEEEtran.bst                   IEEE 官方参考文献样式
   macros.tex                     项目符号与草稿提示
@@ -51,14 +53,19 @@ paper/
 
 在 `paper/` 目录执行：
 
-```text
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-bibtex main
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
-pdflatex -interaction=nonstopmode -halt-on-error main.tex
+```bash
+latexmk -pdf -interaction=nonstopmode -halt-on-error main.tex
 ```
 
-或使用 `latexmk -pdf main.tex`。Overleaf 请选择 `main.tex` 为主文件，编译器使用 pdfLaTeX。
+项目的 `.latexmkrc` 固定使用 pdfLaTeX，并将 PDF 与辅助文件写入 `build/`。输出为 `build/main.pdf`，不要把编译产物放回源码根目录。
+
+清理辅助文件（保留 PDF）：
+
+```bash
+latexmk -c main.tex
+```
+
+Overleaf 请选择 `main.tex` 为主文件，编译器使用 pdfLaTeX。也可在 Codex 中打开 `paper/`，使用内置编译和 PDF 预览。
 
 `main.tex` 使用 `\documentclass[conference]{IEEEtran}`，参考文献采用 `\bibliographystyle{IEEEtran}`。正文引用写作 `\cite{key}`；在句中提及作者时，写作 `Lim et al.~\cite{key}`。
 
@@ -72,4 +79,13 @@ pdflatex -interaction=nonstopmode -halt-on-error main.tex
 
 参考文献条目的作者、题名和发表信息保存在 `references.bib`。两篇尚未核实正式发表信息的老师提供稿件如实标为 manuscript，待获得正式记录后更新。
 
-编译生成的辅助文件和 PDF 已在 `.gitignore` 中排除。模型、数据处理与训练代码位于本目录之外；论文排版变更不涉及这些代码。
+`build/` 内的编译产物以及根目录误生成的 `main.pdf` 已在 `.gitignore` 中排除。`figures/` 中用于论文的 PDF 图片允许提交，不能与生成的论文 PDF 一并忽略。模型、数据处理与训练代码位于本目录之外；论文排版变更不涉及这些代码。
+
+## 当前草稿状态与维护约定
+
+- 本目录是论文草稿，摘要、实验、讨论和结论等章节仍有 `\draftnote` 占位提示。编译成功不代表论文已经完成。
+- 本次整理不改正文、参考文献内容、作者占位或实验结论；不把历史会议材料自动写入当前论文。
+- 当前合成扰动实验以 [evaluation 报告](../evaluation/reports/evaluation-pilot.md) 为依据；Estimator 的实现说明见 [方法文档](../doc/trajectory-embedding-point-cloud-complexity.md)。论文中的方法和结论需在写作时逐项与证据核对。
+- `figures/` 存放实际被论文引用的图片；`tables/` 存放可通过 `\input` 引用的表格源码。现在两个目录为空，保留 `.gitkeep` 作为预定结构。
+- 保留本地 `IEEEtran.cls` 和 `IEEEtran.bst`，不要把第三方模板当作冗余源码删除或手工改版。
+- 上面的投稿信息保留原核对日期 2026-10-16；本次仅整理文件，未重新核验会议要求。
