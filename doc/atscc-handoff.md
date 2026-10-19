@@ -1,31 +1,30 @@
-# Encoder → Complexity 当前接口交接
+# Current Encoder-to-complexity interface handoff
 
-本文替代旧 ATSCC 框架交接说明，文件名保留以兼容已有文档链接。当前代码位于 `Encoder/` 和小写 `complexity/`。旧 ATSCC 对象接口不再是当前入口；根目录 `encode_scene.py` 仍是有效的场景编码命令行工具。模块名和路径请按实际大小写使用，以兼容 Linux。
+This note replaces the old ATSCC framework handoff; its filename is retained for existing links. Current code lives in `Encoder/` and lowercase `complexity/`. Legacy ATSCC object interfaces are no longer the entry points; root-level `encode_scene.py` remains a valid scene-encoding CLI. Use the actual case of module names and paths for Linux compatibility.
 
-## 当前模型与入口
+## Current model and entry points
 
-- 冻结模型：本地部署路径示例为 `Encoder/encoder/encoder.pt`（权重不随当前仓库提供，需自行配置实际路径），对应 `d16_e120_t0p01_s43`，16 维、sum pooling、seed 43、第 30 轮。
-- 主干：9 维特征输入，256 宽、4 层、4 头、FFN 512；逐 token L2，pooled embedding 不额外 L2。
-- 仓库根目录导入：`from Encoder.trajectory_encoder.inference import FrozenEncoder` 和 `from complexity import estimate_complexity`。
-- 在 `Encoder/` 内运行原有示例时，仍使用 `from trajectory_encoder.inference import FrozenEncoder`；见 `Encoder/example.py`。
-- Complexity 实现仅直接依赖 NumPy/SciPy；全项目统一安装根目录 `requirements.txt`，其中包含 Torch。环境安装见[根 README](../README.md#installation)，重训见[Encoder 部分](../README.md#encoder)、[PLAN.md](../Encoder/PLAN.md)、[PROTOCOL.md](../Encoder/PROTOCOL.md)。
+- Frozen model: `Encoder/encoder/encoder.pt`, corresponding to `d16_e120_t0p01_s43`, 16 dimensions, sum pooling, seed 43, epoch 30. The current repository includes this exported checkpoint; see the Encoder README for its distinction from the separately recorded evaluation checkpoint.
+- Backbone: nine input features, width 256, four layers, four heads, FFN 512; per-token L2, with no additional L2 on pooled embeddings.
+- Imports from the repository root: `from Encoder.trajectory_encoder.inference import FrozenEncoder` and `from complexity import estimate_complexity`.
+- Examples run inside `Encoder/` still use `from trajectory_encoder.inference import FrozenEncoder`; see `Encoder/example.py`.
+- Complexity directly depends only on NumPy/SciPy. Install the full project's root `requirements.txt`, which also includes Torch. See the [root README](../README.md#installation), [Encoder section](../README.md#encoder), [PLAN.md](../Encoder/PLAN.md), and [PROTOCOL.md](../Encoder/PROTOCOL.md) for installation and retraining.
 
-## 输入与预处理契约
+## Input and preprocessing contract
 
-`FrozenEncoder.encode(enu_m)` 一次处理一条已经采样为 5 秒间隔的轨迹：
+`FrozenEncoder.encode(enu_m)` processes one trajectory already sampled at five-second intervals:
 
-- 输入有限实数 `(T,3)`，为 ENU 米制坐标；不接受经纬高、NaN padding 或 Inf。
-- 推理接口不做重采样；轨迹必须至少 30 点。
-- 内部构造 `[east,north,up,direction_e,direction_n,direction_u,radius,sin(theta),cos(theta)]`，使用 checkpoint 中训练集均值/标准差，不重新拟合。方向为前向差分，末点重复前一步方向。
-- 返回字典含 `tokens: (T,16)`、`embedding: (16,)`、`n_points`、`pooling`、`preprocessor_id`。支持 pooling `sum`、`mean`、`gem2`（带符号 GeM-p2）。
-- 权重按 strict state_dict 加载，模型设为 eval 并冻结参数。当前加载器使用 `torch.load(..., weights_only=False)`；只加载可信 checkpoint，不提供旧裸 state_dict 自动适配。
+- A finite real `(T,3)` array in ENU metres; latitude/longitude/altitude, NaN padding, and Inf are not accepted.
+- The interface does not resample; at least 30 points are required.
+- Features are `[east,north,up,direction_e,direction_n,direction_u,radius,sin(theta),cos(theta)]`, standardized using training means/stds stored in the checkpoint without refitting. Direction uses forward differences, repeating the final direction.
+- The returned dictionary includes `tokens: (T,16)`, `embedding: (16,)`, `n_points`, `pooling`, and `preprocessor_id`. Supported pooling modes are `sum`, `mean`, and `gem2` (signed GeM-p2).
+- Weights load with strict state_dict matching; the model is put in eval mode with frozen parameters. The loader uses `torch.load(..., weights_only=False)`: load only trusted checkpoints. Legacy bare state_dict adaptation is not provided.
 
+## Connecting trajectories to complexity
 
-## 从轨迹接入复杂度
+Pass an `(N,16)` array, not token sequences, the output dictionary, or a single `(16,)` vector. An empty scene can be `(0,16)`. Insufficient samples or unacceptable fits return `unestimable`, not zero complexity. See the [method note](trajectory-embedding-point-cloud-complexity.md) for default gates, explicit scales, and interpretation limits.
 
-传递的是 `(N,16)` 数组，不是 token 序列、返回字典或单条 `(16,)` 向量。空场景可传 `(0,16)`；不足样本或拟合不合格返回 `unestimable`，不能记为复杂度 0。默认门槛、显式尺度及解释限制见[方法说明](trajectory-embedding-point-cloud-complexity.md)。
-
-单小时保存为 `.npy`，多小时保存为 `scene_id -> (N_s,D)` 的 `.npz`：
+Save a single hour as `.npy`, or multiple hours as a `.npz` mapping `scene_id -> (N_s,D)`:
 
 ```python
 np.savez("hours.npz", hour_01=z1, hour_02=z2)
@@ -38,19 +37,19 @@ python -m complexity hour_01.npy -o hour_01.complexity.json
 python -m complexity hours.npz -o hours.complexity.json
 ```
 
-**`Encoder/encoder/embeddings.npz` 不是小时场景档案。** 它按 `sum/mean/gem2` 保存全部 16183 条轨迹，不能直接作为多小时输入，也不能把三个 pooling 当三个场景。场景间比较应固定 checkpoint、预处理、pooling、归一化与尺度规则，不能为得到数字而降低质量门槛。
+**`Encoder/encoder/embeddings.npz` is not an hourly scene archive.** It stores all 16183 trajectories under `sum/mean/gem2`; it cannot be treated as multi-hour input or three pooling modes as three scenes. Fix the checkpoint, preprocessing, pooling, normalization, and scale rules across comparisons. Do not lower quality gates merely to obtain a number.
 
-## 训练效果记录
+## Training evidence
 
-当前模型的逐轮日志在 `Encoder/experiment_logs/d16_e120_t0p01_s43/`：`history.json` 记录训练/验证损失，`status.json` 记录完成状态和最佳轮次，`validation.json` 与 `untrained_validation.json` 提供验证表示评估。
+Per-epoch logs for the current model are in `Encoder/experiment_logs/d16_e120_t0p01_s43/`. `history.json` records training/validation loss; `status.json` records completion and the best epoch; `validation.json` and `untrained_validation.json` provide validation representation assessments.
 
-独立 TEST 及基线对照见 `Encoder/reports/test_results.json`、`untrained_test_results.json`、`confounding_and_route.json`；汇总见 [RESULTS_ZH.md](../Encoder/reports/RESULTS_ZH.md)，三种子与 pooling 对照见 `three_seed_summary.json`、`probe_summary.csv`。
+Held-out TEST results and baselines are in `Encoder/reports/result/test_results.json`, `untrained_test_results.json`, and `confounding_and_route.json`. See [RESULTS_ZH.md](../Encoder/reports/RESULTS_ZH.md) for the summary, and `three_seed_summary.json` and `probe_summary.csv` for seed/pooling comparisons.
 
-训练损失下降并不等于下游复杂度有效。当前报告明确指出：代表模型四项几何代理均未超过两种基线中的较强者，尚未证明训练带来的额外代理预测能力。数据缺绝对时间和真实航班 ID，训练数据本身不能提供真实小时场景验证。当前另有 OpenSky 合成扰动实验，见 [evaluation 报告](../evaluation/reports/evaluation-pilot.md)；它尚未验证真实管制工作负荷。
+Decreasing training loss does not establish downstream complexity validity. The representative model does not outperform the stronger of the two baselines on any of the four geometric proxies, so additional proxy-prediction capability from training has not been established. The training data lack absolute timestamps and real flight IDs and cannot alone validate real hourly scenes. A separate OpenSky synthetic-perturbation study is described in the [evaluation report](../evaluation/report.md); it has not validated real controller workload.
 
-## 验证命令
+## Verification commands
 
-在仓库根目录，使用已装好相应依赖的 Python。后两条还需要本地准备完整 Encoder 交付文件；仅克隆源码不能直接完成这两项验证：
+From the repository root, use Python with the required dependencies installed. The last two commands also require complete local Encoder delivery files; a source-only copy is insufficient:
 
 ```bash
 python -m unittest discover -s complexity/tests -v
@@ -58,4 +57,4 @@ python Encoder/verify_delivery.py
 python Encoder/example.py --checkpoint Encoder/encoder/encoder.pt --input Encoder/encoder/example_input_output.npz
 ```
 
-第一项覆盖复杂度算法与单/多场景 CLI；后两项检查权重校验、冻结加载和真实轨迹推理，不代替真实小时场景的研究验证。`Encoder/trajectory_encoder/checks.py` 还需要 prepared 数据及 CUDA，不属于纯 CPU 交付验证命令。
+The first command covers the complexity algorithm and single/multi-scene CLI. The other two check weight hashes, frozen loading, and real-trajectory inference; they do not replace research validation on real hourly scenes. `Encoder/trajectory_encoder/checks.py` additionally requires prepared data and CUDA and is not a CPU-only delivery-verification command.

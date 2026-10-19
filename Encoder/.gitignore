@@ -1,0 +1,9 @@
+# Local preparation, training state, and generated delivery bundles.
+# Keep delivered encoder/, checkpoints/, experiment_logs/, and reports/ tracked.
+/prepared/
+/runs/
+/.runtime_cache/
+/encoder_delivery.zip
+__pycache__/
+*.py[cod]
+*.writing

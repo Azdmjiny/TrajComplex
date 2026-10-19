@@ -1,33 +1,33 @@
-# Encoder 实验协议（训练前固定）
+# Encoder experiment protocol (fixed before training)
 
-目标是交付 PLAN.md 的自监督轨迹 Encoder。此目录完全新建；不读旧脚本、缓存、日志或权重。原始 TSV 只读。独立 `.venv` 通过 system-site-packages 使用已有 PyTorch/CUDA，不修改原环境。
+The objective is to deliver the self-supervised trajectory Encoder specified in PLAN.md. The experiment directory was created afresh; no old scripts, caches, logs, or weights were read. Raw TSV files were read-only. A separate `.venv` used the existing PyTorch/CUDA installation through system-site-packages without modifying the original environment.
 
-## 数据
+## Data
 
-使用本地 Hugging Face ATFMTraj RKSIa 数据：官方 TRAIN 8091 条，TEST 8092 条。TRAIN 中按几何签名分组划出 15% 验证集，最终 train/val/test = 6877/1214/8092。先做全坐标精确哈希和 32 点、50 米网格形状签名的跨集检查；签名只是部分重复筛查，不能证明不存在其他近重复。没有日期、航班 ID，因此不能验证真实航班/日期级隔离；不伪造这些字段。
+The local Hugging Face ATFMTraj RKSIa dataset contains 8091 official TRAIN trajectories and 8092 TEST trajectories. A geometry-signature-grouped 15% validation split of TRAIN gives train/validation/test counts of 6877/1214/8092. Cross-split checks use exact full-coordinate hashes and 32-point shape signatures on a 50-metre grid. Signatures are only a partial duplicate screen and cannot establish the absence of other near-duplicates. Dates and flight IDs are unavailable, so real flight/date-level separation cannot be verified; these fields are not fabricated.
 
-每条轨迹是 1 秒采样的相对坐标，恢复 `r_max=120000m` 后每 5 秒取一点并保留终点；此为减少冗余、适配 8GB GPU 的预处理选择，源轨迹未裁剪。数据文件、样本索引、预处理参数均保存指纹。NaN 只作尾部 padding；9 维特征的均值/标准差只在训练 token 上拟合。方向使用前向差分，最后一项重复；因此特征本身有下一采样点的信息，Transformer 在给定特征上是因果的。
+Trajectories contain relative coordinates sampled every second. After restoring `r_max=120000m`, take every fifth point and retain the endpoint. This reduces redundancy and accommodates an 8 GB GPU; source trajectories are not cropped. Fingerprints record files, sample indices, and preprocessing parameters. NaN is allowed only as trailing padding. Means/stds for the nine features are fitted only on training tokens. Direction uses forward differences with the final value repeated, so features contain information from the next sample; the Transformer is causal conditional on these features.
 
-## 模型与损失
+## Model and loss
 
-9→256 输入投影、L2、4 层 causal Transformer、256→D 输出投影和逐 token L2。4 heads，FFN 512，dropout=.35，无显式位置编码，不增加最终 LayerNorm。D=4/8/16。保留 ATSCC 指定提交的无 bias 注意力投影、sqrt(model_dim) 缩放和 norm/residual 顺序。
+The model uses a 9→256 input projection, L2 normalization, four causal Transformer layers, a 256→D output projection, and per-token L2 normalization. It has four heads, FFN width 512, dropout .35, no explicit positional encoding, and no additional final LayerNorm. D=4/8/16. Bias-free attention projections, sqrt(model_dim) scaling, and normalization/residual order follow the pinned ATSCC commit.
 
-真实二项输入掩码概率为 .2；输入被遮蔽的非 padding token 仍参与监督，与 ATSCC 的监督索引一致。全遮蔽前缀的注意力返回零，不允许其读取未来。损失的正例是同一轨迹中同一 RDP 段的其他 token，负例是其他段/其他轨迹的 token；排除自身与 padding。单点段不能作锚点，但可作负例。不同轨迹的局部段编号绝不合并。采用 `logsumexp(negative/τ)-logsumexp(positive/τ)`，flat loss 无层次项/复杂度标签。数学排除不使用乘零后仍进入 exp 的方式。
+The actual binomial input-mask probability is .2. Masked non-padding tokens remain supervised, matching ATSCC's supervision indices. Attention for a fully masked prefix returns zero and cannot read future tokens. Positives are other tokens in the same RDP segment of the same trajectory; negatives are tokens from other segments or trajectories. Self-pairs and padding are excluded. Singleton segments cannot supply anchors but can supply negatives. Local segment IDs from different trajectories are never merged. The flat loss is `logsumexp(negative/τ)-logsumexp(positive/τ)`, with no hierarchical term or complexity labels. Mathematical exclusion is not implemented by multiplying logits by zero while leaving them inside the exponential.
 
-RDP 在米制三维坐标计算。epsilon=120/1200m（原归一化尺度 .001/.01），温度 .01/.05：先完成 D=8、seed42 的 2×2 筛选，各最多 30 epoch；再对选出的超参完成 D=4/8/16、seed42/43/44，已完成的 D8 seed42 直接计入。总计 12 个独立完整训练。该有限网格是预算内的计划实现，未宣称穷尽论文所有 epsilon/temperature。
+RDP is computed in three-dimensional metre coordinates. Epsilon=120/1200m corresponds to .001/.01 in the original normalized units; temperatures are .01/.05. First complete a 2×2 screening at D=8 and seed42, each for at most 30 epochs. Then use selected hyperparameters for D=4/8/16 and seeds42/43/44, reusing the completed D8 seed42 run. This gives 12 independent full training runs. The bounded grid implements the budgeted plan and does not claim to exhaust the paper's epsilon/temperature settings.
 
-AdamW lr=1e-5, weight_decay=1e-5；梯度裁剪1；bf16 混合精度。实测 B8/B16 的吞吐和最长轨迹显存后选择真实 batch，不通过梯度累积冒充 batch64。若容量允许，可在同一 GPU 并行两个独立实验；各自独立模型和优化器。
+AdamW uses lr=1e-5 and weight_decay=1e-5, gradient clipping at 1, and bf16 mixed precision. Select the actual batch after benchmarking B8/B16 throughput and memory for the longest trajectories. Do not present gradient accumulation as batch64. If memory permits, two independent experiments can run on one GPU with separate models and optimizers.
 
-运行说明：原 PowerShell 进程在第 1 轮后因 Visual Studio/Application Insights 遥测连接被自动审批终止。已检查训练代码无网络调用，并增加 `run_offline.py` 与 `offline_guard/sitecustomize.py`，仅在实验子进程中禁止 Python DNS/外连、设置遥测 opt-out，不修改全局环境。验证阻止 DNS/连接、本地 CUDA 及 70 秒进程存活后，从保存的模型/优化器/随机状态续跑。实际运行通过不包含 PowerShell 的进程树启动；这次中断不改变实验参数和数据。后续可用 `python run_offline.py pipeline` / `python run_offline.py finalize` 在同样限制下复跑。
+Runtime note: after epoch 1, automatic approval review terminated the original PowerShell process because of a Visual Studio/Application Insights telemetry connection. Training code was checked for network calls. `run_offline.py` and `offline_guard/sitecustomize.py` were added to block Python DNS/outbound connections and opt out of telemetry only in experiment subprocesses, without changing the global environment. After verifying DNS/connection blocking, local CUDA, and 70 seconds of process survival, training resumed from saved model, optimizer, and random states. The actual run used a process tree without PowerShell. Parameters and data were unchanged. Later runs can use `python run_offline.py pipeline` or `python run_offline.py finalize` under the same restrictions.
 
-并行资源回退：第一次两 worker 运行期间，一个 worker 在 epoch20 后超过5分钟不推进，另一个正常完成30轮；为保证可完成性，仅停止本实验进程树，保留 checkpoint，随后将实际并发数降为1并续训。模型、种子、batch、数据、损失和选择规则均不变。`benchmark.json` 保留最初实测与实际回退，`runtime_events.json` 记录运行事件。
+Parallel-resource fallback: during the first two-worker run, one worker stopped progressing for over five minutes after epoch20 while the other completed 30 epochs. Only the experiment process tree was stopped; checkpoints were retained and training resumed with actual concurrency reduced to one. Models, seeds, batch, data, loss, and selection rules were unchanged. `benchmark.json` retains the initial measurements and fallback; `runtime_events.json` records the events.
 
-## 选择与评估
+## Selection and evaluation
 
-单个 run 以固定验证 batch 的最低验证 flat-SNN loss 选 checkpoint；不直接跨温度比较 loss 数值。筛选 epsilon/temperature 用验证集 ridge probe 的四个目标 R²（总路径长度、累计转角、曲折度、时长），分别计算全局和 STAR 内宏平均，8 项等权平均。每个目标的 ridge alpha 只用验证集选择，特征和目标缩放只拟合训练集。
+Within each run, select the checkpoint with the lowest validation flat-SNN loss on fixed validation batches; do not compare loss values directly across temperatures. Select epsilon/temperature using validation ridge-probe R² for four targets: total path length, accumulated turn, sinuosity, and duration. Average global and within-STAR macro scores equally across all eight values. Choose ridge alpha per target on validation data only; fit feature and target scalers on training data only.
 
-最终维数以三 seed 的上述验证分数均值选择；精确同分时选较低维数。主 pooling 预先固定为 sum，mean 和论文 signed GeM-p2 为敏感性分析，pooling 后不另做 L2。代表权重选择所选维数中验证分数居中的 seed，不挑测试最佳 seed。所有选择写入 selection.json 后才进行最终 TEST 评估。
+Select dimension by the three-seed mean of that validation score, breaking exact ties in favor of the lower dimension. Sum is the predeclared main pooling rule; mean and the paper's signed GeM-p2 are sensitivity analyses, without additional pooled L2 normalization. Select the representative seed by its median validation score within the chosen dimension, not by the best test score. Final TEST evaluation occurs only after all choices are written to selection.json.
 
-同时保留随机初始化 Encoder 基线；报告逐维方差、有效秩、成对距离、范数与长度相关、长度分层和 STAR 内 probe。所有几何目标只是可计算的表示探针，不能称为人工复杂度真值、holding 标注或真实小时场景验证。因当前数据缺绝对时间，相关维数/小时点云验证未执行，交付状态仅限 Encoder。
+Retain a randomly initialized Encoder baseline. Report per-dimension variance, effective rank, pairwise distances, norm/length correlation, length stratification, and within-STAR probes. Geometric targets are computable representation probes, not human complexity ground truth, holding annotations, or real hourly-scene validation. Absolute timestamps are unavailable, so correlation-dimension/hourly-point-cloud validation was not performed in this delivery; its completion status applies only to the Encoder.
 
-这是针对当前数据和计划改造的 ATSCC/ITSC-inspired Encoder，不是原论文数据集上的严格复现。具体代码差异、失败情况和实测结果随交付保存。
+This is an ATSCC/ITSC-inspired Encoder adapted to the current data and plan, not a strict reproduction on the original paper's dataset. Implementation differences, failures, and measured results are retained with the delivery.

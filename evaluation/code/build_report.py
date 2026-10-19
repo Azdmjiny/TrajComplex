@@ -3,7 +3,7 @@ import json,hashlib
 from pathlib import Path
 ROOT=Path(__file__).resolve().parents[1]
 
-def fmt(v):return f'{v:.3f}' if v is not None else '不可计算'
+def fmt(v):return f'{v:.3f}' if v is not None else 'Not estimable'
 def table(headers,rows):
     return '\n'.join(['| '+' | '.join(headers)+' |','| '+' | '.join(['---']*len(headers))+' |']+['| '+' | '.join(map(str,r))+' |' for r in rows])
 
@@ -13,100 +13,100 @@ def main():
     run=json.loads((ROOT/'results/run-manifest.json').read_text(encoding='utf8'))
     rows=[];paired=[];cuts=[];vector=[]
     for v in ['qc500','qc350']:
-        for label,key in [('全部场景','all'),('仅基线可估计','baseline_ok')]:
+        for label,key in [('All scenes','all'),('Baseline-estimable only','baseline_ok')]:
             a=s[v]['holding'][key]['full'];b=s[v]['holding'][key]['retained'];p=s[v]['holding'][key]['paired_comparison']
             rows.append([v,label,a['n'],fmt(a['median']),b['n'],fmt(b['median']),f"{b['positive']}/{b['n']}"])
             paired.append([v,label,p['full']['n'],fmt(p['full']['median']),fmt(p['retained']['median'])])
         for q in s[v]['holding']['scenes']:
-            cut=f"{q['cutoff']}/{q['n_aircraft']} ({q['cutoff_fraction']:.1%})" if q['cutoff'] is not None else '无合格峰值'
+            cut=f"{q['cutoff']}/{q['n_aircraft']} ({q['cutoff_fraction']:.1%})" if q['cutoff'] is not None else 'No eligible peak'
             cuts.append([v,q['scene_id'],cut,f"{q['full']['n']} → {q['retained']['n']}",fmt(q['full']['median']),fmt(q['retained']['median'])])
     for v in ['qc500','qc350','qc500_safe','qc350_safe']:
         q=s[v]['vectoring']['all']['full'];vector.append([v,q['n'],fmt(q['median']),f"{q['positive']}/{q['n']}"])
-    text='''# 修复与筛选后的 Holding / Vectoring evaluation
+    text='''# Holding / Vectoring evaluation after geometry repair and screening
 
-更新日期：2026-10-19。本报告直接替换原 `evaluation-pilot.md`；当前结果、图和复现代码位于原有 `results/`、`figures/`、`code/`。Git 历史保留之前的已提交版本，不另设日期版本目录。完整剂量曲线仍保存；截断只决定相关性使用哪些点。
+Updated: 2026-10-19. This report replaces the former `evaluation-pilot.md`. Current results, figures, and reproduction code remain in `results/`, `figures/`, and `code/`. Git history retains earlier committed versions without separate dated directories. Complete dose curves remain available; truncation only determines which points enter the correlation calculation.
 
-**结论范围：Holding 截断后的前段呈明显正相关，但峰值由同一批结果选择，因此这是事后、探索性的局部关联，不能视为独立验证，不能证明下降段无效，也不能证明算法已超出适用范围。** 完整范围仍然先升后降。Vectoring 不截断，清洗后正相关仍存在。五次随机顺序是小时内重复，不是五个独立小时；不报告确认性 p 值。
+**Interpretation: the retained pre-peak Holding segment is strongly positively correlated, but its peak is selected from the same outcomes. This is a post hoc, exploratory local association, not independent validation, evidence that the declining segment is invalid, or proof that the algorithm has exceeded its operating range.** The full range still rises and then falls. Vectoring is not truncated, and its positive correlation remains after cleaning. Five random orders are within-hour repeats, not five independent hours; no confirmatory p-values are reported.
 
-## 已修复的问题
+## Implemented fixes
 
-- Holding 第二次转弯不再额外旋转起始朝向；先验证轨迹自然闭合，再吸附末点以消除浮点误差，避免原来的大幅跳跃。
-- 原始轨迹除空缺、非有限值、地面记录、长度和间隔筛选外，增加经纬度范围、高度 −500 至 20000 m、水平速度以及垂直速度绝对值 ≤100 m/s 检查。整条飞机—小时被剔除，不通过插值修补异常跳变。主筛选水平速度 ≤500 m/s，严格敏感性筛选 ≤350 m/s；这是诊断阈值，并非已验证飞行包线。
-- Vectoring 的候选机动增加左右两种偏移均 ≤500 m/s 的速度筛选。失败飞机仍留在合格基线点云中，但不注入。`safe` 仅为运行名，不保证全部物理可行性。改变坐标会改变速度，不能称为保持原速度。
-- 相关性严格要求 `status=ok`、D 有限、至少五个有效点。报告分母按实际可计算曲线数生成；100% 剂量纳入最后一个可估计率分箱；飞机数不足时跳过对应子采样规模。
-- 原先手工替换数字的报告脚本改为统一数据生成流程，避免旧数字重新覆盖报告。
+- The second Holding turn no longer applies an extra initial heading rotation. Natural geometric closure is checked before pinning the endpoint to remove floating-point drift, avoiding the previous large jump.
+- In addition to missing/nonfinite values, ground records, length, and time-gap screening, raw trajectories are checked for latitude/longitude bounds, altitude from −500 to 20000 m, horizontal speed, and absolute vertical speed ≤100 m/s. The entire aircraft-hour is rejected rather than interpolating away an anomalous jump. Primary horizontal speed is ≤500 m/s, with ≤350 m/s for strict sensitivity screening. These are diagnostic thresholds, not a validated flight envelope.
+- Vectoring candidates must pass a ≤500 m/s speed screen for both left and right offsets. Failed candidates remain in the eligible baseline point cloud but are not injected. `safe` is only a run label and does not guarantee full physical feasibility. Changing coordinates changes speed; the maneuver cannot be described as preserving original speed.
+- Correlation requires `status=ok`, finite D, and at least five valid points. Denominators reflect the actual number of computable curves. The final estimability bin includes the 100% dose, and subsample sizes exceeding the available aircraft count are skipped.
+- Manual replacement of report numbers has been replaced by a unified data-generation workflow to prevent stale numbers from overwriting the report.
 
-## 实验条件
+## Experimental conditions
 
-固定原来的 12 个小时与每小时 5 个随机注入顺序，不因清洗结果更换场景。先生成原飞机顺序及 Vectoring 左右方向，再移除不合格飞机，保留幸存飞机的相对顺序和方向。主筛选保留 761/771 条飞机—小时轨迹，严格筛选保留 652/771 条。
+The original 12 hours and five random injection orders per hour are fixed; cleaning does not replace scenes. Original aircraft order and Vectoring side are generated before excluding ineligible aircraft, preserving surviving aircraft order and side. Primary screening retains 761/771 aircraft-hour trajectories; strict screening retains 652/771.
 
-使用同一 frozen Encoder、sum pooling、未归一化 Euclidean 距离。每个场景按自身基线生成 64 个固定半径，估计器质量门槛不变：至少 30 个点、至少 8 个拟合尺度、尺度跨度至少 2 倍、相关积分区间 0.02–0.3、R²≥0.98。
+The same frozen Encoder, sum pooling, and unnormalized Euclidean distances are used. Each scene has 64 fixed candidate radii derived from its baseline. Estimator gates are unchanged: at least 30 points, at least 8 fitted scales, a radius span of at least 2-fold, correlation-integral bounds 0.02–0.3, and R²≥0.98.
 
-Holding 每架增加 48 个五秒采样点；长度与 sum pooling 的混杂仍存在。尚未通过等长度对照或多样化 holding 对照解释下降机制。本报告没有将这些未采用的对照纳入结论。
+Holding adds 48 five-second samples per aircraft; length remains confounded with sum pooling. Neither an equal-length control nor a diversified Holding control has established the cause of the decline. Those unadopted controls are not included in the conclusions.
 
-## Holding 截断规则
+## Holding truncation rule
 
-每小时五个随机顺序共用一个截断点：计算每个剂量有效 D 的平均值，只允许至少三个有效重复的剂量参与选峰，取平均 D 首次达到全局最高值的位置。保留峰值及之前的全部剂量，不平滑、不逐曲线挑峰。峰前的局部下降仍保留，不是逐段删除所有负斜率。
+The five random orders within each hour share one cutoff. Compute mean valid D at each dose; only doses with at least three valid repeats can select the peak. Choose the earliest global maximum of mean D. Retain the peak and all preceding doses, without smoothing or selecting peaks separately for each curve. Local pre-peak declines remain; this does not remove every negative-slope segment.
 
-## Holding：全部可用曲线
+## Holding: all available curves
 
 '''
-    text+=table(['筛选','样本范围','完整曲线数','完整 ρ 中位数','截断曲线数','截断 ρ 中位数','截断正相关'],rows)
+    text+=table(['Screening','Sample scope','Full-range curves','Full-range median ρ','Retained curves','Retained-range median ρ','Retained positive correlations'],rows)
     text+='''
 
-QC500 截断后 50 条曲线全部为正；原来的 60 条中，10 条因保留段有效点不足而不能计算。QC350 为 53 条中 52 条正相关，不能忽略这些分母变化。
+All 50 retained QC500 curves are positive; 10 of the original 60 have too few valid points in the retained segment to compute correlation. QC350 has 52 positive curves out of 53. These denominator changes must not be ignored.
 
-## 同一批曲线的配对比较
+## Paired comparison of the same curves
 
-'''+table(['筛选','样本范围','前后均可计算曲线数','完整 ρ 中位数','截断 ρ 中位数'],paired)
+'''+table(['Screening','Sample scope','Curves computable in both ranges','Full-range median ρ','Retained-range median ρ'],paired)
     text+='''
 
-主筛选中，6 个基线有效小时的 30 条曲线全部保留，ρ 中位数从 0.191 升到 0.928；这个比较没有曲线数量变化，但仍存在峰值选取偏差。按小时先取重复中位数，QC500 截断后有 11 个可计算小时，11 个均为正，小时中位数为 0.904；QC350 同样为 11 个小时，中位数为 0.877。
+Under primary screening, all 30 curves from the six baseline-estimable hours remain. Median ρ rises from 0.191 to 0.928. The curve count is unchanged in this comparison, but peak-selection bias remains. Taking the median across repeats within each hour, QC500 has 11 computable retained-range hours, all positive, with an across-hour median of 0.904. QC350 also has 11 computable hours, with a median of 0.877.
 
-## 每小时截断点
+## Per-hour cutoffs
 
-'''+table(['筛选','小时（UTC）','截断飞机数 / 场景飞机数','曲线数：完整 → 截断','完整小时 ρ','截断小时 ρ'],cuts)
+'''+table(['Screening','Hour (UTC)','Cutoff aircraft / scene aircraft','Curves: full → retained','Full-range hourly ρ','Retained-range hourly ρ'],cuts)
     text+='''
 
-QC500 的截断比例约 39%–59%，并非统一截掉 50% 以后。QC350 的 2026-09-30T15Z 没有任何剂量满足三个有效重复，未强行选峰；QC500 同一小时虽然存在合格峰值，但截断后各曲线不足五个有效点，仍不能计算相关性。
+QC500 cutoff fractions range from approximately 39% to 59%; the rule does not uniformly remove doses above 50%. For QC350 on 2026-09-30T15Z, no dose has three valid repeats, so no peak is forced. QC500 has an eligible peak for that hour, but each retained curve still has fewer than five valid points and cannot produce a correlation.
 
-## Vectoring：完整范围，不截断
+## Vectoring: full range without truncation
 
-'''+table(['筛选','可计算曲线','ρ 中位数','正相关曲线'],vector)
+'''+table(['Screening','Computable curves','Median ρ','Positive curves'],vector)
     text+='''
 
-主结果使用统一数据 `experiment-results.json` 中的 `qc500_safe.vectoring`（QC500 加候选机动速度筛选）。未进行候选机动筛选的 QC500 与 QC350 仅作为敏感性对照，保存在统一的 `experiment-results.json` 中。正相关支持对合成变形的响应，尚不能证明真实管制工作负荷的有效性。
+The primary result is `qc500_safe.vectoring` in the consolidated `experiment-results.json`, combining QC500 with candidate-maneuver speed screening. QC500 and QC350 without candidate screening are sensitivity comparisons in the same file. Positive correlation supports a response to synthetic deformation, not validity for real controller workload.
 
-## 飞机数量敏感性
+## Aircraft-count sensitivity
 
-在 QC500 的六个完整基线可估计小时中，N=30、40、50 的可估计率小时中位数分别为 52%、67%、92%；相对完整点云 D 的绝对差中位数分别为 0.235、0.126、0.048。每个规模随机子采样 50 次。严格筛选的 N=50 只有五个小时满足飞机数条件且基线有效；不能把样本组成变化误读成纯飞机数效应。
+Across the six QC500 hours with estimable full baselines, median hourly estimability rates at N=30, 40, and 50 are 52%, 67%, and 92%. Median absolute D differences from the full point cloud are 0.235, 0.126, and 0.048. Each size uses 50 random subsamples. Under strict screening at N=50, only five hours have enough aircraft and an estimable baseline; changes in sample composition must not be interpreted as a pure aircraft-count effect.
 
-## 图
+## Figures
 
-Matplotlib 生成 200 dpi PNG 和矢量 SVG。彩色表示 Holding 保留段，灰色表示排除段，黑线是各剂量可用重复的均值，橙色虚线和星号是所选峰值。缺失 D 不补零；参与均值的重复数可能变化。各图均保留完整范围作为参照。
+Matplotlib produces 200 dpi PNGs and vector SVGs. Colored segments show retained Holding doses, gray segments show excluded doses, black lines are means across available repeats at each dose, and orange dashed lines/stars mark selected peaks. Missing D is not replaced by zero; the number of repeats contributing to the mean may vary. Every figure retains the full range for reference.
 
 '''
     for name in f['figures']:
-        text+=f'### {name}\n\n![{name}](../figures/{name}.png)\n\n[矢量 SVG](../figures/{name}.svg)\n\n'
-    text+='''## 数据和复现
+        text+=f'### {name}\n\n![{name}](figures/{name}.png)\n\n[Vector SVG](figures/{name}.svg)\n\n'
+    text+='''## Data and reproduction
 
-- [全部统计与逐小时结果](../results/summary.json)
-- [统一完整剂量数据](../results/experiment-results.json)
-- [Holding 逐点保留与排除原因](../results/qc500-holding-point-selection.csv)
-- [严格筛选逐点清单](../results/qc350-holding-point-selection.csv)
-- [原始轨迹剔除清单](../results/quality_audit.json)
-- [飞机数量敏感性数据](../results/aircraft-count-sensitivity.json)
-- [运行环境和源文件哈希](../results/run-manifest.json)
-- [统计规则和输入哈希](../results/analysis-manifest.json)
-- [执行说明](../README.md)
+- [All statistics and per-hour results](results/summary.json)
+- [Consolidated full-dose data](results/experiment-results.json)
+- [Holding point-level inclusion and exclusion reasons](results/qc500-holding-point-selection.csv)
+- [Strict-screening point-level decisions](results/qc350-holding-point-selection.csv)
+- [Raw trajectory rejection audit](results/quality_audit.json)
+- [Aircraft-count sensitivity data](results/aircraft-count-sensitivity.json)
+- [Runtime environment and source hashes](results/run-manifest.json)
+- [Statistical rules and input hashes](results/analysis-manifest.json)
+- [Execution instructions](README.md)
 
-从已保存完整结果重新生成统计、图和本报告，不需要原始轨迹或 checkpoint：
+Regenerate statistics, figures, and this report from saved full results without raw trajectories or a checkpoint:
 
 ```bash
 python evaluation/code/refresh_outputs.py
 ```
 
-从原始轨迹重跑 Encoder 推理及全部实验，需要设置 `ATM_DATA_ZIP` 和 `ATM_ENCODER_CHECKPOINT`：
+To rerun Encoder inference and all experiments from raw trajectories, set `ATM_DATA_ZIP` and `ATM_ENCODER_CHECKPOINT`:
 
 ```bash
 python evaluation/code/run_evaluation.py
@@ -114,8 +114,8 @@ python evaluation/code/refresh_outputs.py
 ```
 
 '''
-    text+=f"本次推理环境：PyTorch `{run['torch']}`，device `{run['device']}`。Checkpoint SHA256：`{run['checkpoint_sha256']}`。\n"
-    (ROOT/'reports/evaluation-pilot.md').write_text(text,encoding='utf8')
+    text+=f"Inference environment: PyTorch `{run['torch']}` ; device `{run['device']}`. Checkpoint SHA256:`{run['checkpoint_sha256']}`.\n"
+    (ROOT/'report.md').write_text(text,encoding='utf8')
     manifest=ROOT/'results/analysis-manifest.json';m=json.loads(manifest.read_text());m['matplotlib']=f['matplotlib'];m['source_sha256']={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in (ROOT/'code').glob('*.py')};manifest.write_text(json.dumps(m,indent=2),encoding='utf8')
-    print('Updated reports/evaluation-pilot.md')
+    print('Updated report.md')
 if __name__=='__main__':main()

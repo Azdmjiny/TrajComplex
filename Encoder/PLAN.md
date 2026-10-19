@@ -1,41 +1,41 @@
-# 轨迹复杂度量化 Encoder 训练计划
+# Encoder training plan for trajectory complexity quantification
 
-## 目标
+## Objective
 
-训练一个可复用的自监督轨迹 Encoder，为后续按一小时场景构建轨迹 embedding 点云、计算经验关联维数提供固定表示。目标是获得稳定、可复现且保留轨迹行为差异的 Encoder，不追求完整复刻 ATSCC 原始大模型或 ITSC 全部 224 组网格实验。
+Train a reusable self-supervised trajectory Encoder to provide fixed representations for hourly trajectory-embedding point clouds and empirical correlation-dimension estimation. The aim is stability, reproducibility, and preservation of trajectory behavior differences, not complete reproduction of the original large ATSCC model or all 224 ITSC grid configurations.
 
-## 方案与初始配置
+## Approach and initial configuration
 
-以提供的 ITSC 论文缩小版 ATSCC 为起点：因果 Transformer、输入 9 维状态、4 层、隐藏维度 256、FFN 512、4 个注意力头、dropout 0.35、20% binomial token masking；AdamW，学习率与 weight decay 均为 1e-5，最多 30 epochs。沿用 RDP 分段产生自监督正负样本与 flat Soft Nearest-Neighbour Loss；不把复杂度标签用于训练。论文未使用显式位置编码。
+Start from the smaller ATSCC variant in the supplied ITSC paper: a causal Transformer with nine-dimensional state input, four layers, hidden width 256, FFN width 512, four heads, dropout 0.35, and 20% binomial token masking; AdamW with learning rate and weight decay both 1e-5, for at most 30 epochs. Retain RDP segmentation for self-supervised positive/negative samples and the flat Soft Nearest-Neighbour Loss. Complexity labels are not used for training. The paper does not use explicit positional encoding.
 
-- **降维假设：**保留 256 维主干，把输出投影改为 8 维；以 4 维、16 维做对照。8 维是实验起点，不预设为最优。输出维度降低会改变 ITSC 配置，应记录为本研究变体。
-- **时间聚合：**sum pooling 作为主候选，mean pooling 与 GeM-p2 作为敏感性对照。ITSC 报告 sum pooling 的复杂度回归表现较好，但 sum 可能把片段长度/观测数带入点云距离；检查该效应后再固定聚合方式。
-- **训练规模：**单机场/单数据集先验证流程，再扩至目标数据。ITSC 的 batch size 64 可作为参考而非硬性要求；8 GB 显存先测 batch 8–16 与混合精度。对比损失依赖 batch 内负样本，梯度累积不自动等价于 batch 64；只有实现跨微批次负样本后才按有效 batch 64 报告。
-- **数据前提：**确认可用轨迹能构造成与论文一致的 9 维状态（ENU 位置、方向单位向量、相对机场极坐标），核查坐标系、归一化、缺失值与 RDP 阈值单位。若目标数据字段或采样方式不同，先定义并冻结转换规则，不混用不同预处理版本。
+- **Dimensionality hypothesis:** retain the 256-dimensional backbone and change the output projection to eight dimensions, with four- and sixteen-dimensional comparisons. Eight dimensions are a starting point, not a presumed optimum. Record this change to the ITSC configuration as a study variant.
+- **Temporal pooling:** use sum pooling as the primary candidate, with mean and GeM-p2 sensitivity comparisons. ITSC reports favorable complexity-regression performance for sum pooling, but it may introduce fragment length or observation count into point-cloud distances. Examine this effect before fixing the aggregation rule.
+- **Training scale:** validate the workflow on one airport/dataset before extending to target data. ITSC's batch size 64 is a reference, not a requirement. On an 8 GB GPU, benchmark batches 8–16 and mixed precision. Contrastive loss depends on within-batch negatives; gradient accumulation is not automatically equivalent to batch 64. Report effective batch 64 only if cross-microbatch negatives are implemented.
+- **Data prerequisites:** confirm support for the same nine-dimensional state: ENU position, unit direction, and airport-relative polar coordinates. Check coordinate systems, normalization, missing values, and RDP threshold units. If target fields or sampling differ, define and freeze conversion rules first; do not mix preprocessing versions.
 
-## 执行步骤
+## Execution steps
 
-1. **数据审计与切分：**统计轨迹数、长度、缺失率和 RDP 段分布；按日期/航班分组切分训练、验证、测试，避免同一航班或高度重叠轨迹泄漏。只用训练集拟合归一化参数。
-2. **小规模试跑：**先用一个固定随机种子跑少量 epoch，确认损失有限、反向传播正常、显存与速度可接受，并能保存、加载 checkpoint 和抽取逐时刻表示。
-3. **训练与选择：**固定主干及训练流程，先比较温度 τ（优先 0.01、0.05）和 RDP 阈值 ε（先选一个合理值；ITSC 报告其影响较小），再训练 4/8/16 维输出消融。验证集选择 checkpoint；至少用 3 个随机种子检查稳定性。
-4. **表示质量评估：**在留出集做轻量线性/岭回归评估轨迹几何或运行代理指标，并按航路内分组检查，避免只学到航路身份。记录 embedding 方差、有效秩、成对距离分布及不同长度轨迹的距离/模长偏差。复杂度代理只作事后评估，不回流训练。
-5. **关联维数可行性检查：**按目标定义切成一小时窗口，一架飞机片段对应一个点；检查每窗飞机数、重复/近重复点、尺度区间与 log C(r)-log r 线性区间。比较 4/8/16 维及 pooling 的斜率稳定性，并报告无法可靠估计的稀疏窗口，不以降维本身保证维数估计可靠。
-6. **冻结交付：**选定一版 Encoder、输出维度、pooling、距离定义与预处理；保存权重、配置、随机种子、数据版本/切分、训练日志和校验指标，提供可复现的 embedding 导出接口。
+1. **Data audit and splitting:** summarize counts, lengths, missingness, and RDP segment distributions. Split by date/flight groups to avoid leakage from the same flight or highly overlapping trajectories. Fit normalization on training data only.
+2. **Small pilot run:** use one fixed seed for a few epochs to confirm finite loss, working backpropagation, acceptable memory and speed, checkpoint save/load, and extraction of per-time-step representations.
+3. **Training and selection:** freeze the backbone and training procedure. First compare temperature τ, prioritizing 0.01 and 0.05, and RDP threshold ε, starting with a reasonable value since ITSC reports a relatively small effect. Then run 4/8/16-dimensional ablations. Select checkpoints on validation data and check stability with at least three seeds.
+4. **Representation assessment:** use lightweight linear/ridge probes for trajectory geometry or operational proxies on held-out data, including within-route groups to avoid measuring route identity alone. Record variance, effective rank, pairwise-distance distributions, and length-related distance/norm bias. Complexity proxies are post-training evaluation targets and do not feed back into training.
+5. **Correlation-dimension feasibility:** construct one-hour windows under the target definition, with one aircraft fragment per point. Examine aircraft count, duplicate/near-duplicate points, scale ranges, and linear regions of log C(r) versus log r. Compare slope stability across dimensions and pooling rules. Report sparse windows that cannot be estimated reliably; dimensionality reduction alone does not guarantee reliability.
+6. **Freeze the delivery:** fix the Encoder, output dimension, pooling, distance definition, and preprocessing. Save weights, configuration, seeds, data versions/splits, logs, and validation metrics, and provide a reproducible embedding export interface.
 
-## 验收标准
+## Acceptance criteria
 
-- 训练与推理可在目标 GPU 上完成，checkpoint 可重载，固定输入重复推理结果一致。
-- 留出集上没有 NaN/Inf；表示非坍塌（不同轨迹表示有非零方差与合理距离分布），多种子结果无明显失稳。
-- 至少一个低维设置在留出评估中保留可测的轨迹行为信号；一小时点云在足够样本的窗口中出现可复核的尺度拟合区间。若后者不成立，先调整每窗样本量、窗口定义或估计方法，不把指标强行解释为场景复杂度。
-- 最终比较 4/8/16 维的表示质量与关联维数稳定性，再确定正式版本；不以“8 维”作为预先通过的标准。
+- Training and inference complete on the target GPU; checkpoints reload and repeated inference on fixed input is consistent.
+- No NaN/Inf on held-out data; representations have nonzero cross-trajectory variance and reasonable distance distributions, without evident multi-seed instability.
+- At least one low-dimensional configuration preserves measurable held-out trajectory behavior information. Hourly clouds with sufficient samples exhibit inspectable scale-fitting intervals. If the latter fails, reconsider sample counts, window definitions, or estimation methods before interpreting the statistic as scene complexity.
+- Compare representation quality and correlation-dimension stability across 4/8/16 dimensions before choosing the final version; eight dimensions are not a predetermined acceptance criterion.
 
-## 主要风险与决策
+## Main risks and decisions
 
-- **样本量限制：**单小时飞机数可能不足以稳定估计关联维数；按窗口报告样本数与拟合质量，必要时合并/延长窗口并明确改变的研究定义。
-- **长度混杂：**sum pooling 可能使点间距离反映观测步数而非行为差异；对照 mean/GeM 与长度分层评估，预先固定最终 pooling 与归一化，避免看结果后随意切换。
-- **维度取舍：**输出维度越低越利于小样本几何估计，但可能丢失行为信息；以留出行为信号和关联维数稳健性共同选型。
-- **复现边界：**本计划沿用 ITSC 的训练思想与缩小版骨干，但输出维数、数据集、硬件批次及评估目标会有差异；结果应表述为面向复杂度量化的 ATSCC/ITSC-inspired Encoder，而非原论文严格复现。
+- **Sample size:** hourly counts may be insufficient for stable estimates. Report counts and fit quality per window. If windows must be combined or extended, state how the research definition changes.
+- **Length confounding:** sum pooling may make distances reflect observation counts rather than behavior. Compare mean/GeM and length-stratified evaluations. Fix final pooling and normalization in advance rather than switching after inspecting outcomes.
+- **Dimensionality tradeoff:** lower dimension may help small-sample geometric estimation but lose behavior information. Select using both held-out behavior signals and correlation-dimension robustness.
+- **Reproduction boundary:** this plan follows ITSC's training ideas and smaller backbone, but output dimension, dataset, hardware batch size, and evaluation objectives differ. Describe it as an ATSCC/ITSC-inspired Encoder for complexity quantification, not a strict reproduction.
 
-## 配置依据
+## Configuration basis
 
-ITSC 论文第 3–4 页给出缩小版架构、优化器、训练轮数与温度/RDP 搜索范围；第 5 页报告 pooling 与复杂度代理评估。关联维数定义、小时场景构造和点云估计流程遵循项目文档 `doc/trajectory-embedding-point-cloud-complexity.md`。
+Pages 3–4 of the ITSC paper specify the smaller architecture, optimizer, epochs, and temperature/RDP ranges; page 5 reports pooling and complexity-proxy evaluation. The correlation-dimension definition, hourly scene construction, and point-cloud estimation follow `doc/trajectory-embedding-point-cloud-complexity.md`.

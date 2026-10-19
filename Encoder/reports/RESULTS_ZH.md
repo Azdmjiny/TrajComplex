@@ -1,33 +1,33 @@
-# Encoder 训练结果
+# Encoder training results
 
-已完成 PLAN.md 所要求的 Encoder 训练与当前数据支持的表示评估。主模型由验证集选择为 **16 维、sum pooling、seed 43**。冻结权重在 `encoder/encoder.pt`，对应 `d16_e120_t0p01_s43`；三维数×三种子的九份最佳验证 checkpoint 在 `checkpoints/`。
+Encoder training specified in PLAN.md and the representation assessments supported by the available data are complete. Validation selected the main model: **16 dimensions, sum pooling, seed 43**. Frozen weights are in `encoder/encoder.pt`, corresponding to `d16_e120_t0p01_s43`. The nine best-validation checkpoints for three dimensions and three seeds are in `checkpoints/`.
 
-## 实际完成
+## Completed work
 
-- 超参数筛选：8维 seed42 的 ε=120/1200m × τ=.01/.05，4次独立30轮训练。
-- 维数/稳定性：固定所选 ε=120.0m、τ=0.01，4/8/16维各3种子，9次30轮；复用筛选中的一次，总计12个独立模型、360轮。
-- 批大小16，bf16混合精度；初期两进程并行，一个进程不推进后按checkpoint改为串行续训，没有梯度累积。验证选择 checkpoint 后才最终评估 TEST。
-- 训练/验证/测试：6877/1214/8092条，使用完整轨迹按5秒采样并保留终点。原环境和原始数据未修改。
+- Hyperparameter screening: eight dimensions, seed42, ε=120/1200m × τ=.01/.05; four independent 30-epoch runs.
+- Dimension/stability comparison: selected ε=120.0m and τ=0.01; 4/8/16 dimensions with three seeds each, nine 30-epoch runs. One screening run is reused, giving 12 independent models and 360 epochs in total.
+- Batch size 16 and bf16 mixed precision. Two processes initially ran in parallel; after one stopped progressing, training resumed serially from checkpoints without gradient accumulation. Final TEST evaluation followed validation-based checkpoint selection.
+- Train/validation/test: 6877/1214/8092 full trajectories, sampled every five seconds with the endpoint retained. The original environment and raw data were not modified.
 
-## 代表权重的独立测试
+## Independent test of the representative checkpoint
 
-| 几何代理指标 | TEST R² | STAR 内 TEST 宏平均 R² | 随机初始化 STAR 内 R² | 长度基线 STAR 内 R² |
+| Geometric proxy | TEST R² | Within-STAR TEST macro R² | Random initialization within-STAR R² | Length baseline within-STAR R² |
 |---|---:|---:|---:|---:|
 | path_m | 0.5906 | 0.6568 | 0.9461 | 0.8008 |
 | curvature_rad | 0.2914 | 0.2836 | 0.4722 | 0.3519 |
 | sinuosity | 0.5797 | 0.6435 | 0.9430 | 0.7938 |
 | duration_s | 0.4533 | 0.5787 | 0.9942 | 0.9999 |
 
-所选模型在四个代理上均未超过两种基线中的较强者，因此这些测试尚未证明自监督训练带来了额外的几何代理预测能力。
+The selected model does not exceed the stronger of the two baselines on any of the four proxies. These tests therefore do not establish additional geometric-proxy prediction capability from self-supervised training.
 
-所有探针只在训练集拟合，在验证集选择 ridge alpha。STAR 内宏平均用于减少仅区分航路的影响，三种子结果和 mean/GeM 敏感性见 `three_seed_summary.json` 与 `probe_summary.csv`。这些目标是几何代理量，不是复杂度真值。随机初始化基线用于观察训练带来的变化，不能把初始化已可预测的信号都归因于自监督训练。
+All probes are fitted on training data, with ridge alpha selected on validation data. Within-STAR macro averaging reduces the influence of route discrimination alone. Three-seed results and mean/GeM sensitivity are in `three_seed_summary.json` and `probe_summary.csv`. These targets are geometric proxies, not complexity ground truth. The randomly initialized baseline measures changes due to training; signals already predictable at initialization must not all be attributed to self-supervised training.
 
-## 表示诊断
+## Representation diagnostics
 
-代表模型 TEST 有效秩=9.8180 / 16；阈值1e-8下低方差维度数=0；sum向量范数与样本长度相关系数=0.6472。有效秩低于输出维数说明信息可能集中于少数方向；逐维方差、距离分布、长度分层 probe 均保存在 `test_results.json`，不能仅凭向量非零就宣称没有表示退化。sum与长度的混杂应结合mean/GeM和长度分层结果使用。
+The representative model has TEST effective rank 9.8180 / 16, with 0 low-variance dimensions at threshold 1e-8. The correlation between sum-vector norm and sample length is 0.6472. Effective rank below output dimension suggests information may be concentrated in fewer directions. Per-dimension variance, distance distributions, and length-stratified probes are saved in `test_results.json`; nonzero vectors alone do not establish the absence of representation degradation. Interpret sum/length confounding alongside mean/GeM and length-stratified results.
 
-## 交付与边界
+## Delivery and limitations
 
-权重、预处理参数、配置、原始文件SHA256、每条轨迹的split清单、seed、逐轮日志、验证选择记录、测试结果、随机初始化基线、可调用冻结接口和真实样例均已保存。`export_verification.json` 检验加载、冻结和重建特征一致性；`checkpoint_manifest.json` 给出九份权重校验值。
+Weights, preprocessing, configuration, raw-file SHA256 values, per-trajectory split assignments, seeds, epoch logs, validation-selection records, test results, randomly initialized baselines, the callable frozen interface, and a real example have been saved. `export_verification.json` checks loading, freezing, and feature-reconstruction consistency; `checkpoint_manifest.json` records hashes for nine checkpoints.
 
-数据缺绝对时间及真实航班ID，所以真实航班/日期级隔离和小时点云/相关维数稳定区间没有验证。本交付是训练完成的 ATSCC/ITSC-inspired Encoder，未宣称完整小时复杂度系统或原论文严格复现。运行中一次PowerShell遥测拦截已记录在 PROTOCOL.md，随后通过禁止外连的进程从checkpoint续训。
+The data lack absolute timestamps and real flight IDs, so real flight/date-level separation and stable hourly point-cloud/correlation-dimension ranges have not been validated. This delivery is a trained ATSCC/ITSC-inspired Encoder, not a complete hourly complexity system or a strict reproduction of the original paper. A PowerShell telemetry interruption is recorded in PROTOCOL.md; training subsequently resumed from checkpoints in a process with outbound networking disabled.
