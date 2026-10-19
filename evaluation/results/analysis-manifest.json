@@ -1,0 +1,33 @@
+{
+  "method": "Earliest maximum of per-scene available-replicate mean D; peak selection needs >=3 valid replicates; shared cutoff across 5 orders; no smoothing; peak included",
+  "scope": "Holding only. Vectoring full dose retained; primary vectoring uses both-side maneuver speed screening.",
+  "interpretation": "Outcome-selected exploratory association, not an independently validated operating range; no confirmatory p-values.",
+  "input_sha256": {
+    "experiment-results.json": "72749f4afb67ac71d2716082f60de059bd11c0cfead4a41e593d2725ca378fb2",
+    "count-comparison.json": "1b4791a66662238236593b0ec489fa6dba5b8df85902de1670c9dd579223d10c"
+  },
+  "python": "3.14.5",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "matplotlib": "3.11.2",
+  "source_sha256": {
+    "aircraft_count_sensitivity.py": "7d74b5e3026e0eebd3c1e0047ba643881ff722a9500596d5ddcf63a9608fa609",
+    "audit_opensky.py": "18d20b94325a0e039967faf3d493add7280f18d3d9052adae0d320af28050d34",
+    "build_report.py": "377dd1d809403ca646751fdf8ad689fc023a0a9309f2346e90fec7b86260eddf",
+    "count_plot_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "make_figures.py": "2b080a679a86d72076648ba0dc16b10160fdbe04287812c166797b6b00ac253c",
+    "patch_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "refresh_outputs.py": "59fc3f771376e08ac65e69d49c723a8cb8937743a323f569292f4d62f86ae8e5",
+    "run_analysis.py": "21dbb8b8e79f739324da6f6fa12d65157e18f0489289787922ddd94fca36382e",
+    "run_evaluation.py": "8740e182a14a434e857f0013734026414b4ea9d1e533d56f8efe3a1ea29d1f29",
+    "run_holding_eval.py": "57068e42570f08138d4178e9ff5967053c836c0501432832ea8a4d8fb62d40b4",
+    "run_vectoring_eval.py": "afddf62834084d5aff369182df9ac16bb208fd57eebd70a29559cb940e478163",
+    "summarize_holding_eval.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "summarize_vectoring.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "test_repair.py": "83b9b722843d0546ace59f12a237f1f3c1180da00ebd588edb2752dba7a0eb9c",
+    "test_truncation.py": "36bd0fa236af9f61c948eb5e48047e5711a91e039c9b29bbde490a1370f707e6",
+    "trajectory_quality.py": "1530a5c6db745d278d26d9e22701a71137c319e3255caedcee0bd5e4f9813b79",
+    "truncation.py": "020c39104bcfa663fdeba49ac9f988b98d53d32dcc41adde9cc60f73925b9cf4",
+    "update_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f"
+  }
+}

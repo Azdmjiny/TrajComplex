@@ -1,0 +1,66 @@
+{
+  "checkpoint_sha256": "d3abfc192a2e7a0f84bb1c4207ee04cfc4a4880755530da475124c5f711753ea",
+  "device": "cuda",
+  "torch": "2.14.0+cu130",
+  "numpy": "2.5.4",
+  "config": {
+    "normalize": false,
+    "n_radii": 64,
+    "min_samples": 30,
+    "min_fit_points": 8,
+    "min_pairs": 10,
+    "correlation_bounds": [
+      0.02,
+      0.3
+    ],
+    "min_radius_ratio": 2.0,
+    "min_r_squared": 0.98,
+    "max_pairs": 5000000
+  },
+  "scenes": [
+    "2026-09-01T01Z",
+    "2026-09-04T08Z",
+    "2026-09-07T10Z",
+    "2026-09-10T06Z",
+    "2026-09-12T15Z",
+    "2026-09-15T06Z",
+    "2026-09-18T00Z",
+    "2026-09-20T04Z",
+    "2026-09-23T10Z",
+    "2026-09-25T23Z",
+    "2026-09-28T07Z",
+    "2026-09-30T15Z"
+  ],
+  "seed_policy": "Original order and random sides generated before filtering; survivors keep relative order and side",
+  "primary_holding": "qc500",
+  "primary_vectoring": "qc500_safe",
+  "thresholds": {
+    "primary_horizontal_m_s": 500,
+    "sensitivity_horizontal_m_s": 350,
+    "vertical_m_s": 100,
+    "altitude_m": [
+      -500,
+      20000
+    ]
+  },
+  "source_hashes": {
+    "aircraft_count_sensitivity.py": "7d74b5e3026e0eebd3c1e0047ba643881ff722a9500596d5ddcf63a9608fa609",
+    "audit_opensky.py": "18d20b94325a0e039967faf3d493add7280f18d3d9052adae0d320af28050d34",
+    "build_report.py": "377dd1d809403ca646751fdf8ad689fc023a0a9309f2346e90fec7b86260eddf",
+    "count_plot_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "make_figures.py": "24790ca75f2febce14e418a81ed8375f17c08fecc16aff01ca1439342c8bde0e",
+    "patch_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "refresh_outputs.py": "59fc3f771376e08ac65e69d49c723a8cb8937743a323f569292f4d62f86ae8e5",
+    "run_analysis.py": "21dbb8b8e79f739324da6f6fa12d65157e18f0489289787922ddd94fca36382e",
+    "run_evaluation.py": "8740e182a14a434e857f0013734026414b4ea9d1e533d56f8efe3a1ea29d1f29",
+    "run_holding_eval.py": "57068e42570f08138d4178e9ff5967053c836c0501432832ea8a4d8fb62d40b4",
+    "run_vectoring_eval.py": "afddf62834084d5aff369182df9ac16bb208fd57eebd70a29559cb940e478163",
+    "summarize_holding_eval.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "summarize_vectoring.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f",
+    "test_repair.py": "83b9b722843d0546ace59f12a237f1f3c1180da00ebd588edb2752dba7a0eb9c",
+    "test_truncation.py": "36bd0fa236af9f61c948eb5e48047e5711a91e039c9b29bbde490a1370f707e6",
+    "trajectory_quality.py": "1530a5c6db745d278d26d9e22701a71137c319e3255caedcee0bd5e4f9813b79",
+    "truncation.py": "020c39104bcfa663fdeba49ac9f988b98d53d32dcc41adde9cc60f73925b9cf4",
+    "update_report.py": "e93afc58924fb94f2b9dfd1aa96ed11ccaea1a67a1d0647bc92da55f13b0ac1f"
+  }
+}
