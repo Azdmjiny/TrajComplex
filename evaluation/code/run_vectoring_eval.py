@@ -1,15 +1,6 @@
-import csv,json,sys,zipfile,math,hashlib
-from pathlib import Path
+"""Synthetic vectoring geometry and candidate speed screening."""
 import numpy as np
-from scipy.spatial.distance import pdist
 
-import run_holding_eval as h
-from complexity.calculator import ComplexityConfig,estimate_complexity
-import torch
-from Encoder.trajectory_encoder.inference import FrozenEncoder
-
-BASE=Path(__file__).resolve().parents[1] / 'results'
-OUT=BASE/'synthetic-vectoring-evaluation-pilot.json'
 TURN_S=300; RETURN_S=300; SAMPLE=5; MAX_OFFSET=5000.; REPEATS=5; SEED=43019
 
 def add_vectoring(p,side):
@@ -28,11 +19,6 @@ def add_vectoring(p,side):
     q[start:end,:2]=seg[:,:2]+offset[:,None]*normal
     return q,start,end
 
-def est(emb,radii,cfg,sid):
-    r=estimate_complexity(emb,config=cfg,radii=radii,scene_id=sid)
-    return {'status':r.status,'reason':r.reason,'dimension':r.dimension,'r_squared':r.r_squared,'n_samples':r.n_samples,'n_fit_scales':len(r.fit_indices)}
-
-
 def vectoring_eligible(p, max_horizontal_speed=500.0):
     """Require both random sides to pass a fixed kinematic screen before injection.
 
@@ -42,10 +28,3 @@ def vectoring_eligible(p, max_horizontal_speed=500.0):
     if len(p)<121:
         return False
     return all(np.linalg.norm(np.diff(add_vectoring(p,side)[0][:,:2],axis=0),axis=1).max()/SAMPLE <= max_horizontal_speed for side in (-1,1))
-
-def main():
-    # Keep historical entry points, but always rebuild the canonical suite.
-    from run_evaluation import main as run_suite
-    run_suite()
-
-if __name__=='__main__':main()

@@ -10,8 +10,6 @@ from trajectory_quality import quality_reasons
 
 DATA_ZIP = Path(os.environ["ATM_DATA_ZIP"]).expanduser()
 CHECKPOINT = Path(os.environ["ATM_ENCODER_CHECKPOINT"]).expanduser()
-AUDIT = Path(__file__).resolve().parents[1] / 'results' / 'opensky_track_eligibility_audit.json'
-OUT = Path(__file__).resolve().parents[1] / 'results' / 'synthetic-holding-evaluation-pilot.json'
 # WSSS origin from the dataset config, WGS84 ellipsoid.
 LAT0, LON0, H0 = math.radians(1.3592111111111111), math.radians(103.989325), 6.66
 A, E2 = 6378137.0, 6.69437999014e-3
@@ -107,11 +105,3 @@ def add_racetrack(p):
 def estimate(points, radii, cfg, scene_id):
     r=estimate_complexity(points, config=cfg, radii=radii, scene_id=scene_id)
     return {'status':r.status,'reason':r.reason,'dimension':r.dimension,'slope':r.fit_slope,'r_squared':r.r_squared,'n_samples':r.n_samples,'n_unique':r.n_unique,'n_fit_scales':len(r.fit_indices),'fit_radius_range':r.fit_radius_range,'warnings':r.warnings}
-
-
-def main():
-    # Keep historical entry points, but always rebuild the canonical suite.
-    from run_evaluation import main as run_suite
-    run_suite()
-
-if __name__=='__main__':main()

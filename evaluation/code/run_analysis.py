@@ -53,13 +53,9 @@ def main():
             filename=f'{variant}-{kind}-point-selection.csv'
             with (out/filename).open('w',encoding='utf-8-sig',newline='') as f:
                 w=csv.DictWriter(f,fieldnames=list(selection[0]));w.writeheader();w.writerows(selection)
-            if (kind=='holding' and variant=='qc500') or (kind=='vectoring' and variant=='qc500_safe'):
-                (out/f'synthetic-{kind}-evaluation-pilot.json').write_text(json.dumps(d,indent=2,allow_nan=False),encoding='utf8')
-                (out/f'synthetic-{kind}-evaluation-summary.json').write_text(json.dumps(summary,indent=2,allow_nan=False),encoding='utf8')
-                (out/f'{kind}-dose-response.csv').write_bytes((out/filename).read_bytes())
-    summaries['aircraft_count']=json.loads((out/'count-comparison.json').read_text(encoding='utf8'))
+    summaries['aircraft_count']=json.loads((out/'aircraft-count-sensitivity.json').read_text(encoding='utf8'))['comparisons']
     (out/'summary.json').write_text(json.dumps(summaries,indent=2,allow_nan=False),encoding='utf8')
-    manifest=dict(method='Earliest maximum of per-scene available-replicate mean D; peak selection needs >=3 valid replicates; shared cutoff across 5 orders; no smoothing; peak included',scope='Holding only. Vectoring full dose retained; primary vectoring uses both-side maneuver speed screening.',interpretation='Outcome-selected exploratory association, not an independently validated operating range; no confirmatory p-values.',input_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [source,out/'count-comparison.json']},python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__)
+    manifest=dict(method='Earliest maximum of per-scene available-replicate mean D; peak selection needs >=3 valid replicates; shared cutoff across 5 orders; no smoothing; peak included',scope='Holding only. Vectoring full dose retained; primary vectoring uses both-side maneuver speed screening.',interpretation='Outcome-selected exploratory association, not an independently validated operating range; no confirmatory p-values.',input_sha256={p.name:hashlib.sha256(p.read_bytes()).hexdigest() for p in [source,out/'aircraft-count-sensitivity.json']},python=platform.python_version(),numpy=np.__version__,scipy=scipy.__version__)
     (out/'analysis-manifest.json').write_text(json.dumps(manifest,indent=2),encoding='utf8')
-    print('Updated canonical pilot results, summaries and selection CSVs.')
+    print('Updated consolidated summaries and selection CSVs.')
 if __name__=='__main__':main()

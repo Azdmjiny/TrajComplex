@@ -86,7 +86,7 @@ QC500 的截断比例约 39%–59%，并非统一截掉 50% 以后。QC350 的 2
 | qc500_safe | 43 | 0.832 | 38/43 |
 | qc350_safe | 40 | 0.820 | 36/40 |
 
-主结果 `synthetic-vectoring-evaluation-pilot.json` 使用 QC500 加候选机动速度筛选（qc500_safe）。未进行候选机动筛选的 QC500 与 QC350 仅作为敏感性对照，保存在统一的 `experiment-results.json` 中。正相关支持对合成变形的响应，尚不能证明真实管制工作负荷的有效性。
+主结果使用统一数据 `experiment-results.json` 中的 `qc500_safe.vectoring`（QC500 加候选机动速度筛选）。未进行候选机动筛选的 QC500 与 QC350 仅作为敏感性对照，保存在统一的 `experiment-results.json` 中。正相关支持对合成变形的响应，尚不能证明真实管制工作负荷的有效性。
 
 ## 飞机数量敏感性
 
@@ -166,9 +166,7 @@ Matplotlib 生成 200 dpi PNG 和矢量 SVG。彩色表示 Holding 保留段，�
 
 - [全部统计与逐小时结果](../results/summary.json)
 - [统一完整剂量数据](../results/experiment-results.json)
-- [Holding 主结果](../results/synthetic-holding-evaluation-pilot.json)
-- [Vectoring 主结果](../results/synthetic-vectoring-evaluation-pilot.json)
-- [Holding 逐点保留与排除原因](../results/holding-dose-response.csv)
+- [Holding 逐点保留与排除原因](../results/qc500-holding-point-selection.csv)
 - [严格筛选逐点清单](../results/qc350-holding-point-selection.csv)
 - [原始轨迹剔除清单](../results/quality_audit.json)
 - [飞机数量敏感性数据](../results/aircraft-count-sensitivity.json)

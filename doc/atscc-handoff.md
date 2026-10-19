@@ -1,12 +1,12 @@
 # Encoder → Complexity 当前接口交接
 
-本文替代旧 ATSCC 框架交接说明，文件名保留以兼容已有文档链接。当前代码位于 `Encoder/` 和 `Complexity/`；旧 `ATSCC.load_model`、`encode_scene`、`TrainingConfig` 和小写 `complexity` 不再是本仓库入口。
+本文替代旧 ATSCC 框架交接说明，文件名保留以兼容已有文档链接。当前代码位于 `Encoder/` 和小写 `complexity/`。旧 ATSCC 对象接口不再是当前入口；根目录 `encode_scene.py` 仍是有效的场景编码命令行工具。模块名和路径请按实际大小写使用，以兼容 Linux。
 
 ## 当前模型与入口
 
-- 冻结模型：`Encoder/encoder/encoder.pt`，对应 `d16_e120_t0p01_s43`，16 维、sum pooling、seed 43、第 30 轮。
+- 冻结模型：本地部署路径示例为 `Encoder/encoder/encoder.pt`（权重不随当前仓库提供，需自行配置实际路径），对应 `d16_e120_t0p01_s43`，16 维、sum pooling、seed 43、第 30 轮。
 - 主干：9 维特征输入，256 宽、4 层、4 头、FFN 512；逐 token L2，pooled embedding 不额外 L2。
-- 仓库根目录导入：`from Encoder.trajectory_encoder.inference import FrozenEncoder` 和 `from Complexity import estimate_complexity`。
+- 仓库根目录导入：`from Encoder.trajectory_encoder.inference import FrozenEncoder` 和 `from complexity import estimate_complexity`。
 - 在 `Encoder/` 内运行原有示例时，仍使用 `from trajectory_encoder.inference import FrozenEncoder`；见 `Encoder/example.py`。
 - Complexity 实现仅直接依赖 NumPy/SciPy；全项目统一安装根目录 `requirements.txt`，其中包含 Torch。环境安装见[根 README](../README.md#installation)，重训见[Encoder 部分](../README.md#encoder)、[PLAN.md](../Encoder/PLAN.md)、[PROTOCOL.md](../Encoder/PROTOCOL.md)。
 
@@ -23,7 +23,7 @@
 
 ## 从轨迹接入复杂度
 
-传递的是 `(N,16)` 数组，不是 token 序列、返回字典或单条 `(16,)` 向量。空场景可传 `(0,16)`；不足样本或拟合不合格返回 `unestimable`，不能记为复杂度 0。默认门槛、显式尺度及 JSON 字段见[根 README 的 Complexity 部分](../README.md#complexity)。
+传递的是 `(N,16)` 数组，不是 token 序列、返回字典或单条 `(16,)` 向量。空场景可传 `(0,16)`；不足样本或拟合不合格返回 `unestimable`，不能记为复杂度 0。默认门槛、显式尺度及解释限制见[方法说明](trajectory-embedding-point-cloud-complexity.md)。
 
 单小时保存为 `.npy`，多小时保存为 `scene_id -> (N_s,D)` 的 `.npz`：
 
@@ -33,9 +33,9 @@ np.savez("hours.npz", hour_01=z1, hour_02=z2)
 
 ```bash
 python -m pip install -r requirements.txt
-python -m Complexity --help
-python -m Complexity hour_01.npy -o hour_01.complexity.json
-python -m Complexity hours.npz -o hours.complexity.json
+python -m complexity --help
+python -m complexity hour_01.npy -o hour_01.complexity.json
+python -m complexity hours.npz -o hours.complexity.json
 ```
 
 **`Encoder/encoder/embeddings.npz` 不是小时场景档案。** 它按 `sum/mean/gem2` 保存全部 16183 条轨迹，不能直接作为多小时输入，也不能把三个 pooling 当三个场景。场景间比较应固定 checkpoint、预处理、pooling、归一化与尺度规则，不能为得到数字而降低质量门槛。
@@ -46,14 +46,14 @@ python -m Complexity hours.npz -o hours.complexity.json
 
 独立 TEST 及基线对照见 `Encoder/reports/test_results.json`、`untrained_test_results.json`、`confounding_and_route.json`；汇总见 [RESULTS_ZH.md](../Encoder/reports/RESULTS_ZH.md)，三种子与 pooling 对照见 `three_seed_summary.json`、`probe_summary.csv`。
 
-训练损失下降并不等于下游复杂度有效。当前报告明确指出：代表模型四项几何代理均未超过两种基线中的较强者，尚未证明训练带来的额外代理预测能力。数据缺绝对时间和真实航班 ID，真实小时场景的相关维数有效性未验证。
+训练损失下降并不等于下游复杂度有效。当前报告明确指出：代表模型四项几何代理均未超过两种基线中的较强者，尚未证明训练带来的额外代理预测能力。数据缺绝对时间和真实航班 ID，训练数据本身不能提供真实小时场景验证。当前另有 OpenSky 合成扰动实验，见 [evaluation 报告](../evaluation/reports/evaluation-pilot.md)；它尚未验证真实管制工作负荷。
 
 ## 验证命令
 
-在仓库根目录，使用已装好相应依赖的 Python：
+在仓库根目录，使用已装好相应依赖的 Python。后两条还需要本地准备完整 Encoder 交付文件；仅克隆源码不能直接完成这两项验证：
 
 ```bash
-python -m unittest discover -s Complexity/tests -v
+python -m unittest discover -s complexity/tests -v
 python Encoder/verify_delivery.py
 python Encoder/example.py --checkpoint Encoder/encoder/encoder.pt --input Encoder/encoder/example_input_output.npz
 ```

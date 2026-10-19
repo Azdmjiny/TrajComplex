@@ -79,7 +79,6 @@ def main():
                     if r.dimension is not None:vals.append(r.dimension)
                 counts[name].append(dict(scene=sid,n=n,full_D=full.dimension,valid=len(vals),repeats=50,valid_rate=len(vals)/50,median_abs_delta=float(np.median(np.abs(np.asarray(vals)-full.dimension))) if vals and full.dimension is not None else None))
         print(f'{si}/12 {sid}; elapsed {time.time()-start:.1f}s',flush=True)
-    dump('count-comparison.json',counts)
     dump('aircraft-count-sensitivity.json',dict(primary_variant='qc500',repeats_per_subsample_n=50,target_sample_sizes=[30,40,50],results=counts['qc500'],comparisons=counts,rows=countrows,complexity_config=cfg.__dict__))
     with (ROOT/'results/aircraft-count-sensitivity.csv').open('w',newline='',encoding='utf-8-sig') as f:
         w=csv.DictWriter(f,fieldnames=list(countrows[0]));w.writeheader();w.writerows(countrows)
