@@ -34,15 +34,13 @@ class RepairTests(unittest.TestCase):
         a[0,1]=91
         self.assertIn('coordinate_range',quality_reasons(a,p))
     def test_vectoring_eligibility(self):
-        ns=dict(np=np,TURN_S=300,SAMPLE=5,MAX_OFFSET=5000.)
-        tree=ast.parse((ROOT/'run_vectoring_eval.py').read_text(encoding='utf8'))
-        for node in tree.body:
-            if isinstance(node,ast.FunctionDef) and node.name in ['add_vectoring','vectoring_eligible']:
-                exec(compile(ast.Module(body=[node],type_ignores=[]),'vectoring','exec'),ns)
-        p=np.column_stack([np.arange(121)*1000,np.zeros(121),np.zeros(121)])
-        self.assertTrue(ns['vectoring_eligible'](p))
-        self.assertFalse(ns['vectoring_eligible'](p[:100]))
+        import run_vectoring_eval as v
+        from test_vectoring_repair import straight
+        p,raw=straight(121)
+        self.assertFalse(v.vectoring_eligible(p,source_observations=raw))
+        self.assertEqual(v.vectoring_eligibility(p,raw)[1],['missing_quality_matches'])
+        self.assertFalse(v.vectoring_eligible(p[:100],source_observations=raw))
         p[60,0]+=20000
-        self.assertFalse(ns['vectoring_eligible'](p))
+        self.assertFalse(v.vectoring_eligible(p,source_observations=raw))
 
 if __name__=='__main__':unittest.main()

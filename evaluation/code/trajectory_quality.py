@@ -6,7 +6,7 @@ sensitivity run accompanies the primary 500 m/s horizontal threshold.
 """
 import numpy as np
 
-def quality_reasons(observations, enu, max_horizontal_speed=500.0):
+def quality_reasons(observations, enu, max_horizontal_speed=500.0, *, position_times=None):
     if max_horizontal_speed is None:
         return []  # Explicit legacy reproduction only.
     a=np.asarray(observations); p=np.asarray(enu); reasons=[]
@@ -19,7 +19,10 @@ def quality_reasons(observations, enu, max_horizontal_speed=500.0):
     dt=np.diff(a[:,0])
     if np.any(dt<=0):
         return reasons+['nonincreasing_time']
-    if np.any(np.linalg.norm(np.diff(p[:,:2],axis=0),axis=1)/dt>max_horizontal_speed):
+    horizontal_dt=dt if position_times is None else np.diff(np.asarray(position_times,float))
+    if not np.isfinite(horizontal_dt).all() or np.any(horizontal_dt<=0):
+        return reasons+['invalid_position_update_time']
+    if np.any(np.linalg.norm(np.diff(p[:,:2],axis=0),axis=1)/horizontal_dt>max_horizontal_speed):
         reasons.append('horizontal_speed')
     if np.any(np.abs(np.diff(p[:,2]))/dt>100):
         reasons.append('vertical_speed')

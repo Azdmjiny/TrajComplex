@@ -690,8 +690,8 @@
   ],
   "files": {
     "README.md": {
-      "sha256": "a0d771211a45aed58825ce0f4c3c1cc694b345070a8b45d2c82d66730cb2eda2",
-      "bytes": 2155
+      "sha256": "bc8a3e0e09026764dfc8f4ba118d8172aa3c16b4f1ea01bb41ec2de89865bc33",
+      "bytes": 3210
     },
     "report.md": {
       "sha256": "69c2a20b82a6578c420b9737550f64c68baeb1e7e0d1be15e0e140832ddb973d",
@@ -1114,5 +1114,6 @@
     "dependency folders",
     "console logs",
     "before-hashes snapshots"
-  ]
+  ],
+  "documentation_update": "README now links the current portable code entrypoints; published numeric/embedding/result files remain unchanged."
 }
