@@ -1,0 +1,192 @@
+{
+  "state": "complete",
+  "scenes": [
+    "2026-09-14T06Z",
+    "2026-09-15T07Z",
+    "2026-09-19T07Z",
+    "2026-09-27T05Z"
+  ],
+  "approved_candidates": [
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "750424"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "750447"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "750480"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "75049d"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "885110"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "894098"
+    },
+    {
+      "scene": "2026-09-14T06Z",
+      "icao24": "a03423"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "06a117"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "750425"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "7504c3"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "75057a"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "750596"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "7822bc"
+    },
+    {
+      "scene": "2026-09-15T07Z",
+      "icao24": "8a0ab8"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "750260"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "750424"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "750449"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "7504c3"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "750555"
+    },
+    {
+      "scene": "2026-09-19T07Z",
+      "icao24": "8a0a67"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "75033c"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "750562"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "750563"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "750579"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "888170"
+    },
+    {
+      "scene": "2026-09-27T05Z",
+      "icao24": "8a0a84"
+    }
+  ],
+  "input_sample_s": 10,
+  "altitude_field": "baroaltitude",
+  "code_directory": "C:\\Users\\HP\\Documents\\ChatGPT\\UVA World Model\\deliverables\\vectoring-direction-repair\\code",
+  "code_sha256": {
+    "screen_vectoring_candidates.py": "416054d97b45f8df85fbca7e01aa43272040be35dfc02a2dfefa3d402dc8f032",
+    "vectoring_population.py": "fa4d74da14568728002521a516d67935262ac73b890f83e76b009b6efbd343cc",
+    "vectoring_reference.py": "45cf90687fc83058641ef2f7007151f436878aec758009cbd27ebf8f2ccd8be2",
+    "vectoring_inputs.py": "301775f32248d96fe5cc39626c97834e50dea6c46ad4540bfd67bcb58e7b970a",
+    "vectoring_path.py": "ab1bece75eec825f09aa47206b6f0f1dd824e0e3b44d808b22e668ae3c39b633",
+    "run_vectoring_eval.py": "692e20b358569cf6dfd420933c575e1f44191943bf1a546ddcff7f158ab99b5e",
+    "vectoring_uncertainty.py": "9b756942903690097f3266613eebddeb00f780d631dd69c75ac865c3bc4cae67",
+    "trajectory_quality.py": "1e3ba15dbc26c238d5ac6bb7fcdb2e7904b7f4f8dd50b0b5cdf622def6b789d8",
+    "position_timeline.py": "f6ed6195d5afceb21606e76cb0cd35d4e1087d1126c14f78147df4b8756521aa"
+  },
+  "driver_sha256": "ea4ae80299f2360acb3cdd5561c4bb67767cceb6dc26e87a65c3c27193678ad2",
+  "source_paths": {
+    "quality": "C:\\Users\\HP\\Documents\\ChatGPT\\UVA World Model\\deliverables\\coverage-nic-supplement\\point-evidence.jsonl.gz",
+    "proposal": "C:\\Users\\HP\\Documents\\ChatGPT\\UVA World Model\\deliverables\\coverage-population-review\\proposed-first-batch.json"
+  },
+  "source_sha256": {
+    "quality": "024d7a6659488f987ce58e615fe79fefb9676f2f9ccee48f544f331a507ed100",
+    "proposal": "494076ae949b48d4d3ca5d2f1f88383c9485e0320ba8daf594752de801e05a26"
+  },
+  "source_track_sha256": {
+    "2026-09-14T06Z": "5dcc322feb26a62204667bd4272fecc3a327f8cc1590362e2976837b6cb666cf",
+    "2026-09-15T07Z": "c9b43936805accf8eeb43b5c9a4354c5c5b4d7757198c6271aaedd8b866596ba",
+    "2026-09-19T07Z": "c9c8ad83956edeba4f45fb377b267bd675874061b67faab3b4db181546c795eb",
+    "2026-09-27T05Z": "ce092a96308c0408c12140b8bcb61c447aeb90c7845ba2f82f71244581abb48b"
+  },
+  "baseline_policy": "basic-QC fixed members; failed fit raw background; successful fit frozen before route checks",
+  "candidate_scope": "Only the 26 previously approved complete-quality candidates; all other basic-QC tracks retained as raw backgrounds",
+  "fit_model": "full-track-natural-quintic-nacp-constrained-minimum-jerk-v1",
+  "direction_certificate": "raw-velocity-disk-local-cone-adaptive-v1",
+  "route_model": "minimum-jerk-interpolant/chord-normal-Bernstein-8-v1",
+  "route_numerics": "direct-offset-derivatives/adaptive-continuous-peak-feedback-v3",
+  "thresholds": {
+    "horizontal_m_s": 500,
+    "vertical_m_s": 100,
+    "position_age_s": 15,
+    "source_gap_s": 20,
+    "status_each_side_s": 10,
+    "offset_m": 5000,
+    "duration_s": 600,
+    "direction_deg": 10,
+    "speed_retention": 0.5,
+    "longitudinal_m_s2": 2,
+    "lateral_bank_proxy_deg": 35
+  },
+  "numerical": {
+    "position_m": 0.03,
+    "speed_m_s": 0.01,
+    "acceleration_m_s2": 0.001,
+    "heading_deg": 0.01,
+    "reference_maxiter": 200,
+    "reference_tol": 1e-08,
+    "route_maxiter": 100,
+    "verify_nodes": 100000
+  },
+  "versions": {
+    "python": "3.14.5 (tags/v3.14.5:5607950, May 10 2026, 10:43:50) [MSC v.1944 64 bit (AMD64)]",
+    "numpy": "2.5.3",
+    "scipy": "1.18.1",
+    "clarabel": "0.11.1"
+  },
+  "restrictions": {
+    "network_queries": 0,
+    "scope_expansion": 0,
+    "threshold_changes": 0,
+    "missing_values_filled": 0,
+    "encoder_calls": 0,
+    "D_calls": 0,
+    "correlation_calls": 0,
+    "holding_runs": 0
+  },
+  "source_loading": "Reconstruct the same strict-10s grid from cached original basic-QC source rows; no new interpolation rule or archive selection",
+  "elapsed_s": 153.9561681999985,
+  "forbidden_imports": []
+}

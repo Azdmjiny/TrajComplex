@@ -1,0 +1,113 @@
+{
+  "input_sample_s": 10,
+  "altitude_field": "baroaltitude",
+  "position_time_axis": "lastposupdate",
+  "altitude_time_axis": "snapshot time (native altitude update time unavailable)",
+  "input_alignment": "existing bounded linear alignment to strict 10s grid; no extrapolation or missing-source-value filling",
+  "encoder_preprocessor_id": "52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477",
+  "quality_matches_sha256": "62946eb2a56b759b65ced690efe84ec5056f79a0ce89301b0fa80dc5fcf056a5",
+  "approved_policy": "2026-10-22; fixed 5km; status brackets each <=10s; NACp engineering disks; continuous reference and constrained path; longitudinal 2m/s2 and lateral 35deg separated",
+  "vectoring_generator": {
+    "model": "minimum-jerk-interpolant/chord-normal-Bernstein-8-v1",
+    "numerics": "direct-offset-derivatives/analytic-constraint-jacobians-v2",
+    "peak_cross_track_m": 5000.0,
+    "duration_s": 600.0,
+    "sample_s": 10.0,
+    "reference_fit": "minimum-jerk quintic interpolant of real updates and provenance-preserving grid constraints",
+    "residual_bound": "each original observation within its NACp engineering disk; no extra allowance",
+    "route_search": "nonnegative degree-eight chord-normal displacement; three free controls; local SLSQP minimum of integrated squared jerk",
+    "joins": "C2 with continuous reference; original altitude and outside samples retained",
+    "numerical_tolerances": {
+      "position_m": 0.03,
+      "speed_m_s": 0.01,
+      "acceleration_m_s2": 0.001,
+      "heading_deg": 0.01
+    },
+    "maximum_solver_iterations": 100,
+    "maximum_verification_nodes": 100000,
+    "on_failure": "reject; do not shrink 5km, extend time, fill data or relax limits",
+    "limitations": "restricted search; conditional reference model; ground-motion proxies; no global optimum or aircraft-specific certification"
+  },
+  "checkpoint_sha256": "bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976",
+  "device": "cuda",
+  "torch": "2.14.0+cu130",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1",
+  "config": {
+    "normalize": false,
+    "n_radii": 64,
+    "min_samples": 30,
+    "min_fit_points": 8,
+    "min_pairs": 10,
+    "correlation_bounds": [
+      0.02,
+      0.3
+    ],
+    "min_radius_ratio": 2.0,
+    "min_r_squared": 0.98,
+    "max_pairs": 5000000
+  },
+  "scenes": [
+    "2026-09-01T01Z",
+    "2026-09-04T08Z",
+    "2026-09-07T10Z",
+    "2026-09-10T06Z",
+    "2026-09-12T15Z",
+    "2026-09-15T06Z",
+    "2026-09-18T00Z",
+    "2026-09-20T04Z",
+    "2026-09-23T10Z",
+    "2026-09-25T23Z",
+    "2026-09-28T07Z",
+    "2026-09-30T15Z"
+  ],
+  "seed_policy": "Original candidate order and random sides are generated deterministically; geometry-rejected candidates receive no dose; survivors retain relative order",
+  "primary_holding": "qc500",
+  "primary_vectoring": "qc500_safe",
+  "vectoring_screen": {
+    "maximum_position_age_s": 15.0,
+    "maximum_position_update_gap_s": 20.0,
+    "continuous_projection_must_be_unique": true,
+    "minimum_deformed_to_original_speed_ratio": 0.5,
+    "maximum_equivalent_bank_proxy_deg": 35.0,
+    "maximum_horizontal_speed_m_s": 500.0,
+    "threshold_basis": {
+      "geometry": "Continuous chord-forward reference and path; unique interior nearest-route projection; Bernstein interval verification; see reports/vectoring-continuous-generator.md",
+      "position_freshness": "OpenSky state-vector lastposupdate field; existing source age limit 15 s",
+      "speed_retention": "Explicit engineering screen, not a published flight limit",
+      "bank_proxy": "EUROCONTROL BADA 3.5 User Manual (2003), nominal civil bank 35 deg outside takeoff/landing; https://www.eurocontrol.int/sites/default/files/library/017_BADA_3_5_User_Manual.pdf"
+    },
+    "interpretation": "reject-only diagnostic screens; ground-track proxies, not aircraft-specific certification"
+  },
+  "thresholds": {
+    "primary_horizontal_m_s": 500,
+    "sensitivity_horizontal_m_s": 350,
+    "vertical_m_s": 100,
+    "altitude_m": [
+      -500,
+      20000
+    ]
+  },
+  "source_hashes": {
+    "build_report.py": "b67c39017f362665bd98b2003520ca1a3ec71764763e315f5bbdd13956b9a396",
+    "make_figures.py": "fada0b102cb610c0826e01fab0dc8ce88526d815fb4cb09bb4e1f789cf560e03",
+    "position_timeline.py": "fc5b71813051500cee5e6e032978a47b5275b8fd5525c00b8ab6f74535378d7a",
+    "refresh_outputs.py": "59fc3f771376e08ac65e69d49c723a8cb8937743a323f569292f4d62f86ae8e5",
+    "run_analysis.py": "7fe6be52c672f505b3facc05ca63520d6e5e7b736c028e517ef65281fcbd8159",
+    "run_evaluation.py": "af7435e962caf10373b5f8e974e22e3be568e61484f25fdf5e4448da96543e7f",
+    "run_holding_eval.py": "8b37dd6fb31f25c5ca909e01c60bf6402ec46ea61e7ff117e0008007ae5f8671",
+    "run_vectoring_eval.py": "c175445cb621a8169882736cd0e6a46409897d3235d8c1db9f684b7b32c3a9e2",
+    "test_cadence_10s.py": "c2a47bb33d86ddd1b415b68495bfcba483c9dc3f99d1e0ce9144033e5b02055f",
+    "test_position_timeline.py": "c36c651cb0ae6177982a508c95d59332765c98756a894de9e24bfd25c62d16e0",
+    "test_repair.py": "f357a926c94266824087ea0ada0a5484b901490f620a395eceeb8a998739f810",
+    "test_report_provenance.py": "bfa668560f094c0dc9b4d9deacd50441fc63dd28388ddc7cb343c6cb1d00eacf",
+    "test_truncation.py": "36bd0fa236af9f61c948eb5e48047e5711a91e039c9b29bbde490a1370f707e6",
+    "test_uncertainty.py": "5fa79b8531f1f6fcbf87b28486fc6f0121e1b2852376bc776859b12562656f51",
+    "test_vectoring_path.py": "7198e52836f09c00dc88abdf0b8f64ddad29adda748777f5905b1cdee3592159",
+    "test_vectoring_repair.py": "bcf3bfe519d51af2c00dea0a501b4656eb349f2d94593181dfa2e93713fb6e4a",
+    "trajectory_quality.py": "1e3ba15dbc26c238d5ac6bb7fcdb2e7904b7f4f8dd50b0b5cdf622def6b789d8",
+    "truncation.py": "020c39104bcfa663fdeba49ac9f988b98d53d32dcc41adde9cc60f73925b9cf4",
+    "vectoring_path.py": "1200fe8c1b0894e73b38e89564abdec13265fca99daad77af83320ed83671528",
+    "vectoring_uncertainty.py": "70a007bc0e24069bcbda62f6b8e6baad61bbf7823bcdaa7f9c3894609513e8d0"
+  }
+}

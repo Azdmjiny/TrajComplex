@@ -1,0 +1,691 @@
+{
+  "scenes": 12,
+  "scenes_with_archived_cutoff": 7,
+  "common_valid": {
+    "holding": {
+      "n": 33,
+      "median": 0.6614035087719298,
+      "positive": 30,
+      "negative": 3,
+      "zero": 0
+    },
+    "straight": {
+      "n": 33,
+      "median": 0.5979387927962122,
+      "positive": 27,
+      "negative": 6,
+      "zero": 0
+    }
+  },
+  "own_valid": {
+    "holding": {
+      "n": 33,
+      "median": 0.6285714285714286,
+      "positive": 31,
+      "negative": 2,
+      "zero": 0
+    },
+    "straight": {
+      "n": 34,
+      "median": 0.5634634192691141,
+      "positive": 28,
+      "negative": 6,
+      "zero": 0
+    }
+  },
+  "baseline_valid_common": {
+    "holding": {
+      "n": 15,
+      "median": 0.5530350518324086,
+      "positive": 13,
+      "negative": 2,
+      "zero": 0
+    },
+    "straight": {
+      "n": 15,
+      "median": 0.5037593984962406,
+      "positive": 11,
+      "negative": 4,
+      "zero": 0
+    }
+  },
+  "same_curve_full_vs_retained": {
+    "curves": 33,
+    "full": {
+      "holding": {
+        "n": 33,
+        "median": 0.21667048730054364,
+        "positive": 24,
+        "negative": 9,
+        "zero": 0
+      },
+      "straight": {
+        "n": 33,
+        "median": 0.18717805505462107,
+        "positive": 20,
+        "negative": 13,
+        "zero": 0
+      }
+    },
+    "retained": {
+      "holding": {
+        "n": 33,
+        "median": 0.6614035087719298,
+        "positive": 30,
+        "negative": 3,
+        "zero": 0
+      },
+      "straight": {
+        "n": 33,
+        "median": 0.5979387927962122,
+        "positive": 27,
+        "negative": 6,
+        "zero": 0
+      }
+    }
+  },
+  "same_baseline_curve_full_vs_retained": {
+    "curves": 15,
+    "full": {
+      "holding": {
+        "n": 15,
+        "median": 0.15812807881773394,
+        "positive": 11,
+        "negative": 4,
+        "zero": 0
+      },
+      "straight": {
+        "n": 15,
+        "median": -0.01270053475935829,
+        "positive": 7,
+        "negative": 8,
+        "zero": 0
+      }
+    },
+    "retained": {
+      "holding": {
+        "n": 15,
+        "median": 0.5530350518324086,
+        "positive": 13,
+        "negative": 2,
+        "zero": 0
+      },
+      "straight": {
+        "n": 15,
+        "median": 0.5037593984962406,
+        "positive": 11,
+        "negative": 4,
+        "zero": 0
+      }
+    }
+  },
+  "equal_scene_rho": {
+    "holding": {
+      "n": 7,
+      "median": 0.7361804861804861,
+      "positive": 7,
+      "negative": 0,
+      "zero": 0
+    },
+    "straight": {
+      "n": 7,
+      "median": 0.5492007992007992,
+      "positive": 7,
+      "negative": 0,
+      "zero": 0
+    }
+  },
+  "paired_difference": {
+    "scenes": 7,
+    "positive_scene_medians": 6,
+    "equal_scene_median": 0.030044652871792144,
+    "joint_nonzero_records": 448
+  },
+  "baseline_valid_paired_difference": {
+    "scenes": 3,
+    "positive_scene_medians": 2,
+    "equal_scene_median": 0.030044652871792144
+  },
+  "scene_details": [
+    {
+      "scene": "2026-09-01T01Z",
+      "local_UTC8": "09-01 09:00",
+      "N": 32,
+      "cutoff": 22,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 4,
+          "median": 0.7971411638670036,
+          "positive": 4,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.6299868408234353,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 4,
+          "median": 0.7851239666817156,
+          "positive": 4,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 4,
+          "median": 0.6877206931389903,
+          "positive": 4,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 42,
+      "paired_difference_median": 0.04086775053477831,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "local_UTC8": "09-04 16:00",
+      "N": 40,
+      "cutoff": 32,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.822994522132641,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.7563909774436091,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.7995487590626728,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.6742759402939097,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 87,
+      "paired_difference_median": 0.0530096577894128,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "local_UTC8": "09-07 18:00",
+      "N": 29,
+      "cutoff": null,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 0,
+      "paired_difference_median": null,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "local_UTC8": "09-10 14:00",
+      "N": 36,
+      "cutoff": 20,
+      "baseline_D": 2.0333024566498024,
+      "own_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.6285714285714286,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.5037593984962406,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.6285714285714286,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.5037593984962406,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 94,
+      "paired_difference_median": 0.08680986770824473,
+      "baseline_changes": {
+        "holding": 0.15495835783647438,
+        "straight": 0.0769088931669315
+      }
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "local_UTC8": "09-12 23:00",
+      "N": 26,
+      "cutoff": null,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 0,
+      "paired_difference_median": null,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "local_UTC8": "09-15 14:00",
+      "N": 46,
+      "cutoff": 21,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.312781954887218,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.22339226852456615,
+          "positive": 4,
+          "negative": 1,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.312781954887218,
+          "positive": 4,
+          "negative": 1,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.22339226852456615,
+          "positive": 4,
+          "negative": 1,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 82,
+      "paired_difference_median": 0.021835256321144136,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "local_UTC8": "09-18 08:00",
+      "N": 31,
+      "cutoff": null,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 0,
+      "paired_difference_median": null,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "local_UTC8": "09-20 12:00",
+      "N": 33,
+      "cutoff": 17,
+      "baseline_D": 1.3599442143231075,
+      "own_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.5183273793476724,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.47363736517806404,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.47721198680204935,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.47363736517806404,
+          "positive": 5,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 76,
+      "paired_difference_median": -0.0009427724322128572,
+      "baseline_changes": {
+        "holding": 0.19270132089880365,
+        "straight": 0.18567839682045895
+      }
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "local_UTC8": "09-23 18:00",
+      "N": 25,
+      "cutoff": null,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 0,
+      "paired_difference_median": null,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "local_UTC8": "09-26 07:00",
+      "N": 31,
+      "cutoff": 7,
+      "baseline_D": 1.7129743332184517,
+      "own_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.7619047619047621,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.6107893935757621,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 5,
+          "median": 0.7619047619047621,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        },
+        "straight": {
+          "n": 5,
+          "median": 0.6107893935757621,
+          "positive": 3,
+          "negative": 2,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 32,
+      "paired_difference_median": 0.030044652871792144,
+      "baseline_changes": {
+        "holding": 0.09395801948746896,
+        "straight": 0.0651060555345544
+      }
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "local_UTC8": "09-28 15:00",
+      "N": 34,
+      "cutoff": 16,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 4,
+          "median": 0.5913419913419914,
+          "positive": 4,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 4,
+          "median": 0.47777222777222783,
+          "positive": 3,
+          "negative": 1,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 4,
+          "median": 0.7361804861804861,
+          "positive": 4,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 4,
+          "median": 0.5492007992007992,
+          "positive": 3,
+          "negative": 1,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 35,
+      "paired_difference_median": 0.01833326459235768,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "local_UTC8": "09-30 23:00",
+      "N": 21,
+      "cutoff": null,
+      "baseline_D": null,
+      "own_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "common_valid": {
+        "holding": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        },
+        "straight": {
+          "n": 0,
+          "median": null,
+          "positive": 0,
+          "negative": 0,
+          "zero": 0
+        }
+      },
+      "joint_nonzero_doses": 0,
+      "paired_difference_median": null,
+      "baseline_changes": {
+        "holding": null,
+        "straight": null
+      }
+    }
+  ]
+}

@@ -1,0 +1,37 @@
+{
+  "cutoff_source": "C:\\Users\\HP\\Documents\\ChatGPT\\UVA World Model\\deliverables\\evaluation-10s\\workspace\\evaluation\\results\\summary.json",
+  "cutoff_source_variant": "qc500.holding.scenes[].cutoff",
+  "cutoff_source_sha256": "8ce588d3529ad78d87b78b9c8231f9b6dd87eec68402218044d2d727a42b011f",
+  "cutoffs": {
+    "2026-09-01T01Z": 22,
+    "2026-09-04T08Z": 32,
+    "2026-09-07T10Z": null,
+    "2026-09-10T06Z": 20,
+    "2026-09-12T15Z": null,
+    "2026-09-15T06Z": 21,
+    "2026-09-18T00Z": null,
+    "2026-09-20T04Z": 17,
+    "2026-09-23T10Z": null,
+    "2026-09-25T23Z": 7,
+    "2026-09-28T07Z": 16,
+    "2026-09-30T15Z": null
+  },
+  "cutoff_units": "integer number of injected aircraft; not a fractional remapping",
+  "inclusion": "0 <= dose <= archived cutoff, including cutoff; same cutoff in both arms and all five orders",
+  "missing_cutoff": "No retained analysis and no fallback cutoff; complete results remain preserved",
+  "cutoff_origin": "Previously selected peaks of midpoint Holding curves; imported unchanged, not reselected from terminal Holding or Straight",
+  "correlation": "Existing status=ok finite D, at least five valid doses, nonconstant D; Spearman rho",
+  "comparison": "Report own-valid subsets separately; primary paired correlations use identical jointly valid doses",
+  "D_difference": "Holding minus Straight at same scene/order/dose, both valid; exclude dose zero when summarizing differences",
+  "baseline_changes": "Require valid common zero-dose baseline, as well as both arm D values at the compared dose",
+  "summary": "Within-order median difference, then median across orders, then equal-scene median; descriptive, no independent-repeat assumption",
+  "limits": "Shared archived outcome-selected cutoffs remove separate-arm peak selection but do not establish a physical operating limit; old midpoint versus new endpoint placement differs",
+  "restrictions": {
+    "new_Encoder_calls": 0,
+    "new_D_estimates": 0,
+    "new_trajectories": 0,
+    "new_experiments": 0,
+    "new_peak_searches": 0,
+    "threshold_changes": 0
+  }
+}

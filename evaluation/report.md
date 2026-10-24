@@ -1,190 +1,77 @@
-# Holding / Vectoring evaluation after geometry repair and screening
+# Updated Holding and Vectoring evaluation
 
-Updated: 2026-10-19. This report replaces the former `evaluation-pilot.md`. Current results, figures, and reproduction code remain in `results/`, `figures/`, and `code/`. Git history retains earlier committed versions without separate dated directories. Complete dose curves remain available; truncation only determines which points enter the correlation calculation.
+This report consolidates the latest strict-10-second runs and diagnostics. Full curves, failed estimates and negative associations are preserved. The results support limited sensitivity to trajectory geometry; they do not establish that D reliably measures operational complexity or that both maneuver types have a stable strong positive dose relationship.
 
-**Interpretation: the retained pre-peak Holding segment is strongly positively correlated, but its peak is selected from the same outcomes. This is a post hoc, exploratory local association, not independent validation, evidence that the declining segment is invalid, or proof that the algorithm has exceeded its operating range.** The full range still rises and then falls. Vectoring is not truncated, and its positive correlation remains after cleaning. Five random orders are within-hour repeats, not five independent hours; no confirmatory p-values are reported.
+## Shared method and interpretation
 
-## Implemented fixes
+Inference used the frozen 10-second epoch-90 Encoder, sum pooling and recorded training normalization. The checkpoint hash and source provenance are in each run manifest. Existing D gates remain unchanged: at least 30 aircraft, eight fitting scales, ten pairs, C(r) in [0.02, 0.3], radius span at least two and R² at least 0.98. Spearman correlation requires five accepted doses. Missing D is never filled or replaced by zero.
 
-- The second Holding turn no longer applies an extra initial heading rotation. Natural geometric closure is checked before pinning the endpoint to remove floating-point drift, avoiding the previous large jump.
-- In addition to missing/nonfinite values, ground records, length, and time-gap screening, raw trajectories are checked for latitude/longitude bounds, altitude from −500 to 20000 m, horizontal speed, and absolute vertical speed ≤100 m/s. The entire aircraft-hour is rejected rather than interpolating away an anomalous jump. Primary horizontal speed is ≤500 m/s, with ≤350 m/s for strict sensitivity screening. These are diagnostic thresholds, not a validated flight envelope.
-- Vectoring candidates must pass a ≤500 m/s speed screen for both left and right offsets. Failed candidates remain in the eligible baseline point cloud but are not injected. `safe` is only a run label and does not guarantee full physical feasibility. Changing coordinates changes speed; the maneuver cannot be described as preserving original speed.
-- Correlation requires `status=ok`, finite D, and at least five valid points. Denominators reflect the actual number of computable curves. The final estimability bin includes the 100% dose, and subsample sizes exceeding the available aircraft count are skipped.
-- Manual replacement of report numbers has been replaced by a unified data-generation workflow to prevent stale numbers from overwriting the report.
+Five injection orders per scene are dependent repeats, not independent scenes. No confirmatory p-values are claimed. Truncation and fixed-scale diagnostics are labeled separately from full-range primary results.
 
-## Experimental conditions
+## Holding: equal-duration control
 
-The original 12 hours and five random injection orders per hour are fixed; cleaning does not replace scenes. Original aircraft order and Vectoring side are generated before excluding ineligible aircraft, preserving surviving aircraft order and side. Primary screening retains 761/771 aircraft-hour trajectories; strict screening retains 652/771.
+All 384 basic-QC aircraft-hours from the original twelve scenes supported a matched pair. Both arms append 240 seconds / 24 samples at the original trajectory endpoint, with the same starting heading, speed and height. All original input points remain unchanged. One arm uses the existing closed racetrack and the other uses straight continuation.
 
-The same frozen Encoder, sum pooling, and unnormalized Euclidean distances are used. Each scene has 64 fixed candidate radii derived from its baseline. Estimator gates are unchanged: at least 30 points, at least 8 fitted scales, a radius span of at least 2-fold, correlation-integral bounds 0.02–0.3, and R²≥0.98.
+The baseline results exactly reproduce the prior run. Four scenes have fewer than 30 aircraft and yield no accepted D. Only three scenes have accepted zero-injection D. The control changes insertion location from the old midpoint intervention to terminal continuation, so it must not be represented as an exact replay of the old Holding experiment.
 
-Holding adds 48 five-second samples per aircraft; length remains confounded with sum pooling. Neither an equal-length control nor a diversified Holding control has established the cause of the decline. Those unadopted controls are not included in the conclusions.
+| Same-dose comparison | Holding median rho | Straight median rho | Within-scene paired orders |
+|---|---:|---:|---:|
+| Complete range, all computable pairs | +0.196 | +0.065 | 37 |
+| Complete range, baseline-valid scenes only | +0.158 | −0.013 | 15 |
+| Shared archived cutoff, all computable pairs | +0.661 | +0.598 | 33 |
+| Shared archived cutoff, baseline-valid scenes only | +0.553 | +0.504 | 15 |
 
-## Holding truncation rule
+The complete-range and cutoff rows have different valid-order counts. For the same 33 orders retained by the cutoff analysis, complete-range medians are +0.217 and +0.187. This denominator-matched comparison is available in the detailed report.
 
-The five random orders within each hour share one cutoff. Compute mean valid D at each dose; only doses with at least three valid repeats can select the peak. Choose the earliest global maximum of mean D. Retain the peak and all preceding doses, without smoothing or selecting peaks separately for each curve. Local pre-peak declines remain; this does not remove every negative-slope segment.
+At complete range, seven of eight comparable scene summaries have positive Holding-minus-Straight differences; the equal-scene median difference is +0.03429. At the exact old cutoff shared by both arms, six of seven have positive differences; the equal-scene median is +0.03004. Differences are summarized over jointly valid nonzero doses within each order, then across orders, then across scenes. They are not percentages of explained complexity.
 
-## Holding: all available curves
+Both arms show positive prefix associations. Holding usually has higher D at matched duration and point count, supporting an additional geometry/location contribution. Straight flight also changes position and spatial extent, so this control cannot assign a percentage to pure length or eliminate duration-related explanations for the old experiment. Archived cutoffs came from old midpoint-Holding peaks; they are not independently established physical operating limits. Five scenes with no archived cutoff receive no replacement cutoff.
 
-| Screening | Sample scope | Full-range curves | Full-range median ρ | Retained curves | Retained-range median ρ | Retained positive correlations |
-| --- | --- | --- | --- | --- | --- | --- |
-| qc500 | All scenes | 60 | -0.110 | 50 | 0.913 | 50/50 |
-| qc500 | Baseline-estimable only | 30 | 0.191 | 30 | 0.928 | 30/30 |
-| qc350 | All scenes | 57 | -0.099 | 53 | 0.868 | 52/53 |
-| qc350 | Baseline-estimable only | 35 | -0.176 | 35 | 0.863 | 34/35 |
+- [Complete equal-duration control](runs/holding-equal-duration/report.md)
+- [Shared archived-cutoff analysis](runs/holding-equal-duration-old-cutoff/report.md)
+- [Exact historical baseline and cutoff source](runs/strict-10s-reference/report.md)
 
-All 50 retained QC500 curves are positive; 10 of the original 60 have too few valid points in the retained segment to compute correlation. QC350 has 52 positive curves out of 53. These denominator changes must not be ignored.
+## Vectoring: screening and complete-range evaluation
 
-## Paired comparison of the same curves
+The four frozen scenes contain 157 background aircraft-hours and 26 quality-complete fit candidates. Twenty-one candidates pass the required reference and both-side route checks: 4, 6, 6 and 5 by scene. Background and injection eligibility remain separate. The 5 km target, ten-minute maneuver, physical/quality bounds and numerical tolerances are unchanged; unreliable candidates are rejected.
 
-| Screening | Sample scope | Curves computable in both ranges | Full-range median ρ | Retained-range median ρ |
-| --- | --- | --- | --- | --- |
-| qc500 | All scenes | 50 | 0.073 | 0.913 |
-| qc500 | Baseline-estimable only | 30 | 0.191 | 0.928 |
-| qc350 | All scenes | 53 | -0.067 | 0.868 |
-| qc350 | Baseline-estimable only | 35 | -0.176 | 0.863 |
+| Scene start UTC+08 | Background aircraft | Injectable | Accepted D / displayed attempts | Result |
+|---|---:|---:|---:|---|
+| September 14, 14:00 | 38 | 4 | 0 / 25 | Baseline and dose fits fail R² gate |
+| September 15, 15:00 | 47 | 6 | 0 / 35 | Baseline and dose fits fail R² gate |
+| September 19, 15:00 | 40 | 6 | 0 / 35 | Baseline and dose fits fail R² gate |
+| September 27, 13:00 | 32 | 5 | 30 / 30 | Mixed signs across five orders |
 
-Under primary screening, all 30 curves from the six baseline-estimable hours remain. Median ρ rises from 0.191 to 0.928. The curve count is unchanged in this comparison, but peak-selection bias remains. Taking the median across repeats within each hour, QC500 has 11 computable retained-range hours, all positive, with an across-hour median of 0.904. QC350 also has 11 computable hours, with a median of 0.877.
+Displayed counts include the common baseline repeated in each order. The fourth scene's original correlations are +0.577, −0.406, +0.754, +0.771 and −0.829. No scene was selected or excluded by correlation and no Vectoring dose range was truncated.
 
-## Per-hour cutoffs
+The first three scenes fail before injection, so their initial D failures cannot be attributed to generated maneuvers. Their baseline R² values are 0.97533, 0.96632 and 0.95023; the fourth is 0.98836. Finite sample size may contribute, but higher aircraft counts alone do not establish estimability.
 
-| Screening | Hour (UTC) | Cutoff aircraft / scene aircraft | Curves: full → retained | Full-range hourly ρ | Retained-range hourly ρ |
-| --- | --- | --- | --- | --- | --- |
-| qc500 | 2026-09-01T01Z | 31/56 (55.4%) | 5 → 5 | 0.428 | 0.970 |
-| qc500 | 2026-09-04T08Z | 42/73 (57.5%) | 5 → 5 | 0.370 | 0.970 |
-| qc500 | 2026-09-07T10Z | 30/62 (48.4%) | 5 → 1 | -0.898 | 0.950 |
-| qc500 | 2026-09-10T06Z | 28/71 (39.4%) | 5 → 5 | -0.735 | 0.844 |
-| qc500 | 2026-09-12T15Z | 26/51 (51.0%) | 5 → 4 | -0.380 | 0.904 |
-| qc500 | 2026-09-15T06Z | 36/87 (41.4%) | 5 → 5 | -0.366 | 0.877 |
-| qc500 | 2026-09-18T00Z | 33/63 (52.4%) | 5 → 5 | -0.242 | 0.867 |
-| qc500 | 2026-09-20T04Z | 36/67 (53.7%) | 5 → 5 | 0.234 | 0.937 |
-| qc500 | 2026-09-23T10Z | 29/59 (49.2%) | 5 → 5 | 0.183 | 0.899 |
-| qc500 | 2026-09-25T23Z | 30/51 (58.8%) | 5 → 5 | 0.094 | 0.752 |
-| qc500 | 2026-09-28T07Z | 34/71 (47.9%) | 5 → 5 | 0.041 | 0.952 |
-| qc500 | 2026-09-30T15Z | 24/50 (48.0%) | 5 → 0 | -0.950 | Not estimable |
-| qc350 | 2026-09-01T01Z | 35/51 (68.6%) | 5 → 5 | 0.692 | 0.840 |
-| qc350 | 2026-09-04T08Z | 41/62 (66.1%) | 5 → 5 | 0.361 | 0.851 |
-| qc350 | 2026-09-07T10Z | 26/55 (47.3%) | 5 → 3 | -0.528 | 0.888 |
-| qc350 | 2026-09-10T06Z | 25/63 (39.7%) | 5 → 5 | -0.427 | 0.886 |
-| qc350 | 2026-09-12T15Z | 25/45 (55.6%) | 5 → 5 | -0.032 | 0.930 |
-| qc350 | 2026-09-15T06Z | 32/78 (41.0%) | 5 → 5 | -0.300 | 0.877 |
-| qc350 | 2026-09-18T00Z | 30/54 (55.6%) | 5 → 5 | -0.161 | 0.860 |
-| qc350 | 2026-09-20T04Z | 31/55 (56.4%) | 5 → 5 | 0.216 | 0.943 |
-| qc350 | 2026-09-23T10Z | 20/44 (45.5%) | 5 → 5 | -0.275 | 0.812 |
-| qc350 | 2026-09-25T23Z | 17/42 (40.5%) | 5 → 5 | -0.184 | 0.713 |
-| qc350 | 2026-09-28T07Z | 27/62 (43.5%) | 5 → 5 | -0.223 | 0.939 |
-| qc350 | 2026-09-30T15Z | No eligible peak | 2 → 0 | -0.976 | Not estimable |
+- [Candidate screening and rejection records](runs/four-scene-vectoring-screen/report.md)
+- [Full-range Vectoring evaluation](runs/four-scene-vectoring-evaluation/report.md)
+- [Existing-result diagnosis](runs/vectoring-existing-result-diagnosis/report.md)
 
-QC500 cutoff fractions range from approximately 39% to 59%; the rule does not uniformly remove doses above 50%. For QC350 on 2026-09-30T15Z, no dose has three valid repeats, so no peak is forced. QC500 has an eligible peak for that hour, but each retained curve still has fewer than five valid points and cannot produce a correlation.
+## Vectoring: fixed-baseline-scale diagnostic
 
-## Vectoring: full range without truncation
+Only the fourth scene's saved embeddings and original side assignments were used. All 29 baseline-selected scales remain fixed. If any fixed scale fails an existing count or C(r) gate, the entire D estimate is unavailable. The other three scenes were not recalculated and no side-swap experiment was added.
 
-| Screening | Computable curves | Median ρ | Positive curves |
-| --- | --- | --- | --- |
-| qc500 | 46 | 0.848 | 42/46 |
-| qc350 | 45 | 0.807 | 39/45 |
-| qc500_safe | 43 | 0.832 | 38/43 |
-| qc350_safe | 40 | 0.820 | 36/40 |
+| Order | Original rho | Fixed-scale rho | Accepted fixed-scale doses |
+|---|---:|---:|---:|
+| 1 | +0.577 | +0.577 | 6/6 |
+| 2 | −0.406 | +0.051 | 5/6 |
+| 3 | +0.754 | +0.754 | 6/6 |
+| 4 | +0.771 | −0.319 | 6/6 |
+| 5 | −0.829 | Unavailable | 3/6 |
 
-The primary result is `qc500_safe.vectoring` in the consolidated `experiment-results.json`, combining QC500 with candidate-maneuver speed screening. QC500 and QC350 without candidate screening are sensitivity comparisons in the same file. Positive correlation supports a response to synthetic deformation, not validity for real controller workload.
+Order 4 changes sign without losing any dose: scale selection alone changes the observed relationship. In order 2, the original method on the same five accepted doses also gives +0.051, so the apparent sign change results from losing the final dose. Order 5 becomes unavailable rather than positive. All four rejected records fail the smallest fixed scale: nine pairs and C(r)=9/496, below the existing ten-pair and 0.02 gates.
 
-## Aircraft-count sensitivity
+The diagnostic does not produce a stable positive association or demonstrate a route-generation defect. It establishes sensitivity of the D conclusion to fitting-scale eligibility. It is preserved alongside, not substituted for, the original evaluation.
 
-Across the six QC500 hours with estimable full baselines, median hourly estimability rates at N=30, 40, and 50 are 52%, 67%, and 92%. Median absolute D differences from the full point cloud are 0.235, 0.126, and 0.048. Each size uses 50 random subsamples. Under strict screening at N=50, only five hours have enough aircraft and an estimable baseline; changes in sample composition must not be interpreted as a pure aircraft-count effect.
+[Detailed fixed-scale step comparison](runs/vectoring-fixed-baseline-scales/report.md)
 
-## Figures
+## Claims supported and not supported
 
-Matplotlib produces 200 dpi PNGs and vector SVGs. Colored segments show retained Holding doses, gray segments show excluded doses, black lines are means across available repeats at each dose, and orange dashed lines/stars mark selected peaks. Missing D is not replaced by zero; the number of repeats contributing to the mean may vary. Every figure retains the full range for reference.
+Supported: the implemented reject-only screening workflow; limited geometry/location sensitivity under the equal-duration control; positive Holding-prefix associations conditional on shared archived cutoffs; and explicit estimator sensitivity/estimability limitations for Vectoring.
 
-### qc500-holding-scenes-1
+Not supported: elimination or quantification of length confounding; universal monotonic response to maneuver count; stable strong positive Vectoring correlation; proof of a physical validity boundary at an observed peak; or complete validation against real operational complexity.
 
-![qc500-holding-scenes-1](figures/qc500-holding-scenes-1.png)
-
-[Vector SVG](figures/qc500-holding-scenes-1.svg)
-
-### qc500-holding-scenes-2
-
-![qc500-holding-scenes-2](figures/qc500-holding-scenes-2.png)
-
-[Vector SVG](figures/qc500-holding-scenes-2.svg)
-
-### qc350-holding-scenes-1
-
-![qc350-holding-scenes-1](figures/qc350-holding-scenes-1.png)
-
-[Vector SVG](figures/qc350-holding-scenes-1.svg)
-
-### qc350-holding-scenes-2
-
-![qc350-holding-scenes-2](figures/qc350-holding-scenes-2.png)
-
-[Vector SVG](figures/qc350-holding-scenes-2.svg)
-
-### holding-dose-response
-
-![holding-dose-response](figures/holding-dose-response.png)
-
-[Vector SVG](figures/holding-dose-response.svg)
-
-### holding-correlation-comparison
-
-![holding-correlation-comparison](figures/holding-correlation-comparison.png)
-
-[Vector SVG](figures/holding-correlation-comparison.svg)
-
-### vectoring-full-range
-
-![vectoring-full-range](figures/vectoring-full-range.png)
-
-[Vector SVG](figures/vectoring-full-range.svg)
-
-### aircraft-count-sensitivity
-
-![aircraft-count-sensitivity](figures/aircraft-count-sensitivity.png)
-
-[Vector SVG](figures/aircraft-count-sensitivity.svg)
-
-### holding-d-estimability
-
-![holding-d-estimability](figures/holding-d-estimability.png)
-
-[Vector SVG](figures/holding-d-estimability.svg)
-
-### vectoring-d-estimability
-
-![vectoring-d-estimability](figures/vectoring-d-estimability.png)
-
-[Vector SVG](figures/vectoring-d-estimability.svg)
-
-### vectoring-dose-response
-
-![vectoring-dose-response](figures/vectoring-dose-response.png)
-
-[Vector SVG](figures/vectoring-dose-response.svg)
-
-## Data and reproduction
-
-- [All statistics and per-hour results](results/summary.json)
-- [Consolidated full-dose data](results/experiment-results.json)
-- [Holding point-level inclusion and exclusion reasons](results/qc500-holding-point-selection.csv)
-- [Strict-screening point-level decisions](results/qc350-holding-point-selection.csv)
-- [Raw trajectory rejection audit](results/quality_audit.json)
-- [Aircraft-count sensitivity data](results/aircraft-count-sensitivity.json)
-- [Runtime environment and source hashes](results/run-manifest.json)
-- [Statistical rules and input hashes](results/analysis-manifest.json)
-- [Execution instructions](README.md)
-
-Regenerate statistics, figures, and this report from saved full results without raw trajectories or a checkpoint:
-
-```bash
-python evaluation/code/refresh_outputs.py
-```
-
-To rerun Encoder inference and all experiments from raw trajectories, set `ATM_DATA_ZIP` and `ATM_ENCODER_CHECKPOINT`:
-
-```bash
-python evaluation/code/run_evaluation.py
-python evaluation/code/refresh_outputs.py
-```
-
-Inference environment: PyTorch `2.14.0+cu130` ; device `cuda`. Checkpoint SHA256:`d3abfc192a2e7a0f84bb1c4207ee04cfc4a4880755530da475124c5f711753ea`.
+All data packages, figures, original execution-script snapshots and publication limitations are indexed in [runs/README.md](runs/README.md). Raw data, trajectories and weights remain local.

@@ -1,0 +1,16 @@
+{
+  "old_files_unchanged": true,
+  "protected_files": 225,
+  "trajectory_pairs_verified": 384,
+  "D_records_replayed": 3960,
+  "arm_correlations_rank_verified": 120,
+  "common_dose_correlations_rank_verified": 120,
+  "baseline_scenes_exactly_matching_old_run": 12,
+  "original_points_unchanged": true,
+  "equal_added_points": 24,
+  "equal_added_seconds": 240,
+  "all_source_policy_assignment_hashes_match": true,
+  "threshold_changes": 0,
+  "truncations": 0,
+  "vectoring_runs": 0
+}

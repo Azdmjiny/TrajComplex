@@ -1,0 +1,56 @@
+{
+  "approval": "User approved terminal append: original 12 Holding scenes, frozen 10s Encoder, +240s in each arm",
+  "scenes": [
+    "2026-09-01T01Z",
+    "2026-09-04T08Z",
+    "2026-09-07T10Z",
+    "2026-09-10T06Z",
+    "2026-09-12T15Z",
+    "2026-09-15T06Z",
+    "2026-09-18T00Z",
+    "2026-09-20T04Z",
+    "2026-09-23T10Z",
+    "2026-09-25T23Z",
+    "2026-09-28T07Z",
+    "2026-09-30T15Z"
+  ],
+  "primary_qc": "Existing QC500 only; no additional sensitivity experiment",
+  "checkpoint_sha256": "bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976",
+  "D_config": {
+    "normalize": false,
+    "n_radii": 64,
+    "min_samples": 30,
+    "min_fit_points": 8,
+    "min_pairs": 10,
+    "correlation_bounds": [
+      0.02,
+      0.3
+    ],
+    "min_radius_ratio": 2.0,
+    "min_r_squared": 0.98,
+    "max_pairs": 5000000
+  },
+  "baseline": "Same reader, barometric altitude, source QC and bounded time alignment as prior strict-10s Holding; all original sampled points retained",
+  "timing": "Strict 10s; add exactly 24 samples beyond each trajectory endpoint; this is synthetic continuation, not recovered observations",
+  "heading": "Direction of last observed input segment; reject exactly zero/undefined tangent; no imputation or default direction",
+  "speed": "Original local median of segment speeds >1m/s, evaluated at endpoint (last three segments); reject absent support instead of old 220m/s fallback; reject >500m/s",
+  "holding": "Existing left-turn closed racetrack: 60s straight +60s 180-degree turn +60s straight +60s 180-degree turn; turn rate 3deg/s",
+  "straight": "240s constant-speed, constant-heading flight from same endpoint; same speed and constant local ENU z as Holding",
+  "matching": "Same aircraft, anchor, starting direction, speed, added duration, point count, continuous path length and injection order in both arms",
+  "candidate_failure": "Reject pair from injection only; retain original trajectory in shared background; save reason",
+  "ordering": "Original Holding seeds 43 + one-based scene index*1009 + replicate 0..4; permute legacy reader IDs then filter QC and pair eligibility",
+  "dose": "All integer doses from zero through all pair-eligible aircraft; five matched orders; no cutoff or outcome-based selection",
+  "radii": "Same 64 geometric baseline-distance scales, fixed for both arms and all doses within each scene; original dynamic eligibility of fit scales unchanged",
+  "correlation": "Original Spearman eligibility: at least 5 status-ok finite D doses; report individual-arm and same-dose joint-valid correlations",
+  "paired_effect": "Holding D minus straight D at identical scene/order/dose only where both estimates valid; baseline-relative comparisons additionally require valid baseline",
+  "aggregation": "Scene summaries and equal-scene descriptive medians; repeated orders and doses are not independent observations; no p-values",
+  "interpretation": "Equal-duration/point-count control for terminal continuation; not a replay of midpoint Holding and not proof of physical traffic complexity. Geometry/location and final endpoint differ by design.",
+  "restrictions": {
+    "vectoring_runs": 0,
+    "new_downloads": 0,
+    "retraining": 0,
+    "threshold_relaxation": 0,
+    "original_point_edits": 0,
+    "truncations": 0
+  }
+}
