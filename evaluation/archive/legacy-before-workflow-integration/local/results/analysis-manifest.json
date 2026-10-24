@@ -1,0 +1,12 @@
+{
+  "method": "Earliest maximum of per-scene available-replicate mean D; peak selection needs >=3 valid replicates; shared cutoff across 5 orders; no smoothing; peak included",
+  "scope": "Holding only. Vectoring full dose retained; primary Vectoring requires fresh, advancing source positions and passes reject-only geometry and kinematic screens.",
+  "interpretation": "Outcome-selected exploratory association, not an independently validated operating range; no confirmatory p-values.",
+  "input_sha256": {
+    "experiment-results.json": "c7615b742edfa0e272990a44b52800740dfc294a87b82573d31f96c8206e2112",
+    "aircraft-count-sensitivity.json": "8ffc8507ad5f0222490c21671b9367d77f8b2f6c42d177731e87d06f2304ba9f"
+  },
+  "python": "3.14.5",
+  "numpy": "2.5.3",
+  "scipy": "1.18.1"
+}

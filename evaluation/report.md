@@ -75,3 +75,5 @@ Supported: the implemented reject-only screening workflow; limited geometry/loca
 Not supported: elimination or quantification of length confounding; universal monotonic response to maneuver count; stable strong positive Vectoring correlation; proof of a physical validity boundary at an observed peak; or complete validation against real operational complexity.
 
 All data packages, figures, original execution-script snapshots and publication limitations are indexed in [runs/README.md](runs/README.md). Raw data, trajectories and weights remain local.
+
+For the sequence of Vectoring experiments, screening repairs and saved-result diagnostics, see the [Vectoring study history](vectoring-study-history.md). Current code and integrated postprocessing are documented in [code/README.md](code/README.md); historical execution snapshots remain unchanged.

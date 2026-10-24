@@ -1,0 +1,643 @@
+{
+  "source_commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+  "description": "Two historical snapshots; local files span multiple stages and are not one coherent current run.",
+  "files": [
+    {
+      "original": "evaluation/figures/aircraft-count-sensitivity.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.png",
+      "sha256": "3f412fa474a5cb47e26b56e808e5630d2d42e414427cb5e643c12bcc1e17e3cd"
+    },
+    {
+      "original": "evaluation/figures/aircraft-count-sensitivity.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.svg",
+      "sha256": "69711bd0981dc77701a279bd4019f231b897a4e3fd159c857a79531cdddcb226"
+    },
+    {
+      "original": "evaluation/figures/holding-correlation-comparison.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.png",
+      "sha256": "f6cd464049e69d69a0475f141f1b84228bcb1ba7f7e4065b2076809cd875babf"
+    },
+    {
+      "original": "evaluation/figures/holding-correlation-comparison.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.svg",
+      "sha256": "4d926e3781ec60a69c0ebfe07330ddc936528a31c9700b4bd8cad9496b5d9f91"
+    },
+    {
+      "original": "evaluation/figures/holding-d-estimability.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.png",
+      "sha256": "a0939fa4b5420eea8592f410bf5e11c2022f7a931e23f89da8c37fefb845087c"
+    },
+    {
+      "original": "evaluation/figures/holding-d-estimability.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.svg",
+      "sha256": "bdff4d6851e18f520d2fb44347aecf0d293000c38e9e3b5d19d0d419c6403fd1"
+    },
+    {
+      "original": "evaluation/figures/holding-dose-response.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.png",
+      "sha256": "ef8db776d1948271c6321a33e817817c32deb310e7b97be20afb967d268a79bd"
+    },
+    {
+      "original": "evaluation/figures/holding-dose-response.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.svg",
+      "sha256": "58941943dfcc22a403553bc91b095f210d9d7a12e330254ba23a06870c433e91"
+    },
+    {
+      "original": "evaluation/figures/index.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/index.json",
+      "sha256": "6302d3047ef28ca4e57fb44a8871de7dcb1efd4010acce22ac0addbbbcd23ce3"
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-1.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.png",
+      "sha256": "3f041ce2b7438a6dd0d3e59b153dcb71d9dda1a17f2ca8c6bd074de1fc1f08b4"
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-1.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.svg",
+      "sha256": "7aa958e2f53dc4fb5e916163f3a605bdf17fdc15e100f46e26941388a85eaab1"
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-2.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.png",
+      "sha256": "b697b8354bc4c65cc054b55e9215f1bee4826ceae5ff0344f4191143e4627f9f"
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-2.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.svg",
+      "sha256": "bad73501937dfd589be4c2bb2a15a33101e418c9c45f70734406f125cfabf0e1"
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-1.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.png",
+      "sha256": "c2a6a69d8916443b1674b438785cb448eac329d9276119cd2e076422b2ec218b"
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-1.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.svg",
+      "sha256": "6687500a1b9c33e6957291f4d166fd7946c2e75df84e0534affc2f0a777a70da"
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-2.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.png",
+      "sha256": "cc1e01ceeda4408248d53aa58c8f71f99bcff60db36e53641905a7eb0084fff5"
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-2.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.svg",
+      "sha256": "a7e4487a4ac3e1c3970f0fd831bd868477c721ab5d5a52b05c7bcea9a0016ced"
+    },
+    {
+      "original": "evaluation/figures/vectoring-d-estimability.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.png",
+      "sha256": "1d3bce0b6ef2f65292906556712f4d654a8e5e99bc404864d01901f9f2652525"
+    },
+    {
+      "original": "evaluation/figures/vectoring-d-estimability.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.svg",
+      "sha256": "8246614aaf8c67613fd46a754438da7f0bd5d7543bb99396878969489a405a6d"
+    },
+    {
+      "original": "evaluation/figures/vectoring-dose-response.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.png",
+      "sha256": "cb61a3a1fb1ffdce82698ac7aa5e8e49e05ee22220c6560cc07e3265f7068bdf"
+    },
+    {
+      "original": "evaluation/figures/vectoring-dose-response.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.svg",
+      "sha256": "d281bc7ca83cedc57b4d0a36dc404507af87425ee6f822d798f8ca0efc6d3a4d"
+    },
+    {
+      "original": "evaluation/figures/vectoring-full-range.png",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.png",
+      "sha256": "3427a3a1fedbdd7358d3dc43a684a58ecca10d3308741d91cf41a203939dc7ca"
+    },
+    {
+      "original": "evaluation/figures/vectoring-full-range.svg",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.svg",
+      "sha256": "5df75cd4452ce8c57de4d9686bb783d83c588a0aa5dc17028ec637abc35550e0"
+    },
+    {
+      "original": "evaluation/results/aircraft-count-sensitivity.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.csv",
+      "sha256": "822aa30136c57c83bf12f093eeb5af7cc1b0eb638c14eb0776356f47ee4e2739"
+    },
+    {
+      "original": "evaluation/results/aircraft-count-sensitivity.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.json",
+      "sha256": "884e1f2931dca9cd10ff759e58a9e53491791dae20252b5ab66173a76e67a625"
+    },
+    {
+      "original": "evaluation/results/analysis-manifest.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/analysis-manifest.json",
+      "sha256": "3b817f56d6e1ec8597b2639a372549bb9b9879bbb7da2d3eb42501654ce23f56"
+    },
+    {
+      "original": "evaluation/results/experiment-results.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/experiment-results.json",
+      "sha256": "8a6711931bcda34fdc953a8980447c27aba2e5cc0e3f4f17b664532dd63e41e3"
+    },
+    {
+      "original": "evaluation/results/injected_geometry_audit.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/injected_geometry_audit.json",
+      "sha256": "0d1fb69c30085e27529cf2a8d13b1cae8e80150204c45e6efad391d46ab7a6d4"
+    },
+    {
+      "original": "evaluation/results/qc350-holding-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc350-holding-point-selection.csv",
+      "sha256": "e10e9b3fc43c90107c02beb8fd51b30348a9a201641c321c8371a5cf3a801d38"
+    },
+    {
+      "original": "evaluation/results/qc350-vectoring-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc350-vectoring-point-selection.csv",
+      "sha256": "e16a039436029403fb3012b00f0e316c4a52e2b2e874fa1c81b54382760d0a58"
+    },
+    {
+      "original": "evaluation/results/qc350_safe-vectoring-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc350_safe-vectoring-point-selection.csv",
+      "sha256": "c0e12f046e6ac9084aacb926b422310d83dce357e0b093543a1df2a6c086ba35"
+    },
+    {
+      "original": "evaluation/results/qc500-holding-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc500-holding-point-selection.csv",
+      "sha256": "15114b8501efa44d7bc5f7e702aaf3bad0e7c1258a2eac7fc812770a46cd2d75"
+    },
+    {
+      "original": "evaluation/results/qc500-vectoring-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc500-vectoring-point-selection.csv",
+      "sha256": "c43cfbfa113ad0e562c88c4b84944de35207985e40785fe2105c8d5c38209ec6"
+    },
+    {
+      "original": "evaluation/results/qc500_safe-vectoring-point-selection.csv",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/qc500_safe-vectoring-point-selection.csv",
+      "sha256": "d8efefb8b9cc028347669166080448fd24592970269a9626d7fcd30ed009109a"
+    },
+    {
+      "original": "evaluation/results/quality_audit.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/quality_audit.json",
+      "sha256": "e7eafa594b0d549005e386188cb4bb7939e048ee17a81e6887f18aec53bb723b"
+    },
+    {
+      "original": "evaluation/results/run-manifest.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/run-manifest.json",
+      "sha256": "b50361cd18e138b9086326ab8e7bba52f2b91a2068b0ecf61acf8ff1873b402f"
+    },
+    {
+      "original": "evaluation/results/summary.json",
+      "version": "committed",
+      "commit": "b7dacf336172f52a6e007a525c66d0a35de5b33e",
+      "archived": "archive/legacy-before-workflow-integration/committed/results/summary.json",
+      "sha256": "c0d1b99b6c4664689ec070a6bca6cdd3222312a485cf3fb9d6275426097044b7"
+    },
+    {
+      "original": "evaluation/results/aircraft-count-sensitivity.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.csv",
+      "sha256": "d7498b29ad358a802926d248cd8d3262003294989da224c27ed779edb41741a2",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/aircraft-count-sensitivity.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.json",
+      "sha256": "8ffc8507ad5f0222490c21671b9367d77f8b2f6c42d177731e87d06f2304ba9f",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/analysis-manifest.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/analysis-manifest.json",
+      "sha256": "e555a0a16c3e242f7364cd2bb63181a9fd60684163d5ea0e5af80f0e2ae1ac48",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/approved-rerun-comparison.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/approved-rerun-comparison.json",
+      "sha256": "bff1d497cfa131beef9c79d4ad1551f9f02cc36a65a87d4ae05dd7cfe8d75d93",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/results/experiment-results.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/experiment-results.json",
+      "sha256": "c7615b742edfa0e272990a44b52800740dfc294a87b82573d31f96c8206e2112",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/injected_geometry_audit.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/injected_geometry_audit.json",
+      "sha256": "49ff4c175bc0ff66638c8616cfd2f10574a0cab5719877095e4c835f7b395231",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc350-holding-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc350-holding-point-selection.csv",
+      "sha256": "b7b0a8b39358c050ff26358ecae6796a58a91e6fdeb10f7e5feee1f8d82ba097",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc350-vectoring-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc350-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc350_safe-vectoring-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc350_safe-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc500-holding-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc500-holding-point-selection.csv",
+      "sha256": "3837bc175fad444becb821d75d308f07abdfb26a21b0ed09ca525edb65687d1b",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc500-vectoring-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc500-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/qc500_safe-vectoring-point-selection.csv",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/qc500_safe-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/quality_audit.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/quality_audit.json",
+      "sha256": "9496b935d5f0460acd538dc35141eea16bf9b89949e56c726147596f65225ed6",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/report-manifest.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/report-manifest.json",
+      "sha256": "a63b3211b38302424c4555ddf36395afc5e62160fc3f7f5df1c2008fcb3fdd7e",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/results/run-manifest.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/run-manifest.json",
+      "sha256": "dab98087e34b7d80dae853d5274e0c365c2f2e63d10b2b01d84177678dc38786",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/summary.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/summary.json",
+      "sha256": "ba2f984db722a6b5c87497109932c37105e37dcd7f49840a0636cf27744bc8d4",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/results/time-axis-rerun-comparison.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/time-axis-rerun-comparison.json",
+      "sha256": "85e2cd4af89a74bf95822563c2ef0a696bbe4f24a78674a33029d055e9677469",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/results/vectoring-direction-repair.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/vectoring-direction-repair.json",
+      "sha256": "e90f6ddd45f1fab00772d2072b985b9a46ed16f88c82894e2e7f90b3091d7c15",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/results/vectoring-peak-feedback.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/vectoring-peak-feedback.json",
+      "sha256": "ca8ff31ef798489ac502508c3bc1780fc2ed2c65e33db1448cb88a8e1edd2d18",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/results/vectoring-population-screening.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/results/vectoring-population-screening.json",
+      "sha256": "107f9d12cb8ebf1fd3ea21fc5af3891c7d29d1a88640040541146af4c4901b5f",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/figures/aircraft-count-sensitivity.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.png",
+      "sha256": "1e02378eedfae861e200ab5b8721067b3c11c09237ec34b69a8a296401f673d4",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/aircraft-count-sensitivity.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.svg",
+      "sha256": "6b33aaa82c38d36ff791af7be61710d05f6f0ba583a6b8d6afcee42b127ea2c9",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-correlation-comparison.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.png",
+      "sha256": "980c6ba54efb3544a5ca24a23a774d0f3d6c68b65952e6a0cf37711785d8efdd",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-correlation-comparison.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.svg",
+      "sha256": "cf633351e04b822aa282327fda5327e37947ae0a294308fb5e17b01e655f6c74",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-d-estimability.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.png",
+      "sha256": "251fab48abde5613a90171f6e0c4f172204c96a63192294fabb7151169b8c1ab",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-d-estimability.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.svg",
+      "sha256": "a19d30eafe688bc2313b34c8cbf874b80f2ea11c04797f11d460ee010b37c532",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-dose-response.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.png",
+      "sha256": "e19d8cba49003fd490522923f569ce0f051d921d42bfd0b8da20420eeff1988e",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/holding-dose-response.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.svg",
+      "sha256": "c38648af7b7fd2cc43b1360f9d7c8f7b0ab31fff68b6009f6ab36d1ef155f7d3",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/index.json",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/index.json",
+      "sha256": "64b5329c311fdd9bb7ba1a2a10c03e721e9fdb878035b2da40ffde899794dadd",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-1.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.png",
+      "sha256": "e4b6cee7a523949f666acaae46fc843a017f10e174588750074f0dfc96ccb020",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-1.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.svg",
+      "sha256": "5b5efea10250540330dfccc728572290ea1aacd2c785188a1c003ce99b2b2b2f",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-2.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.png",
+      "sha256": "8a513dd792e04006a993759975ca5ac68ffe26697e3a308b7cfeecf2d8b97521",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc350-holding-scenes-2.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.svg",
+      "sha256": "6c54fce1668c93354c413bd7137166ac7cc78aa3b7132802e4d6aeabfc218379",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-1.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.png",
+      "sha256": "5782703d07c643e07098ea038dfc74ff5b3eacaf7d66682751b72d0874d1510e",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-1.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.svg",
+      "sha256": "b5a040a00465bc352f670f62ed1be43ef937dcc2932aed72c20b8afb8d6bd3a3",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-2.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.png",
+      "sha256": "acc657b00cbc66074b9b8fe020e21762ef30c83b6147b768d61d9d129559e095",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/qc500-holding-scenes-2.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.svg",
+      "sha256": "e7493ff339f46198084f21aba5e9dac1db0d0229e0fd949abd9911e4920e91a1",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-d-estimability.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.png",
+      "sha256": "ad9b3432117eb115c8bb7a8b8e99a56f032e8129746aae842458660a67577510",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-d-estimability.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.svg",
+      "sha256": "9fdea797f1e5dcd7c5e898287dcd4eaaac1540e83926a08691f902623bf88975",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-dose-response.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.png",
+      "sha256": "6e35af2b51c2b60bc0c1fef4a2e01a6d9720329a2f4c5a5bdca3a93738fbe2d3",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-dose-response.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.svg",
+      "sha256": "0c6d1257e1d1f52a131e7e1c036a5ade07a18f6ee2838ca1de0e8533db6a50b7",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-full-range.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.png",
+      "sha256": "b73e115468cfe5b6b8ecd8027ab37576e1b19346576648ab2508f18c5da11471",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-full-range.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.svg",
+      "sha256": "45e938e582847b30934414abbefd99e5e01a3c95d60588ff642a7606191438c9",
+      "tracked": true
+    },
+    {
+      "original": "evaluation/figures/vectoring-screening.png",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.png",
+      "sha256": "b27a498b010eabbc5b5374cd07d2a3d6c033563c4a4b301d61278125b9a1aca5",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/figures/vectoring-screening.svg",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.svg",
+      "sha256": "a6b089fbf12f503a71d9ec441a15908a738c624e431a753c0c79f9a2715f9d09",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/approved-rerun-comparison.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/approved-rerun-comparison.md",
+      "sha256": "8d8b006018bb1227b0de9b77067e25725cd0e3c39bac5bac0f1de75e1ba6e6f3",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/position-time-correction.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/position-time-correction.md",
+      "sha256": "079233a50eb0725ffaf7b14224dd40977c2bfffb4a137e53267fe8eed3ffc6f2",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/time-axis-rerun.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/time-axis-rerun.md",
+      "sha256": "8ab9e474175fd474e01af43bcb5368dfea9c2a4c68c1d488206f7c649f3b2d21",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-continuous-generator.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-continuous-generator.md",
+      "sha256": "170b7c41ac47ca676825d3adab336e612d730d466fe7cf720be523afcabb2f1c",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-direction-repair.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-direction-repair.md",
+      "sha256": "7c76a10c0905444c5d4751441941c176c98e10219cef40336d6558a082283b2d",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-peak-feedback.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-peak-feedback.md",
+      "sha256": "4fa86c0b9799640838f4fc102a494a8fc659953fdce28aa7315e367ddbece8cb",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-population-policy.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-population-policy.md",
+      "sha256": "3e1ecceb98c8703a080d33fbefcf49511a4c9a796d5e92704e06d531e7c5ff22",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-population-screening.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-population-screening.md",
+      "sha256": "3abc7f7d38764f20a502a35cc52cd85d011c4cbb059d68c494782e565ea8516c",
+      "tracked": false
+    },
+    {
+      "original": "evaluation/reports/vectoring-threshold-decisions.md",
+      "version": "local",
+      "archived": "archive/legacy-before-workflow-integration/local/reports/vectoring-threshold-decisions.md",
+      "sha256": "05bcc84a49b78a5313bb16169b0b08d6fdd0879c8cc10be2243dba2ad5624147",
+      "tracked": false
+    }
+  ]
+}

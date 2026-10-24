@@ -1,0 +1,32 @@
+{
+  "all_passed": true,
+  "saved_summaries_exact": [
+    "holding-equal-duration/results/summary.json",
+    "holding-equal-duration/results/paired-dose-records.json",
+    "holding-equal-duration/results/repeat-summary.json",
+    "four-scene-vectoring-evaluation/results/summary.json",
+    "four-scene-vectoring-evaluation/results/point-selection.json",
+    "four-scene-vectoring-evaluation/results/scene-summary.json"
+  ],
+  "archive_files_verified": 91,
+  "publication_files_verified": 105,
+  "published_run_changes": [
+    "runs/publication-manifest.json",
+    "runs/README.md"
+  ],
+  "published_numerical_results_embeddings_figures_policies_and_execution_snapshots_unchanged": true,
+  "authored_primary_tables_match": true,
+  "navigation_links_checked": 49,
+  "python_syntax_valid": true,
+  "changed_paths_outside_evaluation": [
+    " M doc/trajectory-embedding-point-cloud-complexity.md"
+  ],
+  "new_experiments": 0,
+  "new_encoder_calls": 0,
+  "new_D_estimates": 0,
+  "threshold_changes": 0,
+  "software_tests": "5 postprocessing integration tests passed; no full experimental rerun",
+  "external_document_link": "doc/trajectory-embedding-point-cloud-complexity.md now links to evaluation/report.md; checked",
+  "limitations": "Read-only saved-record audit and targeted software checks; fresh inference and optimizer behavior were not rerun.",
+  "saved_statistics_report_and_plot_smoke_check": "Passed; PNG visually checked, no overlap; temporary preview removed."
+}

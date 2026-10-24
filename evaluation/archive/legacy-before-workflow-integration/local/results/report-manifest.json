@@ -1,0 +1,10 @@
+{
+  "scope": "Report generated from the approved quality-aware evaluation rerun",
+  "input_sha256": {
+    "results/summary.json": "ba2f984db722a6b5c87497109932c37105e37dcd7f49840a0636cf27744bc8d4",
+    "results/injected_geometry_audit.json": "49ff4c175bc0ff66638c8616cfd2f10574a0cab5719877095e4c835f7b395231",
+    "results/run-manifest.json": "dab98087e34b7d80dae853d5274e0c365c2f2e63d10b2b01d84177678dc38786",
+    "figures/index.json": "64b5329c311fdd9bb7ba1a2a10c03e721e9fdb878035b2da40ffde899794dadd"
+  },
+  "generator_sha256": "a20bbd234cc4348a1d0a4007ae124b1c4783e84876fbdb42b67658cc2262ba8b"
+}

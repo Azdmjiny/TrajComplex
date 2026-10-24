@@ -1,0 +1,20 @@
+{
+  "figures": [
+    "qc500-holding-scenes-1",
+    "qc500-holding-scenes-2",
+    "qc350-holding-scenes-1",
+    "qc350-holding-scenes-2",
+    "holding-dose-response",
+    "holding-correlation-comparison",
+    "vectoring-full-range",
+    "aircraft-count-sensitivity",
+    "holding-d-estimability",
+    "vectoring-d-estimability",
+    "vectoring-dose-response"
+  ],
+  "matplotlib": "3.11.2",
+  "formats": [
+    "PNG at 200 dpi",
+    "SVG"
+  ]
+}

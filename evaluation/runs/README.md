@@ -18,7 +18,7 @@ Included: Markdown reports, PNG/SVG figures, full machine-readable D attempts, r
 
 Excluded: raw OpenSky downloads, source trajectory arrays, fitted trajectory caches, authentication/session material, dependency folders, and model weights. Those stay local. Some stage reports describe local-only arrays; their names are not a claim that they are included here.
 
-`source/` contains the original local execution/analysis scripts as provenance snapshots. Their paths refer to the original workspace and external dependencies; they are not portable entrypoints in this folder. This publication does not replace production evaluation modules or claim a fully self-contained training/trajectory-generation environment. Manifests retain original execution paths and source hashes as historical evidence.
+`source/` contains the original local execution/analysis scripts as provenance snapshots. Their paths refer to the original workspace and external dependencies; they are not portable entrypoints in this folder. The current portable entrypoints and saved-record postprocessing are documented in [code/README.md](../code/README.md). These snapshots are not those entrypoints. Raw data and weights are still required for inference; this is not a self-contained training/trajectory-generation environment. Manifests retain original execution paths and source hashes as historical evidence.
 
 All new inference used the frozen strict-10-second epoch-90 Encoder, SHA-256 `bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976`, sum pooling and the recorded training normalization. The repository's other checkpoints must not be assumed to match it. Derived embeddings suffice to inspect the saved D calculations without that checkpoint.
 

@@ -1,0 +1,6 @@
+# Preserve historical snapshot bytes and hashed document line endings.
+archive/** -text
+README.md text eol=lf
+report.md text eol=lf
+vectoring-study-history.md text eol=lf
+maintenance-checks.json text eol=lf

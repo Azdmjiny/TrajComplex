@@ -29,11 +29,11 @@ def build_report(runs,output):
     lines += ['',f"There are {holding['baseline_valid_scenes']} baseline-valid scenes. At the common archived cutoff, {cutoff['paired_difference']['positive_scene_medians']} of {cutoff['paired_difference']['scenes']} scene summaries have positive Holding-minus-Straight differences; their equal-scene median is {cutoff['paired_difference']['equal_scene_median']:+.5f}.",'',
         'Both arms append 240 seconds at the endpoint. The old midpoint-Holding cutoffs are shared unchanged; they are outcome-selected, not physical limits. Equal duration does not isolate pure length because straight continuation also changes geometry/location. Orders are dependent repeats.','',
         '## Vectoring','',
-        'The frozen four-scene run contains 21 accepted candidates. The first three scenes fail the original D fit-quality gate; the fourth has mixed signs. The fixed-scale diagnostic below is separate from the primary results.','',
+        f"The saved run contains {sum(r['eligible'] for r in vectoring)} accepted candidates across {len(vectoring)} scenes. {sum(r['valid_D']==0 for r in vectoring)} scenes have no accepted D; {sum(r['positive']>0 and r['negative']>0 for r in vectoring)} have mixed correlation signs. The fixed-scale diagnostic below is separate from the primary results.",'',
         '| Order | Original rho | Fixed-scale rho | Fixed-valid doses |','|---|---:|---:|---:|']
     for r in fixed['curves']:
-        lines.append(f"| {r['order']} | {fmt(r['original_correlation']['rho'])} | {fmt(r['fixed_correlation']['rho'])} | {r['fixed_correlation']['valid']}/6 |")
-    lines += ['', 'A sign change with all six doses retained demonstrates fitting-scale sensitivity. An unavailable dose or correlation is not evidence of a positive effect. The results do not establish stable strong positive Vectoring association or complete validation of operational complexity.','',
+        lines.append(f"| {r['order']} | {fmt(r['original_correlation']['rho'])} | {fmt(r['fixed_correlation']['rho'])} | {r['fixed_correlation']['valid']}/{r['fixed_correlation']['total']} |")
+    lines += ['', 'Compare signs on the same accepted doses before attributing a change to fitting scales; missing doses can also change correlations. An unavailable dose or correlation is not evidence of a positive effect. The results do not establish stable strong positive Vectoring association or complete validation of operational complexity.','',
         '## Detailed source reports','']
     for folder in ['holding-equal-duration','holding-equal-duration-old-cutoff','four-scene-vectoring-evaluation','vectoring-fixed-baseline-scales']:
         target=runs/folder/'report.md'

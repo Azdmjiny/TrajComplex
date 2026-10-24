@@ -37,7 +37,7 @@ The current evaluation supplies candidate radii derived from each scene's baseli
 
 Keep the checkpoint, preprocessing, pooling, normalization, scene construction, and scale-selection policy consistent. Even then, aircraft count, trajectory duration, and spatial coverage may affect estimates. Sum pooling can confound trajectory length with embedding geometry. Quality gates are engineering diagnostics, not confidence intervals or guarantees of physical validity.
 
-In the current Holding analysis, selecting a peak from the observed outcomes and retaining only its preceding segment is exploratory. It cannot establish an independent operating range or invalidate the declining segment. See the [evaluation report](../evaluation/reports/evaluation-pilot.md) for current results and limitations.
+In the current Holding analysis, selecting a peak from the observed outcomes and retaining only its preceding segment is exploratory. It cannot establish an independent operating range or invalidate the declining segment. See the [evaluation report](../evaluation/report.md) for current results and limitations.
 
 ## Usage
 

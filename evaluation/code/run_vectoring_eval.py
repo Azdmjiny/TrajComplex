@@ -1,5 +1,8 @@
 """Synthetic vectoring geometry and reject-only candidate screening.
 
+Legacy five-second compatibility helpers; the current population workflow explicitly
+passes sample_s=10. Do not use SAMPLE as the current Encoder cadence.
+
 The screens reject complete aircraft-hour candidates. They never infer a
 missing direction or reduce the requested offset to make a candidate pass.
 """

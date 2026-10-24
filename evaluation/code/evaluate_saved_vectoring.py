@@ -116,7 +116,6 @@ def main():
         write(OUT/'experiment-results.json',dict(qc500_safe=dict(vectoring=dict(kind='vectoring',variant='qc500_safe',scenes=trials))))
         print(json.dumps(diagnostics),flush=True)
     summary,selection=summarize(trials,'vectoring',truncate=False)
-    write(OUT/'summary.json',summary);write(OUT/'point-selection.json',selection)
     write(OUT/'scene-diagnostics.json',scene_details)
     assert len(trials)==20 and sum(len(t['dose_curve']) for t in trials)==125
     assert encoding_calls==199 and D_calls==109
@@ -124,6 +123,8 @@ def main():
     manifest.update(state='complete',elapsed_s=time.monotonic()-started,encoding_calls=encoding_calls,D_calls=D_calls,
                     dose_records=125,curves=20,old_files_unchanged=True)
     write(OUT/'run-manifest.json',manifest)
+    from postprocess_results import process
+    process('vectoring',R,R)
     print('EVALUATION COMPLETE '+json.dumps(dict(all_curves=summary['all']['full'],hour_level=summary['hour_level']['full'],baseline_ok=summary['baseline_ok']['full'])),flush=True)
 
 def cli(argv=None):

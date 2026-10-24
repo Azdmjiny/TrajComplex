@@ -146,6 +146,8 @@ def main():
         n_background=sum(len(s['aircraft_ids']) for s in assignments),n_eligible=sum(len(s['eligible_indices']) for s in assignments),
         scenes=len(SCENES),matched_orders=len(trials),old_files_unchanged=True)
     write(out/'run-manifest.json',manifest)
+    from postprocess_results import process
+    process('holding',ROOT,ROOT)
     print('COMPLETE '+json.dumps({k:manifest[k] for k in ['elapsed_s','encoding_calls','D_calls','n_background','n_eligible']}),flush=True)
 
 def cli(argv=None):

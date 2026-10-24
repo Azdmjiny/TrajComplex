@@ -165,14 +165,14 @@ def main():
             ax.grid(alpha=.2)
         axes.flat[-1].axis('off')
         handles,labels=axes.flat[0].get_legend_handles_labels();axes.flat[-1].legend(handles,labels,loc='upper left')
-        axes.flat[-1].text(0,.72,'Bold: retained available-order mean\nThin: retained matched orders\nDashed: saved full-range mean\nDotted vertical line: archived cutoff\n\nBoth D values must pass at each point.\nFive scenes have no archived cutoff;\nno fallback range was assigned.\nThe full data are unchanged.',transform=axes.flat[-1].transAxes,va='top',fontsize=11,linespacing=1.5)
+        axes.flat[-1].text(0,.72,f'Bold: retained available-order mean\nThin: retained matched orders\nDashed: saved full-range mean\nDotted vertical line: archived cutoff\n\nBoth D values must pass at each point.\n{sum(v is None for v in cutoff.values())} scenes have no archived cutoff;\nno fallback range was assigned.\nThe full data are unchanged.',transform=axes.flat[-1].transAxes,va='top',fontsize=11,linespacing=1.5)
         fig.suptitle('Equal-duration control at the SAME archived Holding cutoffs\nNo new peak search; missing D remains missing',fontsize=16)
         for ext in ['png','svg']:fig.savefig(figures/f'shared-cutoff-{kind}.{ext}',dpi=180)
         plt.close(fig)
     lines=['# Equal-duration Holding control at archived common cutoffs','',
         'This analysis uses only the saved terminal-append control results. Both arms receive exactly the archived QC500, strict-10-second, midpoint-Holding cutoff for each scene, including its endpoint. No trajectory generation, model inference, D estimation, threshold change, or new peak selection was performed. Complete prior results remain unchanged.','',
         '## Cutoff provenance','',
-        'The cutoffs were read from `evaluation-10s/workspace/evaluation/results/summary.json`, under `qc500.holding.scenes`, and cross-checked against the archived point-selection CSV. Counts are used directly, not rescaled fractions. The source populations match the current control populations. Five scenes have no archived cutoff; they receive no retained-range estimate or replacement cutoff.','',
+        f'The cutoffs were read from `{OLD / "summary.json"}`, under `qc500.holding.scenes`, and cross-checked against the archived point-selection CSV. Counts are used directly, not rescaled fractions. The source populations match the current control populations. {sum(v is None for v in cutoff.values())} scenes have no archived cutoff; they receive no retained-range estimate or replacement cutoff.','',
         '| Scene UTC+08 | Background N | Archived cutoff (aircraft) |','|---|---:|---:|']
     lines += [f"| {s['local_UTC8']} | {s['N']} | {s['cutoff'] if s['cutoff'] is not None else 'Unavailable'} |" for s in scenes]
     lines += ['', '## Correlation results','',
@@ -218,8 +218,8 @@ def cli(argv=None):
     ap.add_argument('--reference',type=Path,default=OLD.parent)
     ap.add_argument('--output',type=Path,required=True)
     args=ap.parse_args(argv);SOURCE=args.control.resolve();OLD=args.reference.resolve()/'results'
-    if not (SOURCE/'results/experiment-results.json').is_file() or not (OLD/'summary.json').is_file():
-        ap.error('Control results and historical reference summary are required')
+    if not all(p.is_file() for p in [SOURCE/'results/experiment-results.json',SOURCE/'results/summary.json',OLD/'summary.json']):
+        ap.error('Control dose records, postprocessed summary and historical reference summary are required')
     R=new_output(args.output)
     main()
 

@@ -15,9 +15,10 @@ Start with the [current combined report](report.md). The latest results and thei
 | [report.md](report.md) | Current conclusions and comparison tables |
 | [runs/README.md](runs/README.md) | Links to every new result package and publication/reproduction limits |
 | [code/README.md](code/README.md) | Current explicit-input screening, inference, diagnostic and report commands; fixed 10-second policy |
-| `results/`, `figures/`, `reports/` | Earlier evaluation files and implementation records; use run-specific manifests to identify their methods |
+| [archive](archive/legacy-before-workflow-integration/README.md) | Exact committed and local snapshots of older root-level files, with a hash inventory |
+| [Vectoring study history](vectoring-study-history.md) | Experiments, screening repairs and diagnostics, with results and limitations |
 
-The latest strict-10-second outputs are in `runs/`; older root-level `results/` and `figures/` must not be mistaken for them. The original twelve-scene strict-10-second results used by the control are included under `runs/strict-10s-reference/`.
+The latest strict-10-second outputs are in `runs/`; older root-level files have been moved to `archive/legacy-before-workflow-integration/` and must not be mistaken for them. The original twelve-scene strict-10-second results used by the control are included under `runs/strict-10s-reference/`.
 
 No raw data, model weights or authentication caches are added by this publication. Original local artifacts remain available. Reports are in English; figures are supplied as PNG and SVG.
 
@@ -27,4 +28,4 @@ The old implicit all-experiments runner is replaced. Use `python evaluation/code
 
 Common-cutoff and fixed-scale diagnostics are explicit subcommands. `refresh_outputs.py --output NEW_DIRECTORY` exports saved-statistics summaries without overwriting this report or published results. The underlying fitted-reference, direction certificate, continuous peak feedback, QC and physical/numerical thresholds are unchanged. Historical source snapshots in `runs/*/source/` remain execution provenance, not current entrypoints.
 
-Software verification: 78 regression tests passed, including exact saved fixed-scale replay. No observational evaluation or training was rerun for the code replacement.
+The earlier code replacement passed 78 regression tests. The subsequent integration audit is recorded in [maintenance-checks.json](maintenance-checks.json); it checks saved-record aggregation and preservation without rerunning observational evaluation or training.

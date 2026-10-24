@@ -1,0 +1,1048 @@
+{
+  "old_candidates": 548,
+  "reader_rejections": {
+    "position_timestamp_not_advancing": 240,
+    "position_update_gap_over_20_s": 27,
+    "track_shorter_than_maneuver_after_time_support_trim": 5
+  },
+  "shortened": [
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "75029e",
+      "samples": 120
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "750421",
+      "samples": 120
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "76bcce",
+      "samples": 119
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "7502b2",
+      "samples": 120
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "7503fd",
+      "samples": 120
+    }
+  ],
+  "new_candidates": 276,
+  "stages": {
+    "quality": 265,
+    "geometry": 9,
+    "motion": 2
+  },
+  "overlapping_reason_counts": {
+    "status_bracket_over_10_s": 216,
+    "missing_quality_match": 124,
+    "status_missing_unknown_or_conflicting": 60,
+    "quadratic_model_inconsistent_with_error_disks": 9,
+    "longitudinal_acceleration_over_2_m_s2": 2,
+    "position_quality_unknown": 1
+  },
+  "missing_quality_rows": [
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "39ce6d",
+      "source_indices": [
+        86
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "7502bc",
+      "source_indices": [
+        72
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "750421",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "76b44c",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "76b45a",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "7808d0",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "7810bc",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "7820a3",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "7821c8",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "8013ed",
+      "source_indices": [
+        72
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "8a09b8",
+      "source_indices": [
+        74
+      ]
+    },
+    {
+      "scene": "2026-09-01T01Z",
+      "icao24": "8a0a3e",
+      "source_indices": [
+        64
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "04014c",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "4b1920",
+      "source_indices": [
+        30
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "7041c1",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "750094",
+      "source_indices": [
+        76
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "750453",
+      "source_indices": [
+        80
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76b442",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76b445",
+      "source_indices": [
+        76
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76b86d",
+      "source_indices": [
+        80
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76bd48",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76cc6a",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76d108",
+      "source_indices": [
+        79
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76d10a",
+      "source_indices": [
+        64
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "76d1ca",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "780a0d",
+      "source_indices": [
+        72
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "781fb6",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "80155f",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "8881da",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "icao24": "8881ff",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "75052a",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "75054e",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76b444",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76b44d",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76bcc1",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76d106",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76d1c7",
+      "source_indices": [
+        79
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "76d256",
+      "source_indices": [
+        40
+      ]
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "icao24": "7c384f",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "5003ec",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "750333",
+      "source_indices": [
+        64
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "7503b1",
+      "source_indices": [
+        77
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "750453",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "75052a",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "750541",
+      "source_indices": [
+        46
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "750583",
+      "source_indices": [
+        67
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "76b86d",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "76d1cc",
+      "source_indices": [
+        85
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "8963d1",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "8a02a5",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "8a090a",
+      "source_indices": [
+        2
+      ]
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "icao24": "ac5c1f",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "4ba94a",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "4bb109",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "750263",
+      "source_indices": [
+        74
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "750421",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "76cc7a",
+      "source_indices": [
+        66
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "780dfe",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "782272",
+      "source_indices": [
+        67
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "7c146d",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "8a09f8",
+      "source_indices": [
+        74
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "75025b",
+      "source_indices": [
+        65
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "7504c8",
+      "source_indices": [
+        174
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "76bd47",
+      "source_indices": [
+        16
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "76cd06",
+      "source_indices": [
+        54
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "76d1cb",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "780190",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "781cd5",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "7822d7",
+      "source_indices": [
+        113
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "88510f",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "888164",
+      "source_indices": [
+        51
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "888262",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "8964b0",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "8a082d",
+      "source_indices": [
+        67
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "06a0e4",
+      "source_indices": [
+        43
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "76b44e",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "76b451",
+      "source_indices": [
+        76
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "76b454",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "76cc67",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "76ccc9",
+      "source_indices": [
+        74
+      ]
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "icao24": "8a0928",
+      "source_indices": [
+        65
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "75043e",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "750585",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "75862c",
+      "source_indices": [
+        5
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "76b448",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "76b44b",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "76cccd",
+      "source_indices": [
+        65
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "7c4a55",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "8a04ce",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "406f77",
+      "source_indices": [
+        79
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "750254",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "7502b0",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "75053f",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "76cc64",
+      "source_indices": [
+        67
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "76cc75",
+      "source_indices": [
+        66
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "76cd46",
+      "source_indices": [
+        83
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "7c1472",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "8a0442",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "a046b6",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "icao24": "aa21bf",
+      "source_indices": [
+        66
+      ]
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "76b459",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "76b866",
+      "source_indices": [
+        68
+      ]
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "76d1cc",
+      "source_indices": [
+        70
+      ]
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "80168c",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "icao24": "8a0a3e",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "3c6709",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "750463",
+      "source_indices": [
+        72
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "75053f",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "76b863",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "780dd8",
+      "source_indices": [
+        78
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "780e4b",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "781327",
+      "source_indices": [
+        75
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "78206a",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "78228b",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "8881ac",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "8a0a8c",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "a03423",
+      "source_indices": [
+        97
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "4b191d",
+      "source_indices": [
+        69
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "4bb0e2",
+      "source_indices": [
+        71
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "75025b",
+      "source_indices": [
+        63
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "76cd73",
+      "source_indices": [
+        72
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "780d93",
+      "source_indices": [
+        73
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "8003f3",
+      "source_indices": [
+        25
+      ]
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "icao24": "8a0a3e",
+      "source_indices": [
+        63
+      ]
+    }
+  ],
+  "last_four": [
+    {
+      "scene": "2026-09-12T15Z",
+      "icao24": "896218",
+      "old_original_max": 16.98444505636358,
+      "new_reasons": [
+        "side_-1:longitudinal_acceleration_over_2_m_s2",
+        "side_1:longitudinal_acceleration_over_2_m_s2"
+      ],
+      "new_original_max": 1.655902605356076,
+      "new_negative_max": 5.442543741156317,
+      "new_positive_max": 5.368136182434656
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "icao24": "88510f",
+      "old_original_max": 35.495243500692474,
+      "new_reasons": [
+        "missing_quality_match"
+      ],
+      "new_original_max": null,
+      "new_negative_max": null,
+      "new_positive_max": null
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "icao24": "8a04ce",
+      "old_original_max": 10.480601442693308,
+      "new_reasons": [
+        "missing_quality_match"
+      ],
+      "new_original_max": null,
+      "new_negative_max": null,
+      "new_positive_max": null
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "icao24": "750543",
+      "old_original_max": 9.317461109791724,
+      "new_reasons": [
+        "side_-1:longitudinal_acceleration_over_2_m_s2",
+        "side_1:longitudinal_acceleration_over_2_m_s2"
+      ],
+      "new_original_max": 2.0012598619857638,
+      "new_negative_max": 2.013840048561331,
+      "new_positive_max": 2.005003632475501
+    }
+  ],
+  "scenes": [
+    {
+      "scene": "2026-09-01T01Z",
+      "baseline_aircraft": 37,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-04T08Z",
+      "baseline_aircraft": 48,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-07T10Z",
+      "baseline_aircraft": 32,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-10T06Z",
+      "baseline_aircraft": 40,
+      "eligible": 0,
+      "baseline_status": "ok"
+    },
+    {
+      "scene": "2026-09-12T15Z",
+      "baseline_aircraft": 28,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-15T06Z",
+      "baseline_aircraft": 53,
+      "eligible": 0,
+      "baseline_status": "ok"
+    },
+    {
+      "scene": "2026-09-18T00Z",
+      "baseline_aircraft": 39,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-20T04Z",
+      "baseline_aircraft": 37,
+      "eligible": 0,
+      "baseline_status": "ok"
+    },
+    {
+      "scene": "2026-09-23T10Z",
+      "baseline_aircraft": 29,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-25T23Z",
+      "baseline_aircraft": 35,
+      "eligible": 0,
+      "baseline_status": "ok"
+    },
+    {
+      "scene": "2026-09-28T07Z",
+      "baseline_aircraft": 39,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    },
+    {
+      "scene": "2026-09-30T15Z",
+      "baseline_aircraft": 24,
+      "eligible": 0,
+      "baseline_status": "unestimable"
+    }
+  ],
+  "old_baseline_aircraft": 761,
+  "new_baseline_aircraft": 441,
+  "core_hashes_verified": true,
+  "quality_hash_verified": true,
+  "checkpoint_unchanged": true,
+  "vectoring_no_injected_doses": true,
+  "backup": "C:\\Users\\HP\\Documents\\ChatGPT\\UVA World Model\\deliverables\\evaluation-before-time-axis-rerun"
+}

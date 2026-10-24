@@ -1,0 +1,113 @@
+{
+  "stages": {
+    "quality_metadata": 365,
+    "source_track": 152,
+    "geometry_model": 27,
+    "deformed_motion": 4
+  },
+  "accepted": 0,
+  "holding": {
+    "all": {
+      "full": {
+        "before": {
+          "n": 60,
+          "positive": 27,
+          "positive_fraction": 0.45,
+          "median": -0.11016750493746319
+        },
+        "after": {
+          "n": 60,
+          "positive": 27,
+          "positive_fraction": 0.45,
+          "median": -0.11016750493746319
+        }
+      },
+      "retained": {
+        "before": {
+          "n": 50,
+          "positive": 50,
+          "positive_fraction": 1.0,
+          "median": 0.9127016129032259
+        },
+        "after": {
+          "n": 50,
+          "positive": 50,
+          "positive_fraction": 1.0,
+          "median": 0.9127016129032259
+        }
+      }
+    },
+    "baseline_ok": {
+      "full": {
+        "before": {
+          "n": 30,
+          "positive": 25,
+          "positive_fraction": 0.8333333333333334,
+          "median": 0.19148415396241214
+        },
+        "after": {
+          "n": 30,
+          "positive": 25,
+          "positive_fraction": 0.8333333333333334,
+          "median": 0.19148415396241214
+        }
+      },
+      "retained": {
+        "before": {
+          "n": 30,
+          "positive": 30,
+          "positive_fraction": 1.0,
+          "median": 0.9275463651479742
+        },
+        "after": {
+          "n": 30,
+          "positive": 30,
+          "positive_fraction": 1.0,
+          "median": 0.9275463651479742
+        }
+      }
+    },
+    "hour_level_baseline_ok": {
+      "full": {
+        "before": {
+          "n": 6,
+          "positive": 6,
+          "positive_fraction": 1.0,
+          "median": 0.2086229717668338
+        },
+        "after": {
+          "n": 6,
+          "positive": 6,
+          "positive_fraction": 1.0,
+          "median": 0.2086229717668338
+        }
+      },
+      "retained": {
+        "before": {
+          "n": 6,
+          "positive": 6,
+          "positive_fraction": 1.0,
+          "median": 0.9445088932303312
+        },
+        "after": {
+          "n": 6,
+          "positive": 6,
+          "positive_fraction": 1.0,
+          "median": 0.9445088932303312
+        }
+      }
+    }
+  },
+  "vectoring_before": {
+    "n": 0,
+    "positive": 0,
+    "positive_fraction": null,
+    "median": null
+  },
+  "vectoring_after": {
+    "n": 0,
+    "positive": 0,
+    "positive_fraction": null,
+    "median": null
+  }
+}

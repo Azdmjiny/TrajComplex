@@ -690,12 +690,12 @@
   ],
   "files": {
     "README.md": {
-      "sha256": "bc8a3e0e09026764dfc8f4ba118d8172aa3c16b4f1ea01bb41ec2de89865bc33",
-      "bytes": 3210
+      "sha256": "6d62ae903baf768c2dde3bafdc6e48151c29d715a2720bd1b3a779a7bc70807d",
+      "bytes": 3500
     },
     "report.md": {
-      "sha256": "69c2a20b82a6578c420b9737550f64c68baeb1e7e0d1be15e0e140832ddb973d",
-      "bytes": 7590
+      "sha256": "23d6a44375ab46430c29af149e017fbc7e80f320e2818bc94168d2bae32425b0",
+      "bytes": 7889
     },
     "runs/four-scene-vectoring-evaluation/assignments.json": {
       "sha256": "55e80db190ab28d3a3f3858c3e3a34c47a93e99f05359e6578e81e01ccb1116f",
@@ -1002,8 +1002,8 @@
       "bytes": 358
     },
     "runs/README.md": {
-      "sha256": "f1eca412db3474cb2d3dcf3a662d82cd551950b8c820f161722752e215937f30",
-      "bytes": 3096
+      "sha256": "c5c62b7e5446d190273aea6f8f5874545eaa6bf729d9943aa2f9395c4dd32ba6",
+      "bytes": 3222
     },
     "runs/strict-10s-reference/report.md": {
       "sha256": "cd6e91ad68fa4b4b1c898841d1238af22aacc929e0071e66f47ed540323ff0f0",
@@ -1104,6 +1104,10 @@
     "runs/.gitattributes": {
       "sha256": "1c8df99883f65883baf9b370141e74b4a062b105976f68d3e7f02c124ed4b16a",
       "bytes": 233
+    },
+    "vectoring-study-history.md": {
+      "sha256": "ec2833d3b13543c8bd85888bf8e4b14eb5c11ba319cbaa9ef6c7ecf4f2a07eb4",
+      "bytes": 11122
     }
   },
   "excluded": [
@@ -1115,5 +1119,52 @@
     "console logs",
     "before-hashes snapshots"
   ],
-  "documentation_update": "README now links the current portable code entrypoints; published numeric/embedding/result files remain unchanged."
+  "documentation_update": "README now links the current portable code entrypoints; published numeric/embedding/result files remain unchanged.",
+  "workflow_integration_documentation_update": {
+    "description": "Saved-record postprocessing integration and historical file organization; no experiment or numerical evidence changed.",
+    "entries": [
+      {
+        "path": "README.md",
+        "previous": {
+          "sha256": "bc8a3e0e09026764dfc8f4ba118d8172aa3c16b4f1ea01bb41ec2de89865bc33",
+          "bytes": 3210
+        },
+        "current": {
+          "sha256": "6d62ae903baf768c2dde3bafdc6e48151c29d715a2720bd1b3a779a7bc70807d",
+          "bytes": 3500
+        }
+      },
+      {
+        "path": "report.md",
+        "previous": {
+          "sha256": "69c2a20b82a6578c420b9737550f64c68baeb1e7e0d1be15e0e140832ddb973d",
+          "bytes": 7590
+        },
+        "current": {
+          "sha256": "23d6a44375ab46430c29af149e017fbc7e80f320e2818bc94168d2bae32425b0",
+          "bytes": 7889
+        }
+      },
+      {
+        "path": "runs/README.md",
+        "previous": {
+          "sha256": "f1eca412db3474cb2d3dcf3a662d82cd551950b8c820f161722752e215937f30",
+          "bytes": 3096
+        },
+        "current": {
+          "sha256": "c5c62b7e5446d190273aea6f8f5874545eaa6bf729d9943aa2f9395c4dd32ba6",
+          "bytes": 3222
+        }
+      },
+      {
+        "path": "vectoring-study-history.md",
+        "previous": null,
+        "current": {
+          "sha256": "ec2833d3b13543c8bd85888bf8e4b14eb5c11ba319cbaa9ef6c7ecf4f2a07eb4",
+          "bytes": 11122
+        }
+      }
+    ],
+    "previous_manifest": "archive/legacy-before-workflow-integration/publication-manifest-before.json"
+  }
 }
