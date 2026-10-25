@@ -4,6 +4,7 @@ These folders separate distinct experiments and diagnostics; they are not altern
 
 | Folder | Role |
 |---|---|
+| [segmented-15km](segmented-15km/README.md) | **Active:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |
 | [strict-10s-reference](strict-10s-reference/report.md) | Historical twelve-scene midpoint results and exact shared-cutoff source |
 | [four-scene-vectoring-screen](four-scene-vectoring-screen/report.md) | Background/candidate screening: 21 accepted candidates out of 26 |
 | [four-scene-vectoring-evaluation](four-scene-vectoring-evaluation/report.md) | Full-range evaluation of the four frozen scenes |

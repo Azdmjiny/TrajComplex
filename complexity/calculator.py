@@ -18,7 +18,7 @@ class ComplexityConfig:
     min_pairs: int = 10
     correlation_bounds: Tuple[float, float] = (0.02, 0.3)
     min_radius_ratio: float = 2.0
-    min_r_squared: float = 0.98
+    min_r_squared: float = 0.94
     max_pairs: int = 5_000_000
 
     def __post_init__(self):

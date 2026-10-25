@@ -1,0 +1,1119 @@
+[
+  {
+    "scene": "2026-09-14T06Z",
+    "n_aircraft": 38,
+    "eligible": 3,
+    "baseline_status": "ok",
+    "baseline_reason": null,
+    "baseline_D": 1.4898007017869261,
+    "radii": [
+      3.3064870836499485,
+      3.511290521586804,
+      3.728779461426318,
+      3.9597396417290502,
+      4.205005469613596,
+      4.465463035281595,
+      4.742053313262079,
+      5.035775561940534,
+      5.347690933654415,
+      5.678926308397566,
+      6.030678364983857,
+      6.40421790437825,
+      6.800894440814491,
+      7.22214107728613,
+      7.66947968302489,
+      8.144526391671478,
+      8.64899744000247,
+      9.18471536830728,
+      9.753615604815796,
+      10.357753457964693,
+      10.999311541763971,
+      11.680607661089828,
+      12.404103185391731,
+      13.17241194106587,
+      13.988309654621377,
+      14.854743980754991,
+      15.774845151563783,
+      16.751937285368655,
+      17.789550396005364,
+      18.891433145969415,
+      20.061566389489577,
+      21.304177554457574,
+      22.623755915173188,
+      24.025068811081127,
+      25.513178870095015,
+      27.09346229873173,
+      28.771628305135017,
+      30.55373972515857,
+      32.44623492602683,
+      34.45595106670558,
+      36.590148799017804,
+      38.8565384987434,
+      41.263308121470565,
+      43.819152783835385,
+      46.533306177020066,
+      49.41557392599972,
+      52.47636901505715,
+      55.726749407550045,
+      59.17845799584228,
+      62.84396502572954,
+      66.736513148629,
+      70.87016526429666,
+      75.25985532691712,
+      79.92144229811692,
+      84.87176744182138,
+      90.1287151679485,
+      95.71127764475438,
+      101.63962341325998,
+      107.93517025164786,
+      114.62066255287162,
+      121.72025349502506,
+      129.25959230133554,
+      137.26591690503156,
+      145.76815235386098
+    ],
+    "threshold": 0.94,
+    "reference": {
+      "mode": "none",
+      "assigned": 0,
+      "fallback": 38,
+      "median_angle_deg": null,
+      "aircraft": [
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        }
+      ]
+    }
+  },
+  {
+    "scene": "2026-09-15T07Z",
+    "n_aircraft": 47,
+    "eligible": 6,
+    "baseline_status": "ok",
+    "baseline_reason": null,
+    "baseline_D": 0.8829594390383269,
+    "radii": [
+      1.3742643380046318,
+      1.4841770958486027,
+      1.6028806037708356,
+      1.7310779401805563,
+      1.8695284152357157,
+      2.019052068221269,
+      2.1805345246248087,
+      2.354932241677914,
+      2.543278173432444,
+      2.7466878889259077,
+      2.9663661796736838,
+      3.2036141956241053,
+      3.459837151842556,
+      3.736552651571083,
+      4.035399674960841,
+      4.358148286717448,
+      4.706710120157441,
+      5.083149699772646,
+      5.489696669365827,
+      5.928758998184569,
+      6.402937243273054,
+      6.915039952517365,
+      7.468100299616224,
+      8.065394049505729,
+      8.710458960646962,
+      9.407115739095804,
+      10.15949066846544,
+      10.97204004981842,
+      11.849576596245178,
+      12.797297938463617,
+      13.820817410277742,
+      14.926197296237117,
+      16.11998473842214,
+      17.40925051503049,
+      18.80163092044935,
+      20.305372994868296,
+      21.92938337132684,
+      23.683281029516763,
+      25.57745426879878,
+      27.623122237883663,
+      29.8324013856168,
+      32.21837722645274,
+      34.79518184568521,
+      37.57807760349453,
+      40.58354753358954,
+      43.82939297187353,
+      47.33483899338671,
+      51.12064828202586,
+      55.20924410748935,
+      59.624843137837395,
+      64.39359887431333,
+      69.54375655798768,
+      75.10582046573379,
+      81.1127345864254,
+      87.60007774749782,
+      94.60627434760289,
+      102.17282194352349,
+      110.34453703933927,
+      119.16982053364838,
+      128.70094439708396,
+      138.99436127810856,
+      150.11103887087802,
+      162.1168210256253,
+      175.0828177404174
+    ],
+    "threshold": 0.94,
+    "reference": {
+      "mode": "none",
+      "assigned": 0,
+      "fallback": 47,
+      "median_angle_deg": null,
+      "aircraft": [
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        }
+      ]
+    }
+  },
+  {
+    "scene": "2026-09-19T07Z",
+    "n_aircraft": 40,
+    "eligible": 5,
+    "baseline_status": "ok",
+    "baseline_reason": null,
+    "baseline_D": 1.084240192449948,
+    "radii": [
+      2.706812010615634,
+      2.8844137927053772,
+      3.073668542521638,
+      3.275340845054709,
+      3.490245451932355,
+      3.719250572998308,
+      3.963281383860775,
+      4.223323763581369,
+      4.500428277604646,
+      4.795714422019187,
+      5.11037514629696,
+      5.445681672782722,
+      5.802988632404088,
+      6.183739537350417,
+      6.58947261283003,
+      7.021827011465935,
+      7.482549435436048,
+      7.973501193111233,
+      8.496665718699832,
+      9.054156585277857,
+      9.648226043577331,
+      10.281274121029258,
+      10.955858317821205,
+      11.674703939141336,
+      12.44071510535087,
+      13.256986484565928,
+      14.126815795048062,
+      15.053717127912854,
+      16.041435143980085,
+      17.093960202120318,
+      18.215544480216238,
+      19.41071915386696,
+      20.684312702236888,
+      22.04147041500442,
+      23.4876751792181,
+      25.028769630038642,
+      26.67097975485537,
+      28.42094004613709,
+      30.285720304634484,
+      32.27285420121834,
+      34.390369712742626,
+      36.64682155489294,
+      39.05132574304804,
+      41.613596420779714,
+      44.34398510477737,
+      47.253522504745646,
+      50.353963087226965,
+      53.65783256338564,
+      57.17847849260292,
+      60.930124206320855,
+      64.92792626998572,
+      69.18803571523611,
+      73.72766328971257,
+      78.56514898809596,
+      83.72003614527922,
+      89.21315039100685,
+      95.0666837849567,
+      101.30428447216894,
+      107.95115222102733,
+      115.03414022976426,
+      122.58186361278597,
+      130.62481500509975,
+      139.1954877518828,
+      148.3285071808763
+    ],
+    "threshold": 0.94,
+    "reference": {
+      "mode": "none",
+      "assigned": 0,
+      "fallback": 40,
+      "median_angle_deg": null,
+      "aircraft": [
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        }
+      ]
+    }
+  },
+  {
+    "scene": "2026-09-27T05Z",
+    "n_aircraft": 32,
+    "eligible": 5,
+    "baseline_status": "ok",
+    "baseline_reason": null,
+    "baseline_D": 1.3796196592108292,
+    "radii": [
+      3.6200507258655192,
+      3.856678776746128,
+      4.108774244716636,
+      4.377348172172662,
+      4.663477689255427,
+      4.968310333739954,
+      5.293068653296866,
+      5.639055108585398,
+      6.007657296841717,
+      6.400353516912067,
+      6.81871869804959,
+      7.264430716252558,
+      7.739277123476059,
+      8.245162316704993,
+      8.784115175640325,
+      9.358297199629941,
+      9.97001117647772,
+      10.621710417897535,
+      11.31600859865146,
+      12.055690238832591,
+      12.843721871332239,
+      13.683263939279183,
+      14.57768347116639,
+      15.530567584499305,
+      16.5457378721231,
+      17.627265728925682,
+      18.779488680385285,
+      20.007027778449046,
+      21.314806134509695,
+      22.708068663807875,
+      24.192403120445945,
+      25.77376250737564,
+      27.45848895123558,
+      29.25333913779039,
+      31.16551140998134,
+      33.20267463726678,
+      35.372998972034516,
+      37.68518861643597,
+      40.14851673105608,
+      42.77286262542081,
+      45.568751379498245,
+      48.54739605509619,
+      51.720742666447805,
+      55.10151809034274,
+      58.703281107948776,
+      62.540476783031295,
+      66.62849439465587,
+      70.98372915671776,
+      75.62364797182644,
+      80.5668594832552,
+      85.8331887059035,
+      91.44375653558195,
+      97.42106445549858,
+      103.78908477966323,
+      110.57335679513943,
+      117.80108918872473,
+      125.50126916884803,
+      133.70477872032458,
+      142.4445184582115,
+      151.7555395774901,
+      161.6751844277624,
+      172.2432362767478,
+      183.502078863212,
+      195.49686637922375
+    ],
+    "threshold": 0.94,
+    "reference": {
+      "mode": "none",
+      "assigned": 0,
+      "fallback": 32,
+      "median_angle_deg": null,
+      "aircraft": [
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        },
+        {
+          "corridor": null,
+          "reason": "none",
+          "angle_deg": null
+        }
+      ]
+    }
+  }
+]

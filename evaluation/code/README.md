@@ -16,7 +16,7 @@ Screen exactly the published four-scene/26-candidate scope from existing local s
 python evaluation/code/screen_approved_scenes.py --source-tracks /local/source-tracks --quality /local/point-evidence.jsonl.gz --output /local/new-screen
 ```
 
-This uses the same full-track fit, local direction certificate, continuous peak feedback, 5 km target and reject-only checks. Basic-QC backgrounds stay separate from injection eligibility; a failed route does not revert its fitted baseline. Missing evidence is never filled. `screen_vectoring_candidates.py` remains the explicit original-twelve-scene ZIP screening utility; it does not run correlation.
+This uses the same full-track fit, local direction certificate, continuous reference and reject-only checks. The active 2026-10-25 configuration is a **15 km segmented** target (`SEGMENTED=True` in `vectoring_population.py`): 150 s straight out, 300 s plateau, 150 s straight back, 30 s corner blend. The segmented arm is schematic and skips the deformed-kinematics rejection; the smooth `generate()` path remains available by setting `SEGMENTED=False`. Basic-QC backgrounds stay separate from injection eligibility; a failed route does not revert its fitted baseline. Missing evidence is never filled. `screen_vectoring_candidates.py` remains the explicit original-twelve-scene ZIP screening utility; it does not run correlation.
 
 Evaluate the frozen, already accepted baseline/left/right arrays:
 
@@ -24,7 +24,7 @@ Evaluate the frozen, already accepted baseline/left/right arrays:
 python evaluation/code/run_evaluation.py vectoring --screening /local/new-screen --checkpoint /local/encoder-10s.pt --output /local/new-vectoring
 ```
 
-The driver retains all four scenes, original seeds, both-side acceptance, all integer doses and the unchanged estimator. It expects the approved 21 accepted candidates; a different population stops rather than silently changing the experiment. It does not generate or refit a trajectory during inference.
+The driver retains all four scenes, original seeds, both-side acceptance, all integer doses and the unchanged estimator. The published segmented 15 km run has 19 candidates (two 15 km-infeasible candidates are omitted); a different population is reported explicitly rather than silently changing the experiment. It does not generate or refit a trajectory during inference.
 
 ## Holding equal-duration workflow
 

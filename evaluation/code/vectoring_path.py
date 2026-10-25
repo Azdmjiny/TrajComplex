@@ -20,7 +20,7 @@ POSITION_TOL=0.03
 SPEED_TOL=0.01
 ACCELERATION_TOL=0.001
 HEADING_TOL=np.deg2rad(0.01)
-PEAK=5000.0
+PEAK=15000.0
 DURATION=600.0
 MAX_SPEED=500.0
 MAX_LONGITUDINAL=2.0
@@ -488,3 +488,72 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
         if angle>HEADING_TOL:raise PathRejected('maneuver_heading_join_mismatch')
     if diagnostics is not None:diagnostics.update(continuous_peak_distance_bounds_m=list(bounds[:2]),controls_m=(fit.x*PEAK).tolist(),integrated_squared_jerk=jerk(fit.x),continuous_motion=movement,projection_intervals=projection,reference=reference.metadata)
     return sample_pieces(pieces,np.arange(0,DURATION+1,sample_s))+reference.origin
+
+
+def generate_segmented(reference,side,diagnostics=None,*,peak=None,ramp_s=150.,plateau_end_s=450.,blend_s=30.,sample_s=10.):
+    """Piecewise-straight vectoring stimulus (schematic, not C2-certified).
+
+    The offset is a trapezoid in the chord-normal direction: a straight
+    diagonal out, a straight plateau at the target offset, and a straight
+    diagonal back. A short moving-average blend rounds the three corners
+    without smoothing the long legs. This is intentionally not the smooth
+    minimum-jerk family; the point is to test whether a segmented,
+    ATC-heading-like geometry is easier for the Encoder to see.
+
+    The function fixes the spatial peak (default PEAK, 15 km) and the endpoint
+    joins. It does not claim the smooth generator's 2 m/s^2 / 35-degree motion
+    certificate; callers that need it must use generate().
+    """
+    if side not in (-1,1):raise ValueError('side must be -1 or +1')
+    target=float(PEAK if peak is None else peak)
+    if target<=POSITION_TOL:raise PathRejected('invalid_segmented_peak')
+    sample=float(sample_s)
+    if not (0<ramp_s<plateau_end_s<DURATION):raise PathRejected('invalid_segmented_breakpoints')
+    dense=np.arange(0,DURATION+1e-9,1.0)
+    refd=reference.values(dense)+reference.origin
+    axis=refd[-1]-refd[0]
+    length=float(np.linalg.norm(axis))
+    if length<=POSITION_TOL:raise PathRejected('reference_ambiguous_chord')
+    axis=axis/length
+    normal=side*np.array([-axis[1],axis[0]])
+    offset=np.zeros_like(dense)
+    up=(dense>=0)&(dense<ramp_s);offset[up]=target*dense[up]/ramp_s
+    flat=(dense>=ramp_s)&(dense<=plateau_end_s);offset[flat]=target
+    down=(dense>plateau_end_s)&(dense<=DURATION);offset[down]=target*(DURATION-dense[down])/(DURATION-plateau_end_s)
+    width=max(1,int(round(blend_s)))
+    kernel=np.ones(width)/width
+    offset=np.convolve(np.r_[np.zeros(width//2),offset,np.zeros(width-1-width//2)],kernel,'valid')
+    offset[0]=0.;offset[-1]=0.
+    line=polyline(reference)
+    measured=0.
+    for _ in range(3):
+        qd=refd+offset[:,None]*normal
+        measured=float(point_segment(qd-reference.origin,line['a'],line['b'])[0].min(axis=1).max())
+        if measured<=POSITION_TOL:raise PathRejected('segmented_cross_track_unresolved')
+        if abs(measured-target)<=0.01:break
+        offset*=target/measured
+        offset[0]=0.;offset[-1]=0.
+    qd=refd+offset[:,None]*normal
+    times=np.arange(0,DURATION+1e-9,sample)
+    q=np.column_stack([np.interp(times,dense,qd[:,0]),np.interp(times,dense,qd[:,1])])
+    q[0]=refd[0];q[-1]=refd[-1]
+    if diagnostics is not None:
+        v=np.diff(q,axis=0)/sample
+        speed=np.linalg.norm(v,axis=1)
+        acc=np.diff(v,axis=0)/sample
+        mid=(v[1:]+v[:-1])/2;midnorm=np.linalg.norm(mid,axis=1)
+        longitudinal=np.abs(np.sum(acc*mid,axis=1)/np.maximum(midnorm,1e-6))
+        lateral=np.abs(acc[:,0]*mid[:,1]-acc[:,1]*mid[:,0])/np.maximum(midnorm,1e-6)
+        heading=np.arctan2(v[:,1],v[:,0])
+        turn=np.abs(np.arctan2(np.sin(np.diff(heading)),np.cos(np.diff(heading))))/sample
+        diagnostics.update(method=MODEL+'-segmented',numerics='trapezoid-chord-normal-moving-average-v1',
+                           peak_cross_track_m=target,peak_measured_m=measured,
+                           ramp_s=float(ramp_s),plateau_end_s=float(plateau_end_s),blend_s=float(blend_s),
+                           maximum_horizontal_speed_m_s=float(speed.max()),
+                           minimum_horizontal_speed_m_s=float(speed.min()),
+                           maximum_longitudinal_acceleration_m_s2=float(longitudinal.max()),
+                           maximum_lateral_acceleration_m_s2=float(lateral.max()),
+                           maximum_turn_rate_rad_s=float(turn.max()),
+                           kinematic_certificate=False,
+                           note='schematic segmented stimulus; the smooth-generator C2/motion certificate does not apply')
+    return q

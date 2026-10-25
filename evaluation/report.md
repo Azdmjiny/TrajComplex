@@ -1,79 +1,153 @@
-# Updated Holding and Vectoring evaluation
+# Evaluation — 15 km segmented Vectoring, R²≥0.94, no STAR
 
-This report consolidates the latest strict-10-second runs and diagnostics. Full curves, failed estimates and negative associations are preserved. The results support limited sensitivity to trajectory geometry; they do not establish that D reliably measures operational complexity or that both maneuver types have a stable strong positive dose relationship.
+Updated: 2026-10-25. This is the active evaluation report. The previous
+5 km / R²≥0.98 / smooth-generator report is archived as
+[report-5km-2026-10-24](archive/report-5km-2026-10-24.md).
 
-## Shared method and interpretation
+**Scope:** four scene-hours, 157 background tracks, 19 injectable candidates.
+The injection is a schematic, piecewise-straight vectoring stimulus at a fixed
+15 km peak over 600 s. The Encoder is the original 9-feature, fixed-epoch-90
+10-second checkpoint. No STAR/reference-relative features are used.
 
-Inference used the frozen 10-second epoch-90 Encoder, sum pooling and recorded training normalization. The checkpoint hash and source provenance are in each run manifest. Existing D gates remain unchanged: at least 30 aircraft, eight fitting scales, ten pairs, C(r) in [0.02, 0.3], radius span at least two and R² at least 0.98. Spearman correlation requires five accepted doses. Missing D is never filled or replaced by zero.
+## Active code
 
-Five injection orders per scene are dependent repeats, not independent scenes. No confirmatory p-values are claimed. Truncation and fixed-scale diagnostics are labeled separately from full-range primary results.
+| File | Role |
+|---|---|
+| [code/vectoring_path.py](code/vectoring_path.py) | `PEAK=15000`; `generate_segmented()` builds the trapezoid offset; `generate()` remains the smooth control |
+| [code/vectoring_population.py](code/vectoring_population.py) | `SEGMENTED=True`; 10-second population uses the segmented generator and skips the deformed-kinematics rejection |
+| [code/run_vectoring_eval.py](code/run_vectoring_eval.py) | `MAX_OFFSET=15000`; legacy five-second helpers remain for regression use |
+| [code/run_evaluation.py](code/run_evaluation.py) | explicit workflow entrypoint; no implicit run |
+| [../complexity/calculator.py](../complexity/calculator.py) | `min_r_squared=0.94` |
 
-## Holding: equal-duration control
+The STAR work is set aside: `Encoder/trajectory_encoder/star.py` and the
+15-feature checkpoint remain in the repository but are **not** used by this
+evaluation. Do not mix the STAR pilot numbers with this report; see
+[STAR_INACTIVE.md](STAR_INACTIVE.md).
 
-All 384 basic-QC aircraft-hours from the original twelve scenes supported a matched pair. Both arms append 240 seconds / 24 samples at the original trajectory endpoint, with the same starting heading, speed and height. All original input points remain unchanged. One arm uses the existing closed racetrack and the other uses straight continuation.
+## Injection shape
 
-The baseline results exactly reproduce the prior run. Four scenes have fewer than 30 aircraft and yield no accepted D. Only three scenes have accepted zero-injection D. The control changes insertion location from the old midpoint intervention to terminal continuation, so it must not be represented as an exact replay of the old Holding experiment.
+The lateral offset is a trapezoid in the chord-normal direction:
 
-| Same-dose comparison | Holding median rho | Straight median rho | Within-scene paired orders |
-|---|---:|---:|---:|
-| Complete range, all computable pairs | +0.196 | +0.065 | 37 |
-| Complete range, baseline-valid scenes only | +0.158 | −0.013 | 15 |
-| Shared archived cutoff, all computable pairs | +0.661 | +0.598 | 33 |
-| Shared archived cutoff, baseline-valid scenes only | +0.553 | +0.504 | 15 |
+- 0–150 s: straight diagonal out;
+- 150–450 s: straight plateau at 15 km;
+- 450–600 s: straight diagonal back;
+- each of the three corners is rounded by a 30 s moving average so the sampled
+  track has no numerical spike, while the long legs stay visibly straight.
 
-The complete-range and cutoff rows have different valid-order counts. For the same 33 orders retained by the cutoff analysis, complete-range medians are +0.217 and +0.187. This denominator-matched comparison is available in the detailed report.
+![Smooth 15 km vs segmented 15 km](runs/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png)
 
-At complete range, seven of eight comparable scene summaries have positive Holding-minus-Straight differences; the equal-scene median difference is +0.03429. At the exact old cutoff shared by both arms, six of seven have positive differences; the equal-scene median is +0.03004. Differences are summarized over jointly valid nonzero doses within each order, then across orders, then across scenes. They are not percentages of explained complexity.
+The segmented arm is a **schematic stimulus**, not a C2-certified path. It does
+not claim the smooth generator’s 2 m s⁻² longitudinal / 35° bank certificate.
+The smooth 15 km arm remains the physically screened control.
 
-Both arms show positive prefix associations. Holding usually has higher D at matched duration and point count, supporting an additional geometry/location contribution. Straight flight also changes position and spatial extent, so this control cannot assign a percentage to pure length or eliminate duration-related explanations for the old experiment. Archived cutoffs came from old midpoint-Holding peaks; they are not independently established physical operating limits. Five scenes with no archived cutoff receive no replacement cutoff.
+## Results
 
-- [Complete equal-duration control](runs/holding-equal-duration/report.md)
-- [Shared archived-cutoff analysis](runs/holding-equal-duration-old-cutoff/report.md)
-- [Exact historical baseline and cutoff source](runs/strict-10s-reference/report.md)
+Same 19 candidates, same 600 s window, same 15 km peak, same 9-feature Encoder,
+R²≥0.94:
 
-## Vectoring: screening and complete-range evaluation
+| Injection | Estimable curves | Positive | Median rho | Scene-level median | Positive scenes |
+|---|---:|---:|---:|---:|---:|
+| Smooth 15 km (control) | 15/20 | 9/15 | 0.600 | −0.086 | 1/3 |
+| **Segmented 15 km** | **15/20** | **13/15** | **0.829** | **0.714** | **3/3** |
 
-The four frozen scenes contain 157 background aircraft-hours and 26 quality-complete fit candidates. Twenty-one candidates pass the required reference and both-side route checks: 4, 6, 6 and 5 by scene. Background and injection eligibility remain separate. The 5 km target, ten-minute maneuver, physical/quality bounds and numerical tolerances are unchanged; unreliable candidates are rejected.
+Per-scene median rho:
 
-| Scene start UTC+08 | Background aircraft | Injectable | Accepted D / displayed attempts | Result |
-|---|---:|---:|---:|---|
-| September 14, 14:00 | 38 | 4 | 0 / 25 | Baseline and dose fits fail R² gate |
-| September 15, 15:00 | 47 | 6 | 0 / 35 | Baseline and dose fits fail R² gate |
-| September 19, 15:00 | 40 | 6 | 0 / 35 | Baseline and dose fits fail R² gate |
-| September 27, 13:00 | 32 | 5 | 30 / 30 | Mixed signs across five orders |
+| Scene | Smooth 15 km | Segmented 15 km |
+|---|---:|---:|
+| 2026-09-15 15:00 | 0.929 | 0.964 |
+| 2026-09-19 15:00 | −0.486 | 0.714 |
+| 2026-09-27 13:00 | −0.086 | 0.600 |
 
-Displayed counts include the common baseline repeated in each order. The fourth scene's original correlations are +0.577, −0.406, +0.754, +0.771 and −0.829. No scene was selected or excluded by correlation and no Vectoring dose range was truncated.
+`2026-09-14 14:00` has only three injectable candidates (four doses), below the
+five-valid-dose requirement; it is not estimable under either shape.
 
-The first three scenes fail before injection, so their initial D failures cannot be attributed to generated maneuvers. Their baseline R² values are 0.97533, 0.96632 and 0.95023; the fourth is 0.98836. Finite sample size may contribute, but higher aircraft counts alone do not establish estimability.
+Two negative curves are retained, not removed:
 
-- [Candidate screening and rejection records](runs/four-scene-vectoring-screen/report.md)
-- [Full-range Vectoring evaluation](runs/four-scene-vectoring-evaluation/report.md)
-- [Existing-result diagnosis](runs/vectoring-existing-result-diagnosis/report.md)
+- `2026-09-19` order 4: −0.943;
+- `2026-09-27` order 3: −0.086.
 
-## Vectoring: fixed-baseline-scale diagnostic
+![Smooth vs segmented D association](runs/segmented-15km/figures/smooth-vs-segmented.png)
 
-Only the fourth scene's saved embeddings and original side assignments were used. All 29 baseline-selected scales remain fixed. If any fixed scale fails an existing count or C(r) gate, the entire D estimate is unavailable. The other three scenes were not recalculated and no side-swap experiment was added.
+Interpretation: a smooth S-curve spends little time at large offset and is easy
+for sum pooling to average out. The segmented track holds a 15 km offset for
+300 s and has visible corners, which changes the local direction/curvature and
+the pooled representation much more. The result is consistent with the visual
+intuition that segmented vectoring is easier to see than a smooth curve.
 
-| Order | Original rho | Fixed-scale rho | Accepted fixed-scale doses |
-|---|---:|---:|---:|
-| 1 | +0.577 | +0.577 | 6/6 |
-| 2 | −0.406 | +0.051 | 5/6 |
-| 3 | +0.754 | +0.754 | 6/6 |
-| 4 | +0.771 | −0.319 | 6/6 |
-| 5 | −0.829 | Unavailable | 3/6 |
+## Historical arms (not the active result)
 
-Order 4 changes sign without losing any dose: scale selection alone changes the observed relationship. In order 2, the original method on the same five accepted doses also gives +0.051, so the apparent sign change results from losing the final dose. Order 5 becomes unavailable rather than positive. All four rejected records fail the smallest fixed scale: nine pairs and C(r)=9/496, below the existing ten-pair and 0.02 gates.
+- **5 km smooth, R²≥0.98:** [archived report](archive/report-5km-2026-10-24.md).
+  95/125 dose records failed only because R² was 0.948–0.950; three of four
+  scenes had no accepted D.
+- **5 km smooth at R²≥0.94:** 20/20 curves, 12/20 positive, median 0.382.
+  Lowering the gate restores estimability but does not create a positive
+  association.
+- **15 km smooth at R²≥0.94:** [smooth-control summary](runs/segmented-15km/results/smooth-control/summary.json),
+  15/20 curves, 9/15 positive, median 0.600; this is the active control.
+- **STAR-relative Encoder / official STAR pilot:** inactive. The STAR baseline
+  reference gave 15/20 curves, 14/15 positive, median 0.943, but that is not an
+  independent reference; the official STAR pilot covered only 41% of arrivals
+  within 2 km and degraded when forced (7/10 positive, median 0.457). See
+  `deliverables/changi-official-star-2026-10-24/report.md` if the STAR line is
+  resumed.
 
-The diagnostic does not produce a stable positive association or demonstrate a route-generation defect. It establishes sensitivity of the D conclusion to fitting-scale eligibility. It is preserved alongside, not substituted for, the original evaluation.
+## Holding (unchanged)
 
-[Detailed fixed-scale step comparison](runs/vectoring-fixed-baseline-scales/report.md)
+The equal-duration terminal control remains as previously reported; this
+update does not rerun or reinterpret it. At the same archived cutoffs and
+jointly valid doses, median Spearman rho is 0.661 for Holding and 0.598 for
+straight flight; six of seven comparable scene summaries have positive
+Holding-minus-Straight D differences. These remain conditional descriptive
+results, not complete validation of operational complexity. Evidence:
+[runs/holding-equal-duration](runs/holding-equal-duration/).
 
-## Claims supported and not supported
+## Reproduce the active four-scene run
 
-Supported: the implemented reject-only screening workflow; limited geometry/location sensitivity under the equal-duration control; positive Holding-prefix associations conditional on shared archived cutoffs; and explicit estimator sensitivity/estimability limitations for Vectoring.
+The frozen population, source scripts and full diagnostics are in
+[runs/segmented-15km](runs/segmented-15km/).
 
-Not supported: elimination or quantification of length confounding; universal monotonic response to maneuver count; stable strong positive Vectoring correlation; proof of a physical validity boundary at an observed peak; or complete validation against real operational complexity.
+```powershell
+$env:PYTHONPATH = (Resolve-Path 'deliverables/evaluation-python-deps')
 
-All data packages, figures, original execution-script snapshots and publication limitations are indexed in [runs/README.md](runs/README.md). Raw data, trajectories and weights remain local.
+python deliverables/vectoring-15km-segmented-2026-10-25/generate_population.py
 
-For the sequence of Vectoring experiments, screening repairs and saved-result diagnostics, see the [Vectoring study history](vectoring-study-history.md). Current code and integrated postprocessing are documented in [code/README.md](code/README.md); historical execution snapshots remain unchanged.
+python deliverables/vectoring-15km-star-2026-10-24/run_eval.py `
+  --label old-15km-segmented-r094 `
+  --checkpoint deliverables/encoder-10s/encoder/encoder.pt `
+  --reference none `
+  --population deliverables/vectoring-15km-segmented-2026-10-25/population-15km-segmented `
+  --min-r2 0.94
+
+python deliverables/vectoring-15km-segmented-2026-10-25/compare.py
+```
+
+The explicit production entrypoint remains:
+
+```powershell
+$env:ATM_DATA_ZIP = '<local scene archive>'
+$env:ATM_QUALITY_MATCHES = '<local point-matches.json>'
+$env:ATM_ENCODER_CHECKPOINT = 'Encoder/encoder.pt'
+python evaluation/code/run_evaluation.py --help
+```
+
+## Limitations
+
+1. **Segmented injection is schematic.** The smooth control is the only arm
+   with the original motion certificate. Do not describe the segmented track as
+   a flyable procedure.
+2. **15 km is a stress-test amplitude**, not a claim about routine vectoring.
+3. **No STAR.** This report intentionally omits the STAR/reference-relative
+   Encoder; the STAR experiment is archived separately.
+4. **D is descriptive.** Five orders are within-scene repeats, not five
+   independent scenes; no confirmatory p-values.
+5. **Scene 14 is candidate-limited**, not gate-limited; three candidates cannot
+   produce five valid doses.
+
+## File map
+
+- Run package: [runs/segmented-15km](runs/segmented-15km/)
+- Population: [runs/segmented-15km/population](runs/segmented-15km/population/)
+- Segmented diagnostics: [runs/segmented-15km/results/segmented](runs/segmented-15km/results/segmented/)
+- Smooth control: [runs/segmented-15km/results/smooth-control](runs/segmented-15km/results/smooth-control/)
+- Shape generator: [code/vectoring_path.py](code/vectoring_path.py)
+- Active population switch: [code/vectoring_population.py](code/vectoring_population.py)

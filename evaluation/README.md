@@ -1,31 +1,47 @@
 # Evaluation
 
-Start with the [current combined report](report.md). The latest results and their complete evidence are organized by study in [runs/](runs/README.md).
+Start with the [current report](report.md). The active evaluation is the
+15 km segmented Vectoring run; the previous 5 km report is archived as
+[archive/report-5km-2026-10-24.md](archive/report-5km-2026-10-24.md).
 
 ## Current status
 
-- **Holding:** the equal-duration terminal control is complete. Both arms add 240 seconds / 24 strict-10-second samples. At the same archived cutoffs and jointly valid doses, median Spearman rho is 0.661 for Holding and 0.598 for straight flight. Six of seven comparable scene summaries have positive Holding-minus-Straight D differences. These are conditional descriptive results, not complete validation of operational complexity or elimination of duration confounding.
-- **Vectoring:** fixed 5 km, unchanged reject-only checks; 21 candidates passed both sides across four scenes. Three scenes have no accepted D. The fourth has mixed correlation signs. Fixing baseline fitting scales changes one full six-dose curve from +0.771 to −0.319, showing scale-selection sensitivity. No stable strong positive relationship has been established.
-- Rejected D values stay unavailable. Complete dose curves, all scenes, negative correlations, and the historical cutoff source are retained. Orders are within-scene repeats, not independent scenes.
+- **Vectoring (active):** fixed 15 km peak, segmented trapezoid injection
+  (150 s out / 300 s plateau / 150 s back, 30 s corner blend), original
+  9-feature Encoder, `min_r_squared=0.94`, no STAR. Result: 13/15 positive
+  curves, median rho 0.829, 3/3 estimable scenes positive. The smooth 15 km
+  control is 9/15, median 0.600, 1/3 scenes positive.
+- **Holding:** unchanged equal-duration terminal control. At the same archived
+  cutoffs and jointly valid doses, median rho is 0.661 for Holding and 0.598
+  for straight flight; six of seven comparable scene summaries have positive
+  Holding-minus-Straight D differences. Conditional descriptive results, not
+  validation of operational complexity.
+- **STAR:** inactive. The STAR-relative Encoder and official-STAR pilot are
+  archived; do not mix their numbers with this report. See
+  [STAR_INACTIVE.md](STAR_INACTIVE.md).
 
 ## Navigation
 
 | Location | Contents |
 |---|---|
-| [report.md](report.md) | Current conclusions and comparison tables |
-| [runs/README.md](runs/README.md) | Links to every new result package and publication/reproduction limits |
-| [code/README.md](code/README.md) | Current explicit-input screening, inference, diagnostic and report commands; fixed 10-second policy |
-| [archive](archive/legacy-before-workflow-integration/README.md) | Exact committed and local snapshots of older root-level files, with a hash inventory |
-| [Vectoring study history](vectoring-study-history.md) | Experiments, screening repairs and diagnostics, with results and limitations |
+| [report.md](report.md) | Active 15 km segmented results and limitations |
+| [runs/segmented-15km](runs/segmented-15km/) | Frozen population, source scripts, full diagnostics and figures |
+| [runs/README.md](runs/README.md) | Index of every result package |
+| [code/README.md](code/README.md) | Explicit-input screening, inference and diagnostic commands |
+| [archive](archive/) | Superseded reports and legacy snapshots |
+| [vectoring-study-history.md](vectoring-study-history.md) | Experiment and screening history |
 
-The latest strict-10-second outputs are in `runs/`; older root-level files have been moved to `archive/legacy-before-workflow-integration/` and must not be mistaken for them. The original twelve-scene strict-10-second results used by the control are included under `runs/strict-10s-reference/`.
+## Active code
 
-No raw data, model weights or authentication caches are added by this publication. Original local artifacts remain available. Reports are in English; figures are supplied as PNG and SVG.
+- `code/vectoring_path.py` — `PEAK=15000`; `generate_segmented()` (segmented)
+  and `generate()` (smooth control).
+- `code/vectoring_population.py` — `SEGMENTED=True`; 10-second population uses
+  the segmented generator and skips the deformed-kinematics rejection.
+- `code/run_vectoring_eval.py` — `MAX_OFFSET=15000`; legacy five-second
+  helpers remain for regression tests.
+- `code/run_evaluation.py` — explicit workflow entrypoint, no implicit run.
+- `../complexity/calculator.py` — `min_r_squared=0.94`.
 
-## Current code entrypoints
-
-The old implicit all-experiments runner is replaced. Use `python evaluation/code/run_evaluation.py --help` and the [code guide](code/README.md). Vectoring consumes frozen accepted pairs; Holding uses the approved terminal equal-duration pair. Both require an explicit local 10-second checkpoint with the recorded SHA-256. Raw sources and weights are not downloaded or substituted automatically.
-
-Common-cutoff and fixed-scale diagnostics are explicit subcommands. `refresh_outputs.py --output NEW_DIRECTORY` exports saved-statistics summaries without overwriting this report or published results. The underlying fitted-reference, direction certificate, continuous peak feedback, QC and physical/numerical thresholds are unchanged. Historical source snapshots in `runs/*/source/` remain execution provenance, not current entrypoints.
-
-The earlier code replacement passed 78 regression tests. The subsequent integration audit is recorded in [maintenance-checks.json](maintenance-checks.json); it checks saved-record aggregation and preservation without rerunning observational evaluation or training.
+The segmented arm is a schematic stimulus and does not carry the smooth
+generator’s C2 / 2 m s⁻² / 35° motion certificate. No raw data, model weights
+or authentication caches are added by this publication.

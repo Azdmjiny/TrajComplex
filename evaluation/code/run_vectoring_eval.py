@@ -11,7 +11,7 @@ from vectoring_uncertainty import quality_radii
 import vectoring_path as path
 from position_timeline import position_grid
 
-TURN_S=300; RETURN_S=300; SAMPLE=5; MAX_OFFSET=5000.; REPEATS=5; SEED=43019
+TURN_S=300; RETURN_S=300; SAMPLE=5; MAX_OFFSET=15000.; REPEATS=5; SEED=43019
 MAX_HORIZONTAL_SPEED=500.0
 MAX_POSITION_GAP_S=20.0
 MAX_POSITION_AGE_S=15.0

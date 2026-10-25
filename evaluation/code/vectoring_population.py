@@ -15,6 +15,10 @@ from vectoring_uncertainty import quality_radii
 from position_timeline import position_grid
 from run_vectoring_eval import _check_deformed_kinematics, VectoringRejected
 
+# 2026-10-25 active shape: piecewise-straight vectoring stimulus. Set False to
+# restore the smooth minimum-jerk control.
+SEGMENTED=True
+
 
 def array_hash(a):
     a = np.ascontiguousarray(a, dtype='<f8')
@@ -104,11 +108,13 @@ def prepare_population(tracks, sources, quality, *, progress=None):
                 for side in (-1,1):
                     side_detail = {}; record['side_diagnostics'][str(side)] = side_detail
                     try:
-                        xy = path.generate(reference, side, side_detail, sample_s=10)
+                        xy = (path.generate_segmented(reference, side, side_detail, sample_s=10)
+                              if SEGMENTED else path.generate(reference, side, side_detail, sample_s=10))
                         if xy.shape != (61,2) or not np.isfinite(xy).all():
                             raise path.PathRejected('invalid_generated_grid')
                         q = p.copy(); q[start:end,:2] = xy
-                        _check_deformed_kinematics(p[start-1:end+1], q[start-1:end+1], sample_s=10)
+                        if not SEGMENTED:
+                            _check_deformed_kinematics(p[start-1:end+1], q[start-1:end+1], sample_s=10)
                         if not (np.array_equal(q[:,2],p[:,2]) and np.array_equal(q[:start],p[:start]) and np.array_equal(q[end:],p[end:])):
                             raise RuntimeError('paired trajectory invariance failed')
                         q.setflags(write=False); accepted[side] = q
