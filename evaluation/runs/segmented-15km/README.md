@@ -28,7 +28,8 @@ estimable under either shape. Two negative curves are retained:
 - `figures/` — shape and D-association figures.
 - `source/` — exact generators/runners used for the run. They expect the
   workspace paths documented in the main report; they are provenance, not the
-  current production entrypoint.
+  current production entrypoint. `source/make_paper_figures.py` rebuilds the
+  positive dose-response figure from the stored JSON only.
 
 ## Method note
 

@@ -34,7 +34,7 @@ The lateral offset is a trapezoid in the chord-normal direction:
 - each of the three corners is rounded by a 30 s moving average so the sampled
   track has no numerical spike, while the long legs stay visibly straight.
 
-![Smooth 15 km vs segmented 15 km](runs/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png)
+![Smooth 15 km vs segmented 15 km](figures/injection-geometry-smooth-vs-segmented.png)
 
 The segmented arm is a **schematic stimulus**, not a C2-certified path. It does
 not claim the smooth generator’s 2 m s⁻² longitudinal / 35° bank certificate.
@@ -66,13 +66,50 @@ Two negative curves are retained, not removed:
 - `2026-09-19` order 4: −0.943;
 - `2026-09-27` order 3: −0.086.
 
-![Smooth vs segmented D association](runs/segmented-15km/figures/smooth-vs-segmented.png)
+![Smooth vs segmented D association](figures/d-association-smooth-vs-segmented.png)
 
 Interpretation: a smooth S-curve spends little time at large offset and is easy
 for sum pooling to average out. The segmented track holds a 15 km offset for
 300 s and has visible corners, which changes the local direction/curvature and
 the pooled representation much more. The result is consistent with the visual
 intuition that segmented vectoring is easier to see than a smooth curve.
+
+## Paper figures
+
+A curated set is indexed in [figures/README.md](figures/README.md). All panels
+are drawn from the stored results in `runs/segmented-15km`; no encoder calls or
+new D estimates were made to produce them.
+
+**Figure P1 — the positive result (main).** Segmented 15 km vectoring gives a
+positive dose–D association at the scene level in all three estimable scenes
+(13/15 curves positive overall). Thin grey lines are
+the five injection orders; the thick orange line is their median. Panel D
+collects all 15 curves: 13/15 positive, median rho 0.829, against 9/15 and
+0.600 for the smooth control. Two negative curves are visible and retained.
+
+![Segmented 15 km positive dose-response](figures/segmented-positive-dose-response.png)
+
+Also available as a vector PDF:
+[segmented-positive-dose-response.pdf](figures/segmented-positive-dose-response.pdf).
+
+**Figure P2 — injection geometry (methods).** Smooth S-curve vs segmented
+trapezoid at the same 15 km peak. The segmented track is schematic, not a
+C2-certified maneuver:
+[injection-geometry-smooth-vs-segmented.png](figures/injection-geometry-smooth-vs-segmented.png).
+
+**Figure P3 — shape comparison.** All-curve median, scene-level medians and one
+representative dose response for smooth vs segmented:
+[d-association-smooth-vs-segmented.png](figures/d-association-smooth-vs-segmented.png).
+
+**Figure P4 — Holding control (supplement).** Equal-duration terminal control
+at the same archived cutoffs. Both arms increase D with dose; Holding is above
+straight in most comparable scenes, but the effect is smaller and mixed across
+scenes. Use as a control, not as a second positive result.
+
+![Holding equal-duration control](figures/holding-shared-cutoff-curves.png)
+
+**Figure P5 — paired Holding differences (supplement).**
+[holding-paired-differences.png](figures/holding-paired-differences.png).
 
 ## Historical arms (not the active result)
 
@@ -148,5 +185,7 @@ paths refer to the original local workspace and are not portable entrypoints.
 - Population: [runs/segmented-15km/population](runs/segmented-15km/population/)
 - Segmented diagnostics: [runs/segmented-15km/results/segmented](runs/segmented-15km/results/segmented/)
 - Smooth control: [runs/segmented-15km/results/smooth-control](runs/segmented-15km/results/smooth-control/)
+- Paper figure set: [figures/README.md](figures/README.md)
+- Figure generator: [runs/segmented-15km/source/make_paper_figures.py](runs/segmented-15km/source/make_paper_figures.py)
 - Shape generator: [code/vectoring_path.py](code/vectoring_path.py)
 - Active population switch: [code/vectoring_population.py](code/vectoring_population.py)
