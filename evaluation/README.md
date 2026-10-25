@@ -1,11 +1,12 @@
 # Evaluation
 
-Start with the [current report](report.md). The active evaluation is the
-15 km segmented Vectoring run; the previous 5 km report is archived as
+Start with the [current report](report.md). The active evaluation includes the
+15 km segmented Vectoring run and the [Changi hourly application case](runs/changi-hourly/report.md); the previous 5 km report is archived as
 [archive/report-5km-2026-10-24.md](archive/report-5km-2026-10-24.md).
 
 ## Current status
 
+- **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. Accepted D is available in 14/24 and 11/24 hours respectively. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
 - **Vectoring (active):** fixed 15 km peak, segmented trapezoid injection
   (150 s out / 300 s plateau / 150 s back, 30 s corner blend), original
   9-feature Encoder, `min_r_squared=0.94`, no STAR. Result: 13/15 positive
@@ -24,7 +25,8 @@ Start with the [current report](report.md). The active evaluation is the
 
 | Location | Contents |
 |---|---|
-| [report.md](report.md) | Active 15 km segmented results and limitations |
+| [report.md](report.md) | Active maneuver results and hourly application case |
+| [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
 | [runs/segmented-15km](runs/segmented-15km/) | Frozen population, source scripts, full diagnostics and figures |
 | [runs/README.md](runs/README.md) | Index of every result package |
 | [code/README.md](code/README.md) | Explicit-input screening, inference and diagnostic commands |
@@ -33,6 +35,7 @@ Start with the [current report](report.md). The active evaluation is the
 
 ## Active code
 
+- `code/report_changi_hourly.py` — the sole current hourly report builder; saved records only, no inference, D estimation or new draws. Use `--input LOCAL_SAVED_PACKAGE --output NEW_DIRECTORY`. Its derived input data remain local.
 - `code/vectoring_path.py` — `PEAK=15000`; `generate_segmented()` (segmented)
   and `generate()` (smooth control).
 - `code/vectoring_population.py` — `SEGMENTED=True`; 10-second population uses

@@ -1,10 +1,31 @@
-# Evaluation — 15 km segmented Vectoring, R²≥0.94, no STAR
+# Evaluation — maneuver studies and hourly real-traffic application
 
 Updated: 2026-10-25. This is the active evaluation report. The previous
 5 km / R²≥0.98 / smooth-generator report is archived as
 [report-5km-2026-10-24](archive/report-5km-2026-10-24.md).
 
-**Scope:** four scene-hours, 157 background tracks, 19 injectable candidates.
+Hourly application presentation added on 2026-10-26 from existing results only. No experiments or thresholds were changed for this publication.
+
+## Changi: complete 24-hour application display
+
+The [hourly case report](runs/changi-hourly/report.md) presents September 11 and September 8 using 1-hour windows. Each main figure shows accepted D, aircraft counts before and after whole-track QC, and a status cell for every hour. NA remains unavailable and lines do not bridge gaps.
+
+| Local date (UTC+08) | Accepted D | Insufficient accepted aircraft | Poor linear fit |
+|---|---:|---:|---:|
+| September 11 | 14/24 | 8 | 2 |
+| September 8 | 11/24 | 9 | 4 |
+
+This supports a real-scene application case with explicit availability limits, not a complete reliable day/night D curve or general operational-complexity validation. The case retains its original R²≥0.94, N≥30 and fixed 64-radius grid. The fixed-N/200-draw and weather comparisons remain descriptive supplements; partial-success medians are conditional, and weather differences have mixed signs.
+
+Before-QC counts refer to distinct observed aircraft with basic airborne fields within 100 km of Changi, not airport movements. The existing conservative whole-track reader excludes repeated position timestamps as well as unsupported gaps. Source auditing found 849 repeated-timestamp first rejections across the two days; 565 also have age/gap flags. The remaining 284 are not recovered or admitted tracks. This preprocessing limitation is disclosed, and no recovery policy was introduced for publication.
+
+- [September 11: D + aircraft + estimability](runs/changi-hourly/figures/2026-09-11-24h-D-count-status.png)
+- [September 8: D + aircraft + estimability](runs/changi-hourly/figures/2026-09-08-24h-D-count-status.png)
+- [Saved-result reporting command and evidence](runs/changi-hourly/README.md)
+
+## Vectoring: active 15 km segmented study
+
+**Vectoring scope:** four scene-hours, 157 background tracks, 19 injectable candidates.
 The injection is a schematic, piecewise-straight vectoring stimulus at a fixed
 15 km peak over 600 s. The Encoder is the original 9-feature, fixed-epoch-90
 10-second checkpoint. No STAR/reference-relative features are used.

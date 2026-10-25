@@ -1,5 +1,8 @@
 # Preserve historical snapshot bytes and hashed document line endings.
 archive/** -text
+runs/changi-hourly/** -text
+code/report_changi_hourly.py text eol=lf
+code/test_changi_hourly_report.py text eol=lf
 README.md text eol=lf
 report.md text eol=lf
 vectoring-study-history.md text eol=lf

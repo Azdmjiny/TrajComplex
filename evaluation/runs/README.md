@@ -4,6 +4,7 @@ These folders separate distinct experiments and diagnostics; they are not altern
 
 | Folder | Role |
 |---|---|
+| [changi-hourly](changi-hourly/report.md) | **Application case:** complete 24h D/count/status displays; 1h only; saved fixed-N and weather supplements |
 | [segmented-15km](segmented-15km/README.md) | **Active:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |
 | [strict-10s-reference](strict-10s-reference/report.md) | Historical twelve-scene midpoint results and exact shared-cutoff source |
 | [four-scene-vectoring-screen](four-scene-vectoring-screen/report.md) | Background/candidate screening: 21 accepted candidates out of 26 |
@@ -17,10 +18,12 @@ These folders separate distinct experiments and diagnostics; they are not altern
 
 Included: Markdown reports, PNG/SVG figures, full machine-readable D attempts, rejection reasons, summaries, assignment policies, saved embeddings, screening audit records, execution manifests and verification records. Statistics and embedding files are copied byte-for-byte. A publication note is added to stage reports to distinguish historical statements from current conclusions.
 
+**Hourly-case exception:** `changi-hourly/` publishes only its Markdown report/documentation and PNG/SVG/PDF figures. Embeddings, draw assignments, individual D attempts, machine-readable summaries, QC evidence and manifests for that case remain local. The reporting code requires an explicit local `--input` package. This restriction does not remove previously published data for other studies.
+
 Excluded: raw OpenSky downloads, source trajectory arrays, fitted trajectory caches, authentication/session material, dependency folders, and model weights. Those stay local. Some stage reports describe local-only arrays; their names are not a claim that they are included here.
 
 `source/` contains the original local execution/analysis scripts as provenance snapshots. Their paths refer to the original workspace and external dependencies; they are not portable entrypoints in this folder. The current portable entrypoints and saved-record postprocessing are documented in [code/README.md](../code/README.md). These snapshots are not those entrypoints. Raw data and weights are still required for inference; this is not a self-contained training/trajectory-generation environment. Manifests retain original execution paths and source hashes as historical evidence.
 
 All new inference used the frozen strict-10-second epoch-90 Encoder, SHA-256 `bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976`, sum pooling and the recorded training normalization. The repository's other checkpoints must not be assumed to match it. Derived embeddings suffice to inspect the saved D calculations without that checkpoint.
 
-`publication-manifest.json` records hashes of every published file except itself, original copy provenance, and exclusions. `publication-checks.json` records numerical, link and scope checks. Local paths in original manifests are execution metadata, not downloadable resources or credentials.
+The original `publication-manifest.json` and `publication-checks.json` describe the earlier publication snapshot, not later additions. The hourly case's verification records and manifests remain local with its derived data. Local paths in earlier manifests are execution metadata, not downloadable resources or credentials.

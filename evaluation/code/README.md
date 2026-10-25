@@ -1,5 +1,16 @@
 # Current evaluation code
 
+## Changi hourly application report
+
+```bash
+python evaluation/code/report_changi_hourly.py --input /local/changi-saved-package --output /local/new-hourly-report
+python -m unittest discover -s evaluation/code -p "test_changi_hourly_report.py"
+```
+
+The report builder requires `--input` pointing to the local saved-data package, which is not uploaded to GitHub. It verifies 48 hours and all 6,200 stored draws, then writes a report and four PNG/SVG/PDF figure sets into a **new** directory. It never imports the Encoder or D estimator and never resamples. Main figures show D, before/after-QC counts and estimability for all 24 hours; NA breaks lines. Fixed-N and weather plots are supplements. No 3h report, source-track recovery, changed thresholds or positive-result selection is performed. Dependencies: NumPy and Matplotlib. Set `CHANGI_HOURLY_INPUT` to that local package before running the saved-record tests; they explicitly skip when it is unavailable.
+
+This replaces the local report-text replacement and separate audit plotting scripts with one portable entrypoint. To update the public package, review and replace only its report and figures. Keep derived data, execution source snapshots, hashes and report manifests local. See the [case documentation](../runs/changi-hourly/README.md).
+
 These entrypoints replace the former implicit five-second, all-experiments runner. They use explicit inputs and new output directories. None runs by default, changes a threshold, chooses scenes by correlation, or overwrites the published `evaluation/runs/` data. Checkpoint weights and raw/source trajectories remain local.
 
 ## Dependencies and checkpoint
