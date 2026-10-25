@@ -87,9 +87,9 @@ intuition that segmented vectoring is easier to see than a smooth curve.
 - **STAR-relative Encoder / official STAR pilot:** inactive. The STAR baseline
   reference gave 15/20 curves, 14/15 positive, median 0.943, but that is not an
   independent reference; the official STAR pilot covered only 41% of arrivals
-  within 2 km and degraded when forced (7/10 positive, median 0.457). See
-  `deliverables/changi-official-star-2026-10-24/report.md` if the STAR line is
-  resumed.
+  within 2 km and degraded when forced (7/10 positive, median 0.457). The STAR
+  reports are archived outside this repository and are not part of this
+  publication.
 
 ## Holding (unchanged)
 
@@ -106,29 +106,28 @@ results, not complete validation of operational complexity. Evidence:
 The frozen population, source scripts and full diagnostics are in
 [runs/segmented-15km](runs/segmented-15km/).
 
-```powershell
-$env:PYTHONPATH = (Resolve-Path 'deliverables/evaluation-python-deps')
+The portable production path is the explicit screening/evaluation workflow.
+With local source tracks, quality evidence and the frozen checkpoint:
 
-python deliverables/vectoring-15km-segmented-2026-10-25/generate_population.py
+```bash
+python evaluation/code/screen_approved_scenes.py \
+  --source-tracks /local/source-tracks \
+  --quality /local/point-evidence.jsonl.gz \
+  --output /local/new-screen
 
-python deliverables/vectoring-15km-star-2026-10-24/run_eval.py `
-  --label old-15km-segmented-r094 `
-  --checkpoint deliverables/encoder-10s/encoder/encoder.pt `
-  --reference none `
-  --population deliverables/vectoring-15km-segmented-2026-10-25/population-15km-segmented `
-  --min-r2 0.94
-
-python deliverables/vectoring-15km-segmented-2026-10-25/compare.py
+python evaluation/code/run_evaluation.py vectoring \
+  --screening /local/new-screen \
+  --checkpoint /local/encoder-10s.pt \
+  --output /local/new-vectoring
 ```
 
-The explicit production entrypoint remains:
+`vectoring_population.py` now uses the segmented generator when
+`SEGMENTED=True` (default) and skips the deformed-kinematics rejection in that
+mode. Set `SEGMENTED=False` to reproduce the smooth control.
 
-```powershell
-$env:ATM_DATA_ZIP = '<local scene archive>'
-$env:ATM_QUALITY_MATCHES = '<local point-matches.json>'
-$env:ATM_ENCODER_CHECKPOINT = 'Encoder/encoder.pt'
-python evaluation/code/run_evaluation.py --help
-```
+The exact four-scene generators/runners used for the published numbers are
+kept in `runs/segmented-15km/source/` as provenance snapshots; their internal
+paths refer to the original local workspace and are not portable entrypoints.
 
 ## Limitations
 

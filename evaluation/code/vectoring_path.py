@@ -44,7 +44,7 @@ def policy():
                                           acceleration_m_s2=ACCELERATION_TOL,heading_deg=float(np.rad2deg(HEADING_TOL))),
                 maximum_solver_iterations=SOLVER_MAXITER,maximum_verification_nodes=MAX_VERIFY_NODES,
                 peak_feedback='continuous off-grid witnesses are added to solver constraints; warm-start same controls; total SLSQP budget shared across solves',
-                on_failure='reject; do not shrink 5km, extend time, fill data or relax limits',
+                on_failure='reject; do not shrink the fixed target, extend time, fill data or relax limits',
                 limitations='restricted search; conditional reference model; ground-motion proxies; no global optimum or aircraft-specific certification')
 
 
