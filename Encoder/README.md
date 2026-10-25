@@ -35,13 +35,13 @@ result = encoder.encode(enu_m)
 embedding = result["embedding"]
 ```
 
-Input is a finite `(T, 3)` ENU-metre array sampled every five seconds, with at least 30 points. The interface does not convert latitude/longitude, resample, or assemble scenes. Current selection is `d16_e120_t0p01_s43`, with 16-dimensional embeddings and sum pooling. See [PROTOCOL.md](PROTOCOL.md) and [selection.json](reports/selection.json).
+Input is a finite `(T, 3)` ENU-metre array already sampled every ten seconds, with at least 30 points. The interface does not convert latitude/longitude, resample, or assemble scenes. The selected export is `encoder_10s_fixed90_seed43`, with 16-dimensional embeddings and sum pooling, trained for a fixed 90 epochs. See [PROTOCOL.md](PROTOCOL.md).
 
-### Evaluation checkpoint distinction
+### Evaluation checkpoint identity
 
-The checked-in `encoder/encoder.pt` matches its export manifest, with SHA256 `5eb1ed473658a0011c7a3257ea462b58cb6261633317cec5f6aca6ad52c9a035`. The separate Holding/Vectoring evaluation run records SHA256 `d3abfc192a2e7a0f84bb1c4207ee04cfc4a4880755530da475124c5f711753ea`.
+The checked-in `encoder/encoder.pt` is the strict-10-second epoch-90 checkpoint required by the evaluation workflow: SHA-256 `bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976`, preprocessor `52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477`. Its `preprocess.json` records `stride_s=10` and `include_endpoint=false`.
 
-These files are not byte-identical. This alone does not establish different learned tensors, but the evaluation runner explicitly requires its recorded hash: do not silently substitute this exported checkpoint or rewrite either manifest. Use the exact checkpoint required by the evaluation workflow until equivalence is investigated separately.
+The older five-second candidate checkpoints remain in `checkpoints/` and `experiment_logs/` as historical sensitivity artifacts. They are not the selected export and must not be substituted without a separate evaluation rerun.
 
 ## Script responsibilities
 

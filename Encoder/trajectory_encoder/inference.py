@@ -17,7 +17,7 @@ class FrozenEncoder:
 
     @torch.inference_mode()
     def encode(self, enu_m):
-        """Encode finite ENU metre positions already sampled every five seconds.
+        """Encode finite ENU metre positions already sampled every ten seconds.
 
         This core API does not resample or infer timestamps. Do not pass
         latitude/longitude here. Direction uses forward differences, repeating

@@ -11,40 +11,41 @@
     "cos_theta"
   ],
   "mean": [
-    10304.574161639997,
-    -23522.31668090443,
-    2748.5966915601525,
-    -0.17838912392830905,
-    0.38406210091317466,
-    -0.04014499792972262,
-    49815.20457347034,
-    -0.4077455423545754,
-    0.11298656846231975
+    10369.221395737459,
+    -23682.892747774597,
+    2764.7646511750418,
+    -0.17860755357928432,
+    0.38469293591511805,
+    -0.04008668922726874,
+    50133.325760307285,
+    -0.4090143770844876,
+    0.11313106471785736
   ],
   "std": [
-    47498.65540135719,
-    25123.12869420193,
-    1730.1494188672093,
-    0.736504181028686,
-    0.5249137671534341,
-    0.03298241118852459,
-    32637.752439697895,
-    0.512853339355775,
-    0.746966572443974
+    47745.29960902825,
+    25213.650271290135,
+    1730.518176901909,
+    0.7367749971063845,
+    0.5240649460297081,
+    0.031973116676375125,
+    32716.839765265842,
+    0.5107571043506927,
+    0.7476869544731036
   ],
   "preprocessing": {
     "r_max_m": 120000.0,
-    "stride_s": 5,
-    "include_endpoint": true,
+    "stride_s": 10,
+    "include_endpoint": false,
     "min_points": 30,
     "rdp_epsilon_m": [
-      120.0,
-      1200.0
+      300.0
     ],
     "validation_fraction_of_official_train": 0.15,
     "split_seed": 2026,
     "near_duplicate_grid_m": 50.0,
-    "near_duplicate_signature_points": 32
+    "near_duplicate_signature_points": 32,
+    "split_manifest": "../split_manifest.csv",
+    "split_rule": "retain original 5s split and group identities; never resplit on 10s shapes"
   },
   "normalization": "zscore_train_tokens_only",
   "airport": "RKSI",
@@ -52,5 +53,5 @@
   "direction": "forward_difference_repeat_final",
   "RDP_units": "metres_before_feature_standardization",
   "time_basis": "relative_elapsed_seconds",
-  "preprocessor_id": "d69735dd5a1587c6720a4f5867a860e6a3b47fdb9ba81b239f80e1dfa5afeb35"
+  "preprocessor_id": "52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477"
 }

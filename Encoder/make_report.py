@@ -118,8 +118,8 @@ Weights, preprocessing, configuration, raw-file SHA256 values, per-trajectory sp
 
 The data lack absolute timestamps and real flight IDs, so real flight/date-level separation and stable hourly point-cloud/correlation-dimension ranges have not been validated. This delivery is a trained ATSCC/ITSC-inspired Encoder, not a complete hourly complexity system or a strict reproduction of the original paper. A PowerShell telemetry interruption is recorded in PROTOCOL.md; training subsequently resumed from checkpoints in a process with outbound networking disabled.
 """
-    (ROOT / "reports" / "RESULTS_ZH.md").write_text(note, encoding="utf-8")
-    print("Report written: reports/RESULTS_ZH.md")
+    (ROOT / "reports" / "RESULTS_5s_ZH.md").write_text(note, encoding="utf-8")
+    print("Report written: reports/RESULTS_5s_ZH.md (historical five-second run)")
 
 
 if __name__ == "__main__":

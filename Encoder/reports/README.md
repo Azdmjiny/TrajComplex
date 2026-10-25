@@ -2,10 +2,12 @@
 
 [Encoder overview](../README.md)
 
-Start with [RESULTS_ZH.md](RESULTS_ZH.md) for the scientific summary. The files below preserve different stages of the experiment, not successive copies of one result.
+Start with [RESULTS_10s_ZH.md](RESULTS_10s_ZH.md) for the current 10-second export. [RESULTS_5s_ZH.md](RESULTS_5s_ZH.md) is the historical five-second summary. The files below preserve different stages of the experiment, not successive copies of one result.
 
 | Group | Main files |
 | --- | --- |
+| Current 10-second export | `training-report-10s.md`, `result/export_verification.json`, `result/selection_10s.json` |
+| Historical five-second export | `RESULTS_5s_ZH.md`, `result/checkpoint_manifest.json`, old `selection.json` |
 | Data and preprocessing | `data_audit.json`, `quality_summary.json`, `preprocess.json`, `split_manifest.csv` |
 | Selection protocol | `frozen_protocol.json`, `screening_selection.json`, `selection.json` |
 | Held-out comparisons | `test_results.json`, `untrained_test_results.json`, `three_seed_summary.json`, `probe_summary.csv` |

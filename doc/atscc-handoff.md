@@ -43,7 +43,7 @@ python -m complexity hours.npz -o hours.complexity.json
 
 Per-epoch logs for the current model are in `Encoder/experiment_logs/d16_e120_t0p01_s43/`. `history.json` records training/validation loss; `status.json` records completion and the best epoch; `validation.json` and `untrained_validation.json` provide validation representation assessments.
 
-Held-out TEST results and baselines are in `Encoder/reports/result/test_results.json`, `untrained_test_results.json`, and `confounding_and_route.json`. See [RESULTS_ZH.md](../Encoder/reports/RESULTS_ZH.md) for the summary, and `three_seed_summary.json` and `probe_summary.csv` for seed/pooling comparisons.
+Held-out TEST results and baselines are in `Encoder/reports/result/test_results.json`, `untrained_test_results.json`, and `confounding_and_route.json`. See [RESULTS_5s_ZH.md](../Encoder/reports/RESULTS_5s_ZH.md) for the historical five-second summary, and `three_seed_summary.json` and `probe_summary.csv` for seed/pooling comparisons. The current export is the [10-second model](../Encoder/reports/RESULTS_10s_ZH.md).
 
 Decreasing training loss does not establish downstream complexity validity. The representative model does not outperform the stronger of the two baselines on any of the four geometric proxies, so additional proxy-prediction capability from training has not been established. The training data lack absolute timestamps and real flight IDs and cannot alone validate real hourly scenes. A separate OpenSky synthetic-perturbation study is described in the [evaluation report](../evaluation/report.md); it has not validated real controller workload.
 

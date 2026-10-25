@@ -1,15 +1,15 @@
 {
   "passed": true,
-  "strict_state_dict_load": true,
-  "frozen_parameters": true,
-  "repeated_feature_rebuild_max_token_error": 1.0877847671508789e-05,
-  "example_trajectory_id": "RKSIa:TEST:0",
-  "shape_tokens": [
-    184,
-    16
-  ],
-  "shape_embedding": [
-    16
-  ],
-  "selected_weights_sha256": "5eb1ed473658a0011c7a3257ea462b58cb6261633317cec5f6aca6ad52c9a035"
+  "epoch": 90,
+  "checkpoint_sha256": "bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976",
+  "example_trajectory_id": "RKSIa:TRAIN:8",
+  "example_split": "val",
+  "example_points": 170,
+  "output_dimension": 16,
+  "strict_resampler_matches_explicit_subsampling": true,
+  "repeated_cpu_inference_identical": true,
+  "token_unit_norm_and_sum_pool_verified": true,
+  "all_epoch_losses_and_gradients_finite": true,
+  "test_set_model_inference_performed": false,
+  "downstream_evaluation_performed": false
 }

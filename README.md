@@ -48,7 +48,7 @@ Run subsequent commands in the activated environment. Recreate an existing Pytho
 
 ### 1. Prepare trajectories
 
-Save each aircraft trajectory as a separate `.npy` file containing finite `(T, 3)` ENU coordinates in metres, already sampled at 5-second intervals, with at least 30 points.
+Save each aircraft trajectory as a separate `.npy` file containing finite `(T, 3)` ENU coordinates in metres, already sampled at 10-second intervals, with at least 30 points.
 
 ```text
 trajectories/
@@ -61,7 +61,7 @@ Upstream processing must handle time-window assignment, coordinate and altitude-
 
 ### 2. Encode and pool
 
-Run the repository-root script directly. Place one `.npy` file per aircraft in `trajectories/`. Each file must contain finite `(T, 3)` local ENU coordinates in metres, already sampled at 5-second intervals, with at least 30 points. All files in this folder are treated as one scene and must come from the same time window.
+Run the repository-root script directly. Place one `.npy` file per aircraft in `trajectories/`. Each file must contain finite `(T, 3)` local ENU coordinates in metres, already sampled at 10-second intervals, with at least 30 points. All files in this folder are treated as one scene and must come from the same time window.
 
 ```bash
 python encode_scene.py
@@ -95,9 +95,9 @@ The 12 independent experiments in [PLAN.md](Encoder/PLAN.md) are complete, with 
 | [probe_summary.csv](Encoder/reports/probe_summary.csv) | Test metrics across three dimensions, three seeds, and three pooling methods |
 | [three_seed_summary.json](Encoder/reports/three_seed_summary.json) | Mean and sample standard deviation across three seeds |
 | [experiment_logs/](Encoder/experiment_logs/) | Per-epoch losses, settings, and validation records |
-| [RESULTS_ZH.md](Encoder/reports/RESULTS_ZH.md) | Results report (Chinese) |
+| [RESULTS_10s_ZH.md](Encoder/reports/RESULTS_10s_ZH.md) | Current 10-second results report (Chinese) |
 
-The inference input is a finite `(T, 3)` array of ENU coordinates in metres, already sampled at five-second intervals. Each trajectory must have at least 30 points. The model constructs nine input features internally and uses the training-set mean and standard deviation stored in the checkpoint; preprocessing statistics are not refit during inference. The model runs in evaluation mode with frozen parameters. Token vectors are L2-normalized; the sum-pooled vector is not additionally L2-normalized.
+The inference input is a finite `(T, 3)` array of ENU coordinates in metres, already sampled at ten-second intervals. Each trajectory must have at least 30 points. The model constructs nine input features internally and uses the training-set mean and standard deviation stored in the checkpoint; preprocessing statistics are not refit during inference. The model runs in evaluation mode with frozen parameters. Token vectors are L2-normalized; the sum-pooled vector is not additionally L2-normalized.
 
 ```python
 from Encoder.trajectory_encoder.inference import FrozenEncoder

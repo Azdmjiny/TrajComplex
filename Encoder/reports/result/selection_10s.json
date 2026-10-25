@@ -1,0 +1,12 @@
+{
+  "run_id": "encoder_10s_fixed90_seed43",
+  "dimension": 16,
+  "epsilon_m": 300.0,
+  "temperature": 1.0,
+  "seed": 43,
+  "epoch": 90,
+  "selection": "fixed epoch 90; not selected by validation loss",
+  "checkpoint_sha256": "bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976",
+  "preprocessor_id": "52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477",
+  "sample_interval_s": 10
+}
