@@ -1,6 +1,6 @@
 # Evaluation: current paper presentation
 
-Updated 2026-10-26 from saved results only. No new experiment, Encoder call, D fit, sampling or threshold change was performed for this update. The 24h deduplicated result is now the main result; the original is preserved as an appendix. Maneuver results are unchanged and re-plotted with every scene retained.
+Updated 2026-10-26. The 24h deduplicated result remains the main application result; the original is preserved as an appendix. Maneuver results are unchanged. A new threshold review recomputes hourly D from the frozen deduplicated embeddings only, with no Encoder calls, new trajectories or changes to the primary maneuver gates.
 
 ## 1. Changi: complete 24h application display
 
@@ -18,6 +18,29 @@ Exactly repeated horizontal observations are collapsed while retaining all altit
 ![September 8 hourly application](runs/changi-hourly/figures/2026-09-08-24h-D-count-status.png)
 
 All three schemes use the deduplicated results consistently. Fixed-N valid draws change from 1,991/3,000 to 2,496/3,400 on September 8, and from 2,622/3,200 to 2,555/3,200 on September 11. More accepted tracks do not guarantee more stable subsets. Weather differences still have mixed signs. See the [complete comparison](runs/changi-hourly/comparison-with-original.md) and [original appendix](runs/changi-hourly/appendix-original/report.md).
+
+### Threshold review: 3h primary vs 1h exploratory
+
+The original gap was mostly `insufficient_samples`, not R². A centered 3-hour
+window (union of the center hour and its neighbors, one embedding per aircraft)
+keeps N>=30 and recovers most hours:
+
+| Rule | 2026-09-08 | 2026-09-11 |
+|---|---:|---:|
+| 1h, N>=30, R²>=0.94 (published) | 14/24 | 15/24 |
+| 1h, N>=20, R²>=0.90 | 18/24 | 20/24 |
+| 3h, N>=30, R²>=0.94 | 20/24 | 21/24 |
+| **3h, N>=30, R²>=0.90 (primary display)** | **21/24** | **22/24** |
+
+![24h threshold comparison](runs/changi-thresholds/figures/changi-24h-threshold-comparison.png)
+
+Blue is the 3h primary display; orange dashed is the 1h N>=20 exploratory
+estimate. Grey bands are 3h poor-fit hours, open circles are low-confidence 1h
+N=15–19 points, and triangles are the assigned floor for N<15 (floor 0.7633).
+The floor is a display convention, not a measured D. The remaining 3h gaps —
+09-08 hours 01–03 and 09-11 hours 00–01 — are poor fits at N=42–57, so they
+are not filled by the low-traffic floor. The review does **not** claim 24/24.
+See [the run report and full per-hour records](runs/changi-thresholds/report.md).
 
 **Paper claim:** an auditable real-airport-area application with hourly estimates and explicit availability limits. A complete 24h display is not 24 reliable D estimates. No causal storm effect or independence from traffic volume is established. The 100 km area includes overflights and traffic from other airports.
 
