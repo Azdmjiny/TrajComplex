@@ -6,6 +6,7 @@ These folders separate distinct experiments and diagnostics; they are not altern
 |---|---|
 | [changi-hourly](changi-hourly/report.md) | **Application case:** deduplicated main result, original appendix; complete 24h D/count/status displays and fixed-N/weather supplements |
 | [changi-thresholds](changi-thresholds/report.md) | Threshold review: 3h rolling primary display, 1h N>=20 exploratory, low-traffic floor and explicit remaining gaps |
+| [changi-n-scaling](changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot: 5 to 56 aircraft, 100 nested orders |
 | [segmented-15km](segmented-15km/README.md) | **Active:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |
 | [strict-10s-reference](strict-10s-reference/report.md) | Historical twelve-scene midpoint results and exact shared-cutoff source |
 | [four-scene-vectoring-screen](four-scene-vectoring-screen/report.md) | Background/candidate screening: 21 accepted candidates out of 26 |

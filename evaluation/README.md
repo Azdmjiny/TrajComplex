@@ -29,6 +29,7 @@ Start with the [current report](report.md). The active evaluation includes the
 | [report.md](report.md) | Active maneuver results and hourly application case |
 | [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
 | [runs/changi-thresholds](runs/changi-thresholds/report.md) | 3h primary / 1h exploratory threshold review and low-traffic floor |
+| [runs/changi-n-scaling](runs/changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot |
 | [runs/segmented-15km](runs/segmented-15km/) | Frozen population, source scripts, full diagnostics and figures |
 | [runs/README.md](runs/README.md) | Index of every result package |
 | [code/README.md](code/README.md) | Explicit-input screening, inference and diagnostic commands |

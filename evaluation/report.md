@@ -42,6 +42,21 @@ The floor is a display convention, not a measured D. The remaining 3h gaps —
 are not filled by the low-traffic floor. The review does **not** claim 24/24.
 See [the run report and full per-hour records](runs/changi-thresholds/report.md).
 
+### D versus aircraft count: one-scene pilot
+
+One frozen scene (2026-09-08 20:00 UTC+08, N=56) was resampled in 100 nested
+random orders, starting at 5 aircraft and adding one at a time.
+
+![D versus aircraft count](runs/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.png)
+
+N=5–10 cannot be fitted on the fixed radius grid; N=11–14 is based on only
+1–8/100 valid orders. D rises to ≈1.4 around N=19–20, where the valid rate is
+still only 67–73/100, then falls to ≈1.15 and is flat from N=30 to 56.
+This is a small-N instability, not evidence that adding aircraft increases
+complexity. At N>=30 the curve is stable, which is consistent with D measuring
+embedding geometry rather than count. This is one scene, not a general volume
+experiment. See [the pilot report](runs/changi-n-scaling/report.md).
+
 **Paper claim:** an auditable real-airport-area application with hourly estimates and explicit availability limits. A complete 24h display is not 24 reliable D estimates. No causal storm effect or independence from traffic volume is established. The 100 km area includes overflights and traffic from other airports.
 
 ## 2. Holding: dose response and equal-duration paired difference
