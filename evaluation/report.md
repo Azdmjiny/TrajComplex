@@ -98,38 +98,49 @@ intuition that segmented vectoring is easier to see than a smooth curve.
 ## Paper figures
 
 A curated set is indexed in [figures/README.md](figures/README.md). All panels
-are drawn from the stored results in `runs/segmented-15km`; no encoder calls or
-new D estimates were made to produce them.
+are drawn from stored results; no encoder calls or new D estimates were made to
+produce them.
 
-**Figure P1 — the positive result (main).** Segmented 15 km vectoring gives a
-positive dose–D association at the scene level in all three estimable scenes
-(13/15 curves positive overall). Thin grey lines are
-the five injection orders; the thick orange line is their median. Panel D
-collects all 15 curves: 13/15 positive, median rho 0.829, against 9/15 and
-0.600 for the smooth control. Two negative curves are visible and retained.
+**Figure P1 — Holding vs Vectoring overview (main).** Left column: Holding;
+right column: Vectoring. The top row puts every estimable scene/curve in one
+panel: Holding has eight scenes with a jointly valid paired comparison
+(7/8 positive, median paired ΔD +0.034); four scenes have no accepted pair.
+Vectoring has all 15 curves from the three estimable scenes (13/15 positive,
+median rho 0.829). The bottom row shows the cleanest representative case for
+each side: Holding 09-04 (Holding D rises above straight; H rho 0.82 vs 0.67)
+and Vectoring 09-15 (5/5 orders positive; median rho 0.96).
+
+![Holding vs Vectoring overview](figures/holding-vs-vectoring-comparison.png)
+
+PDF: [holding-vs-vectoring-comparison.pdf](figures/holding-vs-vectoring-comparison.pdf).
+
+**Figure P2 — the detailed positive result (main).** Segmented 15 km vectoring
+gives a positive dose–D association at the scene level in all three estimable
+scenes (13/15 curves positive overall). Thin grey lines are the five injection
+orders; the thick orange line is their median. Two negative curves are visible
+and retained.
 
 ![Segmented 15 km positive dose-response](figures/segmented-positive-dose-response.png)
 
-Also available as a vector PDF:
-[segmented-positive-dose-response.pdf](figures/segmented-positive-dose-response.pdf).
+PDF: [segmented-positive-dose-response.pdf](figures/segmented-positive-dose-response.pdf).
 
-**Figure P2 — injection geometry (methods).** Smooth S-curve vs segmented
+**Figure P3 — injection geometry (methods).** Smooth S-curve vs segmented
 trapezoid at the same 15 km peak. The segmented track is schematic, not a
 C2-certified maneuver:
 [injection-geometry-smooth-vs-segmented.png](figures/injection-geometry-smooth-vs-segmented.png).
 
-**Figure P3 — shape comparison.** All-curve median, scene-level medians and one
+**Figure P4 — shape comparison.** All-curve median, scene-level medians and one
 representative dose response for smooth vs segmented:
 [d-association-smooth-vs-segmented.png](figures/d-association-smooth-vs-segmented.png).
 
-**Figure P4 — Holding control (supplement).** Equal-duration terminal control
+**Figure P5 — Holding control (supplement).** Equal-duration terminal control
 at the same archived cutoffs. Both arms increase D with dose; Holding is above
 straight in most comparable scenes, but the effect is smaller and mixed across
 scenes. Use as a control, not as a second positive result.
 
 ![Holding equal-duration control](figures/holding-shared-cutoff-curves.png)
 
-**Figure P5 — paired Holding differences (supplement).**
+**Figure P6 — paired Holding differences (supplement).**
 [holding-paired-differences.png](figures/holding-paired-differences.png).
 
 ## Historical arms (not the active result)
