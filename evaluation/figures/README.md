@@ -32,3 +32,7 @@ python evaluation/code/make_review_figures.py --output /new/local/figure-package
 ```
 
 The render manifest stays local. Source data and saved statistics are not changed.
+
+## Concurrent compact overview retained
+
+The teammate's [Holding-versus-Vectoring small multiples](holding-vs-vectoring-comparison.png) ([PDF](holding-vs-vectoring-comparison.pdf)) and [renderer](make_combined_figure.py) are retained without modification. Left: Holding scenes September 1, 4 and 10, with order points, mean Holding D and mean straight D. Right: the three correlation-estimable Vectoring scenes, with order points and mean D. This compact view includes a subset of scenes; use the new all-scene figures for complete coverage and explicit NA. Do not interchange its mean curves with the new median curves.

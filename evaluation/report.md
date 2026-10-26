@@ -74,3 +74,7 @@ The segmented shape is a schematic stress stimulus: 150 s outward, 300 s at 15 k
 - [Historical 5 km report](archive/report-5km-2026-10-24.md): retained evidence, not the current 15 km result.
 
 Hourly position deduplication is not retroactively applied to Holding or Vectoring. Their saved data, thresholds and experimental definitions remain unchanged. Earlier maneuver figures remain historical views; the four all-scene figures above are the preferred current presentation. No experiments were rerun to produce this report.
+
+## Additional compact overview preserved from the concurrent update
+
+The teammate's [Holding-versus-Vectoring overview](figures/holding-vs-vectoring-comparison.png) ([PDF](figures/holding-vs-vectoring-comparison.pdf)) is retained unchanged, along with its [renderer](figures/make_combined_figure.py). It shows three Holding scenes (September 1, 4 and 10) and the three correlation-estimable Vectoring scenes (September 15, 19 and 27). Pastel points are individual orders; black lines are means, and the dashed grey Holding-side line is the straight-flight mean. This is a compact selected-scene view, not the complete scene inventory. The all-scene figures above remain the preferred evidence for unavailable scenes, negative responses and full coverage. These curves use means, whereas the new complete-scene figures use medians.
