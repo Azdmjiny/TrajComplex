@@ -1,33 +1,34 @@
-# Paper figure set
+# Current paper figures
 
-Curated figures for the paper. All values come from the stored
-`evaluation/runs/segmented-15km` results; no encoder calls or new D estimates
-were made to produce this set. The positive panel is reproducible with
-`evaluation/runs/segmented-15km/source/make_paper_figures.py`.
+All four current maneuver figures use existing saved results only. The renderer is [make_review_figures.py](../code/make_review_figures.py). PNG previews, SVG and vector PDF versions share the same basename. No scenes, negative curves or unavailable correlations are removed.
 
-## Main figures
+| Figure | PNG | Vector PDF | Meaning |
+|---|---|---|---|
+| Holding dose response | [Preview](holding-all-scenes-dose.png) | [PDF](holding-all-scenes-dose.pdf) | All 12 scenes, both +240-second arms; full range, common historical cutoffs and failed-fit markers |
+| Holding paired difference | [Preview](holding-all-scenes-paired-difference.png) | [PDF](holding-all-scenes-paired-difference.pdf) | Same scene/order/dose, both fits valid; positive means Holding has higher D |
+| Vectoring dose response | [Preview](vectoring-all-scenes-dose.png) | [PDF](vectoring-all-scenes-dose.pdf) | All 4 scenes × 2 shapes, every order, common D axis; includes scene with too few doses for rho |
+| Vectoring correlations | [Preview](vectoring-all-scenes-correlations.png) | [PDF](vectoring-all-scenes-correlations.pdf) | Every order, negative coefficients and explicit NA; display order = saved replicate + 1 |
 
-| File | Suggested use | Caption |
-|---|---|---|
-| [segmented-positive-dose-response.png](segmented-positive-dose-response.png) / [.pdf](segmented-positive-dose-response.pdf) | Main positive result | Segmented 15 km vectoring produces a positive dose–D association at the scene level in all three estimable scenes. Thin grey lines are the five injection orders; the thick orange line is their median. Panel D summarizes all 15 curves: 13/15 positive, median rho 0.829, versus 9/15 and 0.600 for the smooth 15 km control. |
-| [injection-geometry-smooth-vs-segmented.png](injection-geometry-smooth-vs-segmented.png) | Methods | Smooth S-curve and segmented trapezoid at the same 15 km peak. The segmented track holds 15 km for 300 s with 150 s straight ramps and a 30 s corner blend. It is a schematic stimulus, not a C2-certified maneuver. |
-| [d-association-smooth-vs-segmented.png](d-association-smooth-vs-segmented.png) | Shape comparison | Smooth vs segmented association: the all-curve median, scene-level medians, and one representative dose response. |
+## Captions and interpretation
 
-## Control / supplement
+Holding uses its original R²≥0.98; current Vectoring uses its original R²≥0.94. The figures do not harmonize these different studies. Thin dose curves represent dependent injection orders, thick curves medians of available orders. They are not confidence intervals. NA breaks curves; bottom crosses are status markers, not D. Holding correlations use common accepted doses in both arms, whereas plotted arm medians use each arm's available estimates. These are different summaries and must not be equated.
 
-| File | Suggested use | Caption |
-|---|---|---|
-| [holding-shared-cutoff-curves.png](holding-shared-cutoff-curves.png) | Holding control | Equal-duration terminal control at the same archived Holding cutoffs. Both arms increase D with dose; Holding is above straight in most comparable scenes, but the effect is smaller and mixed across scenes. |
-| [holding-paired-differences.png](holding-paired-differences.png) | Supplement | Per-scene paired Holding-minus-Straight D differences at the same aircraft dose. Positive means Holding has the higher D. Five scenes have no accepted paired comparison and are marked as such. |
+Holding cutoffs are shared between arms and were inherited from historical midpoint results; the full tail is shown, and no new peak is chosen. Paired differences require two accepted fits but not an accepted zero-dose baseline. The segmented 15 km Vectoring result is a schematic stimulus, without the smooth control's motion certificate. All 115 D estimates in each current Vectoring arm pass; one scene has only 4 dose levels, so its correlations are unavailable.
 
-## Notes
+The [main report](../report.md) contains the full captions, numerical summaries and limits.
 
-- The positive result is specific to the segmented 15 km stimulus. The smooth
-  15 km control is 9/15 positive, median 0.600; do not present the segmented
-  number as a property of vectoring in general.
-- `2026-09-14` has only four valid doses and is not estimable; it is omitted
-  from the positive panels and noted in the figure.
-- Two negative segmented curves are retained in panel D (09-19 order 4 and
-  09-27 order 3).
-- The Holding figures are a control/supplement, not evidence of a universal
-  positive Holding-specific dose response.
+## Hourly application
+
+Use the [deduplicated 24h main figures](../runs/changi-hourly/report.md) with D, before/after-QC counts and status. The [original figures](../runs/changi-hourly/appendix-original/report.md) are the appendix comparator. Neither version has 24 accepted D values. The original-versus-deduplicated comparison retains all hours and all three schemes.
+
+## Historical views retained
+
+`holding-shared-cutoff-curves.png`, `holding-paired-differences.png`, `segmented-positive-dose-response.png/.pdf` and `d-association-smooth-vs-segmented.png` remain earlier views of the same saved maneuver results. They are not the new preferred complete-scene figures. The old compact positive Vectoring panel omitted the non-estimable-correlation scene from its dose panels; the new figures include it explicitly. The [geometry illustration](injection-geometry-smooth-vs-segmented.png) remains a methods illustration.
+
+Reproduce locally, without running an experiment:
+
+```bash
+python evaluation/code/make_review_figures.py --output /new/local/figure-package
+```
+
+The render manifest stays local. Source data and saved statistics are not changed.

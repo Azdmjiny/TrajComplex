@@ -6,7 +6,7 @@ Start with the [current report](report.md). The active evaluation includes the
 
 ## Current status
 
-- **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. Accepted D is available in 14/24 and 11/24 hours respectively. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
+- **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. The deduplicated main result has accepted D in 15/24 and 14/24 hours respectively; the original 14/24 and 11/24 results remain an appendix comparator. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
 - **Vectoring (active):** fixed 15 km peak, segmented trapezoid injection
   (150 s out / 300 s plateau / 150 s back, 30 s corner blend), original
   9-feature Encoder, `min_r_squared=0.94`, no STAR. Result: 13/15 positive
@@ -35,7 +35,7 @@ Start with the [current report](report.md). The active evaluation includes the
 
 ## Active code
 
-- `code/report_changi_hourly.py` — the sole current hourly report builder; saved records only, no inference, D estimation or new draws. Use `--input LOCAL_SAVED_PACKAGE --output NEW_DIRECTORY`. Its derived input data remain local.
+- `code/report_changi_hourly.py` — the sole current hourly report builder; saved records only, no inference, D estimation or new draws. Use `--input LOCAL_SAVED_PACKAGE --preprocessing position-dedup --output NEW_DIRECTORY` for the main result (or `--preprocessing original` for the appendix). Its derived input data remain local.
 - `code/vectoring_path.py` — `PEAK=15000`; `generate_segmented()` (segmented)
   and `generate()` (smooth control).
 - `code/vectoring_population.py` — `SEGMENTED=True`; 10-second population uses
@@ -48,3 +48,7 @@ Start with the [current report](report.md). The active evaluation includes the
 The segmented arm is a schematic stimulus and does not carry the smooth
 generator’s C2 / 2 m s⁻² / 35° motion certificate. No raw data, model weights
 or authentication caches are added by this publication.
+
+## Current presentation update
+
+The [four all-scene maneuver figures](figures/README.md) retain full dose ranges, negative correlations and unavailable results. Reproduce with `code/make_review_figures.py`; no D rerun is needed.

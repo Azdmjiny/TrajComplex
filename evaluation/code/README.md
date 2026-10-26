@@ -3,11 +3,11 @@
 ## Changi hourly application report
 
 ```bash
-python evaluation/code/report_changi_hourly.py --input /local/changi-saved-package --output /local/new-hourly-report
+python evaluation/code/report_changi_hourly.py --input /local/changi-dedup-evaluation --preprocessing position-dedup --output /local/new-hourly-report
 python -m unittest discover -s evaluation/code -p "test_changi_hourly_report.py"
 ```
 
-The report builder requires `--input` pointing to the local saved-data package, which is not uploaded to GitHub. It verifies 48 hours and all 6,200 stored draws, then writes a report and four PNG/SVG/PDF figure sets into a **new** directory. It never imports the Encoder or D estimator and never resamples. Main figures show D, before/after-QC counts and estimability for all 24 hours; NA breaks lines. Fixed-N and weather plots are supplements. No 3h report, source-track recovery, changed thresholds or positive-result selection is performed. Dependencies: NumPy and Matplotlib. Set `CHANGI_HOURLY_INPUT` to that local package before running the saved-record tests; they explicitly skip when it is unavailable.
+The report builder requires `--input` pointing to the local saved-data package, which is not uploaded to GitHub. It verifies 48 hours and all 6,600 stored draws (6,200 with the original appendix input and `--preprocessing original`), then writes a report and four PNG/SVG/PDF figure sets into a **new** directory. It never imports the Encoder or D estimator and never resamples. Main figures show D, before/after-QC counts and estimability for all 24 hours; NA breaks lines. Fixed-N and weather plots are supplements. No 3h report, source-track recovery, changed thresholds or positive-result selection is performed. Dependencies: NumPy and Matplotlib. Set `CHANGI_HOURLY_INPUT` to that local package and `CHANGI_HOURLY_POLICY=position-dedup` before running the saved-record tests; they explicitly skip when it is unavailable.
 
 This replaces the local report-text replacement and separate audit plotting scripts with one portable entrypoint. To update the public package, review and replace only its report and figures. Keep derived data, execution source snapshots, hashes and report manifests local. See the [case documentation](../runs/changi-hourly/README.md).
 
@@ -102,3 +102,13 @@ python -m unittest discover -s evaluation/code -p "test_postprocessing.py"
 ```
 
 The targeted integration tests do not call the Encoder or D estimator. The broader historical test suite includes saved-embedding D replay and is a separate software check.
+
+
+## Current paper presentation (saved results only)
+
+```bash
+python evaluation/code/report_changi_hourly.py --input /local/changi-dedup-evaluation --preprocessing position-dedup --output /new/local/hourly-report
+python evaluation/code/make_review_figures.py --output /new/local/maneuver-figures
+```
+
+The hourly builder delegates version-aware text to `hourly_report_text.py`. It reads 6,600 saved draws for the deduplicated main result, or 6,200 for the original appendix with `--preprocessing original`. The frozen 1,697/1,434 aircraft-hour population must match the selected version. It does not change screening or rerun inference. The maneuver renderer includes all 12 Holding and 4 Vectoring scenes, negative correlations and unavailable states, with source hashes checked after rendering. Only code, reviewed reports and figures may be published; generated manifests and hourly evidence remain local. Historical compact figure scripts are provenance, not the preferred all-scene renderer.
