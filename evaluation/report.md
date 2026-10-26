@@ -2,6 +2,23 @@
 
 Updated 2026-10-26. The 24h deduplicated result remains the main application result; the original is preserved as an appendix. Maneuver results are unchanged. A new threshold review recomputes hourly D from the frozen deduplicated embeddings only, with no Encoder calls, new trajectories or changes to the primary maneuver gates.
 
+## 0. OpenSky 30-day raw-scene analysis (no quality gate)
+
+A separate raw-scene analysis removes candidate/QC/dedup screening: 720 hourly
+scenes, 19,306 tracks, 20 nested orders per scene, every N from 5 to the scene
+total. D is reported as a **raw log–log slope** (all scales with 0<C(r)<1, at
+least two scales; no C bounds, no radius-ratio gate, no R² gate). The Encoder's
+minimum of 30 input points remains.
+
+![Raw D versus N](runs/opensky-30d-no-gate/figures/A-boxplot-no-gate.png)
+
+The median raw slope rises from 1.127 at N=5 to 1.398 at N=30 and then
+flattens around 1.44–1.46. This is a low-N/small-sample shape, not evidence that
+adding aircraft causes complexity. The run also contains the 24h raw curves for
+09-08/09-11, the requested N<15 floor display (0.813), and the day/night
+Plan A/Plan C comparison. Run report:
+[runs/opensky-30d-no-gate](runs/opensky-30d-no-gate/report.md).
+
 ## 1. Changi: complete 24h application display
 
 The [hourly main report](runs/changi-hourly/report.md) shows September 11 and September 8 in 1-hour windows. Each figure contains accepted D, aircraft counts before/after QC, and status for every hour. NA is never zero, and lines do not bridge missing estimates.
@@ -61,11 +78,19 @@ experiment. See [the pilot report](runs/changi-n-scaling/report.md).
 
 ## 2. Holding: dose response and equal-duration paired difference
 
-All 12 scenes and 5 orders per scene are shown. Both arms append 240 seconds at the trajectory endpoint; original points remain unchanged. The saved Holding study uses R²≥0.98, unlike the R²≥0.94 hourly and current Vectoring studies. These gates are not retrospectively made uniform.
+The main view now shows the **8 estimable scenes**, 2×4, each with its own
+y-axis: this avoids the empty panels and shared-axis compression of the earlier
+all-scene layout. Both arms append 240 seconds at the trajectory endpoint;
+original points remain unchanged. The saved Holding study uses R²≥0.98, unlike
+the R²≥0.94 hourly and current Vectoring studies. These gates are not
+retrospectively made uniform.
 
-![Holding: all scenes and both arms](figures/holding-all-scenes-dose.png)
+![Holding: 8 estimable scenes and both arms](figures/holding-main-8-scenes.png)
 
-Blue is Holding; orange is straight flight. Thin curves are individual orders; thick curves are the median of available orders at each dose. Crosses at the bottom mark rejected order-dose estimates; their vertical position is a status marker, not D. Dashed vertical lines show the archived common cutoff where available. Full later-dose results remain visible. Four scenes have too few aircraft and no accepted D.
+Blue is Holding; orange is straight flight. Thin curves are individual orders;
+thick curves are the **mean** of available orders at each dose. Four scenes
+have fewer than 30 aircraft and no accepted D; they are omitted from this main
+view but retained in the full run and in the paired-difference figure.
 
 | Scope, jointly valid doses | Median order rho: Holding | Straight | Orders |
 |---|---:|---:|---:|

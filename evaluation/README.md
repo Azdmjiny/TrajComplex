@@ -8,6 +8,7 @@ Start with the [current report](report.md). The active evaluation includes the
 
 - **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. The deduplicated main result has accepted D in 15/24 and 14/24 hours respectively; the original 14/24 and 11/24 results remain an appendix comparator. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
 - **24h threshold review:** a centered 3h window with N>=30 and R²>=0.90 gives 21/24 and 22/24 accepted hours; the 1h N>=20 exploratory view gives 18/24 and 20/24. Remaining 3h gaps are poor fits at N=40–57, not insufficient aircraft, so they stay NA. N<15 is shown as an assigned floor, not a measured D. See the [review](runs/changi-thresholds/report.md).
+- **Raw 30-day no-gate:** 720 scenes, 19,306 tracks; raw log–log slope rises from 1.13 at N=5 to 1.40 at N=30 and flattens near 1.45. Includes 24h raw views, N<15 floor 0.813, and day/night Plan A/C. Not quality-gated D. See the [run](runs/opensky-30d-no-gate/report.md).
 - **Vectoring (active):** fixed 15 km peak, segmented trapezoid injection
   (150 s out / 300 s plateau / 150 s back, 30 s corner blend), original
   9-feature Encoder, `min_r_squared=0.94`, no STAR. Result: 13/15 positive
@@ -29,6 +30,7 @@ Start with the [current report](report.md). The active evaluation includes the
 | [report.md](report.md) | Active maneuver results and hourly application case |
 | [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
 | [runs/changi-thresholds](runs/changi-thresholds/report.md) | 3h primary / 1h exploratory threshold review and low-traffic floor |
+| [runs/opensky-30d-no-gate](runs/opensky-30d-no-gate/report.md) | Raw 30-day no-gate D-vs-N, 24h views and day/night comparison |
 | [runs/changi-n-scaling](runs/changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot |
 | [runs/segmented-15km](runs/segmented-15km/) | Frozen population, source scripts, full diagnostics and figures |
 | [runs/README.md](runs/README.md) | Index of every result package |

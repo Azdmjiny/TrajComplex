@@ -5,6 +5,7 @@ These folders separate distinct experiments and diagnostics; they are not altern
 | Folder | Role |
 |---|---|
 | [changi-hourly](changi-hourly/report.md) | **Application case:** deduplicated main result, original appendix; complete 24h D/count/status displays and fixed-N/weather supplements |
+| [opensky-30d-no-gate](opensky-30d-no-gate/report.md) | Raw 30-day no-gate analysis: 720 scenes, D-vs-N figures, 24h raw/floor views, day/night Plan A/C |
 | [changi-thresholds](changi-thresholds/report.md) | Threshold review: 3h rolling primary display, 1h N>=20 exploratory, low-traffic floor and explicit remaining gaps |
 | [changi-n-scaling](changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot: 5 to 56 aircraft, 100 nested orders |
 | [segmented-15km](segmented-15km/README.md) | **Active:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |

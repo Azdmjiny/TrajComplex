@@ -4,18 +4,25 @@ All four current maneuver figures use existing saved results only. The renderer 
 
 | Figure | PNG | Vector PDF | Meaning |
 |---|---|---|---|
-| Holding dose response | [Preview](holding-all-scenes-dose.png) | [PDF](holding-all-scenes-dose.pdf) | All 12 scenes, both +240-second arms; full range, common historical cutoffs and failed-fit markers |
+| Holding dose response | [Preview](holding-main-8-scenes.png) | [PDF](holding-main-8-scenes.pdf) | 8 estimable scenes, both +240-second arms; 2×4, per-panel y, mean of available orders |
 | Holding paired difference | [Preview](holding-all-scenes-paired-difference.png) | [PDF](holding-all-scenes-paired-difference.pdf) | Same scene/order/dose, both fits valid; positive means Holding has higher D |
 | Vectoring dose response | [Preview](vectoring-all-scenes-dose.png) | [PDF](vectoring-all-scenes-dose.pdf) | All 4 scenes × 2 shapes, every order, common D axis; includes scene with too few doses for rho |
 | Vectoring correlations | [Preview](vectoring-all-scenes-correlations.png) | [PDF](vectoring-all-scenes-correlations.pdf) | Every order, negative coefficients and explicit NA; display order = saved replicate + 1 |
 
 ## Captions and interpretation
 
-Holding uses its original R²≥0.98; current Vectoring uses its original R²≥0.94. The figures do not harmonize these different studies. Thin dose curves represent dependent injection orders, thick curves medians of available orders. They are not confidence intervals. NA breaks curves; bottom crosses are status markers, not D. Holding correlations use common accepted doses in both arms, whereas plotted arm medians use each arm's available estimates. These are different summaries and must not be equated.
+Holding uses its original R²≥0.98; current Vectoring uses its original R²≥0.94. The figures do not harmonize these different studies. Thin dose curves represent dependent injection orders; the Holding main figure uses the mean of available orders, while the paired-difference figure uses a median of available pairs. They are not confidence intervals. NA breaks curves; bottom crosses are status markers, not D. Holding correlations use common accepted doses in both arms, whereas plotted arm medians use each arm's available estimates. These are different summaries and must not be equated.
 
 Holding cutoffs are shared between arms and were inherited from historical midpoint results; the full tail is shown, and no new peak is chosen. Paired differences require two accepted fits but not an accepted zero-dose baseline. The segmented 15 km Vectoring result is a schematic stimulus, without the smooth control's motion certificate. All 115 D estimates in each current Vectoring arm pass; one scene has only 4 dose levels, so its correlations are unavailable.
 
 The [main report](../report.md) contains the full captions, numerical summaries and limits.
+
+## Raw 30-day no-gate
+
+The [raw 30-day run](../runs/opensky-30d-no-gate/report.md) has its own figure
+set: boxplot, hexbin, band/sample curves, 24h raw views, the N<15 floor view,
+and the day/night Plan A/C comparison. These are **raw slopes**, not
+quality-gated D; do not mix them with the maneuver figures above.
 
 ## Hourly application
 
