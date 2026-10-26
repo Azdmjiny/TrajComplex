@@ -101,14 +101,15 @@ A curated set is indexed in [figures/README.md](figures/README.md). All panels
 are drawn from stored results; no encoder calls or new D estimates were made to
 produce them.
 
-**Figure P1 — Holding vs Vectoring (main).** Left: representative Holding
-scene 09-04 16:00. Solid line is the median D for Holding, dashed is straight
-continuation, and bands are the IQR across the five orders; Holding rho 0.82
-vs straight 0.67. Right: representative Vectoring scene 09-15 15:00. Grey
-lines are the five injection orders and the orange line is their median;
-median rho 0.96, 5/5 orders positive. All-scene summaries remain in P2
-(Vectoring) and P5 (Holding); four Holding scenes and 09-14 for Vectoring are
-not estimable.
+**Figure P1 — Holding vs Vectoring small multiples (main).** Left: three
+Holding scenes (09-01, 09-04, 09-10). Pastel dots are the five orders, the
+black line is the mean Holding D, and the grey dashed line is the mean straight
+D; titles give common-dose rho for Holding and Straight. Right: all three
+estimable Vectoring scenes (09-15, 09-19, 09-27); pastel dots are the five
+orders and the black line is their mean. Three Holding scenes are shown because
+all twelve cannot be legible at this size; the complete paired Holding summary
+is P5, and four scenes have no accepted pair. Vectoring omits 09-14, which has
+only four valid doses.
 
 ![Holding vs Vectoring overview](figures/holding-vs-vectoring-comparison.png)
 

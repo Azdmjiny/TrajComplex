@@ -2,67 +2,70 @@
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
+from matplotlib.lines import Line2D
 from pathlib import Path
 
 repo=Path(__file__).resolve().parents[2]
 hr=repo/'evaluation/runs/holding-equal-duration/results'
 vr=repo/'evaluation/runs/segmented-15km/results'
+hs=json.load(open(hr/'summary.json'))
 hrec=json.load(open(hr/'paired-dose-records.json'))
+vs=json.load(open(vr/'segmented/summary.json'))
 vexp=json.load(open(vr/'segmented/experiment-results.json'))['qc500_safe']['vectoring']['scenes']
 
-C_H='#1F4E79'; C_S='#777777'; C_V='#B35C1E'; C_T='#8C8C8C'
-plt.rcParams.update({
-    'font.family':'DejaVu Serif','mathtext.fontset':'dejavuserif','font.size':8.5,
-    'axes.titlesize':9.2,'axes.labelsize':8.6,'xtick.labelsize':7.8,'ytick.labelsize':7.8,
-    'axes.linewidth':0.6,'xtick.major.width':0.6,'ytick.major.width':0.6,
-    'xtick.direction':'out','ytick.direction':'out','legend.fontsize':7.4,
-})
-fig,axes=plt.subplots(1,2,figsize=(7.2,2.95),gridspec_kw={'wspace':0.32})
-ax=axes[0]
-# holding 09-04, median + IQR across replicates
-sid='2026-09-04T08Z'
-for arm,color,ls,label in [('holding',C_H,'-','Holding'),('straight',C_S,'--','Straight')]:
-    by={}
+PASTEL=['#A6CEE3','#B2DF8A','#CAB2D6','#FDBF6F','#A6D8D4']
+BLACK='#1A1A1A'; GREY='#6B7280'
+plt.rcParams.update({'font.family':'DejaVu Sans','font.size':8.4,'axes.titlesize':9.2,'axes.labelsize':8.4,'xtick.labelsize':7.6,'ytick.labelsize':7.6,'axes.linewidth':.6})
+fig,axes=plt.subplots(3,2,figsize=(12.0,9.0),gridspec_kw={'hspace':.43,'wspace':.22})
+hsce=[('2026-09-01T01Z','09-01 09:00'),('2026-09-04T08Z','09-04 16:00'),('2026-09-10T06Z','09-10 14:00')]
+vsce=[('2026-09-15T07Z','09-15 15:00'),('2026-09-19T07Z','09-19 15:00'),('2026-09-27T05Z','09-27 13:00')]
+for row,(sid,label) in enumerate(hsce):
+    ax=axes[row,0]
+    for rep in range(5):
+        pts=[(r['dose'],r['holding_D']) for r in hrec if r['scene']==sid and r['replicate']==rep and r['holding_D'] is not None]
+        if pts:
+            ax.scatter([p[0] for p in pts],[p[1] for p in pts],s=9,color=PASTEL[rep],alpha=.65,edgecolors='none',zorder=2)
+    bh={}; bs={}
     for r in hrec:
-        if r['scene']==sid and r[arm+'_D'] is not None:
-            by.setdefault(r['dose'],[]).append(r[arm+'_D'])
-    ds=sorted(by); med=[np.median(by[d]) for d in ds]
-    lo=[np.percentile(by[d],25) for d in ds]; hi=[np.percentile(by[d],75) for d in ds]
-    ax.fill_between(ds,lo,hi,color=color,alpha=.10,lw=0,zorder=1)
-    ax.plot(ds,med,color=color,ls=ls,lw=1.8,label=label,zorder=3)
-ax.set_xlabel('Aircraft with +240 s appended')
-ax.set_ylabel('Correlation dimension $D$')
-ax.set_title('(a) Holding · 09-04 16:00',loc='left',pad=6)
-ax.text(.03,.96,'Holding $\\rho$ = 0.82\nStraight $\\rho$ = 0.67',transform=ax.transAxes,va='top',ha='left',fontsize=7.4,color='#333333')
-ax.legend(loc='lower right',frameon=False,handlelength=1.8)
-ax.set_xlim(5,35)
-ax.grid(False)
-
-ax=axes[1]
-sid='2026-09-15T07Z'
-rows=[s for s in vexp if s['scene_id']==sid]
-by={}
-for s in rows:
-    for p in s['dose_curve']:
-        if p['status']=='ok' and p['dimension'] is not None:
-            by.setdefault(p['vectoring_aircraft'],[]).append(p['dimension'])
-    pts=[(p['vectoring_aircraft'],p['dimension']) for p in s['dose_curve'] if p['status']=='ok' and p['dimension'] is not None]
-    ax.plot([p[0] for p in pts],[p[1] for p in pts],color=C_T,lw=.65,alpha=.75,zorder=1)
-ds=sorted(by); med=[np.median(by[d]) for d in ds]
-ax.plot(ds,med,color=C_V,lw=2.0,marker='o',ms=3.4,mfc='white',mew=.8,zorder=3)
-ax.set_xlabel('Aircraft with 15 km vectoring')
-ax.set_title('(b) Vectoring · 09-15 15:00',loc='left',pad=6)
-ax.text(.03,.96,'median $\\rho$ = 0.96\n5/5 orders positive',transform=ax.transAxes,va='top',ha='left',fontsize=7.4,color='#333333')
-ax.set_xticks(ds)
-ax.grid(False)
-
-for ax in axes:
+        if r['scene']==sid:
+            if r['holding_D'] is not None: bh.setdefault(r['dose'],[]).append(r['holding_D'])
+            if r['straight_D'] is not None: bs.setdefault(r['dose'],[]).append(r['straight_D'])
+    dh=sorted(bh); ds=sorted(bs)
+    ax.plot(dh,[np.mean(bh[d]) for d in dh],color=BLACK,lw=1.8,zorder=4)
+    ax.plot(ds,[np.mean(bs[d]) for d in ds],color=GREY,lw=1.2,ls='--',zorder=3)
+    sc=next(s for s in hs['scene_details'] if s['scene']==sid)
+    c=sc['common_correlations']
+    ax.set_title(f'{label} · $N$={sc["n_aircraft"]}\n$\\rho$ H={c["holding"]["median"]:.2f}, S={c["straight"]["median"]:.2f}',loc='left')
+    ax.set_xlabel('Injected holding aircraft (count)')
+    ax.grid(True,color='#E5E5E5',lw=.6,zorder=0)
+for row,(sid,label) in enumerate(vsce):
+    ax=axes[row,1]
+    by={}
+    for s in [x for x in vexp if x['scene_id']==sid]:
+        pts=[(p['vectoring_aircraft'],p['dimension']) for p in s['dose_curve'] if p['status']=='ok' and p['dimension'] is not None]
+        ax.scatter([p[0] for p in pts],[p[1] for p in pts],s=9,color=PASTEL[s['replicate']],alpha=.65,edgecolors='none',zorder=2)
+        for p in s['dose_curve']:
+            if p['status']=='ok' and p['dimension'] is not None: by.setdefault(p['vectoring_aircraft'],[]).append(p['dimension'])
+    ds=sorted(by)
+    ax.plot(ds,[np.mean(by[d]) for d in ds],color=BLACK,lw=1.8,zorder=4)
+    sc=next(s for s in vs['scenes'] if s['scene_id']==sid)['retained']
+    ax.set_title(f'{label} · $N$={next(s for s in vs["scenes"] if s["scene_id"]==sid)["n_aircraft"]}\nmedian $\\rho$={sc["median"]:.2f}, {sc["positive"]}/{sc["n"]} positive',loc='left')
+    ax.set_xlabel('Injected vectoring aircraft (count)')
+    ax.grid(True,color='#E5E5E5',lw=.6,zorder=0)
+for ax in axes[:,0]:
+    ax.set_ylabel('Correlation dimension $D$')
+for ax in axes.ravel():
     ax.spines['top'].set_visible(False); ax.spines['right'].set_visible(False)
     ax.tick_params(pad=2)
 
-fig.tight_layout()
+handles=[Line2D([0],[0],marker='o',color='none',markerfacecolor=PASTEL[i],markersize=4,label=f'order {i+1}') for i in range(5)]
+handles += [Line2D([0],[0],color=BLACK,lw=1.8,label='mean'),
+            Line2D([0],[0],color=GREY,lw=1.2,ls='--',label='straight mean')]
+fig.legend(handles=handles,loc='upper center',bbox_to_anchor=(0.5,0.985),ncol=7,frameon=False,fontsize=7.6,handletextpad=.4,columnspacing=1.2)
+fig.text(0.27,0.952,'Holding',ha='center',va='top',fontsize=11)
+fig.text(0.755,0.952,'Vectoring',ha='center',va='top',fontsize=11)
+fig.tight_layout(rect=(0,0,1,0.94))
 out=repo/'evaluation/figures'
 for ext in ['png','pdf']:
-    fig.savefig(out/f'holding-vs-vectoring-comparison.{ext}',dpi=300,bbox_inches='tight')
+    fig.savefig(out/f'holding-vs-vectoring-small-multiples.{ext}',dpi=300,bbox_inches='tight')
 print('saved',out)
-
