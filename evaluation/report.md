@@ -101,14 +101,14 @@ A curated set is indexed in [figures/README.md](figures/README.md). All panels
 are drawn from stored results; no encoder calls or new D estimates were made to
 produce them.
 
-**Figure P1 — Holding vs Vectoring overview (main).** Left column: Holding;
-right column: Vectoring. The top row puts every estimable scene/curve in one
-panel: Holding has eight scenes with a jointly valid paired comparison
-(7/8 positive, median paired ΔD +0.034); four scenes have no accepted pair.
-Vectoring has all 15 curves from the three estimable scenes (13/15 positive,
-median rho 0.829). The bottom row shows the cleanest representative case for
-each side: Holding 09-04 (Holding D rises above straight; H rho 0.82 vs 0.67)
-and Vectoring 09-15 (5/5 orders positive; median rho 0.96).
+**Figure P1 — Holding vs Vectoring (main).** Left: representative Holding
+scene 09-04 16:00. Solid line is the median D for Holding, dashed is straight
+continuation, and bands are the IQR across the five orders; Holding rho 0.82
+vs straight 0.67. Right: representative Vectoring scene 09-15 15:00. Grey
+lines are the five injection orders and the orange line is their median;
+median rho 0.96, 5/5 orders positive. All-scene summaries remain in P2
+(Vectoring) and P5 (Holding); four Holding scenes and 09-14 for Vectoring are
+not estimable.
 
 ![Holding vs Vectoring overview](figures/holding-vs-vectoring-comparison.png)
 
