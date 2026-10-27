@@ -13,3 +13,5 @@ htmlcov/
 build/
 dist/
 .pi/
+
+/eval/results/

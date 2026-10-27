@@ -1,2 +1,0 @@
-# Add to the existing NumPy/SciPy evaluation environment.
-clarabel==0.11.1

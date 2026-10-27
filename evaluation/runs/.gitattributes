@@ -1,4 +1,0 @@
-# Preserve the exact bytes recorded by execution and publication hashes.
-* -text whitespace=blank-at-eol,blank-at-eof,space-before-tab,cr-at-eol
-# Matplotlib SVG paths contain intentional generated trailing spaces.
-*.svg -whitespace
