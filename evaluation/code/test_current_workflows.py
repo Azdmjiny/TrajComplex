@@ -1,4 +1,6 @@
 """Software regressions using fixtures/saved results, not new evaluation arms."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import json,tempfile,unittest
 from pathlib import Path
 import numpy as np
@@ -10,7 +12,7 @@ from truncation import curve_correlation
 
 class CurrentWorkflowTests(unittest.TestCase):
     def test_new_output_rejects_published_results_and_existing_directory(self):
-        with self.assertRaises(ValueError):new_output(RUNS/'test-overwrite')
+        with self.assertRaises(ValueError):new_output(study_path('test-overwrite'))
         with tempfile.TemporaryDirectory() as folder:
             with self.assertRaises(FileExistsError):new_output(folder)
 
@@ -30,10 +32,10 @@ class CurrentWorkflowTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError,'undefined_endpoint_heading'):h.append_equal_duration_pair(p)
 
     def test_saved_fixed_scale_diagnostic_not_dynamic_rescue(self):
-        root=RUNS/'four-scene-vectoring-evaluation'
+        root=study_path('four-scene-vectoring-evaluation')
         trials=json.loads((root/'results/experiment-results.json').read_text())['qc500_safe']['vectoring']['scenes']
         trials=[t for t in trials if t['scene_id']==SCENE]
-        expected=json.loads((RUNS/'vectoring-fixed-baseline-scales/results/fixed-dose-curves.json').read_text())
+        expected=json.loads((study_path('vectoring-fixed-baseline-scales/results/fixed-dose-curves.json')).read_text())
         cfg=ComplexityConfig(normalize=False)
         with np.load(root/'results'/(SCENE+'-embeddings.npz')) as z:
             indices=np.array(trials[0]['dose_curve'][0]['fit_indices'])

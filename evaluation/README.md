@@ -1,71 +1,50 @@
 # Evaluation
 
-Start with the [current report](report.md). The active evaluation includes the
-[repaired 20-second Vectoring comparison](runs/vectoring-20s-repaired/report.md) and the [Changi hourly application case](runs/changi-hourly/report.md); the previous 5 km report is archived as
-[archive/report-5km-2026-10-24.md](archive/report-5km-2026-10-24.md).
+Start with the [combined report](report/report.md) and [directory guide](report/DIRECTORY_GUIDE.md).
+The folder organization follows the experiment subject; names are not Git branches.
 
-## Current status
+| Subject | Latest primary result | Controls | History |
+|---|---|---|---|
+| [Holding](holding/README.md) | [10 s midpoint, R² >= 0.94](holding/main/holding-midpoint-response.md) | [Endpoint equal-duration comparison](holding/controls/holding-paper-appendix.md) | [Previous presentations](holding/history/README.md) |
+| [Vectoring](vectoring/README.md) | [Repaired 20 s quality matching, 26 candidates](vectoring/main/vectoring-20s-repaired/report.md) | [10/15/20 s sensitivity](vectoring/controls/README.md) | [Earlier 5 km and 19-candidate studies](vectoring/history/README.md) |
+| [24h application](hourly/README.md) | [Deduplicated 1h September 8/11 cases](hourly/main/changi-hourly/report.md) | [Original-data appendix and separate threshold study](hourly/controls/README.md) | [N scaling and raw 30-day analysis](hourly/history/README.md) |
+| [STAR](star/README.md) | No active primary result | No active control | [STAR Encoder and official-route pilots](star/history/README.md) |
 
-- **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. The deduplicated main result has accepted D in 15/24 and 14/24 hours respectively; the original 14/24 and 11/24 results remain an appendix comparator. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
-- **24h threshold review:** a centered 3h window with N>=30 and R²>=0.90 gives 21/24 and 22/24 accepted hours; the 1h N>=20 exploratory view gives 18/24 and 20/24. Remaining 3h gaps are poor fits at N=40–57, not insufficient aircraft, so they stay NA. N<15 is shown as an assigned floor, not a measured D. See the [review](runs/changi-thresholds/report.md).
-- **Raw 30-day no-gate:** 720 scenes, 19,306 tracks; raw log–log slope rises from 1.13 at N=5 to 1.40 at N=30 and flattens near 1.45. Includes 24h raw views, N<15 floor 0.813, and day/night Plan A/C. Not quality-gated D. See the [run](runs/opensky-30d-no-gate/report.md).
-- **Vectoring (latest):** repaired 20-second quality matching, 26 candidates,
-  the same 157 backgrounds, 15 km target and R²≥0.94. Segmented: 14/20 positive,
-  5 negative and 1 zero, median rho 0.887; smooth: 12/20 positive and 8 negative,
-  median 0.625. These aggregate values are unchanged from the prior 25-candidate
-  version; September 15 improves slightly. All four scenes and full doses are
-  retained. See [the before/after report](runs/vectoring-20s-repaired/report.md).
-- **Holding response:** corrected 10-second midpoint results, now with primary R² >= 0.94 and unchanged archived pre-peak ranges: 34/35 positive order coefficients, median rho 0.884. Five baseline-valid scenes support delta-D panels (24/25 positive; median 0.866). The prior 0.98 presentation is archived. These are outcome-selected exploratory ranges. Complete injected tails are retained, not clipped to the source hour. The separate endpoint duration control remains unchanged (matched retained medians 0.661 Holding, 0.598 straight). See the [midpoint report](holding-midpoint-response.md).
-- **STAR:** inactive. The STAR-relative Encoder and official-STAR pilot are
-  archived; do not mix their numbers with this report. See
-  [STAR_INACTIVE.md](STAR_INACTIVE.md).
+Each subject has `code/`, `main/`, `controls/`, and `history/` entry directories.
+Within a study package, `report.md` explains the result, `figures/` contains
+plots, and `source/` preserves exact historical execution scripts. Existing
+published `results/`, `population/`, and `screening/` files are retained.
+Newer private arrays, raw data, checkpoints and credentials remain outside this
+publication checkout.
 
-## Navigation
+## Interpretation
 
-| Location | Contents |
-|---|---|
-| [report.md](report.md) | Active maneuver results and hourly application case |
-| [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
-| [runs/changi-thresholds](runs/changi-thresholds/report.md) | 3h primary / 1h exploratory threshold review and low-traffic floor |
-| [runs/opensky-30d-no-gate](runs/opensky-30d-no-gate/report.md) | Raw 30-day no-gate D-vs-N, 24h views and day/night comparison |
-| [runs/changi-n-scaling](runs/changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot |
-| [runs/vectoring-20s-repaired](runs/vectoring-20s-repaired/report.md) | Latest Vectoring, 26 versus 25 candidates; reports/figures/source only |
-| [runs/vectoring-certificate-repair](runs/vectoring-certificate-repair/report.md) | Numerical certificate repair and screening, no correlation run |
-| [runs/vectoring-time-window-sensitivity](runs/vectoring-time-window-sensitivity/report.md) | Earlier 10/15/20-second comparison, before the certificate repair |
-| [runs/segmented-15km](runs/segmented-15km/) | Historical 10-second quality-matching reference, 19 candidates |
-| [runs/README.md](runs/README.md) | Index of every result package |
-| [code/README.md](code/README.md) | Explicit-input screening, inference and diagnostic commands |
-| [archive](archive/) | Superseded reports and legacy snapshots |
-| [vectoring-study-history.md](vectoring-study-history.md) | Experiment and screening history |
+- Holding: 34/35 positive coefficients, median 0.884 **within unchanged,
+  outcome-selected archived pre-peak ranges**; full ranges and failures remain
+  in the main report appendix. The equal-duration control is a different
+  endpoint experiment and does not remove the midpoint length confound.
+- Vectoring: all four scenes and full dose ranges remain. Segmented: 14/20
+  positive, 5 negative, 1 zero, median 0.887. Smooth: 12/20 positive, 8 negative,
+  median 0.625. Segmented is schematic and has no smooth-motion certificate.
+- Hourly: the main 1h displays retain every hour, including NA; accepted D in
+  14/24 hours on September 8 and 15/24 on September 11. The threshold and
+  no-gate studies use different designs and are not substitutions for this main result.
+- STAR is inactive. Its historical 15-feature Encoder results are not combined
+  with the current 9-feature maneuver results.
 
-## Active code
+## Shared code, history and report
 
-- `code/report_changi_hourly.py` — the sole current hourly report builder; saved records only, no inference, D estimation or new draws. Use `--input LOCAL_SAVED_PACKAGE --preprocessing position-dedup --output NEW_DIRECTORY` for the main result (or `--preprocessing original` for the appendix). Its derived input data remain local.
-- `code/vectoring_path.py` — `PEAK=15000`; `generate_segmented()` (segmented)
-  and `generate()` (smooth control).
-- `code/vectoring_population.py` — `SEGMENTED=True`; 10-second population uses
-  the segmented generator and skips the deformed-kinematics rejection.
-- `code/run_vectoring_eval.py` — `MAX_OFFSET=15000`; legacy five-second
-  helpers remain for regression tests.
-- `code/run_evaluation.py` — explicit workflow entrypoint, no implicit run.
-- `../complexity/calculator.py` — `min_r_squared=0.94`.
+- [code/](code/README.md): shared time alignment, QC, statistics, workflow dispatch
+  and cross-study tools. The existing shared code location is unchanged.
+- [histry/](histry/README.md): mixed historical records, the still-required strict-10s
+  notebook, earlier combined reports, historical audit records and frozen source.
+- [report/](report/README.md): combined report, directory/data-package notes and
+  `figures/` for the existing cross-study images.
 
-The segmented arm is a schematic stimulus and does not carry the smooth
-generator’s C2 / 2 m s⁻² / 35° motion certificate. No raw data, model weights
-or authentication caches are added by this publication.
+The [organization map](histry/organization-map.json) preserves original-to-current
+paths and evidence hashes. Current code uses `code/evaluation_layout.py`; exact
+execution snapshots retain their original paths. The old root `report.md` is
+only a link redirect, preserving already published manuscript links.
 
-## Current presentation update
-
-The [figure index](figures/README.md) separates current midpoint Holding, latest repaired Vectoring and older endpoint/10-second views. All retained scopes, negative correlations and unavailable results are disclosed. Latest Vectoring execution/reporting snapshots are in its run package; `code/make_review_figures.py` reproduces the earlier endpoint/10-second presentation.
-
-## Holding paper layout
-
-The earlier endpoint presentation uses the [historical-range figure](figures/holding-historical-range-main.png) with [Appendix H](holding-paper-appendix.md). The main panels retain the original cutoff ranges and negative order coefficients; full-range tails are shown in Appendix H. Equal-duration control results are disclosed in the main report and detailed in the appendix. This presentation introduces no experiment or new cutoff.
-
-## Corrected midpoint Holding presentation (2026-10-27)
-
-The [midpoint response report](holding-midpoint-response.md) presents saved 10-second midpoint results: five baseline-valid delta panels, seven archived pre-peak ranges with correlations, and all 12 full-range scenes. The primary fit gate is R² >= 0.94; archived 0.98 fits are re-screened without changing slopes or finding new peaks. Reproduce with `code/plot_holding_primary.py --output NEW_DIRECTORY`. Source-hour selection retains complete injected tails; it does not enforce a post-injection hour boundary. The [endpoint control appendix](holding-paper-appendix.md) remains separate. No experiments were rerun.
-
-## Directory map
-
-See [DIRECTORY_GUIDE.md](DIRECTORY_GUIDE.md) for every current subfolder, report entrypoint, source snapshot and known legacy ambiguity. No directory reorganization is performed by this update.
+This organization changes locations, paths and navigation only. No scientific
+threshold, correlation, trajectory, embedding or figure was recalculated.

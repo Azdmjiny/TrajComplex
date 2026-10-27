@@ -1,19 +1,19 @@
 """Paths and immutable-input checks for the published 10-second workflows."""
+from evaluation_layout import EVALUATION_ROOT, HISTORY_ROOT, study_path, configure_imports, check_output_location
+configure_imports()
 from pathlib import Path
 import hashlib
 import sys
 
 REPO=Path(__file__).resolve().parents[2]
-RUNS=REPO/'evaluation/runs'
+RUNS=HISTORY_ROOT
 sys.path.insert(0,str(REPO))
 CHECKPOINT_SHA256='bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976'
 PREPROCESSOR_ID='52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477'
 
 def new_output(path):
     """Published inputs and prior output directories may never be overwritten."""
-    path=Path(path).resolve()
-    if path==RUNS.resolve() or RUNS.resolve() in path.parents:
-        raise ValueError('Choose a new output directory outside evaluation/runs')
+    path=check_output_location(path)
     path.mkdir(parents=True,exist_ok=False)
     return path
 

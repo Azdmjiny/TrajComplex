@@ -3,6 +3,8 @@
 The Holding aggregation is migrated from the original published analysis;
 Vectoring uses the same accepted-D and correlation rules. No threshold changes.
 """
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 from pathlib import Path
 from datetime import datetime, timedelta
 import collections, json, shutil, hashlib
@@ -114,9 +116,8 @@ def vectoring_summaries(root):
 def process(kind,source,destination):
     """Write summaries and a run-specific report; never overwrite prior files."""
     source=Path(source).resolve();destination=Path(destination).resolve()
-    from evaluation_runtime import RUNS
-    if destination==RUNS.resolve() or RUNS.resolve() in destination.parents:
-        raise ValueError('Published evidence is read-only')
+    from evaluation_layout import check_output_location
+    check_output_location(destination)
     products=(holding_summaries if kind=='holding' else vectoring_summaries)(source)
     copies=[]
     if source!=destination:

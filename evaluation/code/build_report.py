@@ -1,4 +1,9 @@
-"""Build a current summary from saved run statistics, without new inference."""
+"""Export the historical endpoint/5 km summary from saved statistics.
+
+This is not the builder for the latest midpoint/20-second primary report.
+"""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 from pathlib import Path
 import json,os
 from collections import Counter
@@ -14,10 +19,10 @@ def count_candidate_reasons(screens):
 
 def build_report(runs,output):
     runs=Path(runs);output=Path(output)
-    holding=read(runs/'holding-equal-duration/results/summary.json')
-    cutoff=read(runs/'holding-equal-duration-old-cutoff/results/summary.json')
-    fixed=read(runs/'vectoring-fixed-baseline-scales/results/summary.json')
-    vectoring=read(runs/'four-scene-vectoring-evaluation/results/scene-summary.json')
+    holding=read(study_path('holding-equal-duration/results/summary.json', runs))
+    cutoff=read(study_path('holding-equal-duration-old-cutoff/results/summary.json', runs))
+    fixed=read(study_path('vectoring-fixed-baseline-scales/results/summary.json', runs))
+    vectoring=read(study_path('four-scene-vectoring-evaluation/results/scene-summary.json', runs))
     lines=['# Saved evaluation results','',
         'Generated from published statistics only. No trajectories, embeddings, D estimates or cutoffs were recomputed. Full results and rejected values are retained in the source packages.','',
         '## Holding: matched valid doses','',
@@ -36,7 +41,7 @@ def build_report(runs,output):
     lines += ['', 'Compare signs on the same accepted doses before attributing a change to fitting scales; missing doses can also change correlations. An unavailable dose or correlation is not evidence of a positive effect. The results do not establish stable strong positive Vectoring association or complete validation of operational complexity.','',
         '## Detailed source reports','']
     for folder in ['holding-equal-duration','holding-equal-duration-old-cutoff','four-scene-vectoring-evaluation','vectoring-fixed-baseline-scales']:
-        target=runs/folder/'report.md'
+        target=study_path(folder, runs)/'report.md'
         try:link=os.path.relpath(target,output).replace('\\','/')
         except ValueError:link=target.as_uri()
         lines.append(f'- [{folder}]({link})')

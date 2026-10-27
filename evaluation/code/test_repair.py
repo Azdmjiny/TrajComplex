@@ -1,3 +1,5 @@
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import ast, sys, unittest, math
 from types import SimpleNamespace
 from pathlib import Path
@@ -5,7 +7,7 @@ import numpy as np
 ROOT=Path(__file__).resolve().parent
 sys.path.insert(0,str(ROOT))
 ns=dict(np=np,math=math,SAMPLE_S=5,TURN_RATE=math.radians(3),LEG_S=60)
-node=next(n for n in ast.parse((ROOT/'run_holding_eval.py').read_text(encoding='utf8')).body if isinstance(n,ast.FunctionDef) and n.name=='add_racetrack')
+node=next(n for n in ast.parse((EVALUATION_ROOT/'holding/code/run_holding_eval.py').read_text(encoding='utf8')).body if isinstance(n,ast.FunctionDef) and n.name=='add_racetrack')
 exec(compile(ast.Module(body=[node],type_ignores=[]),'holding','exec'),ns)
 h=SimpleNamespace(add_racetrack=ns['add_racetrack'])
 from trajectory_quality import quality_reasons

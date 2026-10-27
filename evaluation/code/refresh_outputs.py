@@ -1,4 +1,6 @@
-"""Export current saved-statistics summary to an explicit NEW directory."""
+"""Export the historical endpoint/5 km summary to an explicit NEW directory."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import argparse
 from pathlib import Path
 from evaluation_runtime import RUNS,new_output

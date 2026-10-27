@@ -1,0 +1,2243 @@
+{
+  "date": "2026-10-27",
+  "purpose": "Folder organization only; no experiments or changed thresholds.",
+  "moves": {
+    "runs/holding-equal-duration/assignments.json": "holding/controls/holding-equal-duration/assignments.json",
+    "runs/holding-equal-duration/geometry-audit.json": "holding/controls/holding-equal-duration/geometry-audit.json",
+    "runs/holding-equal-duration/policy.json": "holding/controls/holding-equal-duration/policy.json",
+    "runs/holding-equal-duration/report.md": "holding/controls/holding-equal-duration/report.md",
+    "runs/holding-equal-duration/verification.json": "holding/controls/holding-equal-duration/verification.json",
+    "runs/holding-equal-duration/figures/dose-curves-1.png": "holding/controls/holding-equal-duration/figures/dose-curves-1.png",
+    "runs/holding-equal-duration/figures/dose-curves-1.svg": "holding/controls/holding-equal-duration/figures/dose-curves-1.svg",
+    "runs/holding-equal-duration/figures/dose-curves-2.png": "holding/controls/holding-equal-duration/figures/dose-curves-2.png",
+    "runs/holding-equal-duration/figures/dose-curves-2.svg": "holding/controls/holding-equal-duration/figures/dose-curves-2.svg",
+    "runs/holding-equal-duration/figures/paired-differences.png": "holding/controls/holding-equal-duration/figures/paired-differences.png",
+    "runs/holding-equal-duration/figures/paired-differences.svg": "holding/controls/holding-equal-duration/figures/paired-differences.svg",
+    "runs/holding-equal-duration/figures/paired-geometry-example.png": "holding/controls/holding-equal-duration/figures/paired-geometry-example.png",
+    "runs/holding-equal-duration/figures/paired-geometry-example.svg": "holding/controls/holding-equal-duration/figures/paired-geometry-example.svg",
+    "runs/holding-equal-duration/results/2026-09-01T01Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-01T01Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-04T08Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-04T08Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-07T10Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-07T10Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-10T06Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-10T06Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-12T15Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-12T15Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-15T06Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-15T06Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-18T00Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-18T00Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-20T04Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-20T04Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-23T10Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-23T10Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-25T23Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-25T23Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-28T07Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-28T07Z-embeddings.npz",
+    "runs/holding-equal-duration/results/2026-09-30T15Z-embeddings.npz": "holding/controls/holding-equal-duration/results/2026-09-30T15Z-embeddings.npz",
+    "runs/holding-equal-duration/results/baseline-verification.json": "holding/controls/holding-equal-duration/results/baseline-verification.json",
+    "runs/holding-equal-duration/results/experiment-results.json": "holding/controls/holding-equal-duration/results/experiment-results.json",
+    "runs/holding-equal-duration/results/paired-dose-records.json": "holding/controls/holding-equal-duration/results/paired-dose-records.json",
+    "runs/holding-equal-duration/results/repeat-summary.json": "holding/controls/holding-equal-duration/results/repeat-summary.json",
+    "runs/holding-equal-duration/results/run-manifest.json": "holding/controls/holding-equal-duration/results/run-manifest.json",
+    "runs/holding-equal-duration/results/summary.json": "holding/controls/holding-equal-duration/results/summary.json",
+    "runs/holding-equal-duration/source/report_and_verify.py": "holding/controls/holding-equal-duration/source/report_and_verify.py",
+    "runs/holding-equal-duration/source/run.py": "holding/controls/holding-equal-duration/source/run.py",
+    "runs/holding-equal-duration-old-cutoff/policy.json": "holding/controls/holding-equal-duration-old-cutoff/policy.json",
+    "runs/holding-equal-duration-old-cutoff/report.md": "holding/controls/holding-equal-duration-old-cutoff/report.md",
+    "runs/holding-equal-duration-old-cutoff/verification.json": "holding/controls/holding-equal-duration-old-cutoff/verification.json",
+    "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.png": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.png",
+    "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.svg": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.svg",
+    "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.png": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.png",
+    "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.svg": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.svg",
+    "runs/holding-equal-duration-old-cutoff/results/point-selection.json": "holding/controls/holding-equal-duration-old-cutoff/results/point-selection.json",
+    "runs/holding-equal-duration-old-cutoff/results/repeat-summary.json": "holding/controls/holding-equal-duration-old-cutoff/results/repeat-summary.json",
+    "runs/holding-equal-duration-old-cutoff/results/summary.json": "holding/controls/holding-equal-duration-old-cutoff/results/summary.json",
+    "runs/holding-equal-duration-old-cutoff/source/analyze.py": "holding/controls/holding-equal-duration-old-cutoff/source/analyze.py",
+    "runs/vectoring-20s-repaired/README.md": "vectoring/main/vectoring-20s-repaired/README.md",
+    "runs/vectoring-20s-repaired/report.md": "vectoring/main/vectoring-20s-repaired/report.md",
+    "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.pdf": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.pdf",
+    "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.png": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.png",
+    "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.svg": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.svg",
+    "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.pdf": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.pdf",
+    "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png",
+    "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.svg": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.svg",
+    "runs/vectoring-20s-repaired/source/report_results.py": "vectoring/main/vectoring-20s-repaired/source/report_results.py",
+    "runs/vectoring-20s-repaired/source/run_evaluation.py": "vectoring/main/vectoring-20s-repaired/source/run_evaluation.py",
+    "runs/vectoring-20s-repaired/source/verify_results.py": "vectoring/main/vectoring-20s-repaired/source/verify_results.py",
+    "runs/vectoring-certificate-repair/README.md": "vectoring/main/vectoring-certificate-repair/README.md",
+    "runs/vectoring-certificate-repair/report.md": "vectoring/main/vectoring-certificate-repair/report.md",
+    "runs/vectoring-certificate-repair/source/report_screening.py": "vectoring/main/vectoring-certificate-repair/source/report_screening.py",
+    "runs/vectoring-certificate-repair/source/screen_saved.py": "vectoring/main/vectoring-certificate-repair/source/screen_saved.py",
+    "runs/vectoring-time-window-sensitivity/README.md": "vectoring/controls/vectoring-time-window-sensitivity/README.md",
+    "runs/vectoring-time-window-sensitivity/report.md": "vectoring/controls/vectoring-time-window-sensitivity/report.md",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.pdf": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.pdf",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.png": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.png",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.svg": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.svg",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.pdf": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.pdf",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.png": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.png",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.svg": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.svg",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.pdf": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.pdf",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.png": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.png",
+    "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.svg": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.svg",
+    "runs/vectoring-time-window-sensitivity/source/report_results.py": "vectoring/controls/vectoring-time-window-sensitivity/source/report_results.py",
+    "runs/vectoring-time-window-sensitivity/source/run_evaluation.py": "vectoring/controls/vectoring-time-window-sensitivity/source/run_evaluation.py",
+    "runs/vectoring-time-window-sensitivity/source/screen_routes.py": "vectoring/controls/vectoring-time-window-sensitivity/source/screen_routes.py",
+    "runs/segmented-15km/README.md": "vectoring/history/segmented-15km/README.md",
+    "runs/segmented-15km/figures/smooth-vs-segmented.png": "vectoring/history/segmented-15km/figures/smooth-vs-segmented.png",
+    "runs/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png": "vectoring/history/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png",
+    "runs/segmented-15km/population/2026-09-14T06Z-population.npz": "vectoring/history/segmented-15km/population/2026-09-14T06Z-population.npz",
+    "runs/segmented-15km/population/2026-09-14T06Z-records.json": "vectoring/history/segmented-15km/population/2026-09-14T06Z-records.json",
+    "runs/segmented-15km/population/2026-09-15T07Z-population.npz": "vectoring/history/segmented-15km/population/2026-09-15T07Z-population.npz",
+    "runs/segmented-15km/population/2026-09-15T07Z-records.json": "vectoring/history/segmented-15km/population/2026-09-15T07Z-records.json",
+    "runs/segmented-15km/population/2026-09-19T07Z-population.npz": "vectoring/history/segmented-15km/population/2026-09-19T07Z-population.npz",
+    "runs/segmented-15km/population/2026-09-19T07Z-records.json": "vectoring/history/segmented-15km/population/2026-09-19T07Z-records.json",
+    "runs/segmented-15km/population/2026-09-27T05Z-population.npz": "vectoring/history/segmented-15km/population/2026-09-27T05Z-population.npz",
+    "runs/segmented-15km/population/2026-09-27T05Z-records.json": "vectoring/history/segmented-15km/population/2026-09-27T05Z-records.json",
+    "runs/segmented-15km/population/summary.json": "vectoring/history/segmented-15km/population/summary.json",
+    "runs/segmented-15km/source/compare.py": "vectoring/history/segmented-15km/source/compare.py",
+    "runs/segmented-15km/source/generate_population.py": "vectoring/history/segmented-15km/source/generate_population.py",
+    "runs/segmented-15km/source/make_paper_figures.py": "vectoring/history/segmented-15km/source/make_paper_figures.py",
+    "runs/segmented-15km/source/run_eval.py": "vectoring/history/segmented-15km/source/run_eval.py",
+    "runs/segmented-15km/results/segmented/2026-09-14T06Z-embeddings.npz": "vectoring/history/segmented-15km/results/segmented/2026-09-14T06Z-embeddings.npz",
+    "runs/segmented-15km/results/segmented/2026-09-15T07Z-embeddings.npz": "vectoring/history/segmented-15km/results/segmented/2026-09-15T07Z-embeddings.npz",
+    "runs/segmented-15km/results/segmented/2026-09-19T07Z-embeddings.npz": "vectoring/history/segmented-15km/results/segmented/2026-09-19T07Z-embeddings.npz",
+    "runs/segmented-15km/results/segmented/2026-09-27T05Z-embeddings.npz": "vectoring/history/segmented-15km/results/segmented/2026-09-27T05Z-embeddings.npz",
+    "runs/segmented-15km/results/segmented/experiment-results.json": "vectoring/history/segmented-15km/results/segmented/experiment-results.json",
+    "runs/segmented-15km/results/segmented/run-manifest.json": "vectoring/history/segmented-15km/results/segmented/run-manifest.json",
+    "runs/segmented-15km/results/segmented/scene-diagnostics.json": "vectoring/history/segmented-15km/results/segmented/scene-diagnostics.json",
+    "runs/segmented-15km/results/segmented/summary.json": "vectoring/history/segmented-15km/results/segmented/summary.json",
+    "runs/segmented-15km/results/segmented/threshold-sensitivity.json": "vectoring/history/segmented-15km/results/segmented/threshold-sensitivity.json",
+    "runs/segmented-15km/results/smooth-control/2026-09-14T06Z-embeddings.npz": "vectoring/history/segmented-15km/results/smooth-control/2026-09-14T06Z-embeddings.npz",
+    "runs/segmented-15km/results/smooth-control/2026-09-15T07Z-embeddings.npz": "vectoring/history/segmented-15km/results/smooth-control/2026-09-15T07Z-embeddings.npz",
+    "runs/segmented-15km/results/smooth-control/2026-09-19T07Z-embeddings.npz": "vectoring/history/segmented-15km/results/smooth-control/2026-09-19T07Z-embeddings.npz",
+    "runs/segmented-15km/results/smooth-control/2026-09-27T05Z-embeddings.npz": "vectoring/history/segmented-15km/results/smooth-control/2026-09-27T05Z-embeddings.npz",
+    "runs/segmented-15km/results/smooth-control/experiment-results.json": "vectoring/history/segmented-15km/results/smooth-control/experiment-results.json",
+    "runs/segmented-15km/results/smooth-control/run-manifest.json": "vectoring/history/segmented-15km/results/smooth-control/run-manifest.json",
+    "runs/segmented-15km/results/smooth-control/scene-diagnostics.json": "vectoring/history/segmented-15km/results/smooth-control/scene-diagnostics.json",
+    "runs/segmented-15km/results/smooth-control/summary.json": "vectoring/history/segmented-15km/results/smooth-control/summary.json",
+    "runs/segmented-15km/results/smooth-control/threshold-sensitivity.json": "vectoring/history/segmented-15km/results/smooth-control/threshold-sensitivity.json",
+    "runs/four-scene-vectoring-screen/comparison.json": "vectoring/history/four-scene-vectoring-screen/comparison.json",
+    "runs/four-scene-vectoring-screen/report.md": "vectoring/history/four-scene-vectoring-screen/report.md",
+    "runs/four-scene-vectoring-screen/verification.json": "vectoring/history/four-scene-vectoring-screen/verification.json",
+    "runs/four-scene-vectoring-screen/screening/2026-09-14T06Z-records.json": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-14T06Z-records.json",
+    "runs/four-scene-vectoring-screen/screening/2026-09-15T07Z-records.json": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-15T07Z-records.json",
+    "runs/four-scene-vectoring-screen/screening/2026-09-19T07Z-records.json": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-19T07Z-records.json",
+    "runs/four-scene-vectoring-screen/screening/2026-09-27T05Z-records.json": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-27T05Z-records.json",
+    "runs/four-scene-vectoring-screen/screening/manifest.json": "vectoring/history/four-scene-vectoring-screen/screening/manifest.json",
+    "runs/four-scene-vectoring-screen/screening/summary.json": "vectoring/history/four-scene-vectoring-screen/screening/summary.json",
+    "runs/four-scene-vectoring-screen/source/run_screen.py": "vectoring/history/four-scene-vectoring-screen/source/run_screen.py",
+    "runs/four-scene-vectoring-screen/source/verify_and_report.py": "vectoring/history/four-scene-vectoring-screen/source/verify_and_report.py",
+    "runs/four-scene-vectoring-evaluation/assignments.json": "vectoring/history/four-scene-vectoring-evaluation/assignments.json",
+    "runs/four-scene-vectoring-evaluation/policy.json": "vectoring/history/four-scene-vectoring-evaluation/policy.json",
+    "runs/four-scene-vectoring-evaluation/report.md": "vectoring/history/four-scene-vectoring-evaluation/report.md",
+    "runs/four-scene-vectoring-evaluation/verification.json": "vectoring/history/four-scene-vectoring-evaluation/verification.json",
+    "runs/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.png": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.png",
+    "runs/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.svg": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.svg",
+    "runs/four-scene-vectoring-evaluation/figures/vectoring-full-dose.png": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-full-dose.png",
+    "runs/four-scene-vectoring-evaluation/figures/vectoring-full-dose.svg": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-full-dose.svg",
+    "runs/four-scene-vectoring-evaluation/results/2026-09-14T06Z-embeddings.npz": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-14T06Z-embeddings.npz",
+    "runs/four-scene-vectoring-evaluation/results/2026-09-15T07Z-embeddings.npz": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-15T07Z-embeddings.npz",
+    "runs/four-scene-vectoring-evaluation/results/2026-09-19T07Z-embeddings.npz": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-19T07Z-embeddings.npz",
+    "runs/four-scene-vectoring-evaluation/results/2026-09-27T05Z-embeddings.npz": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-27T05Z-embeddings.npz",
+    "runs/four-scene-vectoring-evaluation/results/experiment-results.json": "vectoring/history/four-scene-vectoring-evaluation/results/experiment-results.json",
+    "runs/four-scene-vectoring-evaluation/results/point-selection.json": "vectoring/history/four-scene-vectoring-evaluation/results/point-selection.json",
+    "runs/four-scene-vectoring-evaluation/results/run-manifest.json": "vectoring/history/four-scene-vectoring-evaluation/results/run-manifest.json",
+    "runs/four-scene-vectoring-evaluation/results/scene-diagnostics.json": "vectoring/history/four-scene-vectoring-evaluation/results/scene-diagnostics.json",
+    "runs/four-scene-vectoring-evaluation/results/scene-summary.json": "vectoring/history/four-scene-vectoring-evaluation/results/scene-summary.json",
+    "runs/four-scene-vectoring-evaluation/results/summary.json": "vectoring/history/four-scene-vectoring-evaluation/results/summary.json",
+    "runs/four-scene-vectoring-evaluation/source/report_and_verify.py": "vectoring/history/four-scene-vectoring-evaluation/source/report_and_verify.py",
+    "runs/four-scene-vectoring-evaluation/source/run.py": "vectoring/history/four-scene-vectoring-evaluation/source/run.py",
+    "runs/vectoring-existing-result-diagnosis/diagnosis.json": "vectoring/history/vectoring-existing-result-diagnosis/diagnosis.json",
+    "runs/vectoring-existing-result-diagnosis/report.md": "vectoring/history/vectoring-existing-result-diagnosis/report.md",
+    "runs/vectoring-existing-result-diagnosis/verification.json": "vectoring/history/vectoring-existing-result-diagnosis/verification.json",
+    "runs/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.png": "vectoring/history/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.png",
+    "runs/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.svg": "vectoring/history/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.svg",
+    "runs/vectoring-existing-result-diagnosis/figures/observed-injection-steps.png": "vectoring/history/vectoring-existing-result-diagnosis/figures/observed-injection-steps.png",
+    "runs/vectoring-existing-result-diagnosis/figures/observed-injection-steps.svg": "vectoring/history/vectoring-existing-result-diagnosis/figures/observed-injection-steps.svg",
+    "runs/vectoring-existing-result-diagnosis/source/analyze.py": "vectoring/history/vectoring-existing-result-diagnosis/source/analyze.py",
+    "runs/vectoring-fixed-baseline-scales/policy.json": "vectoring/history/vectoring-fixed-baseline-scales/policy.json",
+    "runs/vectoring-fixed-baseline-scales/report.md": "vectoring/history/vectoring-fixed-baseline-scales/report.md",
+    "runs/vectoring-fixed-baseline-scales/verification.json": "vectoring/history/vectoring-fixed-baseline-scales/verification.json",
+    "runs/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.png": "vectoring/history/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.png",
+    "runs/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.svg": "vectoring/history/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.svg",
+    "runs/vectoring-fixed-baseline-scales/results/fixed-dose-curves.json": "vectoring/history/vectoring-fixed-baseline-scales/results/fixed-dose-curves.json",
+    "runs/vectoring-fixed-baseline-scales/results/step-comparison.json": "vectoring/history/vectoring-fixed-baseline-scales/results/step-comparison.json",
+    "runs/vectoring-fixed-baseline-scales/results/summary.json": "vectoring/history/vectoring-fixed-baseline-scales/results/summary.json",
+    "runs/vectoring-fixed-baseline-scales/source/analyze.py": "vectoring/history/vectoring-fixed-baseline-scales/source/analyze.py",
+    "runs/changi-thresholds/README.md": "hourly/controls/changi-thresholds/README.md",
+    "runs/changi-thresholds/report.md": "hourly/controls/changi-thresholds/report.md",
+    "runs/changi-thresholds/figures/changi-24h-threshold-comparison.pdf": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.pdf",
+    "runs/changi-thresholds/figures/changi-24h-threshold-comparison.png": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.png",
+    "runs/changi-thresholds/figures/changi-24h-threshold-comparison.svg": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.svg",
+    "runs/changi-thresholds/results/coverage.csv": "hourly/controls/changi-thresholds/results/coverage.csv",
+    "runs/changi-thresholds/results/summary.json": "hourly/controls/changi-thresholds/results/summary.json",
+    "runs/changi-thresholds/results/threshold-review.json": "hourly/controls/changi-thresholds/results/threshold-review.json",
+    "runs/changi-thresholds/source/make_figures.py": "hourly/controls/changi-thresholds/source/make_figures.py",
+    "runs/changi-thresholds/source/run_thresholds.py": "hourly/controls/changi-thresholds/source/run_thresholds.py",
+    "runs/changi-n-scaling/README.md": "hourly/history/changi-n-scaling/README.md",
+    "runs/changi-n-scaling/report.md": "hourly/history/changi-n-scaling/report.md",
+    "runs/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.pdf": "hourly/history/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.pdf",
+    "runs/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.png": "hourly/history/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.png",
+    "runs/changi-n-scaling/results/d_vs_n.json": "hourly/history/changi-n-scaling/results/d_vs_n.json",
+    "runs/changi-n-scaling/source/make_figure.py": "hourly/history/changi-n-scaling/source/make_figure.py",
+    "runs/changi-n-scaling/source/run_d_vs_n.py": "hourly/history/changi-n-scaling/source/run_d_vs_n.py",
+    "runs/opensky-30d-no-gate/README.md": "hourly/history/opensky-30d-no-gate/README.md",
+    "runs/opensky-30d-no-gate/report.md": "hourly/history/opensky-30d-no-gate/report.md",
+    "runs/opensky-30d-no-gate/figures/24h-no-gate-09-08-09-11.png": "hourly/history/opensky-30d-no-gate/figures/24h-no-gate-09-08-09-11.png",
+    "runs/opensky-30d-no-gate/figures/24h-threshold15-truncated.pdf": "hourly/history/opensky-30d-no-gate/figures/24h-threshold15-truncated.pdf",
+    "runs/opensky-30d-no-gate/figures/24h-threshold15-truncated.png": "hourly/history/opensky-30d-no-gate/figures/24h-threshold15-truncated.png",
+    "runs/opensky-30d-no-gate/figures/A-boxplot-no-gate.png": "hourly/history/opensky-30d-no-gate/figures/A-boxplot-no-gate.png",
+    "runs/opensky-30d-no-gate/figures/A-daynight-bands.png": "hourly/history/opensky-30d-no-gate/figures/A-daynight-bands.png",
+    "runs/opensky-30d-no-gate/figures/A-daynight-boxplot.png": "hourly/history/opensky-30d-no-gate/figures/A-daynight-boxplot.png",
+    "runs/opensky-30d-no-gate/figures/B-hexbin-no-gate.png": "hourly/history/opensky-30d-no-gate/figures/B-hexbin-no-gate.png",
+    "runs/opensky-30d-no-gate/figures/C-band-curves-no-gate.png": "hourly/history/opensky-30d-no-gate/figures/C-band-curves-no-gate.png",
+    "runs/opensky-30d-no-gate/figures/C-tobit-predictions.png": "hourly/history/opensky-30d-no-gate/figures/C-tobit-predictions.png",
+    "runs/opensky-30d-no-gate/results/d-vs-n-no-gate.json": "hourly/history/opensky-30d-no-gate/results/d-vs-n-no-gate.json",
+    "runs/opensky-30d-no-gate/results/daynight-model.json": "hourly/history/opensky-30d-no-gate/results/daynight-model.json",
+    "runs/opensky-30d-no-gate/results/encoding-summary.json": "hourly/history/opensky-30d-no-gate/results/encoding-summary.json",
+    "runs/opensky-30d-no-gate/results/summary.json": "hourly/history/opensky-30d-no-gate/results/summary.json",
+    "runs/opensky-30d-no-gate/results/truncation-threshold15.json": "hourly/history/opensky-30d-no-gate/results/truncation-threshold15.json",
+    "runs/opensky-30d-no-gate/source/compute_d_vs_n.py": "hourly/history/opensky-30d-no-gate/source/compute_d_vs_n.py",
+    "runs/opensky-30d-no-gate/source/encode_all.py": "hourly/history/opensky-30d-no-gate/source/encode_all.py",
+    "runs/opensky-30d-no-gate/source/make_figures.py": "hourly/history/opensky-30d-no-gate/source/make_figures.py",
+    "runs/opensky-30d-no-gate/source/make_truncated_24h.py": "hourly/history/opensky-30d-no-gate/source/make_truncated_24h.py",
+    "runs/opensky-30d-no-gate/source/daynight/analyze2.py": "hourly/history/opensky-30d-no-gate/source/daynight/analyze2.py",
+    "runs/opensky-30d-no-gate/source/daynight/make_boxplot.py": "hourly/history/opensky-30d-no-gate/source/daynight/make_boxplot.py",
+    "runs/opensky-30d-no-gate/source/daynight/make_figures.py": "hourly/history/opensky-30d-no-gate/source/daynight/make_figures.py",
+    "runs/changi-hourly/appendix-original/README.md": "hourly/controls/original-hourly/README.md",
+    "runs/changi-hourly/appendix-original/report.md": "hourly/controls/original-hourly/report.md",
+    "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.pdf": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.pdf",
+    "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.png": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.png",
+    "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.svg": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.svg",
+    "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.pdf": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.pdf",
+    "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.png": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.png",
+    "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.svg": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.svg",
+    "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.pdf": "hourly/controls/original-hourly/figures/D-vs-N-1h.pdf",
+    "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.png": "hourly/controls/original-hourly/figures/D-vs-N-1h.png",
+    "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.svg": "hourly/controls/original-hourly/figures/D-vs-N-1h.svg",
+    "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.pdf": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.pdf",
+    "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.png": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.png",
+    "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.svg": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.svg",
+    "runs/changi-hourly/comparison-with-original.md": "hourly/main/changi-hourly/comparison-with-original.md",
+    "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.pdf": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.pdf",
+    "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.png": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.png",
+    "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.svg": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.svg",
+    "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.pdf": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.pdf",
+    "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.png": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.png",
+    "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.svg": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.svg",
+    "runs/changi-hourly/figures/D-vs-N-1h.pdf": "hourly/main/changi-hourly/figures/D-vs-N-1h.pdf",
+    "runs/changi-hourly/figures/D-vs-N-1h.png": "hourly/main/changi-hourly/figures/D-vs-N-1h.png",
+    "runs/changi-hourly/figures/D-vs-N-1h.svg": "hourly/main/changi-hourly/figures/D-vs-N-1h.svg",
+    "runs/changi-hourly/figures/fixed-N-weather-1h.pdf": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.pdf",
+    "runs/changi-hourly/figures/fixed-N-weather-1h.png": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.png",
+    "runs/changi-hourly/figures/fixed-N-weather-1h.svg": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.svg",
+    "runs/changi-hourly/figures/original-vs-dedup-1h.pdf": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.pdf",
+    "runs/changi-hourly/figures/original-vs-dedup-1h.png": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.png",
+    "runs/changi-hourly/figures/original-vs-dedup-1h.svg": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.svg",
+    "runs/changi-hourly/README.md": "hourly/main/changi-hourly/README.md",
+    "runs/changi-hourly/report.md": "hourly/main/changi-hourly/report.md",
+    "holding-midpoint-response.md": "holding/main/holding-midpoint-response.md",
+    "holding-paper-appendix.md": "holding/controls/holding-paper-appendix.md",
+    "holding-version-comparison.md": "holding/history/holding-version-comparison.md",
+    "vectoring-study-history.md": "vectoring/history/vectoring-study-history.md",
+    "STAR_INACTIVE.md": "star/STATUS.md",
+    "archive/holding-midpoint-r098/holding-midpoint-response.md": "holding/history/midpoint-r098/holding-midpoint-response.md",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.pdf": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.pdf",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.png": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.png",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.svg": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.svg",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.pdf": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.pdf",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.png": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.png",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.svg": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.svg",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.pdf": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.pdf",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.png": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.png",
+    "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.svg": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.svg",
+    "archive/holding-all-scenes-dose-2026-10-26.pdf": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.pdf",
+    "archive/holding-all-scenes-dose-2026-10-26.png": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.png",
+    "archive/holding-all-scenes-dose-2026-10-26.svg": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.svg",
+    "figures/d-association-smooth-vs-segmented.png": "vectoring/history/presentation-19-candidates/figures/d-association-smooth-vs-segmented.png",
+    "figures/holding-all-scenes-paired-difference.pdf": "holding/controls/figures/holding-all-scenes-paired-difference.pdf",
+    "figures/holding-all-scenes-paired-difference.png": "holding/controls/figures/holding-all-scenes-paired-difference.png",
+    "figures/holding-all-scenes-paired-difference.svg": "holding/controls/figures/holding-all-scenes-paired-difference.svg",
+    "figures/holding-historical-range-main.pdf": "holding/controls/figures/holding-historical-range-main.pdf",
+    "figures/holding-historical-range-main.png": "holding/controls/figures/holding-historical-range-main.png",
+    "figures/holding-historical-range-main.svg": "holding/controls/figures/holding-historical-range-main.svg",
+    "figures/holding-main-8-scenes.pdf": "holding/controls/figures/holding-main-8-scenes.pdf",
+    "figures/holding-main-8-scenes.png": "holding/controls/figures/holding-main-8-scenes.png",
+    "figures/holding-midpoint-full-range-appendix.pdf": "holding/main/figures/holding-midpoint-full-range-appendix.pdf",
+    "figures/holding-midpoint-full-range-appendix.png": "holding/main/figures/holding-midpoint-full-range-appendix.png",
+    "figures/holding-midpoint-full-range-appendix.svg": "holding/main/figures/holding-midpoint-full-range-appendix.svg",
+    "figures/holding-midpoint-prepeak-all-scenes.pdf": "holding/main/figures/holding-midpoint-prepeak-all-scenes.pdf",
+    "figures/holding-midpoint-prepeak-all-scenes.png": "holding/main/figures/holding-midpoint-prepeak-all-scenes.png",
+    "figures/holding-midpoint-prepeak-all-scenes.svg": "holding/main/figures/holding-midpoint-prepeak-all-scenes.svg",
+    "figures/holding-midpoint-prepeak-delta.pdf": "holding/main/figures/holding-midpoint-prepeak-delta.pdf",
+    "figures/holding-midpoint-prepeak-delta.png": "holding/main/figures/holding-midpoint-prepeak-delta.png",
+    "figures/holding-midpoint-prepeak-delta.svg": "holding/main/figures/holding-midpoint-prepeak-delta.svg",
+    "figures/holding-paired-differences.png": "holding/controls/figures/holding-paired-differences.png",
+    "figures/holding-shared-cutoff-curves.png": "holding/controls/figures/holding-shared-cutoff-curves.png",
+    "figures/injection-geometry-smooth-vs-segmented.png": "vectoring/history/presentation-19-candidates/figures/injection-geometry-smooth-vs-segmented.png",
+    "figures/segmented-positive-dose-response.pdf": "vectoring/history/presentation-19-candidates/figures/segmented-positive-dose-response.pdf",
+    "figures/segmented-positive-dose-response.png": "vectoring/history/presentation-19-candidates/figures/segmented-positive-dose-response.png",
+    "figures/vectoring-all-scenes-correlations.pdf": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.pdf",
+    "figures/vectoring-all-scenes-correlations.png": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.png",
+    "figures/vectoring-all-scenes-correlations.svg": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.svg",
+    "figures/vectoring-all-scenes-dose.pdf": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.pdf",
+    "figures/vectoring-all-scenes-dose.png": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.png",
+    "figures/vectoring-all-scenes-dose.svg": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.svg",
+    "code/analyze_common_cutoff.py": "holding/code/analyze_common_cutoff.py",
+    "code/audit_holding_r2_sensitivity.py": "holding/code/audit_holding_r2_sensitivity.py",
+    "code/diagnose_holding_mean_composition.py": "holding/code/diagnose_holding_mean_composition.py",
+    "code/evaluate_holding_control.py": "holding/code/evaluate_holding_control.py",
+    "code/plot_holding_historical_ranges.py": "holding/code/plot_holding_historical_ranges.py",
+    "code/plot_holding_midpoint_response.py": "holding/code/plot_holding_midpoint_response.py",
+    "code/plot_holding_primary.py": "holding/code/plot_holding_primary.py",
+    "code/plot_holding_six_scene_preview.py": "holding/code/plot_holding_six_scene_preview.py",
+    "code/run_holding_eval.py": "holding/code/run_holding_eval.py",
+    "code/audit_vectoring_missing_quality.py": "vectoring/code/audit_vectoring_missing_quality.py",
+    "code/diagnose_fixed_scales.py": "vectoring/code/diagnose_fixed_scales.py",
+    "code/evaluate_saved_vectoring.py": "vectoring/code/evaluate_saved_vectoring.py",
+    "code/run_vectoring_eval.py": "vectoring/code/run_vectoring_eval.py",
+    "code/screen_approved_scenes.py": "vectoring/code/screen_approved_scenes.py",
+    "code/screen_vectoring_candidates.py": "vectoring/code/screen_vectoring_candidates.py",
+    "code/test_direction_certificate.py": "vectoring/code/test_direction_certificate.py",
+    "code/test_peak_feedback.py": "vectoring/code/test_peak_feedback.py",
+    "code/test_uncertainty.py": "vectoring/code/test_uncertainty.py",
+    "code/test_vectoring_certification.py": "vectoring/code/test_vectoring_certification.py",
+    "code/test_vectoring_path.py": "vectoring/code/test_vectoring_path.py",
+    "code/test_vectoring_population.py": "vectoring/code/test_vectoring_population.py",
+    "code/test_vectoring_repair.py": "vectoring/code/test_vectoring_repair.py",
+    "code/vectoring_certification.py": "vectoring/code/vectoring_certification.py",
+    "code/vectoring_inputs.py": "vectoring/code/vectoring_inputs.py",
+    "code/vectoring_path.py": "vectoring/code/vectoring_path.py",
+    "code/vectoring_population.py": "vectoring/code/vectoring_population.py",
+    "code/vectoring_reference.py": "vectoring/code/vectoring_reference.py",
+    "code/vectoring_uncertainty.py": "vectoring/code/vectoring_uncertainty.py",
+    "code/hourly_report_text.py": "hourly/code/hourly_report_text.py",
+    "code/report_changi_hourly.py": "hourly/code/report_changi_hourly.py",
+    "code/test_changi_hourly_report.py": "hourly/code/test_changi_hourly_report.py",
+    "code/make_holding_main.py": "holding/history/endpoint-overview/source/make_holding_main.py",
+    "code/check_consistency.py": "histry/legacy-audit-source/check_consistency.py",
+    "runs/strict-10s-reference/report.md": "histry/strict-10s-reference/report.md",
+    "runs/strict-10s-reference/results/analysis-manifest.json": "histry/strict-10s-reference/results/analysis-manifest.json",
+    "runs/strict-10s-reference/results/experiment-results.json": "histry/strict-10s-reference/results/experiment-results.json",
+    "runs/strict-10s-reference/results/qc350-holding-point-selection.csv": "histry/strict-10s-reference/results/qc350-holding-point-selection.csv",
+    "runs/strict-10s-reference/results/qc500-holding-point-selection.csv": "histry/strict-10s-reference/results/qc500-holding-point-selection.csv",
+    "runs/strict-10s-reference/results/run-manifest.json": "histry/strict-10s-reference/results/run-manifest.json",
+    "runs/strict-10s-reference/results/summary.json": "histry/strict-10s-reference/results/summary.json",
+    "runs/README.md": "histry/publication-records/runs-index.md",
+    "runs/publication-manifest.json": "histry/publication-records/publication-manifest.json",
+    "runs/publication-checks.json": "histry/publication-records/publication-checks.json",
+    "runs/.gitattributes": "histry/publication-records/.gitattributes",
+    "maintenance-checks.json": "histry/publication-records/maintenance-checks.json",
+    "archive/legacy-before-workflow-integration/inventory.json": "histry/legacy-before-workflow-integration/inventory.json",
+    "archive/legacy-before-workflow-integration/publication-manifest-before.json": "histry/legacy-before-workflow-integration/publication-manifest-before.json",
+    "archive/legacy-before-workflow-integration/published-before.json": "histry/legacy-before-workflow-integration/published-before.json",
+    "archive/legacy-before-workflow-integration/README.md": "histry/legacy-before-workflow-integration/README.md",
+    "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.png": "histry/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.png",
+    "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.svg": "histry/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.svg",
+    "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.png": "histry/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.png",
+    "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.svg": "histry/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.svg",
+    "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.png": "histry/legacy-before-workflow-integration/local/figures/holding-d-estimability.png",
+    "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.svg": "histry/legacy-before-workflow-integration/local/figures/holding-d-estimability.svg",
+    "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.png": "histry/legacy-before-workflow-integration/local/figures/holding-dose-response.png",
+    "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.svg": "histry/legacy-before-workflow-integration/local/figures/holding-dose-response.svg",
+    "archive/legacy-before-workflow-integration/local/figures/index.json": "histry/legacy-before-workflow-integration/local/figures/index.json",
+    "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.png": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.png",
+    "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.svg": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.svg",
+    "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.png": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.png",
+    "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.svg": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.svg",
+    "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.png": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.png",
+    "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.svg": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.svg",
+    "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.png": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.png",
+    "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.svg": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.svg",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.png": "histry/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.png",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.svg": "histry/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.svg",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.png": "histry/legacy-before-workflow-integration/local/figures/vectoring-dose-response.png",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.svg": "histry/legacy-before-workflow-integration/local/figures/vectoring-dose-response.svg",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.png": "histry/legacy-before-workflow-integration/local/figures/vectoring-full-range.png",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.svg": "histry/legacy-before-workflow-integration/local/figures/vectoring-full-range.svg",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.png": "histry/legacy-before-workflow-integration/local/figures/vectoring-screening.png",
+    "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.svg": "histry/legacy-before-workflow-integration/local/figures/vectoring-screening.svg",
+    "archive/legacy-before-workflow-integration/local/reports/approved-rerun-comparison.md": "histry/legacy-before-workflow-integration/local/reports/approved-rerun-comparison.md",
+    "archive/legacy-before-workflow-integration/local/reports/position-time-correction.md": "histry/legacy-before-workflow-integration/local/reports/position-time-correction.md",
+    "archive/legacy-before-workflow-integration/local/reports/time-axis-rerun.md": "histry/legacy-before-workflow-integration/local/reports/time-axis-rerun.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-continuous-generator.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-continuous-generator.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-direction-repair.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-direction-repair.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-peak-feedback.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-peak-feedback.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-population-policy.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-population-policy.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-population-screening.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-population-screening.md",
+    "archive/legacy-before-workflow-integration/local/reports/vectoring-threshold-decisions.md": "histry/legacy-before-workflow-integration/local/reports/vectoring-threshold-decisions.md",
+    "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.csv": "histry/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.csv",
+    "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.json": "histry/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.json",
+    "archive/legacy-before-workflow-integration/local/results/analysis-manifest.json": "histry/legacy-before-workflow-integration/local/results/analysis-manifest.json",
+    "archive/legacy-before-workflow-integration/local/results/approved-rerun-comparison.json": "histry/legacy-before-workflow-integration/local/results/approved-rerun-comparison.json",
+    "archive/legacy-before-workflow-integration/local/results/experiment-results.json": "histry/legacy-before-workflow-integration/local/results/experiment-results.json",
+    "archive/legacy-before-workflow-integration/local/results/injected_geometry_audit.json": "histry/legacy-before-workflow-integration/local/results/injected_geometry_audit.json",
+    "archive/legacy-before-workflow-integration/local/results/qc350-holding-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc350-holding-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/qc350-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc350-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/qc350_safe-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc350_safe-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/qc500-holding-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc500-holding-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/qc500-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc500-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/qc500_safe-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/local/results/qc500_safe-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/local/results/quality_audit.json": "histry/legacy-before-workflow-integration/local/results/quality_audit.json",
+    "archive/legacy-before-workflow-integration/local/results/report-manifest.json": "histry/legacy-before-workflow-integration/local/results/report-manifest.json",
+    "archive/legacy-before-workflow-integration/local/results/run-manifest.json": "histry/legacy-before-workflow-integration/local/results/run-manifest.json",
+    "archive/legacy-before-workflow-integration/local/results/summary.json": "histry/legacy-before-workflow-integration/local/results/summary.json",
+    "archive/legacy-before-workflow-integration/local/results/time-axis-rerun-comparison.json": "histry/legacy-before-workflow-integration/local/results/time-axis-rerun-comparison.json",
+    "archive/legacy-before-workflow-integration/local/results/vectoring-direction-repair.json": "histry/legacy-before-workflow-integration/local/results/vectoring-direction-repair.json",
+    "archive/legacy-before-workflow-integration/local/results/vectoring-peak-feedback.json": "histry/legacy-before-workflow-integration/local/results/vectoring-peak-feedback.json",
+    "archive/legacy-before-workflow-integration/local/results/vectoring-population-screening.json": "histry/legacy-before-workflow-integration/local/results/vectoring-population-screening.json",
+    "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.png": "histry/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.png",
+    "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.svg": "histry/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.png": "histry/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.png",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.svg": "histry/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.png": "histry/legacy-before-workflow-integration/committed/figures/holding-d-estimability.png",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.svg": "histry/legacy-before-workflow-integration/committed/figures/holding-d-estimability.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.png": "histry/legacy-before-workflow-integration/committed/figures/holding-dose-response.png",
+    "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.svg": "histry/legacy-before-workflow-integration/committed/figures/holding-dose-response.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/index.json": "histry/legacy-before-workflow-integration/committed/figures/index.json",
+    "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.png": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.png",
+    "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.svg": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.png": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.png",
+    "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.svg": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.png": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.png",
+    "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.svg": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.png": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.png",
+    "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.svg": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.png": "histry/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.png",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.svg": "histry/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.png": "histry/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.png",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.svg": "histry/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.svg",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.png": "histry/legacy-before-workflow-integration/committed/figures/vectoring-full-range.png",
+    "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.svg": "histry/legacy-before-workflow-integration/committed/figures/vectoring-full-range.svg",
+    "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.csv": "histry/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.csv",
+    "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.json": "histry/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.json",
+    "archive/legacy-before-workflow-integration/committed/results/analysis-manifest.json": "histry/legacy-before-workflow-integration/committed/results/analysis-manifest.json",
+    "archive/legacy-before-workflow-integration/committed/results/experiment-results.json": "histry/legacy-before-workflow-integration/committed/results/experiment-results.json",
+    "archive/legacy-before-workflow-integration/committed/results/injected_geometry_audit.json": "histry/legacy-before-workflow-integration/committed/results/injected_geometry_audit.json",
+    "archive/legacy-before-workflow-integration/committed/results/qc350-holding-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc350-holding-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/qc350-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc350-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/qc350_safe-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc350_safe-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/qc500-holding-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc500-holding-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/qc500-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc500-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/qc500_safe-vectoring-point-selection.csv": "histry/legacy-before-workflow-integration/committed/results/qc500_safe-vectoring-point-selection.csv",
+    "archive/legacy-before-workflow-integration/committed/results/quality_audit.json": "histry/legacy-before-workflow-integration/committed/results/quality_audit.json",
+    "archive/legacy-before-workflow-integration/committed/results/run-manifest.json": "histry/legacy-before-workflow-integration/committed/results/run-manifest.json",
+    "archive/legacy-before-workflow-integration/committed/results/summary.json": "histry/legacy-before-workflow-integration/committed/results/summary.json",
+    "archive/legacy-audit-source/check_consistency.py": "histry/legacy-audit-source/check_consistency.py",
+    "archive/README-5km-2026-10-24.md": "histry/combined-reports/README-5km-2026-10-24.md",
+    "archive/report-5km-2026-10-24.md": "histry/combined-reports/report-5km-2026-10-24.md",
+    "archive/README.md": "histry/combined-reports/archive-index.md",
+    "organization-map.json": "histry/organization-map.json",
+    "report.md": "report/report.md",
+    "DIRECTORY_GUIDE.md": "report/DIRECTORY_GUIDE.md",
+    "DATA_PACKAGE.md": "report/DATA_PACKAGE.md",
+    "figures/holding-vs-vectoring-comparison.pdf": "report/figures/holding-vs-vectoring-comparison.pdf",
+    "figures/holding-vs-vectoring-comparison.png": "report/figures/holding-vs-vectoring-comparison.png",
+    "figures/make_combined_figure.py": "histry/cross-study-figure-source/make_combined_figure.py",
+    "figures/README.md": "report/figures/README.md"
+  },
+  "directory_aliases": {
+    "runs/holding-equal-duration": "holding/controls/holding-equal-duration",
+    "runs/holding-equal-duration-old-cutoff": "holding/controls/holding-equal-duration-old-cutoff",
+    "runs/vectoring-20s-repaired": "vectoring/main/vectoring-20s-repaired",
+    "runs/vectoring-certificate-repair": "vectoring/main/vectoring-certificate-repair",
+    "runs/vectoring-time-window-sensitivity": "vectoring/controls/vectoring-time-window-sensitivity",
+    "runs/segmented-15km": "vectoring/history/segmented-15km",
+    "runs/four-scene-vectoring-screen": "vectoring/history/four-scene-vectoring-screen",
+    "runs/four-scene-vectoring-evaluation": "vectoring/history/four-scene-vectoring-evaluation",
+    "runs/vectoring-existing-result-diagnosis": "vectoring/history/vectoring-existing-result-diagnosis",
+    "runs/vectoring-fixed-baseline-scales": "vectoring/history/vectoring-fixed-baseline-scales",
+    "runs/changi-thresholds": "hourly/controls/changi-thresholds",
+    "runs/changi-n-scaling": "hourly/history/changi-n-scaling",
+    "runs/opensky-30d-no-gate": "hourly/history/opensky-30d-no-gate",
+    "runs/changi-hourly/appendix-original": "hourly/controls/original-hourly",
+    "runs/changi-hourly": "hourly/main/changi-hourly",
+    "archive/holding-midpoint-r098": "holding/history/midpoint-r098",
+    "runs/strict-10s-reference": "histry/strict-10s-reference",
+    "archive/legacy-before-workflow-integration": "histry/legacy-before-workflow-integration",
+    "archive/legacy-audit-source": "histry/legacy-audit-source",
+    "figures": "report/figures",
+    "archive": "histry",
+    "runs": "histry"
+  },
+  "immutable_files": [
+    {
+      "old": "maintenance-checks.json",
+      "path": "histry/publication-records/maintenance-checks.json",
+      "sha256": "c0e6e46e06e3123669f7d0b63af8723ed101d04614b19c43a041d7049b1dcf63"
+    },
+    {
+      "old": "requirements-screening.txt",
+      "path": "requirements-screening.txt",
+      "sha256": "36ecfa1ce82fd07f3a3889c3be91c7b10417032df4c4709397c3b131aefa4a91"
+    },
+    {
+      "old": "archive/holding-all-scenes-dose-2026-10-26.pdf",
+      "path": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.pdf",
+      "sha256": "fbc2c796ce76d75523aee60e53d3b2ab4ab1552f20fd6f6bf9076923fad46977"
+    },
+    {
+      "old": "archive/holding-all-scenes-dose-2026-10-26.png",
+      "path": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.png",
+      "sha256": "8e2628e35066f4f04dcacc696f5b7b3545ffc8ac8bfd299d720343432a1bfe44"
+    },
+    {
+      "old": "archive/holding-all-scenes-dose-2026-10-26.svg",
+      "path": "holding/history/endpoint-overview/holding-all-scenes-dose-2026-10-26.svg",
+      "sha256": "3820229ed1fbffe556eb22573157e9ca593c7f4ae2eb5fb9fb8be79df1440807"
+    },
+    {
+      "old": "code/make_holding_main.py",
+      "path": "holding/history/endpoint-overview/source/make_holding_main.py",
+      "sha256": "f4bec05ec1647f37016bcc4823778ad98039fd991c5b4fbbc06011b9bb0ba12e"
+    },
+    {
+      "old": "figures/d-association-smooth-vs-segmented.png",
+      "path": "vectoring/history/presentation-19-candidates/figures/d-association-smooth-vs-segmented.png",
+      "sha256": "aaa85d053d38692161b922d3d6318944e8e221edb759240d50d564eeea593163"
+    },
+    {
+      "old": "figures/holding-all-scenes-paired-difference.pdf",
+      "path": "holding/controls/figures/holding-all-scenes-paired-difference.pdf",
+      "sha256": "a3b86f84d00fc3f2493fcac8e9be625f65cd74f3a729bf01a7740bba8c749b3c"
+    },
+    {
+      "old": "figures/holding-all-scenes-paired-difference.png",
+      "path": "holding/controls/figures/holding-all-scenes-paired-difference.png",
+      "sha256": "530c2882080a26660a74cb17715692e9844597b47b1e1326a5d3eff9a10a079a"
+    },
+    {
+      "old": "figures/holding-all-scenes-paired-difference.svg",
+      "path": "holding/controls/figures/holding-all-scenes-paired-difference.svg",
+      "sha256": "ec1b23edfb508a70c34b4b161e12aadee875ee3045c116f49fe53a8cb8352ded"
+    },
+    {
+      "old": "figures/holding-historical-range-main.pdf",
+      "path": "holding/controls/figures/holding-historical-range-main.pdf",
+      "sha256": "8cf6de5627871b500c6188c99f12511774407d9b4215b9f4d0f771a387306273"
+    },
+    {
+      "old": "figures/holding-historical-range-main.png",
+      "path": "holding/controls/figures/holding-historical-range-main.png",
+      "sha256": "bfd407d5802a55a556fcd23980c978330f9524c5feb042d56867f7d85b04975f"
+    },
+    {
+      "old": "figures/holding-historical-range-main.svg",
+      "path": "holding/controls/figures/holding-historical-range-main.svg",
+      "sha256": "bc15bd72f3f66eb4ade8c7849c93c738bc4dc97baddacadcbf1781caa0ebe356"
+    },
+    {
+      "old": "figures/holding-main-8-scenes.pdf",
+      "path": "holding/controls/figures/holding-main-8-scenes.pdf",
+      "sha256": "a02a6018ebd83e81b52db6a122fa7e815ef5ed022afeb052707636944f309199"
+    },
+    {
+      "old": "figures/holding-main-8-scenes.png",
+      "path": "holding/controls/figures/holding-main-8-scenes.png",
+      "sha256": "2f5b82c68efada01499314193fff6f502159ba585fa02cef92b9618dfc5e7dd5"
+    },
+    {
+      "old": "figures/holding-midpoint-full-range-appendix.pdf",
+      "path": "holding/main/figures/holding-midpoint-full-range-appendix.pdf",
+      "sha256": "065194b79f8f29a23e0f4a3cd75db489a80d3e09b2ea682e4491a643b117446c"
+    },
+    {
+      "old": "figures/holding-midpoint-full-range-appendix.png",
+      "path": "holding/main/figures/holding-midpoint-full-range-appendix.png",
+      "sha256": "96f1e63690b11ac3679ff3c4f84d9c10b648a9aaed767b0dde73a4959a03a486"
+    },
+    {
+      "old": "figures/holding-midpoint-full-range-appendix.svg",
+      "path": "holding/main/figures/holding-midpoint-full-range-appendix.svg",
+      "sha256": "147298669f85f6e554cae783f75e557b3b0e6d9d6ed277e7f3886ceee1576d86"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-all-scenes.pdf",
+      "path": "holding/main/figures/holding-midpoint-prepeak-all-scenes.pdf",
+      "sha256": "e2b757ec6422dd1a38edf17004993b73809a5d2573f06a3f9a7e677bbaa38051"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-all-scenes.png",
+      "path": "holding/main/figures/holding-midpoint-prepeak-all-scenes.png",
+      "sha256": "0dbd9e4a500520f523ca56b0b02e50727c080e67259968926735d132cb04c61b"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-all-scenes.svg",
+      "path": "holding/main/figures/holding-midpoint-prepeak-all-scenes.svg",
+      "sha256": "c753a45f2576acaf140435568e5309dc5ef6261848ca636a70a6ed40bd1960b0"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-delta.pdf",
+      "path": "holding/main/figures/holding-midpoint-prepeak-delta.pdf",
+      "sha256": "53b765f8c184411333273eccdbe935b6bc9bd2ae9e496161c3e7bffc8ae68fc3"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-delta.png",
+      "path": "holding/main/figures/holding-midpoint-prepeak-delta.png",
+      "sha256": "30a12f03932f1386bbbce94f3f572b5cf1f6f9f6230822e7108379c4abf0047c"
+    },
+    {
+      "old": "figures/holding-midpoint-prepeak-delta.svg",
+      "path": "holding/main/figures/holding-midpoint-prepeak-delta.svg",
+      "sha256": "b7bdc8f4f1dd95fa32b5f2ff0242bc09398c8967dcb59ebb2b8e51308ff66b27"
+    },
+    {
+      "old": "figures/holding-paired-differences.png",
+      "path": "holding/controls/figures/holding-paired-differences.png",
+      "sha256": "e472936aff2f3366ecf450578f7949ff02b597e027e0c658a2cea32b7747637b"
+    },
+    {
+      "old": "figures/holding-shared-cutoff-curves.png",
+      "path": "holding/controls/figures/holding-shared-cutoff-curves.png",
+      "sha256": "8053fc0e3b520a28d50bba4d47129af12eb0e9e742817ac52df5a95fae8f02fc"
+    },
+    {
+      "old": "figures/holding-vs-vectoring-comparison.pdf",
+      "path": "report/figures/holding-vs-vectoring-comparison.pdf",
+      "sha256": "eb3d2dcafd26f5706b82ea6d1acc1898011ce3fdab5ca991a5ba25f6418aee3a"
+    },
+    {
+      "old": "figures/holding-vs-vectoring-comparison.png",
+      "path": "report/figures/holding-vs-vectoring-comparison.png",
+      "sha256": "2b3f74d9f52a67b2bd89ea6fc3f63b58dfd832bcf5982ab495ced2d2f3d1d654"
+    },
+    {
+      "old": "figures/injection-geometry-smooth-vs-segmented.png",
+      "path": "vectoring/history/presentation-19-candidates/figures/injection-geometry-smooth-vs-segmented.png",
+      "sha256": "cd7ce7e5e1495add8193acd1af53e00b2a02a52594bfc476a8fcaea2072e1c58"
+    },
+    {
+      "old": "figures/segmented-positive-dose-response.pdf",
+      "path": "vectoring/history/presentation-19-candidates/figures/segmented-positive-dose-response.pdf",
+      "sha256": "3e2b212bf9bf71e2b9e90ad2946633d26ed748eccf405cd1715fe172a7e61e4e"
+    },
+    {
+      "old": "figures/segmented-positive-dose-response.png",
+      "path": "vectoring/history/presentation-19-candidates/figures/segmented-positive-dose-response.png",
+      "sha256": "60a9a6c46ed2cb81ce04b683cf78d2475367943f0d2cde125217a7c41992a882"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-correlations.pdf",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.pdf",
+      "sha256": "39b47fd83d819a32837fc34575c7006b93dea424bfea34a559f2b46433610252"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-correlations.png",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.png",
+      "sha256": "d6701e4cc421440258074d0c2f4e1b31f0f02af802c0cd88d595d0d374f15c31"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-correlations.svg",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-correlations.svg",
+      "sha256": "935666ed5f0a93b3f7f4c811fb8ce5920fd37d5580f63ccbe07367ae71d177ac"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-dose.pdf",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.pdf",
+      "sha256": "4f0c8d560befa4869c02864f06c2ac4bd8bf927be28209fc8041e510ea246d9f"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-dose.png",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.png",
+      "sha256": "38ef3d1b6ade2714e75c0fb73ab75f5a51f1192c41a8ab891d1666c58a4adc15"
+    },
+    {
+      "old": "figures/vectoring-all-scenes-dose.svg",
+      "path": "vectoring/history/presentation-19-candidates/figures/vectoring-all-scenes-dose.svg",
+      "sha256": "20a9ec2c54b0915df42af758c138fd5c67db2ae4159fab93fe808a84c90ef9a3"
+    },
+    {
+      "old": "runs/.gitattributes",
+      "path": "histry/publication-records/.gitattributes",
+      "sha256": "1c8df99883f65883baf9b370141e74b4a062b105976f68d3e7f02c124ed4b16a"
+    },
+    {
+      "old": "runs/publication-checks.json",
+      "path": "histry/publication-records/publication-checks.json",
+      "sha256": "10d816a9d0f59bcaf1dc788c5eec87def664b9192d1936804976b4e3679f099d"
+    },
+    {
+      "old": "runs/publication-manifest.json",
+      "path": "histry/publication-records/publication-manifest.json",
+      "sha256": "c33904be21bb1689692ca7eb8d8cf2b2db861ac31617507d130546a786353647"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/assignments.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/assignments.json",
+      "sha256": "55e80db190ab28d3a3f3858c3e3a34c47a93e99f05359e6578e81e01ccb1116f"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/policy.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/policy.json",
+      "sha256": "4fe15bbb8a6178db80eb35835942cb415a619b82a4a7327cc136fbad7840d0eb"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/verification.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/verification.json",
+      "sha256": "da3cefb85a9a56ca21a76f6046d86247ce43eae0d1f2b6aaf6ea8c9c155010c5"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/comparison.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/comparison.json",
+      "sha256": "a3919290a20667bbf97809b1af26e6750fb8e4f5880e1d447f4bedd80d29cecf"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/verification.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/verification.json",
+      "sha256": "cb72f6e594d3aad87f6c03fd558ed466b89430fe7836077f2a5b2dceee7cee2d"
+    },
+    {
+      "old": "runs/holding-equal-duration/assignments.json",
+      "path": "holding/controls/holding-equal-duration/assignments.json",
+      "sha256": "acc592f687ed972773b2158e64ddcac78104a0ace21b1cd55303643d9680a51b"
+    },
+    {
+      "old": "runs/holding-equal-duration/geometry-audit.json",
+      "path": "holding/controls/holding-equal-duration/geometry-audit.json",
+      "sha256": "047640d4ef25bcb7ee47b14f107d870bc824f5a91c25df26d31dfc0201dae17d"
+    },
+    {
+      "old": "runs/holding-equal-duration/policy.json",
+      "path": "holding/controls/holding-equal-duration/policy.json",
+      "sha256": "510aea909ad7026ab4054e622d07ed0bfe9b33a85c72b2f408353f54973c50cb"
+    },
+    {
+      "old": "runs/holding-equal-duration/verification.json",
+      "path": "holding/controls/holding-equal-duration/verification.json",
+      "sha256": "0dbc0cdb17a611fd78579b41702e8efd7a3084b73fb38219d8b2d0d28c1b42d7"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/policy.json",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/policy.json",
+      "sha256": "ff2978fb0642906c0ca4bf959cbe20a46dd80b734c6d20adc740aeee36b2627b"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/verification.json",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/verification.json",
+      "sha256": "76f07cbf416134a543f09b2dc32f99b16959ece146e123bc9c71bfcf1a08c72e"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/diagnosis.json",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/diagnosis.json",
+      "sha256": "cdbdfac927f888ddbf97773631c6676089f0ba6d6b99f0381958606cd5806fb1"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/verification.json",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/verification.json",
+      "sha256": "ab99644d5122f1804094a2809315dead73bd72807275390747b093a11119ea93"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/policy.json",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/policy.json",
+      "sha256": "5cf84d5e2c076e3de6b849c160012c362a52071b9403aa337bd2942cfb547d24"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/verification.json",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/verification.json",
+      "sha256": "faddcca2365db6eef49ea67c7e79963db62953950a19f2ed70397f4766ed6fdd"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.pdf",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.pdf",
+      "sha256": "0edb0a607e8c59c893c41942a0077789190bd4f789971b66703d8c0d2e158403"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.png",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.png",
+      "sha256": "4ac4de1f69c603067af02f0a34fcfa022fd744d6cafd747dad65c2c1cfa219cc"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.svg",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-segmented-time-window-delta.svg",
+      "sha256": "6ba7b26be1b943dd167df916d80b820c2cb7292ac2075c22b609a06697ac4d22"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.pdf",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.pdf",
+      "sha256": "331102ba0cf0a0a723d3edd50a94f045bad28e8ade9cdb54e6c33e44c4a6d068"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.png",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.png",
+      "sha256": "a37c726f4f7886ec795f25620c05019ab4aecc6af9ba6f9d9e2a519b3ab2a9df"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.svg",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-smooth-time-window-delta.svg",
+      "sha256": "1608266c0628e0152a0faca0571ff43d14d01dc7fa2568b0c093e3b635c4a079"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.pdf",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.pdf",
+      "sha256": "b6ce375d29e2b1295ac0d5e5b772800c888ad5838a2b4ebe82fe92268683d1b9"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.png",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.png",
+      "sha256": "ffa486e33ca4594e0bdc1d3bf243cfb0ed6c2eaa03ffe31d5a5c83561d635697"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.svg",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/figures/vectoring-time-window-correlations.svg",
+      "sha256": "b5e97eb48cefa0c53ff0ec62aa5209d85a1c9f54ec80d221025d54ee098703a7"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/source/report_results.py",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/source/report_results.py",
+      "sha256": "5f91a09e95de99ad938041e3c3683bd4a53d8eb275636dd6447fa843c8338788"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/source/run_evaluation.py",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/source/run_evaluation.py",
+      "sha256": "c0d142ce007305c98658bc4067a08c7be47422f6ffa4e9371cbc24b0ddb61c0f"
+    },
+    {
+      "old": "runs/vectoring-time-window-sensitivity/source/screen_routes.py",
+      "path": "vectoring/controls/vectoring-time-window-sensitivity/source/screen_routes.py",
+      "sha256": "9aac082ec4fbd2e645bd05a48bc08e135989c90927c1e86273079c02b46a8b5e"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.png",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.png",
+      "sha256": "4bb0d907efb71f2e34e7560d47c12ee140cc0fa5338979dba86a850648edaac8"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.svg",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/figures/fixed-scale-comparison.svg",
+      "sha256": "b267f9ce4d3aaaccffec66ac72abc313a6cc09d53de1ad3f6eba766d84e8fe24"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/results/fixed-dose-curves.json",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/results/fixed-dose-curves.json",
+      "sha256": "f86a59b9419e6c8b3d9dbbdaf2edabf7416d923e1ac5d9233721bc1800a01360"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/results/step-comparison.json",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/results/step-comparison.json",
+      "sha256": "ec700f7bd8a0fb02232652ac1f4c6fc392d1d89d056ef0bc77fc525639af7cc2"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/results/summary.json",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/results/summary.json",
+      "sha256": "bfe50328d18fe1cc03d9d0c23c38a78a3a180b9479ee5f44ac63c9bb7eeac2fe"
+    },
+    {
+      "old": "runs/vectoring-fixed-baseline-scales/source/analyze.py",
+      "path": "vectoring/history/vectoring-fixed-baseline-scales/source/analyze.py",
+      "sha256": "63a188140b0004df2359e102d112c6d702dfd8ac8393b2078d9b16c1a6537ccb"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.png",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.png",
+      "sha256": "34d812b92a671167d57d6775621484ba13d293f71053c85720c7ee9602412544"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.svg",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/figures/baseline-fit-residuals.svg",
+      "sha256": "3932e5108fe5449985d33e5f239e6c441c7d79e4e6d3ccbfb206f43de5003a43"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/figures/observed-injection-steps.png",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/figures/observed-injection-steps.png",
+      "sha256": "c8aea81603e842ef4fd39d64b9e3ac23b1d6e511928d35210a3f132446f9013d"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/figures/observed-injection-steps.svg",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/figures/observed-injection-steps.svg",
+      "sha256": "5664657454b0eba32454964f0ae6fc862c55f07a6367c74130e50673f1107f7b"
+    },
+    {
+      "old": "runs/vectoring-existing-result-diagnosis/source/analyze.py",
+      "path": "vectoring/history/vectoring-existing-result-diagnosis/source/analyze.py",
+      "sha256": "f6f416784521e4fdaf265c75b58c51e7306550cfc0b4f2babbf0e6a32edd3456"
+    },
+    {
+      "old": "runs/vectoring-certificate-repair/source/report_screening.py",
+      "path": "vectoring/main/vectoring-certificate-repair/source/report_screening.py",
+      "sha256": "9089e3e1af6caadc4f0dd920700a08731a0e877b86359a48884512e062da85bb"
+    },
+    {
+      "old": "runs/vectoring-certificate-repair/source/screen_saved.py",
+      "path": "vectoring/main/vectoring-certificate-repair/source/screen_saved.py",
+      "sha256": "40ec668ec206bd5ab7c6295c9010a714f86b0f6529daf10aab6f99c3a43fb3eb"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.pdf",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.pdf",
+      "sha256": "11810233f0cfed240cbc41659b9450d98c8b0626fe24c94192a7146edfbb8f08"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.png",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.png",
+      "sha256": "ba6294e5db94ce64fe1e75b80b8a44cec4621eabc71325384ce0d95274a02665"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.svg",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-full-range-before-after.svg",
+      "sha256": "ed227b0b9998220c384773cf8ddac678a2ff2495625a166dc1f235ad25c8cb3b"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.pdf",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.pdf",
+      "sha256": "a721a34b84ecf9a1c648e9a4dc15fb68162c961825d168ebeb0fd1f9bcdeee57"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png",
+      "sha256": "8fa7984a9d98d558fbf698b5be2b0cfade2298bd1ca48e171af9193d1b94d76f"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.svg",
+      "path": "vectoring/main/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.svg",
+      "sha256": "bbe01f460c8f73529b13117957431b192c04f2d0e5cf49ae9df624844a9e1b53"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/source/report_results.py",
+      "path": "vectoring/main/vectoring-20s-repaired/source/report_results.py",
+      "sha256": "bf827eb48218bb9aabd0e8377764071dfc248d6c9f2097d6777c4a864b8f25af"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/source/run_evaluation.py",
+      "path": "vectoring/main/vectoring-20s-repaired/source/run_evaluation.py",
+      "sha256": "6abc3a7226829018ebff13a38054802e8db08d4fecdd06dbad94c6c32a2b95fc"
+    },
+    {
+      "old": "runs/vectoring-20s-repaired/source/verify_results.py",
+      "path": "vectoring/main/vectoring-20s-repaired/source/verify_results.py",
+      "sha256": "f9e603684c70394b70ed0812ff7c2ffc061287929a0f434856c1b6b33ace2d12"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/analysis-manifest.json",
+      "path": "histry/strict-10s-reference/results/analysis-manifest.json",
+      "sha256": "154013de713754ca1fefbe76a0aa1750423af218aea6364f90be0b35238a4e26"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/experiment-results.json",
+      "path": "histry/strict-10s-reference/results/experiment-results.json",
+      "sha256": "9c35c996e498617f1b765041131b356ebd71cca9b4df0b27edcc5d4759e6e55e"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/qc350-holding-point-selection.csv",
+      "path": "histry/strict-10s-reference/results/qc350-holding-point-selection.csv",
+      "sha256": "2f5bdeb3f50986040f58b866995d62d06f8205f509ec5f97234de4c5b24c3a3a"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/qc500-holding-point-selection.csv",
+      "path": "histry/strict-10s-reference/results/qc500-holding-point-selection.csv",
+      "sha256": "5ba488835ee759dc56a9d774b368bb951603676a254ede811b901d8def7a0b1c"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/run-manifest.json",
+      "path": "histry/strict-10s-reference/results/run-manifest.json",
+      "sha256": "18db5809b5bb7545ed0fda56deb4ab1699fec4619e1e3f2829a365c7208d6eca"
+    },
+    {
+      "old": "runs/strict-10s-reference/results/summary.json",
+      "path": "histry/strict-10s-reference/results/summary.json",
+      "sha256": "8ce588d3529ad78d87b78b9c8231f9b6dd87eec68402218044d2d727a42b011f"
+    },
+    {
+      "old": "runs/segmented-15km/figures/smooth-vs-segmented.png",
+      "path": "vectoring/history/segmented-15km/figures/smooth-vs-segmented.png",
+      "sha256": "aaa85d053d38692161b922d3d6318944e8e221edb759240d50d564eeea593163"
+    },
+    {
+      "old": "runs/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png",
+      "path": "vectoring/history/segmented-15km/figures/vectoring-shape-smooth-vs-segmented.png",
+      "sha256": "cd7ce7e5e1495add8193acd1af53e00b2a02a52594bfc476a8fcaea2072e1c58"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-14T06Z-population.npz",
+      "path": "vectoring/history/segmented-15km/population/2026-09-14T06Z-population.npz",
+      "sha256": "f0fe23e52bd3a76a658efe28a245633625c7a428b4b72480f092bd55dd7bb9b4"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-14T06Z-records.json",
+      "path": "vectoring/history/segmented-15km/population/2026-09-14T06Z-records.json",
+      "sha256": "46a0ad276464dbeec3bf0d3a5a3530d671d31c7de43f1473b3ae3eef43b82e5f"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-15T07Z-population.npz",
+      "path": "vectoring/history/segmented-15km/population/2026-09-15T07Z-population.npz",
+      "sha256": "328c5b2cadb177cea52ecd26b94477919830b89291b610f80afd44b25a81e2d9"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-15T07Z-records.json",
+      "path": "vectoring/history/segmented-15km/population/2026-09-15T07Z-records.json",
+      "sha256": "cf3126aefe61013856be7a10a1dc93590eb2a3b85a0ac875633862c5d54af232"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-19T07Z-population.npz",
+      "path": "vectoring/history/segmented-15km/population/2026-09-19T07Z-population.npz",
+      "sha256": "978f0c1da90a17e0c6813484fbe79ea9b87d990ebacfc4ccf0b15d54aaede8a9"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-19T07Z-records.json",
+      "path": "vectoring/history/segmented-15km/population/2026-09-19T07Z-records.json",
+      "sha256": "7defc27380bf76806c3909a2bc226c8bedc6501e4a5fd47cc9ca8864332ca7ed"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-27T05Z-population.npz",
+      "path": "vectoring/history/segmented-15km/population/2026-09-27T05Z-population.npz",
+      "sha256": "8edf76ec552f64c7379897c05477c1d30d878e3d05d52fefea5262fdcfb31ea0"
+    },
+    {
+      "old": "runs/segmented-15km/population/2026-09-27T05Z-records.json",
+      "path": "vectoring/history/segmented-15km/population/2026-09-27T05Z-records.json",
+      "sha256": "98675eac9264137c7c6c127a6c6464cf8dd727fc3484bd7534ad39835e8ac983"
+    },
+    {
+      "old": "runs/segmented-15km/population/summary.json",
+      "path": "vectoring/history/segmented-15km/population/summary.json",
+      "sha256": "f3a6cb7791b2d36db14ee32d43de7cc4c00a85efefda460786df266835156acf"
+    },
+    {
+      "old": "runs/segmented-15km/source/compare.py",
+      "path": "vectoring/history/segmented-15km/source/compare.py",
+      "sha256": "f52862d6d805e46a95a3921840f1dd081b05bcc919e1d5814f558cfb0f46b652"
+    },
+    {
+      "old": "runs/segmented-15km/source/generate_population.py",
+      "path": "vectoring/history/segmented-15km/source/generate_population.py",
+      "sha256": "3976fbb7f4b0021970b3642024cff4a73912f6aed4f16da53a7b6251991ebbb0"
+    },
+    {
+      "old": "runs/segmented-15km/source/make_paper_figures.py",
+      "path": "vectoring/history/segmented-15km/source/make_paper_figures.py",
+      "sha256": "097cf30a16ff00864cde2d1dabd25ed67bae0c752caa803704fa6674fc763478"
+    },
+    {
+      "old": "runs/segmented-15km/source/run_eval.py",
+      "path": "vectoring/history/segmented-15km/source/run_eval.py",
+      "sha256": "91ffa2f201c70a7ea7b564ba17cc604b1de8dea7cc4741bb23f45f8728eb2e26"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/2026-09-14T06Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/segmented/2026-09-14T06Z-embeddings.npz",
+      "sha256": "cf993245389da537185b079e8afa51a4978d7abdc738d7414ab314d6dd6882c4"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/2026-09-15T07Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/segmented/2026-09-15T07Z-embeddings.npz",
+      "sha256": "12ae97bc3393fa5a309e0c561fb471c37414a335085a82b0804fbc9a3a7c6843"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/2026-09-19T07Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/segmented/2026-09-19T07Z-embeddings.npz",
+      "sha256": "282163e78b9b10d869995dd91a9104d71281b9c5d9f78676a6b06b4310dbf3a0"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/2026-09-27T05Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/segmented/2026-09-27T05Z-embeddings.npz",
+      "sha256": "15cba2e5046d1661ebd8194cf333a75670b54405f97c39f96f5ca80db66124e0"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/experiment-results.json",
+      "path": "vectoring/history/segmented-15km/results/segmented/experiment-results.json",
+      "sha256": "742b9f625013fb888be4331031d35d48b87ad6e724ee6d3e5f88042bf4897eac"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/run-manifest.json",
+      "path": "vectoring/history/segmented-15km/results/segmented/run-manifest.json",
+      "sha256": "3daac903d310f023d8c8cb2141892f829991c660474500aaca58667c3794871e"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/scene-diagnostics.json",
+      "path": "vectoring/history/segmented-15km/results/segmented/scene-diagnostics.json",
+      "sha256": "a7d9904a4fdb53ab20887cd038ce115f9d615a0bc441d0120bfb11810117042d"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/summary.json",
+      "path": "vectoring/history/segmented-15km/results/segmented/summary.json",
+      "sha256": "f9d5e99698e895f5a29e311ba5c27ed74a0f1a5368dadc55eac940100f42fe61"
+    },
+    {
+      "old": "runs/segmented-15km/results/segmented/threshold-sensitivity.json",
+      "path": "vectoring/history/segmented-15km/results/segmented/threshold-sensitivity.json",
+      "sha256": "f66c72a207d17013eaf0010462da81ae664b7c3cdfe7c59beda015b4c0ba1f26"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/2026-09-14T06Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/2026-09-14T06Z-embeddings.npz",
+      "sha256": "0960344a380726855b0078f54ed51f3319a07d0caca54b5b2d2433467999fc5e"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/2026-09-15T07Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/2026-09-15T07Z-embeddings.npz",
+      "sha256": "55b9f26fda09d7268865790c56e45742ba434773ee508a22653a06a61c5a54be"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/2026-09-19T07Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/2026-09-19T07Z-embeddings.npz",
+      "sha256": "2822d52091f6f65fb492e49464e31f129e3546022f9c9dc2b6339b2cbfa5c614"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/2026-09-27T05Z-embeddings.npz",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/2026-09-27T05Z-embeddings.npz",
+      "sha256": "dc97125b61cac99c90c77888cfbbb2bd993ac23962cc061bb2bef8203285d5d7"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/experiment-results.json",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/experiment-results.json",
+      "sha256": "eeac23caba4af98cd0621e8a27b516ddeb7a49d9d6628ae5d047d41815445aa2"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/run-manifest.json",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/run-manifest.json",
+      "sha256": "a69897cec5adf03ea90eee590a7782a9bf4ce6a7c1862733ff281c6bc2e10943"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/scene-diagnostics.json",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/scene-diagnostics.json",
+      "sha256": "5026e123aee08759d2c4ed9788acaeba04ba78028cfbbdcdd1bc16cd66c603ee"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/summary.json",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/summary.json",
+      "sha256": "51ec4baa803d64ec60eae82230a776a94d3972eddbee2cab72abae5478d459ea"
+    },
+    {
+      "old": "runs/segmented-15km/results/smooth-control/threshold-sensitivity.json",
+      "path": "vectoring/history/segmented-15km/results/smooth-control/threshold-sensitivity.json",
+      "sha256": "0a5d181c795dd1ee70022c28369e068f3e278f50775c4ba33a4d00449fa039c5"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/24h-no-gate-09-08-09-11.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/24h-no-gate-09-08-09-11.png",
+      "sha256": "a4b93b6fc298a8a3d3593c1291d597f9b5e98dbe84424aa268c55985ca204a2a"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/24h-threshold15-truncated.pdf",
+      "path": "hourly/history/opensky-30d-no-gate/figures/24h-threshold15-truncated.pdf",
+      "sha256": "c6a4cd0bb0addee59149c858427a4605067b3f7e6384911b9bd4e8bd21e7d731"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/24h-threshold15-truncated.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/24h-threshold15-truncated.png",
+      "sha256": "77aa8935760ea927923fc7076ebdc6fcb247db5c89c93557998d94295c5124cd"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/A-boxplot-no-gate.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/A-boxplot-no-gate.png",
+      "sha256": "dc9e3420af266889fa92f1a125c26ccfbe97a1c018ad05ac0ea195d85debe8fa"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/A-daynight-bands.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/A-daynight-bands.png",
+      "sha256": "49ce1fceed47eac8991892db3f4b08ddda5afb38d791a5c4923e4c10ef222548"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/A-daynight-boxplot.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/A-daynight-boxplot.png",
+      "sha256": "b866b01120de50ea49d3608d8db0cf5096bb31eab050e46a4f37cfb0c468f163"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/B-hexbin-no-gate.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/B-hexbin-no-gate.png",
+      "sha256": "255f4f156df9171d71145e690a6f6090e42f29366c6ac1c1057d8d8d0c65eda2"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/C-band-curves-no-gate.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/C-band-curves-no-gate.png",
+      "sha256": "0ffe0515d4cd8f8a3165f36b0a109dd7359b6b4f245061bd490f88bca2ccb684"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/figures/C-tobit-predictions.png",
+      "path": "hourly/history/opensky-30d-no-gate/figures/C-tobit-predictions.png",
+      "sha256": "4cb27a82760b037a25e6f402d08403a85ffa1cc2c2bcbb5bc56c94a57dea26e1"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/results/d-vs-n-no-gate.json",
+      "path": "hourly/history/opensky-30d-no-gate/results/d-vs-n-no-gate.json",
+      "sha256": "094a2b531fbf8cb26ff2321b2592de0e8034fd962f2f626a5eb6abbf81dde6c4"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/results/daynight-model.json",
+      "path": "hourly/history/opensky-30d-no-gate/results/daynight-model.json",
+      "sha256": "6b83a4315c3ecac7c45f9ce8ddb0f175bfc462156904e4b3e8b50249458e286a"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/results/encoding-summary.json",
+      "path": "hourly/history/opensky-30d-no-gate/results/encoding-summary.json",
+      "sha256": "9214ea8137b35368cecf676b524e2949347415b6fb1e0b66851233a703b26601"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/results/summary.json",
+      "path": "hourly/history/opensky-30d-no-gate/results/summary.json",
+      "sha256": "1c1b205ec788ef97a3a58dcb91e61f165f29646ca2c23e857cdd9d8a20ae99d7"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/results/truncation-threshold15.json",
+      "path": "hourly/history/opensky-30d-no-gate/results/truncation-threshold15.json",
+      "sha256": "561c8e5f6025d4d7f02a9b9c100e12d29e6916da3eda2187cc941385f405b311"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/compute_d_vs_n.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/compute_d_vs_n.py",
+      "sha256": "c58408f0914df62649e842b60ee26b8533920f5851c11470aa26ea6216a85542"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/encode_all.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/encode_all.py",
+      "sha256": "c5fae36571ab2395806a9786ab17c4d6a0749187a4f1f40aeb9eb163e89e023a"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/make_figures.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/make_figures.py",
+      "sha256": "0acc7c71956908523e9f249fccac50367b16131dd6236efe8a62016ef0c45c7a"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/make_truncated_24h.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/make_truncated_24h.py",
+      "sha256": "973f0d464fa6252c007831ea303dc2f25995000bee27b8853ce94e9ad52f3df0"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/daynight/analyze2.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/daynight/analyze2.py",
+      "sha256": "bab5e59ad9141bd9a1681418f61dfedab5b80ae7c2f1f10076650642e07bee10"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/daynight/make_boxplot.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/daynight/make_boxplot.py",
+      "sha256": "d882147b13d30305a7bc338c33ef383a8bdd9dff621933f8d5f6e45e7668e13e"
+    },
+    {
+      "old": "runs/opensky-30d-no-gate/source/daynight/make_figures.py",
+      "path": "hourly/history/opensky-30d-no-gate/source/daynight/make_figures.py",
+      "sha256": "0da5d4754ec8acd3ef83feea30d4e469735d956f414b738663b834c7526e99f9"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.png",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.png",
+      "sha256": "8053fc0e3b520a28d50bba4d47129af12eb0e9e742817ac52df5a95fae8f02fc"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.svg",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-curves.svg",
+      "sha256": "9c7414ceb193a7381e85145db688c81fc5d636ef33c24dfc8f4e291004877eb4"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.png",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.png",
+      "sha256": "718f84cf410483d1e1a82c3424196e1c8f9329fc2582fd1e419e862debdf7b4a"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.svg",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/figures/shared-cutoff-difference.svg",
+      "sha256": "ea0f2a4819ee46aee39b5246a1fdc8c5ed239f2a19c2fa742c98b295a6c973ed"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/results/point-selection.json",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/results/point-selection.json",
+      "sha256": "d71d180d2931f838112e6fef61da65743ec18c6a7c550df1321b2b58956dcd14"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/results/repeat-summary.json",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/results/repeat-summary.json",
+      "sha256": "fcd554d0102de6fd9fd63124589b920f2412d959996b9ecd25a90d0aa9ec8471"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/results/summary.json",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/results/summary.json",
+      "sha256": "ae097b5de21b2001bf871b1f6e7935dfce3b8acb64b02687221bc2c5e6d28b70"
+    },
+    {
+      "old": "runs/holding-equal-duration-old-cutoff/source/analyze.py",
+      "path": "holding/controls/holding-equal-duration-old-cutoff/source/analyze.py",
+      "sha256": "6f8392f740599f2c0588508b0845243369974115a4ce40f308f5d0a8f62f234b"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/dose-curves-1.png",
+      "path": "holding/controls/holding-equal-duration/figures/dose-curves-1.png",
+      "sha256": "72749b0f0764fd2ec603408ca7c276ce2643e0b7bc7dbf0188fc1979bedd0733"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/dose-curves-1.svg",
+      "path": "holding/controls/holding-equal-duration/figures/dose-curves-1.svg",
+      "sha256": "9c0b628cda4769d319af39d75d6e2d3fced3978fa7257981d526738701d0572f"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/dose-curves-2.png",
+      "path": "holding/controls/holding-equal-duration/figures/dose-curves-2.png",
+      "sha256": "d3dd01b786a64acb37b7e092d75820fa963ec0b29162a0aba7ba74660a47fc4c"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/dose-curves-2.svg",
+      "path": "holding/controls/holding-equal-duration/figures/dose-curves-2.svg",
+      "sha256": "ae2c6a18aeaff114ae1ad941eb3f6483d093de8e701d2dd0fd197f9ff94eb37d"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/paired-differences.png",
+      "path": "holding/controls/holding-equal-duration/figures/paired-differences.png",
+      "sha256": "e472936aff2f3366ecf450578f7949ff02b597e027e0c658a2cea32b7747637b"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/paired-differences.svg",
+      "path": "holding/controls/holding-equal-duration/figures/paired-differences.svg",
+      "sha256": "c2e65e74b9d940965772723dc59fb72a3b58400c03eeefcb70d1a281241012f1"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/paired-geometry-example.png",
+      "path": "holding/controls/holding-equal-duration/figures/paired-geometry-example.png",
+      "sha256": "6e0e38558058a115cd65dad6d5213eb7759cae428f3a9e958c8e70d4127770e6"
+    },
+    {
+      "old": "runs/holding-equal-duration/figures/paired-geometry-example.svg",
+      "path": "holding/controls/holding-equal-duration/figures/paired-geometry-example.svg",
+      "sha256": "5ec875cff5793594d91dedcec1484cb4a5131565374b7a14acddc89ab8cec58a"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-01T01Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-01T01Z-embeddings.npz",
+      "sha256": "0de41bb398b02f716af6d1153530b95667234563a2b26188cfe14a293c9d7ce2"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-04T08Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-04T08Z-embeddings.npz",
+      "sha256": "d8ef8a0752fc4af9be6505da3c199d5b9850a7aaade00a94ae5324a104ee20a3"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-07T10Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-07T10Z-embeddings.npz",
+      "sha256": "42e5db1f39491a033f8a800fd8d58eb45e4cc2e90dc98fbdf2de29f66acd8f67"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-10T06Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-10T06Z-embeddings.npz",
+      "sha256": "6fd15802d84ac27f8268287cd397782f922870fa86f5576cbf35d9d32d48e136"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-12T15Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-12T15Z-embeddings.npz",
+      "sha256": "02ed32b5ad92052c5595ebf5c4abdd76c0b39b8ebc617cadeacf63255c4b4f6a"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-15T06Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-15T06Z-embeddings.npz",
+      "sha256": "4b9d52812361e8d87e4698f6c496e836119d8f781af499ba2c4c2daedd7bd688"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-18T00Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-18T00Z-embeddings.npz",
+      "sha256": "78dca2d2dec7e323d69efe231f746e2692d45b4e63385c43cb82e70ecd9f5fb8"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-20T04Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-20T04Z-embeddings.npz",
+      "sha256": "b3ab26ba347ff2a88f35260dca2ad53172a1c19e7533793985a7f385005ea00e"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-23T10Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-23T10Z-embeddings.npz",
+      "sha256": "d8efa5b11abc1972b30a13e17e9a7c8eeb494ec4b78a47962cb7d2c416785e4e"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-25T23Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-25T23Z-embeddings.npz",
+      "sha256": "f8a7cf7233fea2e9a55bc9f536a5cecb2eb6eb7af3a09fe29cbfb57e9141d6fb"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-28T07Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-28T07Z-embeddings.npz",
+      "sha256": "a1089cf412170445b7d4ea60c0300f31c7abe78cb16875630ed025a7b24a3ca1"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/2026-09-30T15Z-embeddings.npz",
+      "path": "holding/controls/holding-equal-duration/results/2026-09-30T15Z-embeddings.npz",
+      "sha256": "2645b85c27ac9adf4336d66c4b8742440e248f4fc6cc4e35ab8ef0e68d7d9d85"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/baseline-verification.json",
+      "path": "holding/controls/holding-equal-duration/results/baseline-verification.json",
+      "sha256": "ed3714d2a322703d53133337352a4aa9d87a87ae42caaef456b55b4a0e16c2ba"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/experiment-results.json",
+      "path": "holding/controls/holding-equal-duration/results/experiment-results.json",
+      "sha256": "a260c64990e96bfd9da32c9810e1bc47b2978ae900e7b783994d7803f43890ec"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/paired-dose-records.json",
+      "path": "holding/controls/holding-equal-duration/results/paired-dose-records.json",
+      "sha256": "c6bb667deb2089d702bd01ff992f0c4e8b37111def39a02fa8f5ded291530d32"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/repeat-summary.json",
+      "path": "holding/controls/holding-equal-duration/results/repeat-summary.json",
+      "sha256": "a2783c99f1f1604b6c25dd55d4b8a6cb0e9342063ec000f55dd6de9c7523aa5a"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/run-manifest.json",
+      "path": "holding/controls/holding-equal-duration/results/run-manifest.json",
+      "sha256": "f9c8ac6d45ca6dea99f4474d0e322b578fd2a413ffc9590df8443c47374c7f3d"
+    },
+    {
+      "old": "runs/holding-equal-duration/results/summary.json",
+      "path": "holding/controls/holding-equal-duration/results/summary.json",
+      "sha256": "4a0912cae83a905d5d2db1dde1d0f75060d0b63a93f396d2a57d1454c38ab77f"
+    },
+    {
+      "old": "runs/holding-equal-duration/source/report_and_verify.py",
+      "path": "holding/controls/holding-equal-duration/source/report_and_verify.py",
+      "sha256": "8f0225f0e2c3ccaa7753b077d1aaad91828d6169e7e5515e5ce29da5786912e5"
+    },
+    {
+      "old": "runs/holding-equal-duration/source/run.py",
+      "path": "holding/controls/holding-equal-duration/source/run.py",
+      "sha256": "ce23607e69100fad225945bc969e1b5f10312ea703b55ac5fcef5344342ace29"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/2026-09-14T06Z-records.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-14T06Z-records.json",
+      "sha256": "4726a72a00fc3ba02fbad5a2af13594e185ca53540222ef9ad764c226e78d0d4"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/2026-09-15T07Z-records.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-15T07Z-records.json",
+      "sha256": "9316033db131b672a8f3da00c663b3c0dd055c06afbb81d194b0decf928c6054"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/2026-09-19T07Z-records.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-19T07Z-records.json",
+      "sha256": "0b567b20c14ffa106a9e17577c59b236ff66da7cdabeeebfa72a16ef39fc8119"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/2026-09-27T05Z-records.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/2026-09-27T05Z-records.json",
+      "sha256": "a5810b22d61a42aeb9fb060834ce0e9b55db615d274aa9e45da692948f5191f3"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/manifest.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/manifest.json",
+      "sha256": "acef7afdada7fbd8d1fa4f8d784ae6db9dd56ad26466c9e69824fad0e3625b32"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/screening/summary.json",
+      "path": "vectoring/history/four-scene-vectoring-screen/screening/summary.json",
+      "sha256": "6519d46a2df48f952b3dc1fc2441beb5153935b686d607e465e71d441eb0db65"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/source/run_screen.py",
+      "path": "vectoring/history/four-scene-vectoring-screen/source/run_screen.py",
+      "sha256": "ea4ae80299f2360acb3cdd5561c4bb67767cceb6dc26e87a65c3c27193678ad2"
+    },
+    {
+      "old": "runs/four-scene-vectoring-screen/source/verify_and_report.py",
+      "path": "vectoring/history/four-scene-vectoring-screen/source/verify_and_report.py",
+      "sha256": "1819a27b9c9cae196559215bdca95af44ce7b0a2bd33610d62b6978d6830bce4"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.png",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.png",
+      "sha256": "07b39920db43b89a6878c23a0911ed793dce005046ee86555a77fbca3d7b6486"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.svg",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-fit-quality.svg",
+      "sha256": "eeb6dc32fb2bf54d84d4c740ad4579142c5349b956d6d0f2a9491717d66c695a"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/figures/vectoring-full-dose.png",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-full-dose.png",
+      "sha256": "d3d8c359ed7d268d78be6391448235491312a959aa705de81466ed17882337f0"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/figures/vectoring-full-dose.svg",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/figures/vectoring-full-dose.svg",
+      "sha256": "258c4e5ffe2c674235852a6a374335db3932d88ff21cbe787e9491a496cf3ff2"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/2026-09-14T06Z-embeddings.npz",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-14T06Z-embeddings.npz",
+      "sha256": "6d16a08fcbbb87ebe56631b73599c36400b3816bb32b84364e69e86585351ce0"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/2026-09-15T07Z-embeddings.npz",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-15T07Z-embeddings.npz",
+      "sha256": "a0845aabbd2b9a797ddaf101e2f531ce9573deb2e10a05458d6ec59946c9d498"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/2026-09-19T07Z-embeddings.npz",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-19T07Z-embeddings.npz",
+      "sha256": "8368bd6c22f195bfa03c3347e38efa88d05bde3c1143f83e37eb59eb3d1c50e0"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/2026-09-27T05Z-embeddings.npz",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/2026-09-27T05Z-embeddings.npz",
+      "sha256": "059dcc9a88b20037b0d537bb6606f2b0920066ea1e31e5a85f8bb0d4624570da"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/experiment-results.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/experiment-results.json",
+      "sha256": "0f379c13c92c38e05b4139b9b54b9318ff665cf09a355dec4ffce0b46a5d1328"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/point-selection.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/point-selection.json",
+      "sha256": "774a3bfe64d089b81b449ec6bc701f051e7a20a26bf6892ca6ab9bc9f98660e9"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/run-manifest.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/run-manifest.json",
+      "sha256": "0dfa7a018a80269727a508993e702309676d4109d58893a888d3f291585c52b1"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/scene-diagnostics.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/scene-diagnostics.json",
+      "sha256": "33dd10d9deaf4790c24291c07994b6f133728f9c0406fcaace2d621a12121c05"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/scene-summary.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/scene-summary.json",
+      "sha256": "1f60f7c299490d0e7eff029d9ef22e186b1d3c45f285b7a940094f31cf022aaf"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/results/summary.json",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/results/summary.json",
+      "sha256": "4b29292c67e61862350e939848a1a0280a9ae0e4ed19484d8c4efb4f511967d0"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/source/report_and_verify.py",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/source/report_and_verify.py",
+      "sha256": "385cc9e0d504961654007a1c11b346f98463b0217d46024a3176d7f566834fef"
+    },
+    {
+      "old": "runs/four-scene-vectoring-evaluation/source/run.py",
+      "path": "vectoring/history/four-scene-vectoring-evaluation/source/run.py",
+      "sha256": "40f3842357ebd406d28bcbb881f6101e9022728e2d2e1e323d25dba9a532768f"
+    },
+    {
+      "old": "runs/changi-thresholds/figures/changi-24h-threshold-comparison.pdf",
+      "path": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.pdf",
+      "sha256": "5ab8c685679218a4ee89392871a03c0324054963f490978c1c2c46d0c6769e72"
+    },
+    {
+      "old": "runs/changi-thresholds/figures/changi-24h-threshold-comparison.png",
+      "path": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.png",
+      "sha256": "5c54977b458ed7c08d3a497bc141237d0c2d8a6e7aa695f583383fa37b2de78e"
+    },
+    {
+      "old": "runs/changi-thresholds/figures/changi-24h-threshold-comparison.svg",
+      "path": "hourly/controls/changi-thresholds/figures/changi-24h-threshold-comparison.svg",
+      "sha256": "a3d5ff2242f2c80b20b9a1448729ea0cce72dd309b8d1570efa97bbf0423f6a0"
+    },
+    {
+      "old": "runs/changi-thresholds/results/coverage.csv",
+      "path": "hourly/controls/changi-thresholds/results/coverage.csv",
+      "sha256": "f044ac1cf44255e162853484dacaf6616daebc412798cd9cd784564f4a7bfe31"
+    },
+    {
+      "old": "runs/changi-thresholds/results/summary.json",
+      "path": "hourly/controls/changi-thresholds/results/summary.json",
+      "sha256": "191bb435bf65607638bd71694ab7c51e077d9f74ed33fd06a4c189a582804f41"
+    },
+    {
+      "old": "runs/changi-thresholds/results/threshold-review.json",
+      "path": "hourly/controls/changi-thresholds/results/threshold-review.json",
+      "sha256": "554211e4d47a531b35c0f9e59c75dacd7ce28b7da9392d0952d9ef96d01408db"
+    },
+    {
+      "old": "runs/changi-thresholds/source/make_figures.py",
+      "path": "hourly/controls/changi-thresholds/source/make_figures.py",
+      "sha256": "99d5b9e22cc187e8caac7516056af3f41826b09e1fac7809e572ca9b1296cc7c"
+    },
+    {
+      "old": "runs/changi-thresholds/source/run_thresholds.py",
+      "path": "hourly/controls/changi-thresholds/source/run_thresholds.py",
+      "sha256": "8c407577c5114a5c113b13db5c109b51b8434f881e5bf76b0b1ceecf0c12d209"
+    },
+    {
+      "old": "runs/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.pdf",
+      "path": "hourly/history/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.pdf",
+      "sha256": "a848b04aaff077398aed4e0c264955677e8f125236ee9e3967d4bb0d06cf5770"
+    },
+    {
+      "old": "runs/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.png",
+      "path": "hourly/history/changi-n-scaling/figures/d-vs-n-2026-09-08-1h-20.png",
+      "sha256": "20b60fee0ff41b149a4dc403f6bef7623dab9e4c05e68b88b6360af84a3f06ac"
+    },
+    {
+      "old": "runs/changi-n-scaling/results/d_vs_n.json",
+      "path": "hourly/history/changi-n-scaling/results/d_vs_n.json",
+      "sha256": "29a2c9da523e7b11c68b048ae29e2d8a8aabe785d655136af3c4bc3ec41fe6ac"
+    },
+    {
+      "old": "runs/changi-n-scaling/source/make_figure.py",
+      "path": "hourly/history/changi-n-scaling/source/make_figure.py",
+      "sha256": "aa02e478603a740e935732d54ad8f392bf055506d66f633d839a56e300feb9c2"
+    },
+    {
+      "old": "runs/changi-n-scaling/source/run_d_vs_n.py",
+      "path": "hourly/history/changi-n-scaling/source/run_d_vs_n.py",
+      "sha256": "90ca4851cd2ad60bf363cd4f512a9e5fe73588548ce8df4a7108fc36e9729770"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.pdf",
+      "path": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.pdf",
+      "sha256": "573069d70641d631ba62cb6f66598bdc3e61628ea481411e0a71105a10a9c6c0"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.png",
+      "path": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.png",
+      "sha256": "94b3ce92448f30e60a9ff2c973be974ef8c55860cd9838c319d43a34f840f6bf"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-08-24h-D-count-status.svg",
+      "path": "hourly/main/changi-hourly/figures/2026-09-08-24h-D-count-status.svg",
+      "sha256": "f7f555bb5abcff5384f11d631abf300630e5ac46070bbef4aaa347b147496f7e"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.pdf",
+      "path": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.pdf",
+      "sha256": "d30a5f69090acbabeae18c0c9cf2f5204b6de0e51da197e82c8d601b1c41f797"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.png",
+      "path": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.png",
+      "sha256": "9175e3ab2dfa3bb67564bf6aca2068742aea6274223ea8ed994a9e8a0611d326"
+    },
+    {
+      "old": "runs/changi-hourly/figures/2026-09-11-24h-D-count-status.svg",
+      "path": "hourly/main/changi-hourly/figures/2026-09-11-24h-D-count-status.svg",
+      "sha256": "d67f54386b1d50640dfe442eb40d6a15563c87ea2abffc61cc2af409efa7304c"
+    },
+    {
+      "old": "runs/changi-hourly/figures/D-vs-N-1h.pdf",
+      "path": "hourly/main/changi-hourly/figures/D-vs-N-1h.pdf",
+      "sha256": "9bb5f2ac93e360f2ef751940fe0b4670ef88af5a00a39cd133ab598a567b68b2"
+    },
+    {
+      "old": "runs/changi-hourly/figures/D-vs-N-1h.png",
+      "path": "hourly/main/changi-hourly/figures/D-vs-N-1h.png",
+      "sha256": "3e4d2a0758d3aa4d38f0cd224fc97543de5606c620011f02fc4405c1fe7920d1"
+    },
+    {
+      "old": "runs/changi-hourly/figures/D-vs-N-1h.svg",
+      "path": "hourly/main/changi-hourly/figures/D-vs-N-1h.svg",
+      "sha256": "79eda4105057b1b57946caf236d6f253ae825146c5d50e79d0bd0e7a8eca72f2"
+    },
+    {
+      "old": "runs/changi-hourly/figures/fixed-N-weather-1h.pdf",
+      "path": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.pdf",
+      "sha256": "1b1e426279ff3382e5ffdb5482866782a7b780a8fd09b07c12ddddbe99dd4780"
+    },
+    {
+      "old": "runs/changi-hourly/figures/fixed-N-weather-1h.png",
+      "path": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.png",
+      "sha256": "dd1317fa9579572e8780e4afc3e5e3d538734beb19ca1eba4704c552ec718941"
+    },
+    {
+      "old": "runs/changi-hourly/figures/fixed-N-weather-1h.svg",
+      "path": "hourly/main/changi-hourly/figures/fixed-N-weather-1h.svg",
+      "sha256": "d01d56a2a66c140eb590009664b01c63af7362deec9e1762682da2f60eb84918"
+    },
+    {
+      "old": "runs/changi-hourly/figures/original-vs-dedup-1h.pdf",
+      "path": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.pdf",
+      "sha256": "d97c7440af7b619ade45e20fa4cc1f6bb4d9ff724594f05e740d904c81433d58"
+    },
+    {
+      "old": "runs/changi-hourly/figures/original-vs-dedup-1h.png",
+      "path": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.png",
+      "sha256": "c78ba7be6489b1ce4b6417475a01a4f4b95b3d5f5078cb0129b5ab4cf9fcd824"
+    },
+    {
+      "old": "runs/changi-hourly/figures/original-vs-dedup-1h.svg",
+      "path": "hourly/main/changi-hourly/figures/original-vs-dedup-1h.svg",
+      "sha256": "5badc0e617789f94356f502e6616d652abb8e5e70ade6b4008ba96120552d370"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.pdf",
+      "path": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.pdf",
+      "sha256": "7fbe0309751d4a1407a15bf92ed4e09a90fa3c54b232288d4abebcacc81acc62"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.png",
+      "path": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.png",
+      "sha256": "379e84e822a55965a7ddb3cdd875610f1a3b6c7ac99ca3c48d24cc13a4295182"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-08-24h-D-count-status.svg",
+      "path": "hourly/controls/original-hourly/figures/2026-09-08-24h-D-count-status.svg",
+      "sha256": "e8564149dd95a4022c53545e5d89235c73f1bc2f6ac25ccece6f8c3842b4ee87"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.pdf",
+      "path": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.pdf",
+      "sha256": "b662daa7e3afff141f8742e6d110d7f1fd7c40ef6b0ed748be0ad63b6eb84463"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.png",
+      "path": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.png",
+      "sha256": "070129771c3f8929750503ec75af70e08691068116e5b2e60b141f10ac0b15f4"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/2026-09-11-24h-D-count-status.svg",
+      "path": "hourly/controls/original-hourly/figures/2026-09-11-24h-D-count-status.svg",
+      "sha256": "8609e20d7bbf7190036fbdfb7ad6cf6e99ba9510524af9d906422821295e2219"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.pdf",
+      "path": "hourly/controls/original-hourly/figures/D-vs-N-1h.pdf",
+      "sha256": "26f4938af9a899cb52b137bb53de5e59ba0fe976fda4f48efc0976bab031cf97"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.png",
+      "path": "hourly/controls/original-hourly/figures/D-vs-N-1h.png",
+      "sha256": "a813c0823d320f50be7f2042fa0567302e68b8a702d526c6877ef331406f7a00"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/D-vs-N-1h.svg",
+      "path": "hourly/controls/original-hourly/figures/D-vs-N-1h.svg",
+      "sha256": "57b2a24380e5912d581e4b6f986555d20f6f8b3e478931f90471db048781a1b4"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.pdf",
+      "path": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.pdf",
+      "sha256": "6b7397e15f2462f2b0db2d93478c743bb7bc8d978a9a4e27f75ed8f24ab8cb32"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.png",
+      "path": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.png",
+      "sha256": "c544b618c91fc6fe6518377a2d90ecd37e295b04b6b28e8bf4ed8f33eecfd06b"
+    },
+    {
+      "old": "runs/changi-hourly/appendix-original/figures/fixed-N-weather-1h.svg",
+      "path": "hourly/controls/original-hourly/figures/fixed-N-weather-1h.svg",
+      "sha256": "d270855b9915ed1e68d5659704509d0323db721f8323a5694839a452b769ee66"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/inventory.json",
+      "path": "histry/legacy-before-workflow-integration/inventory.json",
+      "sha256": "5068684aa57f238c77ef7a2459fcb6aa41018e5a550a84f6f8f8f83cd5e09cf8"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/publication-manifest-before.json",
+      "path": "histry/legacy-before-workflow-integration/publication-manifest-before.json",
+      "sha256": "a63930644ded25bbe4b163c72512d5a5be103555e8a59d029a7d6b9af1866472"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/published-before.json",
+      "path": "histry/legacy-before-workflow-integration/published-before.json",
+      "sha256": "a3911e6581f7f7ec644033734c7cf3fb1940dd5284bdb089e3fa8a9ec9da86e0"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/README.md",
+      "path": "histry/legacy-before-workflow-integration/README.md",
+      "sha256": "d7fabe3720079048aac275fe88d87432950d22c51a9bcd94903d7105d228e6f5"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.png",
+      "sha256": "1e02378eedfae861e200ab5b8721067b3c11c09237ec34b69a8a296401f673d4"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/aircraft-count-sensitivity.svg",
+      "sha256": "6b33aaa82c38d36ff791af7be61710d05f6f0ba583a6b8d6afcee42b127ea2c9"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.png",
+      "sha256": "980c6ba54efb3544a5ca24a23a774d0f3d6c68b65952e6a0cf37711785d8efdd"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-correlation-comparison.svg",
+      "sha256": "cf633351e04b822aa282327fda5327e37947ae0a294308fb5e17b01e655f6c74"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-d-estimability.png",
+      "sha256": "251fab48abde5613a90171f6e0c4f172204c96a63192294fabb7151169b8c1ab"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-d-estimability.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-d-estimability.svg",
+      "sha256": "a19d30eafe688bc2313b34c8cbf874b80f2ea11c04797f11d460ee010b37c532"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-dose-response.png",
+      "sha256": "e19d8cba49003fd490522923f569ce0f051d921d42bfd0b8da20420eeff1988e"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/holding-dose-response.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/holding-dose-response.svg",
+      "sha256": "c38648af7b7fd2cc43b1360f9d7c8f7b0ab31fff68b6009f6ab36d1ef155f7d3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/index.json",
+      "path": "histry/legacy-before-workflow-integration/local/figures/index.json",
+      "sha256": "64b5329c311fdd9bb7ba1a2a10c03e721e9fdb878035b2da40ffde899794dadd"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.png",
+      "sha256": "e4b6cee7a523949f666acaae46fc843a017f10e174588750074f0dfc96ccb020"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-1.svg",
+      "sha256": "5b5efea10250540330dfccc728572290ea1aacd2c785188a1c003ce99b2b2b2f"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.png",
+      "sha256": "8a513dd792e04006a993759975ca5ac68ffe26697e3a308b7cfeecf2d8b97521"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc350-holding-scenes-2.svg",
+      "sha256": "6c54fce1668c93354c413bd7137166ac7cc78aa3b7132802e4d6aeabfc218379"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.png",
+      "sha256": "5782703d07c643e07098ea038dfc74ff5b3eacaf7d66682751b72d0874d1510e"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-1.svg",
+      "sha256": "b5a040a00465bc352f670f62ed1be43ef937dcc2932aed72c20b8afb8d6bd3a3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.png",
+      "sha256": "acc657b00cbc66074b9b8fe020e21762ef30c83b6147b768d61d9d129559e095"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/qc500-holding-scenes-2.svg",
+      "sha256": "e7493ff339f46198084f21aba5e9dac1db0d0229e0fd949abd9911e4920e91a1"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.png",
+      "sha256": "ad9b3432117eb115c8bb7a8b8e99a56f032e8129746aae842458660a67577510"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-d-estimability.svg",
+      "sha256": "9fdea797f1e5dcd7c5e898287dcd4eaaac1540e83926a08691f902623bf88975"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-dose-response.png",
+      "sha256": "6e35af2b51c2b60bc0c1fef4a2e01a6d9720329a2f4c5a5bdca3a93738fbe2d3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-dose-response.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-dose-response.svg",
+      "sha256": "0c6d1257e1d1f52a131e7e1c036a5ade07a18f6ee2838ca1de0e8533db6a50b7"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-full-range.png",
+      "sha256": "b73e115468cfe5b6b8ecd8027ab37576e1b19346576648ab2508f18c5da11471"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-full-range.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-full-range.svg",
+      "sha256": "45e938e582847b30934414abbefd99e5e01a3c95d60588ff642a7606191438c9"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.png",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-screening.png",
+      "sha256": "b27a498b010eabbc5b5374cd07d2a3d6c033563c4a4b301d61278125b9a1aca5"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/figures/vectoring-screening.svg",
+      "path": "histry/legacy-before-workflow-integration/local/figures/vectoring-screening.svg",
+      "sha256": "a6b089fbf12f503a71d9ec441a15908a738c624e431a753c0c79f9a2715f9d09"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/approved-rerun-comparison.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/approved-rerun-comparison.md",
+      "sha256": "8d8b006018bb1227b0de9b77067e25725cd0e3c39bac5bac0f1de75e1ba6e6f3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/position-time-correction.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/position-time-correction.md",
+      "sha256": "079233a50eb0725ffaf7b14224dd40977c2bfffb4a137e53267fe8eed3ffc6f2"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/time-axis-rerun.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/time-axis-rerun.md",
+      "sha256": "8ab9e474175fd474e01af43bcb5368dfea9c2a4c68c1d488206f7c649f3b2d21"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-continuous-generator.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-continuous-generator.md",
+      "sha256": "170b7c41ac47ca676825d3adab336e612d730d466fe7cf720be523afcabb2f1c"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-direction-repair.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-direction-repair.md",
+      "sha256": "7c76a10c0905444c5d4751441941c176c98e10219cef40336d6558a082283b2d"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-peak-feedback.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-peak-feedback.md",
+      "sha256": "4fa86c0b9799640838f4fc102a494a8fc659953fdce28aa7315e367ddbece8cb"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-population-policy.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-population-policy.md",
+      "sha256": "3e1ecceb98c8703a080d33fbefcf49511a4c9a796d5e92704e06d531e7c5ff22"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-population-screening.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-population-screening.md",
+      "sha256": "3abc7f7d38764f20a502a35cc52cd85d011c4cbb059d68c494782e565ea8516c"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/reports/vectoring-threshold-decisions.md",
+      "path": "histry/legacy-before-workflow-integration/local/reports/vectoring-threshold-decisions.md",
+      "sha256": "05bcc84a49b78a5313bb16169b0b08d6fdd0879c8cc10be2243dba2ad5624147"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.csv",
+      "sha256": "d7498b29ad358a802926d248cd8d3262003294989da224c27ed779edb41741a2"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/aircraft-count-sensitivity.json",
+      "sha256": "8ffc8507ad5f0222490c21671b9367d77f8b2f6c42d177731e87d06f2304ba9f"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/analysis-manifest.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/analysis-manifest.json",
+      "sha256": "e555a0a16c3e242f7364cd2bb63181a9fd60684163d5ea0e5af80f0e2ae1ac48"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/approved-rerun-comparison.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/approved-rerun-comparison.json",
+      "sha256": "bff1d497cfa131beef9c79d4ad1551f9f02cc36a65a87d4ae05dd7cfe8d75d93"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/experiment-results.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/experiment-results.json",
+      "sha256": "c7615b742edfa0e272990a44b52800740dfc294a87b82573d31f96c8206e2112"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/injected_geometry_audit.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/injected_geometry_audit.json",
+      "sha256": "49ff4c175bc0ff66638c8616cfd2f10574a0cab5719877095e4c835f7b395231"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc350-holding-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc350-holding-point-selection.csv",
+      "sha256": "b7b0a8b39358c050ff26358ecae6796a58a91e6fdeb10f7e5feee1f8d82ba097"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc350-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc350-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc350_safe-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc350_safe-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc500-holding-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc500-holding-point-selection.csv",
+      "sha256": "3837bc175fad444becb821d75d308f07abdfb26a21b0ed09ca525edb65687d1b"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc500-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc500-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/qc500_safe-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/local/results/qc500_safe-vectoring-point-selection.csv",
+      "sha256": "1221f1c0282e92a746558f1ab68058e57e9bbab251cf82f6663c734865ecaced"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/quality_audit.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/quality_audit.json",
+      "sha256": "9496b935d5f0460acd538dc35141eea16bf9b89949e56c726147596f65225ed6"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/report-manifest.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/report-manifest.json",
+      "sha256": "a63b3211b38302424c4555ddf36395afc5e62160fc3f7f5df1c2008fcb3fdd7e"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/run-manifest.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/run-manifest.json",
+      "sha256": "dab98087e34b7d80dae853d5274e0c365c2f2e63d10b2b01d84177678dc38786"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/summary.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/summary.json",
+      "sha256": "ba2f984db722a6b5c87497109932c37105e37dcd7f49840a0636cf27744bc8d4"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/time-axis-rerun-comparison.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/time-axis-rerun-comparison.json",
+      "sha256": "85e2cd4af89a74bf95822563c2ef0a696bbe4f24a78674a33029d055e9677469"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/vectoring-direction-repair.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/vectoring-direction-repair.json",
+      "sha256": "e90f6ddd45f1fab00772d2072b985b9a46ed16f88c82894e2e7f90b3091d7c15"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/vectoring-peak-feedback.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/vectoring-peak-feedback.json",
+      "sha256": "ca8ff31ef798489ac502508c3bc1780fc2ed2c65e33db1448cb88a8e1edd2d18"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/local/results/vectoring-population-screening.json",
+      "path": "histry/legacy-before-workflow-integration/local/results/vectoring-population-screening.json",
+      "sha256": "107f9d12cb8ebf1fd3ea21fc5af3891c7d29d1a88640040541146af4c4901b5f"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.png",
+      "sha256": "3f412fa474a5cb47e26b56e808e5630d2d42e414427cb5e643c12bcc1e17e3cd"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/aircraft-count-sensitivity.svg",
+      "sha256": "69711bd0981dc77701a279bd4019f231b897a4e3fd159c857a79531cdddcb226"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.png",
+      "sha256": "f6cd464049e69d69a0475f141f1b84228bcb1ba7f7e4065b2076809cd875babf"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-correlation-comparison.svg",
+      "sha256": "4d926e3781ec60a69c0ebfe07330ddc936528a31c9700b4bd8cad9496b5d9f91"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-d-estimability.png",
+      "sha256": "a0939fa4b5420eea8592f410bf5e11c2022f7a931e23f89da8c37fefb845087c"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-d-estimability.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-d-estimability.svg",
+      "sha256": "bdff4d6851e18f520d2fb44347aecf0d293000c38e9e3b5d19d0d419c6403fd1"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-dose-response.png",
+      "sha256": "ef8db776d1948271c6321a33e817817c32deb310e7b97be20afb967d268a79bd"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/holding-dose-response.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/holding-dose-response.svg",
+      "sha256": "58941943dfcc22a403553bc91b095f210d9d7a12e330254ba23a06870c433e91"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/index.json",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/index.json",
+      "sha256": "6302d3047ef28ca4e57fb44a8871de7dcb1efd4010acce22ac0addbbbcd23ce3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.png",
+      "sha256": "3f041ce2b7438a6dd0d3e59b153dcb71d9dda1a17f2ca8c6bd074de1fc1f08b4"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-1.svg",
+      "sha256": "7aa958e2f53dc4fb5e916163f3a605bdf17fdc15e100f46e26941388a85eaab1"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.png",
+      "sha256": "b697b8354bc4c65cc054b55e9215f1bee4826ceae5ff0344f4191143e4627f9f"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc350-holding-scenes-2.svg",
+      "sha256": "bad73501937dfd589be4c2bb2a15a33101e418c9c45f70734406f125cfabf0e1"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.png",
+      "sha256": "c2a6a69d8916443b1674b438785cb448eac329d9276119cd2e076422b2ec218b"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-1.svg",
+      "sha256": "6687500a1b9c33e6957291f4d166fd7946c2e75df84e0534affc2f0a777a70da"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.png",
+      "sha256": "cc1e01ceeda4408248d53aa58c8f71f99bcff60db36e53641905a7eb0084fff5"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/qc500-holding-scenes-2.svg",
+      "sha256": "a7e4487a4ac3e1c3970f0fd831bd868477c721ab5d5a52b05c7bcea9a0016ced"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.png",
+      "sha256": "1d3bce0b6ef2f65292906556712f4d654a8e5e99bc404864d01901f9f2652525"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-d-estimability.svg",
+      "sha256": "8246614aaf8c67613fd46a754438da7f0bd5d7543bb99396878969489a405a6d"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.png",
+      "sha256": "cb61a3a1fb1ffdce82698ac7aa5e8e49e05ee22220c6560cc07e3265f7068bdf"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-dose-response.svg",
+      "sha256": "d281bc7ca83cedc57b4d0a36dc404507af87425ee6f822d798f8ca0efc6d3a4d"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.png",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-full-range.png",
+      "sha256": "3427a3a1fedbdd7358d3dc43a684a58ecca10d3308741d91cf41a203939dc7ca"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/figures/vectoring-full-range.svg",
+      "path": "histry/legacy-before-workflow-integration/committed/figures/vectoring-full-range.svg",
+      "sha256": "5df75cd4452ce8c57de4d9686bb783d83c588a0aa5dc17028ec637abc35550e0"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.csv",
+      "sha256": "822aa30136c57c83bf12f093eeb5af7cc1b0eb638c14eb0776356f47ee4e2739"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/aircraft-count-sensitivity.json",
+      "sha256": "884e1f2931dca9cd10ff759e58a9e53491791dae20252b5ab66173a76e67a625"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/analysis-manifest.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/analysis-manifest.json",
+      "sha256": "3b817f56d6e1ec8597b2639a372549bb9b9879bbb7da2d3eb42501654ce23f56"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/experiment-results.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/experiment-results.json",
+      "sha256": "8a6711931bcda34fdc953a8980447c27aba2e5cc0e3f4f17b664532dd63e41e3"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/injected_geometry_audit.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/injected_geometry_audit.json",
+      "sha256": "0d1fb69c30085e27529cf2a8d13b1cae8e80150204c45e6efad391d46ab7a6d4"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc350-holding-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc350-holding-point-selection.csv",
+      "sha256": "e10e9b3fc43c90107c02beb8fd51b30348a9a201641c321c8371a5cf3a801d38"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc350-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc350-vectoring-point-selection.csv",
+      "sha256": "e16a039436029403fb3012b00f0e316c4a52e2b2e874fa1c81b54382760d0a58"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc350_safe-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc350_safe-vectoring-point-selection.csv",
+      "sha256": "c0e12f046e6ac9084aacb926b422310d83dce357e0b093543a1df2a6c086ba35"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc500-holding-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc500-holding-point-selection.csv",
+      "sha256": "15114b8501efa44d7bc5f7e702aaf3bad0e7c1258a2eac7fc812770a46cd2d75"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc500-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc500-vectoring-point-selection.csv",
+      "sha256": "c43cfbfa113ad0e562c88c4b84944de35207985e40785fe2105c8d5c38209ec6"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/qc500_safe-vectoring-point-selection.csv",
+      "path": "histry/legacy-before-workflow-integration/committed/results/qc500_safe-vectoring-point-selection.csv",
+      "sha256": "d8efefb8b9cc028347669166080448fd24592970269a9626d7fcd30ed009109a"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/quality_audit.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/quality_audit.json",
+      "sha256": "e7eafa594b0d549005e386188cb4bb7939e048ee17a81e6887f18aec53bb723b"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/run-manifest.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/run-manifest.json",
+      "sha256": "b50361cd18e138b9086326ab8e7bba52f2b91a2068b0ecf61acf8ff1873b402f"
+    },
+    {
+      "old": "archive/legacy-before-workflow-integration/committed/results/summary.json",
+      "path": "histry/legacy-before-workflow-integration/committed/results/summary.json",
+      "sha256": "c0d1b99b6c4664689ec070a6bca6cdd3222312a485cf3fb9d6275426097044b7"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.pdf",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.pdf",
+      "sha256": "c905241a36e5c64c5d39aea430cfcde7cff1c52728595f8cd3e5fc384192355d"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.png",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.png",
+      "sha256": "777c2d481624a4d8433ec42edfc628aef001b640b369e34b93856ea997e0f3d3"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-full-range-appendix.svg",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-full-range-appendix.svg",
+      "sha256": "cc403a247c66429b56461cf04754862eb68e68477019619099fe43d7a9af2e13"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.pdf",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.pdf",
+      "sha256": "601dada1cd121aaa37b62fa470be06c0ba6716e87fc3fe8ac0b725817cc810c1"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.png",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.png",
+      "sha256": "4f9ac8c6cd30afb4d33cd0685a260b4bb7796901a901ee2a53995f910bd292f8"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.svg",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-all-scenes.svg",
+      "sha256": "ce278e071613b062ad0d6c574f9796ce6897a3d878bba7532025dfdfcc98c924"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.pdf",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.pdf",
+      "sha256": "9793613ee7ccdd40b880b1c7d97abc2fbe39eb52239bdabc7d172311d69e48c3"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.png",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.png",
+      "sha256": "5a38b8d2b06c7576161d65459ba30da01c5598095bcb704a445e093fe7d5c6a6"
+    },
+    {
+      "old": "archive/holding-midpoint-r098/figures/holding-midpoint-prepeak-delta.svg",
+      "path": "holding/history/midpoint-r098/figures/holding-midpoint-prepeak-delta.svg",
+      "sha256": "af1c0cd188ad32d09b801cd2313db65835d6749c29ab0f7b1799fc4bc2179c5c"
+    }
+  ],
+  "historical_source_policy": "Execution source and historical JSON retain original paths and hashes. They are provenance snapshots, not portable current CLI entrypoints.",
+  "organization_steps": [
+    {
+      "step": 1,
+      "description": "Four topic folders; preserve shared evidence and current code imports."
+    },
+    {
+      "step": 2,
+      "description": "Shared code remains in code/; mixed history moves to histry/; combined report and figures move to report/.",
+      "files_moved": 119
+    }
+  ],
+  "configuration_changes": [
+    {
+      "path": ".gitattributes",
+      "before_sha256": "8f2a1fcc41265acb736b2f574a0d685c7c760b55c4f19a9b9c413650c7f0e6eb",
+      "sha256": "9d2ae9b8995005da854e5b4dfd944153cb04fc3dd36331f2ecc754b8b983b8e5",
+      "reason": "Update Git path rules after folder moves so saved results and exact snapshots retain their original bytes."
+    }
+  ]
+}

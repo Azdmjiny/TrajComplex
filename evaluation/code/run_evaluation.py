@@ -1,4 +1,6 @@
 """Explicit current workflows; never run hidden variants or overwrite results."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import argparse
 import importlib
 import sys

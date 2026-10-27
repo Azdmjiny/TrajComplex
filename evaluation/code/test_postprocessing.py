@@ -1,4 +1,6 @@
 """Saved-record integration checks; no inference, generation or D estimation."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import ast,json,tempfile,unittest
 from pathlib import Path
 from unittest.mock import patch
@@ -8,18 +10,18 @@ from build_report import build_report
 
 class PostprocessingTests(unittest.TestCase):
     def test_holding_exact_published_products(self):
-        root=RUNS/'holding-equal-duration'
+        root=study_path('holding-equal-duration')
         for name,actual in pp.holding_summaries(root).items():
             self.assertEqual(actual,pp.read(root/'results'/name),name)
 
     def test_vectoring_exact_published_products(self):
-        root=RUNS/'four-scene-vectoring-evaluation'
+        root=study_path('four-scene-vectoring-evaluation')
         for name,actual in pp.vectoring_summaries(root).items():
             self.assertEqual(actual,pp.read(root/'results'/name),name)
 
     def test_standalone_pipeline_preserves_inputs_and_refuses_overwrite(self):
         for kind,package in [('holding','holding-equal-duration'),('vectoring','four-scene-vectoring-evaluation')]:
-            source=RUNS/package
+            source=study_path(package)
             with tempfile.TemporaryDirectory(dir=RUNS.parent) as folder:
                 output=Path(folder)
                 pp.process(kind,source,output)
@@ -51,7 +53,7 @@ class PostprocessingTests(unittest.TestCase):
     def test_inference_entrypoints_invoke_postprocessing(self):
         code=Path(__file__).parent
         for name,kind in [('evaluate_holding_control.py','holding'),('evaluate_saved_vectoring.py','vectoring')]:
-            tree=ast.parse((code/name).read_text())
+            tree=ast.parse((EVALUATION_ROOT/kind/'code'/name).read_text())
             calls=[node for node in ast.walk(tree) if isinstance(node,ast.Call) and isinstance(node.func,ast.Name) and node.func.id=='process']
             self.assertEqual(len(calls),1)
             self.assertEqual(calls[0].args[0].value,kind)

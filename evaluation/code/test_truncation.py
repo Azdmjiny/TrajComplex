@@ -1,3 +1,5 @@
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import unittest
 from truncation import choose_cutoff,curve_correlation
 

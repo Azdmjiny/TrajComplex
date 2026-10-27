@@ -1,4 +1,6 @@
 """Timing regression checks only; no Encoder or evaluation experiment."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import unittest
 import numpy as np
 from position_timeline import position_grid, resample_positions

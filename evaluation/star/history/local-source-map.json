@@ -1,0 +1,85 @@
+{
+  "policy": "Only historical source and figures copied; no arrays, model weights or credentials.",
+  "copies": [
+    {
+      "path": "star/history/star-encoder-pilot/source/compare.py",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/compare.py",
+      "sha256": "d7787c9ef6e486761d3be86236a4cddb9ae6d9a57c829a2bcdcfd2324e09d801"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/source/generate_population.py",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/generate_population.py",
+      "sha256": "f10a5e562549ff8da15845d03cef08316cd18d1eb127b87df62186dd406ecf45"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/source/package_checkpoint.py",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/package_checkpoint.py",
+      "sha256": "17e5fa2f571333bd4ee2f67b0185132bf29176b4bed8e8a6c1994f142187e580"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/source/run_eval.py",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/run_eval.py",
+      "sha256": "91ffa2f201c70a7ea7b564ba17cc604b1de8dea7cc4741bb23f45f8728eb2e26"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/figures/vectoring-15km-comparison.png",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/figures/vectoring-15km-comparison.png",
+      "sha256": "f8b1fc93c59c11d0dd3e682049c8702acb8ec7b23751ab53da273b7874dcda35"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/figures/vectoring-15km-comparison.svg",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/figures/vectoring-15km-comparison.svg",
+      "sha256": "1b786a37af59fd2a3fea35f6eaf7c076dc31fd4c3a54940edc7154381e30855b"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/figures/vectoring-geometry-5km-15km.png",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/figures/vectoring-geometry-5km-15km.png",
+      "sha256": "37018fb72dac120ac0037726b2170c17cfea74c72363703be434450be5ef586c"
+    },
+    {
+      "path": "star/history/star-encoder-pilot/figures/vectoring-geometry-5km-15km.svg",
+      "source": "deliverables/vectoring-15km-star-2026-10-24/figures/vectoring-geometry-5km-15km.svg",
+      "sha256": "349ec12ecbb52fb969537f2fd416985ed5fa6fd87adbfbf5d86752f160ed336c"
+    },
+    {
+      "path": "star/history/official-star-pilot/source/compare.py",
+      "source": "deliverables/changi-official-star-2026-10-24/compare.py",
+      "sha256": "a4c1dc55091d32941857079540470abf4d713b81ef22ec527bf093ff153d1f15"
+    },
+    {
+      "path": "star/history/official-star-pilot/source/coverage.py",
+      "source": "deliverables/changi-official-star-2026-10-24/coverage.py",
+      "sha256": "1ad6a4cea76303e3585e158a4c0a05fd99acfc248343fb84c78e2fc91c209403"
+    },
+    {
+      "path": "star/history/official-star-pilot/source/official_routes.py",
+      "source": "deliverables/changi-official-star-2026-10-24/official_routes.py",
+      "sha256": "a20e985d946d494228547f43155e8fb7e9eff7be5f1bdc9418ed474bd46f5ac9"
+    },
+    {
+      "path": "star/history/official-star-pilot/figures/official-coverage.png",
+      "source": "deliverables/changi-official-star-2026-10-24/figures/official-coverage.png",
+      "sha256": "a087fe20ba52683edd8132621badc025a538c19713aab2a3ac05693a93500bcc"
+    },
+    {
+      "path": "star/history/official-star-pilot/figures/official-coverage.svg",
+      "source": "deliverables/changi-official-star-2026-10-24/figures/official-coverage.svg",
+      "sha256": "c18625b1448107710ec86d9c3f80985a3cb805e28042419f4ee53e6d776d67ce"
+    },
+    {
+      "path": "star/history/official-star-pilot/figures/official-routes.png",
+      "source": "deliverables/changi-official-star-2026-10-24/figures/official-routes.png",
+      "sha256": "c1d4cc6983fabaa7e22bc85f48f4b6a2cac2c4a7d669a25179ad4a1f369a1dbe"
+    },
+    {
+      "path": "star/history/official-star-pilot/figures/official-vs-baseline.png",
+      "source": "deliverables/changi-official-star-2026-10-24/figures/official-vs-baseline.png",
+      "sha256": "af23c765220295486f15611bc2896d70e4b19d51ce243e7ef8be9954f2bc24c1"
+    },
+    {
+      "path": "star/history/official-star-pilot/figures/official-vs-baseline.svg",
+      "source": "deliverables/changi-official-star-2026-10-24/figures/official-vs-baseline.svg",
+      "sha256": "712978b2c46d92d3417412e9f47e23755f295586eb1336b4838ec3fb85096ca4"
+    }
+  ]
+}

@@ -1,4 +1,6 @@
 """The current summary reads saved evidence and does not relabel diagnostics."""
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import tempfile,unittest
 from pathlib import Path
 from evaluation_runtime import RUNS

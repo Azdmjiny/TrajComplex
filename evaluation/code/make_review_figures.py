@@ -3,6 +3,8 @@
 python evaluation/code/make_review_figures.py --output /new/local/figure-package
 Only reviewed figures/report may be published; keep the hash manifest local.
 """
+from evaluation_layout import EVALUATION_ROOT, study_path, configure_imports
+configure_imports()
 import argparse
 from collections import Counter
 from datetime import datetime, timedelta
@@ -150,13 +152,13 @@ def vectoring(out, data, summaries):
 def main():
     parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('--output',type=Path,required=True);args=parser.parse_args()
     if args.output.exists(): parser.error('Output already exists; choose a new directory.')
-    paths=[ROOT/'runs/holding-equal-duration/results'/n for n in ['experiment-results.json','summary.json','paired-dose-records.json']]
-    paths += [ROOT/'runs/holding-equal-duration-old-cutoff/results/summary.json']
-    paths += [ROOT/'runs/segmented-15km/results'/a/n for a in ['segmented','smooth-control'] for n in ['summary.json','experiment-results.json']]
+    paths=[study_path('holding-equal-duration/results')/n for n in ['experiment-results.json','summary.json','paired-dose-records.json']]
+    paths += [study_path('holding-equal-duration-old-cutoff/results/summary.json')]
+    paths += [study_path('segmented-15km/results')/a/n for a in ['segmented','smooth-control'] for n in ['summary.json','experiment-results.json']]
     before={str(p.relative_to(ROOT)):sha(p) for p in paths}
     h,hs,pairs,cut=map(read,paths[:4]);summaries={};data={}
     for arm in ['segmented','smooth-control']:
-        base=ROOT/'runs/segmented-15km/results'/arm
+        base=study_path('segmented-15km/results')/arm
         summaries[arm]=read(base/'summary.json');data[arm]=read(base/'experiment-results.json')['qc500_safe']['vectoring']['scenes']
         assert len(data[arm])==20
         for r in data[arm]:
