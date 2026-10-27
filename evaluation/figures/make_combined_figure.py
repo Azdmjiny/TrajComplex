@@ -1,4 +1,4 @@
-﻿import json, numpy as np
+import json, numpy as np
 import matplotlib
 matplotlib.use('Agg')
 import matplotlib.pyplot as plt
@@ -41,9 +41,11 @@ for row,(sid,label) in enumerate(hsce):
 for row,(sid,label) in enumerate(vsce):
     ax=axes[row,1]
     by={}
+    offsets=np.linspace(-.16,.16,5)
     for s in [x for x in vexp if x['scene_id']==sid]:
         pts=[(p['vectoring_aircraft'],p['dimension']) for p in s['dose_curve'] if p['status']=='ok' and p['dimension'] is not None]
-        ax.scatter([p[0] for p in pts],[p[1] for p in pts],s=9,color=PASTEL[s['replicate']],alpha=.65,edgecolors='none',zorder=2)
+        ax.plot([p[0] for p in pts],[p[1] for p in pts],color=PASTEL[s['replicate']],lw=.7,alpha=.55,zorder=1)
+        ax.scatter([p[0]+offsets[s['replicate']] for p in pts],[p[1] for p in pts],s=12,color=PASTEL[s['replicate']],alpha=.8,edgecolors='white',linewidths=.35,zorder=2)
         for p in s['dose_curve']:
             if p['status']=='ok' and p['dimension'] is not None: by.setdefault(p['vectoring_aircraft'],[]).append(p['dimension'])
     ds=sorted(by)
@@ -67,5 +69,5 @@ fig.text(0.755,0.952,'Vectoring',ha='center',va='top',fontsize=11)
 fig.tight_layout(rect=(0,0,1,0.94))
 out=repo/'evaluation/figures'
 for ext in ['png','pdf']:
-    fig.savefig(out/f'holding-vs-vectoring-small-multiples.{ext}',dpi=300,bbox_inches='tight')
+    fig.savefig(out/f'holding-vs-vectoring-comparison.{ext}',dpi=300,bbox_inches='tight')
 print('saved',out)

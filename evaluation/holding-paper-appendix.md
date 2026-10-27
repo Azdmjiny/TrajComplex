@@ -16,7 +16,7 @@ Historical cutoffs were selected from earlier midpoint-Holding results. They are
 
 All 12 scenes and 5 orders per scene are shown. Both arms append 240 seconds at the trajectory endpoint; original points remain unchanged. The saved Holding study uses R²≥0.98, unlike the R²≥0.94 hourly and current Vectoring studies. These gates are not retrospectively made uniform.
 
-![Holding: all scenes and both arms](figures/holding-all-scenes-dose.png)
+![Holding: all scenes and both arms](archive/holding-all-scenes-dose-2026-10-26.png)
 
 Blue is Holding; orange is straight flight. Thin curves are individual orders; thick curves are the median of available orders at each dose. Crosses at the bottom mark rejected order-dose estimates; their vertical position is a status marker, not D. Dashed vertical lines show the archived common cutoff where available. Full later-dose results remain visible. Four scenes have too few aircraft and no accepted D.
 

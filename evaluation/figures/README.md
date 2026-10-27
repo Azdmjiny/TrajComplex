@@ -5,7 +5,7 @@ The current Holding midpoint figures and latest Vectoring comparison have differ
 | Figure | PNG | Vector PDF | Meaning |
 |---|---|---|---|
 | Endpoint Holding historical range | [Preview](holding-historical-range-main.png) | [PDF](holding-historical-range-main.pdf) | All 7 archived-cutoff ranges only, 33 coefficients including negatives; full tails and control in Appendix H |
-| Endpoint Holding full-range appendix | [Preview](holding-all-scenes-dose.png) | [PDF](holding-all-scenes-dose.pdf) | All 12 scenes, both +240-second arms; full range, common historical cutoffs and failed-fit markers |
+| Endpoint Holding full-range appendix | [Preview](../archive/holding-all-scenes-dose-2026-10-26.png) | [PDF](../archive/holding-all-scenes-dose-2026-10-26.pdf) | All 12 scenes, both +240-second arms; full range, common historical cutoffs and failed-fit markers |
 | Endpoint Holding paired-difference appendix | [Preview](holding-all-scenes-paired-difference.png) | [PDF](holding-all-scenes-paired-difference.pdf) | Same scene/order/dose, both fits valid; positive means Holding has higher D |
 | Historical 10-second Vectoring dose response | [Preview](vectoring-all-scenes-dose.png) | [PDF](vectoring-all-scenes-dose.pdf) | All 4 scenes × 2 shapes, every order, common D axis; includes scene with too few doses for rho |
 | Historical 10-second Vectoring correlations | [Preview](vectoring-all-scenes-correlations.png) | [PDF](vectoring-all-scenes-correlations.pdf) | Every order, negative coefficients and explicit NA; display order = saved replicate + 1 |
@@ -17,6 +17,13 @@ The endpoint Holding control uses its original R²≥0.98; current Vectoring use
 Holding cutoffs are shared between arms and were inherited from historical midpoint results; the full tail is retained in Appendix H, and no new peak is chosen. Paired differences require two accepted fits but not an accepted zero-dose baseline. The segmented 15 km Vectoring result is a schematic stimulus, without the smooth control's motion certificate. All 115 D estimates in each historical 10-second Vectoring arm pass; one scene has only 4 dose levels, so its correlations are unavailable.
 
 The [main report](../report.md) contains the full captions, numerical summaries and limits.
+
+## Raw 30-day no-gate
+
+The [raw 30-day run](../runs/opensky-30d-no-gate/report.md) has its own figure
+set: boxplot, hexbin, band/sample curves, 24h raw views, the N<15 floor view,
+and the day/night Plan A/C comparison. These are **raw slopes**, not
+quality-gated D; do not mix them with the maneuver figures above.
 
 ## Hourly application
 
@@ -36,7 +43,9 @@ The render manifest stays local. Source data and saved statistics are not change
 
 ## Concurrent compact overview retained
 
-The teammate's [Holding-versus-Vectoring small multiples](holding-vs-vectoring-comparison.png) ([PDF](holding-vs-vectoring-comparison.pdf)) and [renderer](make_combined_figure.py) are retained without modification. Left: Holding scenes September 1, 4 and 10, with order points, mean Holding D and mean straight D. Right: the three correlation-estimable Vectoring scenes, with order points and mean D. This compact view includes a subset of scenes; use the new all-scene figures for complete coverage and explicit NA. Do not interchange its mean curves with the new median curves.
+The teammate's [Holding-versus-Vectoring small multiples](holding-vs-vectoring-comparison.png) ([PDF](holding-vs-vectoring-comparison.pdf)) and [renderer](make_combined_figure.py) are retained, with jittered order points and thin order lines. Left: Holding scenes September 1, 4 and 10, with order points, mean Holding D and mean straight D. Right: the three correlation-estimable Vectoring scenes, with jittered order points, order lines and mean D. This compact view includes a subset of scenes; use the new all-scene figures for complete coverage and explicit NA. Do not interchange its mean curves with the new median curves.
+
+This is an earlier endpoint-control/19-candidate Vectoring view, not the latest midpoint/26-candidate comparison.
 
 ## Earlier endpoint historical-range figure and Appendix H
 
@@ -68,3 +77,7 @@ Only reviewed figures and reports are publication artifacts; screening records a
 - [Every order correlation](../runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png) ([PDF](../runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.pdf)): 20 coefficients per shape, including all negative and zero values. The earlier 19-candidate figures above are not this run.
 
 Full caption, complete ledger and limitations: [latest report](../runs/vectoring-20s-repaired/report.md). New derived data remain local.
+
+## Concurrent endpoint-control display
+
+The [eight-scene endpoint figure](holding-main-8-scenes.png) ([PDF](holding-main-8-scenes.pdf)) is retained from the remote branch. Its renderer is [make_holding_main.py](../code/make_holding_main.py). It shows the separate R²≥0.98 endpoint experiment, not primary midpoint Holding. The former twelve-scene dose view remains in [the archive](../archive/holding-all-scenes-dose-2026-10-26.pdf).

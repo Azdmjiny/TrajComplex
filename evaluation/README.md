@@ -7,6 +7,8 @@ Start with the [current report](report.md). The active evaluation includes the
 ## Current status
 
 - **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. The deduplicated main result has accepted D in 15/24 and 14/24 hours respectively; the original 14/24 and 11/24 results remain an appendix comparator. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
+- **24h threshold review:** a centered 3h window with N>=30 and R²>=0.90 gives 21/24 and 22/24 accepted hours; the 1h N>=20 exploratory view gives 18/24 and 20/24. Remaining 3h gaps are poor fits at N=40–57, not insufficient aircraft, so they stay NA. N<15 is shown as an assigned floor, not a measured D. See the [review](runs/changi-thresholds/report.md).
+- **Raw 30-day no-gate:** 720 scenes, 19,306 tracks; raw log–log slope rises from 1.13 at N=5 to 1.40 at N=30 and flattens near 1.45. Includes 24h raw views, N<15 floor 0.813, and day/night Plan A/C. Not quality-gated D. See the [run](runs/opensky-30d-no-gate/report.md).
 - **Vectoring (latest):** repaired 20-second quality matching, 26 candidates,
   the same 157 backgrounds, 15 km target and R²≥0.94. Segmented: 14/20 positive,
   5 negative and 1 zero, median rho 0.887; smooth: 12/20 positive and 8 negative,
@@ -24,6 +26,9 @@ Start with the [current report](report.md). The active evaluation includes the
 |---|---|
 | [report.md](report.md) | Active maneuver results and hourly application case |
 | [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
+| [runs/changi-thresholds](runs/changi-thresholds/report.md) | 3h primary / 1h exploratory threshold review and low-traffic floor |
+| [runs/opensky-30d-no-gate](runs/opensky-30d-no-gate/report.md) | Raw 30-day no-gate D-vs-N, 24h views and day/night comparison |
+| [runs/changi-n-scaling](runs/changi-n-scaling/report.md) | One-scene D-versus-aircraft-count pilot |
 | [runs/vectoring-20s-repaired](runs/vectoring-20s-repaired/report.md) | Latest Vectoring, 26 versus 25 candidates; reports/figures/source only |
 | [runs/vectoring-certificate-repair](runs/vectoring-certificate-repair/report.md) | Numerical certificate repair and screening, no correlation run |
 | [runs/vectoring-time-window-sensitivity](runs/vectoring-time-window-sensitivity/report.md) | Earlier 10/15/20-second comparison, before the certificate repair |
@@ -60,3 +65,7 @@ The earlier endpoint presentation uses the [historical-range figure](figures/hol
 ## Corrected midpoint Holding presentation (2026-10-27)
 
 The [midpoint response report](holding-midpoint-response.md) presents saved 10-second midpoint results: five baseline-valid delta panels, seven archived pre-peak ranges with correlations, and all 12 full-range scenes. The primary fit gate is R² >= 0.94; archived 0.98 fits are re-screened without changing slopes or finding new peaks. Reproduce with `code/plot_holding_primary.py --output NEW_DIRECTORY`. Source-hour selection retains complete injected tails; it does not enforce a post-injection hour boundary. The [endpoint control appendix](holding-paper-appendix.md) remains separate. No experiments were rerun.
+
+## Directory map
+
+See [DIRECTORY_GUIDE.md](DIRECTORY_GUIDE.md) for every current subfolder, report entrypoint, source snapshot and known legacy ambiguity. No directory reorganization is performed by this update.

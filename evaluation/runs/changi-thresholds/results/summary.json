@@ -1,0 +1,41 @@
+{
+  "2026-09-08": {
+    "three_hour_ok": 21,
+    "one_hour_ok": 18,
+    "three_hour_missing": [
+      1,
+      2,
+      3
+    ],
+    "one_hour_missing": [
+      0,
+      1,
+      2,
+      3,
+      4,
+      13
+    ],
+    "assigned_floor_hours": [
+      3,
+      4
+    ]
+  },
+  "2026-09-11": {
+    "three_hour_ok": 22,
+    "one_hour_ok": 20,
+    "three_hour_missing": [
+      0,
+      1
+    ],
+    "one_hour_missing": [
+      0,
+      2,
+      3,
+      4
+    ],
+    "assigned_floor_hours": [
+      2
+    ]
+  },
+  "floor": 0.7633491454089893
+}
