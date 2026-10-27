@@ -38,7 +38,6 @@ Use the repository-root `encode_scene.py` to encode a folder of trajectories.
 |---|---|
 | `trajectory_encoder/` | Frozen model, input feature construction and inference |
 | [encoder/](encoder/README.md) | Current frozen checkpoint, metadata and reference example |
-| [tools/](tools/README.md) | Package the current inference code and model |
 
 ## Current model
 
@@ -53,15 +52,21 @@ Use the repository-root `encode_scene.py` to encode a folder of trajectories.
 
 The [exported config](encoder/config.json) records the current training settings,
 fixed-epoch selection, source revision and runtime versions.
-`verify_delivery.py` checks the current checkpoint hash, preprocessing consistency,
+`verify_delivery.py` checks the current checkpoint hash, embedded preprocessing ID,
 frozen loading, and saved-example inference on CPU. It requires only the current
 model bundle. Historical candidates, experiment logs and reports are not shipped.
 
+Inference and verification read preprocessing parameters directly from
+`encoder/encoder.pt`. Feature order, normalization and sampling settings are
+stored in the checkpoint's `preprocess` entry. Verification compares its
+preprocessor ID with the exported model metadata and checks reference outputs.
+
 Export integrity and representation outputs do not establish downstream
 intervention validity or controller workload.
-This directory contains inference and model packaging only. Training pipelines,
-losses, experiment selection, report generation and training configuration have
-been removed. The metadata in `encoder/config.json` describes the frozen model.
+This directory contains frozen inference, model metadata, an example and
+verification. Training pipelines, losses, experiment selection, report generation,
+training configuration and delivery packaging scripts have been removed.
+The metadata in `encoder/config.json` describes the frozen model.
 
 ## Sources and citation
 

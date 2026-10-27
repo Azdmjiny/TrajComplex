@@ -13,9 +13,6 @@ def verify():
     if digest != EXPECTED_CHECKPOINT_SHA256:
         raise RuntimeError("Current checkpoint checksum differs from the frozen release")
     encoder = FrozenEncoder(checkpoint, pooling="sum", device="cpu")
-    preprocess = read_json(ROOT / "encoder" / "preprocess.json")
-    if encoder.preprocess != preprocess:
-        raise RuntimeError("Exported preprocessing differs from the checkpoint")
     if encoder.preprocess["preprocessor_id"] != config["preprocessor_id"]:
         raise RuntimeError("Preprocessing ID differs from the exported config")
     if any(p.requires_grad for p in encoder.model.parameters()) or encoder.model.training:
