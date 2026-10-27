@@ -36,10 +36,9 @@ Use the repository-root `encode_scene.py` to encode a folder of trajectories.
 
 | Path | Responsibility |
 |---|---|
-| `trajectory_encoder/` | Model, preprocessing, inference and training implementation |
+| `trajectory_encoder/` | Frozen model, input feature construction and inference |
 | [encoder/](encoder/README.md) | Current frozen checkpoint, metadata and reference example |
-| [tools/](tools/README.md) | Training launchers, diagnostics, reporting and packaging |
-| [archive/](archive/README.md) | Saved experiment evidence, including the current model's records |
+| [tools/](tools/README.md) | Package the current inference code and model |
 
 ## Current model
 
@@ -52,17 +51,17 @@ Use the repository-root `encode_scene.py` to encode a folder of trajectories.
 | Checkpoint SHA-256 | `bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976` |
 | Preprocessor ID | `52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477` |
 
-See the [10-second results](archive/reports/RESULTS_10s_ZH.md),
-[selection record](archive/reports/result/selection_10s.json), and
-[export verification](archive/reports/result/export_verification.json).
-`verify_delivery.py` checks the current export and nine archived candidate hashes,
-preprocessing consistency, frozen loading, and saved-example inference on CPU.
+The [exported config](encoder/config.json) records the current training settings,
+fixed-epoch selection, source revision and runtime versions.
+`verify_delivery.py` checks the current checkpoint hash, preprocessing consistency,
+frozen loading, and saved-example inference on CPU. It requires only the current
+model bundle. Historical candidates, experiment logs and reports are not shipped.
 
-The older five-second candidates and logs are separate historical experiments.
-Their TEST scores do not apply to the current model. The current 10-second report
-does not establish downstream intervention validity or controller workload.
-Historical training tools are retained in [tools/](tools/README.md); they are not
-a verified one-command reproduction of the current fixed-epoch model.
+Export integrity and representation outputs do not establish downstream
+intervention validity or controller workload.
+This directory contains inference and model packaging only. Training pipelines,
+losses, experiment selection, report generation and training configuration have
+been removed. The metadata in `encoder/config.json` describes the frozen model.
 
 ## Sources and citation
 
@@ -76,9 +75,8 @@ a verified one-command reproduction of the current fixed-epoch model.
   DOI [10.1109/OJITS.2025.3574746](https://doi.org/10.1109/OJITS.2025.3574746).
 - **Reference code:** [ATSCC, pinned commit
   789ccd72b7496b52e03df7d8599d8c9e6659bdb9](https://github.com/petchthwr/ATSCC/tree/789ccd72b7496b52e03df7d8599d8c9e6659bdb9).
-  The retained license text is in [archive/ATSCC.txt](archive/ATSCC.txt).
+  The retained license text is included with the model in [encoder/ATSCC.txt](encoder/ATSCC.txt).
 
-The exact input files are identified by hashes in the
-[data audit](archive/reports/result/data_audit.json), rather than the dataset's
-current online version. Further preprocessing, supplied-paper and runtime-source
-notes are preserved in the [archive](archive/README.md#source-and-preprocessing-notes).
+The exported configuration retains source/data fingerprints. Original training
+data and historical audit reports are not included; the current online dataset
+must not be assumed to be the exact training revision.

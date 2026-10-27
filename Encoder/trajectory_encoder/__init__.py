@@ -1,1 +1,1 @@
-"""Plan-driven trajectory encoder experiments, rebuilt from raw ATFMTraj data."""
+"""Frozen trajectory encoder inference and feature construction."""

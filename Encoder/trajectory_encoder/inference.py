@@ -11,7 +11,12 @@ class FrozenEncoder:
         state = torch.load(Path(checkpoint), map_location="cpu", weights_only=False)
         self.settings, self.preprocess = state["settings"], state["preprocess"]
         self.device, self.pooling = torch.device(device), pooling
-        self.model = TrajectoryEncoder(self.settings["dimension"], **self.settings["model"])
+        architecture = self.settings["model"]
+        self.model = TrajectoryEncoder(
+            self.settings["dimension"], input_dim=architecture["input_dim"],
+            model_dim=architecture["model_dim"], ffn_dim=architecture["ffn_dim"],
+            heads=architecture["heads"], layers=architecture["layers"],
+        )
         self.model.load_state_dict(state["state_dict"], strict=True)
         self.model.eval().to(self.device).requires_grad_(False)
 
