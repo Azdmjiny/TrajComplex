@@ -1,6 +1,6 @@
 # Encoder evidence and reports
 
-[Encoder overview](../README.md)
+[Encoder overview](../../README.md) | [Archive index](../README.md)
 
 Start with [RESULTS_10s_ZH.md](RESULTS_10s_ZH.md) for the current 10-second export. [RESULTS_5s_ZH.md](RESULTS_5s_ZH.md) is the historical five-second summary. The files below preserve different stages of the experiment, not successive copies of one result.
 
@@ -17,4 +17,4 @@ Start with [RESULTS_10s_ZH.md](RESULTS_10s_ZH.md) for the current 10-second expo
 | Provenance and delivery | `additional_provenance.json`, `public_data_verification.json`, `delivery_archive.json` |
 | Figures | `training_curves.png`, `dimension_pooling.png`, `baseline_comparison.png` |
 
-Historical manifests describe their original runs or archives; a recorded archive may not exist in a fresh checkout. `make_report.py` also needs local `runs/` histories, so saved reports alone are not all its inputs. Reading these reports requires no retraining. Model-selection evidence should remain separate from downstream [evaluation](../../evaluation/README.md).
+Historical manifests describe their original runs or archives; a recorded archive may not exist in a fresh checkout. `Encoder/tools/make_report.py` also needs local `runs/` histories, so saved reports alone are not all its inputs. Reading these reports requires no retraining. Model-selection evidence should remain separate from downstream [evaluation](../../../eval/README.md).

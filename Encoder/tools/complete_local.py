@@ -7,18 +7,19 @@ import sys
 import time
 import json
 
-root = Path(__file__).resolve().parent
+root = Path(__file__).resolve().parents[1]
 env = os.environ.copy()
-env.update({"POWERSHELL_TELEMETRY_OPTOUT": "1", "DOTNET_CLI_TELEMETRY_OPTOUT": "1", "PYTHONPATH": str(root / "offline_guard"),
+env.update({"POWERSHELL_TELEMETRY_OPTOUT": "1", "DOTNET_CLI_TELEMETRY_OPTOUT": "1", "PYTHONPATH": os.pathsep.join(filter(None, [str(root / "tools" / "offline_guard"), str(root), env.get("PYTHONPATH")])),
             "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "WANDB_DISABLED": "true", "PYTHONUNBUFFERED": "1"})
 stages = [("training", ["-m", "trajectory_encoder.pipeline"]),
           ("final_test_and_export", ["-m", "trajectory_encoder.finalize"]),
-          ("confounding_diagnostics", ["posthoc_diagnostics.py"]),
-          ("report", ["make_report.py"]),
+          ("confounding_diagnostics", ["tools/posthoc_diagnostics.py"]),
+          ("report", ["tools/make_report.py"]),
           ("verify_delivery", ["verify_delivery.py"])]
 parser = argparse.ArgumentParser()
 parser.add_argument("--start-at", choices=[name for name, _ in stages], default="training")
 options = parser.parse_args()
+(root / "reports").mkdir(exist_ok=True)
 stages = stages[[name for name, _ in stages].index(options.start_at):]
 for name, args in stages:
     status = {"stage": name, "started_unix": time.time(), "state": "running"}

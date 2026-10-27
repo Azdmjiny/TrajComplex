@@ -1,4 +1,7 @@
 """Predeclared length-confounding and route-separability diagnostics; no model selection."""
+from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
 import torch
 from trajectory_encoder.common import ROOT, read_json, write_json

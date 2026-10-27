@@ -8,10 +8,13 @@ from pathlib import Path
 import subprocess
 import sys
 
-root = Path(__file__).resolve().parent
+root = Path(__file__).resolve().parents[1]
 env = os.environ.copy()
-env.update({"POWERSHELL_TELEMETRY_OPTOUT": "1", "DOTNET_CLI_TELEMETRY_OPTOUT": "1", "PYTHONPATH": str(root / "offline_guard"),
+env.update({"POWERSHELL_TELEMETRY_OPTOUT": "1", "DOTNET_CLI_TELEMETRY_OPTOUT": "1", "PYTHONPATH": os.pathsep.join(filter(None, [str(root / "tools" / "offline_guard"), str(root), env.get("PYTHONPATH")])),
             "HF_HUB_OFFLINE": "1", "TRANSFORMERS_OFFLINE": "1", "WANDB_DISABLED": "true", "PYTHONUNBUFFERED": "1"})
+if any(arg in ("-h", "--help") for arg in sys.argv[1:]):
+    print("Usage: python Encoder/tools/run_offline.py [probe|checks|benchmark|pipeline|finalize]")
+    raise SystemExit(0)
 stage = sys.argv[1] if len(sys.argv) > 1 else "probe"
 if stage == "probe":
     code = """

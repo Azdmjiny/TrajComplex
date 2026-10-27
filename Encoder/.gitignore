@@ -1,7 +1,9 @@
 # Local preparation, training state, and generated delivery bundles.
-# Keep delivered encoder/, checkpoints/, experiment_logs/, and reports/ tracked.
+# Delivered encoder/ and archive/ stay tracked. Legacy tools generate local outputs.
 /prepared/
 /runs/
+/reports/
+/checkpoints/
 /.runtime_cache/
 /encoder_delivery.zip
 __pycache__/

@@ -3,8 +3,10 @@ import csv
 import os
 import json
 from pathlib import Path
+import sys
+sys.path.insert(0, str(Path(__file__).resolve().parents[1]))
 import numpy as np
-os.environ.setdefault("MPLCONFIGDIR", str(Path(__file__).resolve().parent / ".runtime_cache" / "matplotlib"))
+os.environ.setdefault("MPLCONFIGDIR", str(Path(__file__).resolve().parents[1] / ".runtime_cache" / "matplotlib"))
 import matplotlib
 matplotlib.use("Agg")
 import matplotlib.pyplot as plt
