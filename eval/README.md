@@ -1,9 +1,23 @@
-# Independent Holding evaluation
+# Trajectory Injection Evaluation
 
-A Holding runner; it does not import the legacy evaluation runner. It calls the repository's frozen Encoder and correlation-dimension estimator as model components.
+This directory evaluates how Holding and Vectoring injections change the embedding-space dimension `D` produced by the frozen Encoder. Both runners read Changi 10-second trajectory data and use the frozen Encoder and dimension estimator.
 
-Run from the repository root:
+## Run
 
-    .venv/bin/python eval/run_holding.py --output eval/results/holding-YYYY-MM-DD
+From the repository root:
 
-The default uses eleven fixed Holding scenes from the 2026-10-27 Changi package, excluding 2026-09-12T15Z at the user's request; it runs ten replacement-sampled sequences per scene, up to thirty events per sequence, using the frozen epoch-90 checkpoint. Each event inserts 240 seconds of racetrack at the original midpoint and trims 240 seconds from the transformed track end. D uses a minimum scene sample count of 15 and R-squared >= 0.90. The cross-scene figure shows distinct colored median dose curves with a scene legend, one background IQR band pooled across all valid sequence-level Delta-D estimates, and a thick common trend equal to the median of scene medians. The primary Spearman rho is calculated from that common trend. Outputs include event/dose data, audit, figures, policy, manifest and report.
+```bash
+.venv/bin/python eval/run_holding.py
+.venv/bin/python eval/run_vectoring.py
+.venv/bin/python -m unittest eval/test_holding.py
+```
+
+Results are written by default to a dated directory under `eval/results/`. Use `--output <directory>` to choose another path; the target directory must not already exist.
+
+## Experiments
+
+- `run_holding.py`: inserts a 240-second closed racetrack at the trajectory midpoint and trims 240 seconds from the end, preserving the total trajectory length.
+- `run_vectoring.py`: replaces a 600-second window with a laterally offset segment while preserving the sample count. If an aircraft is selected more than once, each event uses a different window. The paths are not certified for aircraft-motion feasibility; the data also lack NIC/NACp, so positional uncertainty cannot be certified.
+- `test_holding.py`: checks Holding injection length, repeated insertions, and tail trimming.
+
+Both experiments use the uninjected scene as the baseline and recompute `D` by event dose. Outputs include dose-level results, summaries, audits, plots, and run configuration. `Delta D` is the change from the same-scene baseline; Spearman rho describes the monotonic association between dose and summarized `Delta D`.

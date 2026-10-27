@@ -1,9 +1,9 @@
 #!/usr/bin/env python3
-"""Exploratory segmented Vectoring experiment for Holding v7 scenes.
+"""Segmented Vectoring experiment for Holding v7 scenes.
 
 Newly authored runner: it uses the frozen Encoder and D estimator as model
 components, but does not call the legacy Vectoring evaluation pipeline.
-NIC/NACp evidence is absent for these hours, so this is not uncertainty-certified.
+NIC/NACp evidence is absent for these hours, so uncertainty-radius certification is unavailable.
 """
 from __future__ import annotations
 import argparse, csv, gzip, hashlib, json, math, sys, time
@@ -144,7 +144,7 @@ def draw_events(scene,pool,rep,max_events):
  return seed,events
 
 def main():
- ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--output',type=Path,default=ROOT/'eval/results/vectoring-segmented-exploratory-2026-10-27-v1'); args=ap.parse_args(); out=args.output.resolve()
+ ap=argparse.ArgumentParser(description=__doc__); ap.add_argument('--output',type=Path,default=ROOT/'eval/results/vectoring-segmented-2026-10-27-v1'); args=ap.parse_args(); out=args.output.resolve()
  if out.exists(): raise SystemExit(f'Output exists; choose a new path: {out}')
  if sha(CHECKPOINT)!=CHECKPOINT_SHA: raise SystemExit('epoch-90 checkpoint hash mismatch')
  sys.path.insert(0,str(ROOT)); sys.path.insert(0,str(ROOT/'complexity')); import torch
@@ -178,7 +178,7 @@ def main():
   'window_rule':'600 seconds = 61 samples at 10-second cadence; replace in place and preserve original total trajectory point count.',
   'segment_geometry':{'shape':'150s outward linear ramp, 300s plateau, 150s return ramp; 30s moving-average corner blend','peak_offset_m':PEAK,'baseline':'PCHIP through observed points in the selected window; normal fixed to endpoint chord','altitude':'preserved point-for-point'},
   'processing':'Holding v7 basic QC, barometric altitude, position lastposupdate clock, altitude snapshot clock, bounded strict-10s interpolation, no extrapolation/fill, WGS84 ENU.',
-  'quality_boundary':'No NIC/NACp data; no uncertainty-radius fit/certificate. Segment paths are schematic and not aircraft motion-certified.',
+  'quality_boundary':'No NIC/NACp data; uncertainty-radius fitting and certification are unavailable. Segment motion is not aircraft-motion certified.',
   'encoder_checkpoint_sha256':CHECKPOINT_SHA,'preprocessor_id':enc.preprocess['preprocessor_id'],'device':'cpu','seed_base':SEED,
   'complexity':cfg.__dict__,'dose_metric':'Each aircraft contributes one embedding regardless of its number of applied windows. Full cloud D is recomputed at every dose.',
   'delta_D':'relative to the same scene baseline','rho':'Spearman of median-of-scene-medians Delta-D over the full common dose range; descriptive only.'}
@@ -250,7 +250,7 @@ def main():
   'scene_count_by_dose':{str(r['dose_events']):r['n_estimable_scenes'] for r in overall},
   'baseline_unestimable_scenes':[r['scene_id'] for r in audit if r['baseline_D'] is None],
   'per_scene':per_scene_rho,'sequence_level_rho_reported':False,
-  'interpretation':'descriptive exploratory association'})
+  'interpretation':'descriptive association'})
  import os; os.environ.setdefault('MPLCONFIGDIR',str(out/'.mplconfig'))
  import matplotlib; matplotlib.use('Agg'); import matplotlib.pyplot as plt
  fig,ax=plt.subplots(figsize=(11,6)); cmap=plt.get_cmap('tab10')
@@ -262,16 +262,16 @@ def main():
   lo=[r['pooled_sequence_q1_delta_D'] for r in valid]; hi=[r['pooled_sequence_q3_delta_D'] for r in valid]
   ax.fill_between(xs,lo,hi,color='#D6DEE7',alpha=.65,label='IQR across valid sequences'); ax.plot(xs,ys,color='#173B57',lw=3,label='Median of scene medians')
  ax.axhline(0,color='#777',lw=.7); ax.set_xlabel('Vectoring events'); ax.set_ylabel('Delta D from scene baseline')
- ax.set_title(f'Exploratory segmented Vectoring (rho={rho:.3f})' if rho is not None else 'Exploratory segmented Vectoring')
+ ax.set_title(f'Segmented Vectoring (rho={rho:.3f})' if rho is not None else 'Segmented Vectoring')
  ax.grid(alpha=.2); ax.legend(ncol=2,fontsize=8); fig.tight_layout(); fig.savefig(out/'vectoring-segmented-dose-response.png',dpi=160); plt.close(fig)
- report=['# Segment Vectoring — exploratory evaluation (2026-10-27)','',
+ report=['# Segment Vectoring evaluation (2026-10-27)','',
   f'使用 Holding v7 的 11 个场景（排除 2026-09-12T15Z），每场景 {REPEATS} 条随机序列，公共 dose 为 0–{dose_max} 个注入事件。','',
   '## 注入定义','',
   '每次事件选择一架合格飞机的一段 600 秒轨迹，用 segment 轨迹替换该窗口原有 61 个 10 秒点；不增删点。同一架飞机可以重复被抽中，但每次使用该飞机另一个互不重叠窗口。一个场景点云里该飞机始终只贡献一个 embedding。注入窗口从小时轨迹起点开始按 61 点分槽；两侧均能生成才进入候选池。','',
   'Segment 几何为沿窗口端点弦线法向的 15 km 梯形偏移：150 秒外移、300 秒平台、150 秒返回，30 秒移动平均处理转折。局部名义中心线由观测点 PCHIP 插值。每个 dose 重新生成受影响飞机的完整固定长度轨迹，并重新计算全场 D。','',
   '## 数据处理','',
   '使用数据包中与 Holding v7 相同的 11 个小时文件。沿用基础 QC：过滤地面/无效/重复记录，要求气压高度，位置使用 lastposupdate、垂直坐标使用 snapshot 时间，在支持范围内对齐严格 10 秒网格，不外推、不填补；限制位置年龄、记录间隔、速度和高度，并转为 WGS84 局部 ENU。','',
-  '这些小时没有 NIC/NACp，因此不做位置不确定度半径拟合或质量认证。PCHIP 和 segment 几何是名义轨迹构造，segment 运动没有飞机级可行性认证；结果只作探索性敏感性分析，不能与旧 Vectoring 认证结果直接等同。','',
+  '这些小时没有 NIC/NACp，因此无法进行位置不确定度半径拟合或质量认证。PCHIP 和 segment 几何构造名义轨迹，segment 运动没有飞机级可行性认证；相关结果与旧 Vectoring 认证结果的口径不同。','',
   '## 评估','',
   f"固定 epoch-90 Encoder 和预处理契约。每场景以基线正距离范围生成 64 个尺度；D 至少 15 个样本、R²≥0.90。失败 D 保留为缺失。有效基线场景为 {sum(x['baseline_D'] is not None for x in audit)}/{len(audit)}；基线不可估场景为 {', '.join(x['scene_id'] for x in audit if x['baseline_D'] is None) or '无'}。公共 dose 上限是 30 与所有场景有效窗口总数最小值中的较小者。主 rho 为跨场景中位数 Delta-D 曲线的 Spearman 相关，仅为描述统计，不作因果解释。",'',
   '![Segment Vectoring dose response](vectoring-segmented-dose-response.png)','',
