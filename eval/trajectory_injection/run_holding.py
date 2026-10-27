@@ -7,7 +7,7 @@ from pathlib import Path
 import numpy as np
 from scipy.spatial.distance import pdist
 from scipy.stats import spearmanr
-ROOT=Path(__file__).resolve().parents[1]
+ROOT=Path(__file__).resolve().parents[2]
 DATA=ROOT/'data/Changi_paper_datasets_latest_2026-10-27'
 RAW=DATA/'01_raw_observations/hourly_10s'
 CHECKPOINT=ROOT/'Encoder/encoder/encoder.pt'

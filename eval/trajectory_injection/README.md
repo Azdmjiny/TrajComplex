@@ -7,9 +7,9 @@ This directory evaluates how Holding and Vectoring injections change the embeddi
 From the repository root:
 
 ```bash
-.venv/bin/python eval/run_holding.py
-.venv/bin/python eval/run_vectoring.py
-.venv/bin/python -m unittest eval/test_holding.py
+.venv/bin/python eval/trajectory_injection/run_holding.py
+.venv/bin/python eval/trajectory_injection/run_vectoring.py
+.venv/bin/python -m unittest eval/trajectory_injection/test_holding.py
 ```
 
 Results are written by default to a dated directory under `eval/results/`. Use `--output <directory>` to choose another path; the target directory must not already exist.

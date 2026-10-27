@@ -1,0 +1,65 @@
+{
+  "seed": 43,
+  "radius_m": 100000,
+  "sampling_s": 10,
+  "max_age_s": 15,
+  "max_gap_s": 20,
+  "min_points": 30,
+  "altitude": "baroaltitude",
+  "max_horizontal_speed_m_s": 500,
+  "checkpoint_sha256": "bc1e0d74255cfee60a1c09c64dab8fac5a31f3175c4c234f8cf3983bc07af976",
+  "airports": {
+    "WSSS": {
+      "name": "Singapore Changi",
+      "offset_hours": 8,
+      "lat": 1.3592111111111111,
+      "lon": 103.989325,
+      "elevation_m": 6.66,
+      "center_status": "OFFICIAL_AIP_VERIFIED",
+      "source": "https://aim-sg.caas.gov.sg/aim-content/uploads/aip/17-SEP-2026/AIP/2026-09-03-000000/html/eAIP/SG-AD-2-WSSS-en-GB.html"
+    },
+    "RJTT": {
+      "name": "Tokyo Haneda",
+      "offset_hours": 9,
+      "lat": 35.55333333333333,
+      "lon": 139.78111111111113,
+      "elevation_m": 6.4,
+      "center_status": "AIP_CHART_ON_OPERATOR_WEBSITE; EPOCH_NEEDS_CONFIRMATION",
+      "source": "https://www.anaas.ana-g.com/img/business/general_aviation/pdf/hnd-rjtt.pdf"
+    },
+    "VHHH": {
+      "name": "Hong Kong International",
+      "offset_hours": 8,
+      "lat": 22.30888888888889,
+      "lon": 113.91472222222222,
+      "elevation_m": 8.5344,
+      "center_status": "OFFICIAL_AIP_SEARCH_INDEX_CONFIRMED; ARCHIVED_PAGE_RETRIEVAL_AND_SEPTEMBER_EPOCH_NOT_VERIFIED",
+      "source": "https://www.ais.gov.hk/eaip_20260903/2026-07-09-000000/html/eAIP/VH-AD-2-VHHH-en-US.html?amdt=show",
+      "source_evidence": "Official indexed AIP AD 2.2: ARP 221832N 1135453E; official 2025 indexed AIP elevation 28 ft. Archived page fetch failed, retained as an epoch limitation."
+    },
+    "RKSI": {
+      "name": "Incheon International",
+      "offset_hours": 9,
+      "lat": 37.462500000000006,
+      "lon": 126.43916666666667,
+      "elevation_m": 7.0,
+      "center_status": "OFFICIAL_AIP_2026_08_20_VERIFIED; FULL_MONTH_AMENDMENTS_NOT_EXHAUSTIVELY_CHECKED",
+      "source": "https://aim.koca.go.kr/eaipPub/Package/2026-08-20/html/eAIP/KR-AD-2.RKSI-en-GB.html?amdt=show",
+      "source_evidence": "Official RKSI AD 2.2 inspected 2026-10-26: ARP 372745N 1262621E; elevation 7 m."
+    }
+  },
+  "n_radii": 64,
+  "interval_levels": [
+    50,
+    75,
+    90
+  ],
+  "calibration_end_local": "2026-09-21",
+  "bootstrap_repeats": 2000,
+  "histogram_xlim": [
+    0,
+    2.5
+  ],
+  "histogram_bin_width": 0.1,
+  "estimator": "UNFILTERED_FULL_SCALE_EXPLORATORY"
+}
