@@ -76,7 +76,7 @@ a verified one-command reproduction of the current fixed-epoch model.
   DOI [10.1109/OJITS.2025.3574746](https://doi.org/10.1109/OJITS.2025.3574746).
 - **Reference code:** [ATSCC, pinned commit
   789ccd72b7496b52e03df7d8599d8c9e6659bdb9](https://github.com/petchthwr/ATSCC/tree/789ccd72b7496b52e03df7d8599d8c9e6659bdb9).
-  The retained license text is in [THIRD_PARTY_LICENSE_ATSCC.md](THIRD_PARTY_LICENSE_ATSCC.md).
+  The retained license text is in [archive/ATSCC.txt](archive/ATSCC.txt).
 
 The exact input files are identified by hashes in the
 [data audit](archive/reports/result/data_audit.json), rather than the dataset's

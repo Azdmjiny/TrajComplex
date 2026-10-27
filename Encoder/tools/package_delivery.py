@@ -15,7 +15,7 @@ EXCLUDED = {"blob_receipts.json", "early_export_manifest.json", "pipeline_status
 
 
 def delivery_paths(include_runs=False):
-    top = ["README.md", "CITATION.md", "THIRD_PARTY_LICENSE_ATSCC.md", "config.json",
+    top = ["README.md", "config.json",
            ".gitignore", "example.py", "verify_delivery.py"]
     paths = [ROOT / name for name in top]
     paths.extend(ROOT.parent / name for name in ("README.md", "requirements.txt"))

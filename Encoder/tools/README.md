@@ -31,9 +31,8 @@ and `checkpoints/`; these are ignored by Git. They do not fall back to the immut
 archive as if archived records were a freshly completed local run. Packaging keeps
 repository-relative `Encoder/...` paths, and creating a ZIP retains the original
 requirement for a local `reports/completion_status.json` with `state=complete`.
-Both the ZIP and text inventories include `Encoder/THIRD_PARTY_LICENSE_ATSCC.md`
-and the merged source references in `Encoder/README.md`. The short `CITATION.md`
-redirect preserves existing links without changing the repository-root README.
+Both the ZIP and text inventories include `Encoder/archive/ATSCC.txt`
+and the merged source references in `Encoder/README.md`.
 
 ## Historical training limitation
 

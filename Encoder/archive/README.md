@@ -2,6 +2,8 @@
 
 [Encoder overview](../README.md)
 
+The retained reference-code license is in [ATSCC.txt](ATSCC.txt).
+
 This archive contains saved evidence for both the current 10-second model and
 historical five-second experiments. Archive means preserved records, not that
 every result is obsolete. Numerical records, original plans, logs and model
