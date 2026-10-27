@@ -31,7 +31,7 @@ DIRECTION_ERROR=np.deg2rad(10.0)
 MAX_VERIFY_NODES=100000
 SOLVER_MAXITER=100  # SciPy SLSQP's documented default, recorded in diagnostics.
 MODEL='minimum-jerk-interpolant/chord-normal-Bernstein-8-v1'
-NUMERICS='direct-offset-derivatives/adaptive-continuous-peak-feedback-v3'
+NUMERICS='stable-polynomial-certificates/peak-motion-projection-feedback-v4'
 
 
 def policy():
@@ -44,6 +44,7 @@ def policy():
                                           acceleration_m_s2=ACCELERATION_TOL,heading_deg=float(np.rad2deg(HEADING_TOL))),
                 maximum_solver_iterations=SOLVER_MAXITER,maximum_verification_nodes=MAX_VERIFY_NODES,
                 peak_feedback='continuous off-grid witnesses are added to solver constraints; warm-start same controls; total SLSQP budget shared across solves',
+                motion_projection_feedback='continuous motion witnesses and existing convex-projection certificate witnesses; all final continuous checks required',
                 on_failure='reject; do not shrink the fixed target, extend time, fill data or relax limits',
                 limitations='restricted search; conditional reference model; ground-motion proxies; no global optimum or aircraft-specific certification')
 
@@ -186,16 +187,20 @@ def make_reference(xy,times,radii,grid,original_xy):
 
 def polyline(reference):
     """Hausdorff-bounded chord cover using Bezier convex hulls."""
-    pending=list(reversed(reference.pieces));edges=[];count=0;error=POSITION_TOL/8
+    pending=[(a,b,c,derivative(c,b-a),derivative(derivative(c,b-a),b-a)) for a,b,c in reversed(reference.pieces)]
+    edges=[];kinematic_edges=[];count=0;error=POSITION_TOL/8
     while pending:
-        a,b,c=pending.pop();count+=1
+        a,b,c,v,acc=pending.pop();count+=1
         if count>MAX_VERIFY_NODES:raise PathRejected('reference_cover_unresolved')
         dist,_,_=point_segment(c,c[:1],c[-1:])
         if float(dist.max())<=error:
-            edges.append((a,b,c));continue
+            edges.append((a,b,c));kinematic_edges.append((a,b,c,v,acc,float(dist.max())));continue
         l,r=split(c);m=(a+b)/2
-        pending.extend([(m,b,r),(a,m,l)])
-    return dict(a=np.array([c[0] for _,_,c in edges]),b=np.array([c[-1] for _,_,c in edges]),edges=edges,error=error)
+        vl,vr=split(v);al,ar=split(acc)
+        if m in (a,b):raise PathRejected('reference_cover_numeric_resolution_unresolved')
+        pending.extend([(m,b,r,vr,ar),(a,m,l,vl,al)])
+    return dict(a=np.array([c[0] for _,_,c in edges]),b=np.array([c[-1] for _,_,c in edges]),edges=edges,error=error,
+                kinematic_edges=kinematic_edges,original_pieces=reference.pieces)
 
 
 def construct(reference,controls,side):
@@ -220,23 +225,8 @@ def motion_bounds(c,r,h):
 
 
 def verify_motion(pieces,reference):
-    pending=[(a,b,c,r[2]) for (a,b,c),r in zip(pieces,reference.pieces)];count=0
-    margins=np.full(4,np.inf)
-    while pending:
-        a,b,c,r=pending.pop();count+=1
-        if count>MAX_VERIFY_NODES:raise PathRejected('continuous_motion_verification_unresolved')
-        bounds=motion_bounds(c,r,b-a)
-        if np.all(bounds>=0):margins=np.minimum(margins,bounds);continue
-        v=middle(derivative(c,b-a));acc=middle(derivative(derivative(c,b-a),b-a));rv=middle(derivative(r,b-a))
-        speed=np.linalg.norm(v)
-        if speed<=0 or speed<MIN_SPEED_RATIO*np.linalg.norm(rv):raise PathRejected('continuous_speed_collapse')
-        if speed>MAX_SPEED:raise PathRejected('continuous_horizontal_speed_over_limit')
-        if abs(v@acc)/speed>MAX_LONGITUDINAL:raise PathRejected('continuous_longitudinal_acceleration_over_limit')
-        if abs(v[0]*acc[1]-v[1]*acc[0])/speed>MAX_LATERAL:raise PathRejected('continuous_lateral_acceleration_over_limit')
-        m=(a+b)/2
-        if m in (a,b):raise PathRejected('continuous_motion_precision_unresolved')
-        cl,cr=split(c);rl,rr=split(r);pending.extend([(a,m,cl,rl),(m,b,cr,rr)])
-    return dict(verified_intervals=count,conservative_margins=margins.tolist())
+    from vectoring_certification import motion
+    return motion(pieces,reference)
 
 
 def peak_bounds(pieces,line,*,work=None):
@@ -261,49 +251,8 @@ def peak_bounds(pieces,line,*,work=None):
 
 
 def verify_projection(pieces,line,side):
-    """Conservative uniqueness, side and forward-progress envelopes.
-
-    Candidate nearest-reference intervals are enclosed by Lipschitz distance
-    bounds. Positive second derivative of squared distance ensures a unique
-    projection in their connected union; positive tangent dot velocity ensures
-    forward projection progress. Ambiguous or unresolved geometry rejects.
-    """
-    pending=list(pieces);count=0
-    while pending:
-        a,b,c=pending.pop();count+=1
-        if count>MAX_VERIFY_NODES:raise PathRejected('reference_projection_unresolved')
-        q=middle(c);radius=float(np.max(np.linalg.norm(c-q,axis=1)))
-        distances,_,_=point_segment(q,line['a'],line['b']);d=distances[0]
-        possible=np.flatnonzero(d<=d.min()+2*radius+2*line['error'])
-        connected=bool(len(possible) and np.all(np.diff(possible)==1))
-        refs=[line['edges'][j] for j in possible]
-        rpoints=np.concatenate([r for _,_,r in refs]);rvel=np.concatenate([derivative(r,y-x) for x,y,r in refs]);racc=np.concatenate([derivative(derivative(r,y-x),y-x) for x,y,r in refs])
-        rb=hull(rpoints);qb=hull(c);vb=hull(rvel);ab=hull(racc);qvb=hull(derivative(c,b-a))
-        rq=(rb[0]-qb[1],rb[1]-qb[0])
-        convex=norm_lower(vb)**2+dot_bounds(rq,ab)[0]>0
-        forward=dot_bounds(vb,qvb)[0]>0
-        # r and r' share a parameter. Independent coordinate boxes lose that
-        # dependence and spuriously reject small offsets along curved routes.
-        signed=[]
-        for x,y,r in refs:
-            velocity=derivative(r,y-x);delta=q-r
-            coeff=bernstein_product(velocity[:,0],delta[:,1])-bernstein_product(velocity[:,1],delta[:,0])
-            dq=c-q
-            variation=velocity[:,0,None]*dq[None,:,1]-velocity[:,1,None]*dq[None,:,0]
-            signed.extend([float(coeff.min()+variation.min()),float(coeff.max()+variation.max())])
-        side_ok=(min(signed)>=0 if side>0 else max(signed)<=0)
-        near_route=float(point_segment(c,line['a'][d.argmin():d.argmin()+1],line['b'][d.argmin():d.argmin()+1])[0].max()+line['error'])<=POSITION_TOL
-        # A clamped endpoint distance is not a lateral cross-track distance.
-        first=line['edges'][0];last=line['edges'][-1]
-        entry=first[2][0];exit=last[2][-1]
-        entry_v=derivative(first[2],first[1]-first[0])[0]
-        exit_v=derivative(last[2],last[1]-last[0])[-1]
-        inside=(np.max((entry-c)@entry_v)<=0 and np.min((exit-c)@exit_v)>=0)
-        if connected and convex and forward and (side_ok or near_route) and (inside or near_route):continue
-        m=(a+b)/2
-        if m in (a,b):raise PathRejected('reference_projection_precision_unresolved')
-        l,r=split(c);pending.extend([(a,m,l),(m,b,r)])
-    return count
+    from vectoring_certification import projection
+    return projection(pieces,line,side)
 
 
 def sample_pieces(pieces,t,order=0):
@@ -386,15 +335,17 @@ def sampled_peak_constraint(x,positions,basis,line):
 
 
 def generate(reference,side,diagnostics=None,*,sample_s=5):
+    from vectoring_certification import convexity_constraints
     if side not in (-1,1):raise ValueError('side must be -1 or +1')
     if sample_s not in (5,10):raise ValueError('unsupported output cadence')
     detail={} if diagnostics is None else diagnostics
-    history=[];feedback_times=[];peak_work={'used':0}
+    history=[];feedback_times=[];peak_work={'used':0};projection_witnesses=[];failure_feedback=[]
     detail.update(method=MODEL,numerics=NUMERICS,solver_calls=0,solver_iterations=0,
                   solver_budget_used=0,maximum_total_solver_iterations=SOLVER_MAXITER,
                   peak_refinement_history=history,peak_feedback_times_s=feedback_times,
                   peak_verification_work=peak_work,
-                  peak_feedback_policy='same 5000 m target; add continuous witnesses; shared iteration/refinement ceilings')
+                  failure_feedback=failure_feedback,projection_constraint_witnesses=projection_witnesses,
+                  peak_feedback_policy='same configured target; add continuous witnesses; shared iteration/refinement ceilings')
     line=polyline(reference)
     sample_times=np.unique(np.r_[np.arange(0,DURATION+1,5.),reference.breaks])
     q0=reference.values(sample_times)
@@ -419,7 +370,7 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
     used=0;iterations=0
     while True:
         remaining=SOLVER_MAXITER-used
-        if remaining<=0:raise PathRejected('continuous_peak_solver_budget_exhausted')
+        if remaining<=0:raise PathRejected('continuous_certificate_solver_budget_exhausted')
         # Only constraint evaluation times grow. The objective, route family,
         # initial route on the first solve, and all physical limits stay fixed.
         q0=reference.values(sample_times)
@@ -427,8 +378,10 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
         velocity=reference.values(sample_times,1);acceleration=reference.values(sample_times,2)
         velocity_basis=offset_basis(reference,sample_times,side,1)
         acceleration_basis=offset_basis(reference,sample_times,side,2)
-        def constraints(x):return sampled_motion_constraints(x,velocity,acceleration,velocity_basis,acceleration_basis)[0]
-        def constraint_jacobian(x):return sampled_motion_constraints(x,velocity,acceleration,velocity_basis,acceleration_basis)[1]
+        def constraints(x):return np.r_[sampled_motion_constraints(x,velocity,acceleration,velocity_basis,acceleration_basis)[0],
+                                        convexity_constraints(x,projection_witnesses,reference,side)[0]]
+        def constraint_jacobian(x):return np.concatenate((sampled_motion_constraints(x,velocity,acceleration,velocity_basis,acceleration_basis)[1],
+                                        convexity_constraints(x,projection_witnesses,reference,side)[1]))
         def peak_eq(x):return sampled_peak_constraint(x,q0,basis,line)[0]
         def peak_jacobian(x):return sampled_peak_constraint(x,q0,basis,line)[1]
         fit=minimize(objective,initial,jac=gradient,method='SLSQP',bounds=[(0,None)]*3,
@@ -442,7 +395,7 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
                       solver_last_iterations=int(fit.nit),solver_budget_used=used,
                       solver_success=bool(fit.success),solver_message=str(fit.message),solver_ftol=ftol)
         if not np.isfinite(fit.x).all() or np.any(fit.x<0):raise PathRejected('invalid_solver_controls')
-        final_ineq=constraints(fit.x)
+        final_ineq=sampled_motion_constraints(fit.x,velocity,acceleration,velocity_basis,acceleration_basis)[0]
         detail.update(
                            solver_candidate_controls_m=(fit.x*PEAK).tolist(),
                            solver_peak_error_m=float(peak_eq(fit.x)*PEAK),
@@ -465,7 +418,28 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
         step.update(continuous_peak_distance_bounds_m=list(bounds[:2]),peak_witness_t_s=float(bounds[2]),
                     cumulative_peak_refinements=peak_work['used'])
         detail.update(continuous_peak_distance_bounds_m=list(bounds[:2]),peak_witness_t_s=float(bounds[2]))
-        if bounds[0]>=PEAK-POSITION_TOL and bounds[1]<=PEAK+POSITION_TOL:break
+        if bounds[0]>=PEAK-POSITION_TOL and bounds[1]<=PEAK+POSITION_TOL:
+            try:
+                movement=verify_motion(pieces,reference)
+                projection=verify_projection(pieces,line,side)
+                break
+            except PathRejected as exc:
+                witness=getattr(exc,'witness',None)
+                step['certificate_failure']=str(exc);step['failure_witness']=witness
+                if witness is None or witness.get('kind') not in ('motion','projection_convexity'):raise
+                detail['last_certificate_failure']=str(exc)
+                if used>=SOLVER_MAXITER:raise PathRejected('continuous_certificate_solver_budget_exhausted') from exc
+                if witness['kind']=='motion':
+                    t=float(witness['time_s'])
+                    if np.any(sample_times==t):raise PathRejected('continuous_motion_feedback_stalled') from exc
+                    sample_times=np.unique(np.r_[sample_times,t])
+                else:
+                    if any(w['time_s']==witness['time_s'] and w['reference_time_s']==witness['reference_time_s'] for w in projection_witnesses):
+                        raise PathRejected('continuous_projection_feedback_stalled') from exc
+                    projection_witnesses.append(witness)
+                failure_feedback.append(dict(solver_call=detail['solver_calls'],reason=str(exc),witness=witness))
+                initial=fit.x.copy()
+                continue
         if used>=SOLVER_MAXITER:raise PathRejected('continuous_peak_solver_budget_exhausted')
         # Recompute a continuous witness after EVERY solve; never assume the
         # previous maximum remains the maximum of the modified route.
@@ -477,8 +451,6 @@ def generate(reference,side,diagnostics=None,*,sample_s=5):
         feedback_times.append(witness)
         sample_times=np.unique(np.r_[sample_times,witness])
         initial=fit.x.copy()
-    movement=verify_motion(pieces,reference)
-    projection=verify_projection(pieces,line,side)
     for at in [0,DURATION]:
         for order,tolerance in [(0,POSITION_TOL),(1,SPEED_TOL),(2,ACCELERATION_TOL)]:
             if np.linalg.norm(sample_pieces(pieces,[at],order)-sample_pieces(reference.pieces,[at],order))>tolerance:

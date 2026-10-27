@@ -5,7 +5,10 @@ These folders separate distinct experiments and diagnostics; they are not altern
 | Folder | Role |
 |---|---|
 | [changi-hourly](changi-hourly/report.md) | **Application case:** deduplicated main result, original appendix; complete 24h D/count/status displays and fixed-N/weather supplements |
-| [segmented-15km](segmented-15km/README.md) | **Active:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |
+| [vectoring-20s-repaired](vectoring-20s-repaired/report.md) | **Latest Vectoring:** repaired 20 s evidence, 26 versus 25 candidates; both shapes, full ranges |
+| [vectoring-certificate-repair](vectoring-certificate-repair/report.md) | Numerical verification/solver feedback and re-screening; no correlations |
+| [vectoring-time-window-sensitivity](vectoring-time-window-sensitivity/report.md) | Earlier 10/15/20 s evidence comparison; 19/22/25 candidates |
+| [segmented-15km](segmented-15km/README.md) | **Historical 10 s reference:** 15 km segmented Vectoring, R²≥0.94, no STAR; smooth 15 km control |
 | [strict-10s-reference](strict-10s-reference/report.md) | Historical twelve-scene midpoint results and exact shared-cutoff source |
 | [four-scene-vectoring-screen](four-scene-vectoring-screen/report.md) | Background/candidate screening: 21 accepted candidates out of 26 |
 | [four-scene-vectoring-evaluation](four-scene-vectoring-evaluation/report.md) | Full-range evaluation of the four frozen scenes |
@@ -16,7 +19,9 @@ These folders separate distinct experiments and diagnostics; they are not altern
 
 ## Included and excluded material
 
-Included: Markdown reports, PNG/SVG figures, full machine-readable D attempts, rejection reasons, summaries, assignment policies, saved embeddings, screening audit records, execution manifests and verification records. Statistics and embedding files are copied byte-for-byte. A publication note is added to stage reports to distinguish historical statements from current conclusions.
+Historical packages include: Markdown reports, PNG/SVG figures, full machine-readable D attempts, rejection reasons, summaries, assignment policies, saved embeddings, screening audit records, execution manifests and verification records. Statistics and embedding files are copied byte-for-byte. A publication note is added to stage reports to distinguish historical statements from current conclusions.
+
+**Current publication restriction:** the three new Vectoring packages (`vectoring-20s-repaired`, `vectoring-certificate-repair`, `vectoring-time-window-sensitivity`) publish only code/source snapshots, Markdown reports and figures. New numerical records, embeddings, route arrays and manifests remain local. Previously published historical result files are retained.
 
 **Hourly-case exception:** `changi-hourly/` publishes only its Markdown report/documentation and PNG/SVG/PDF figures. Embeddings, draw assignments, individual D attempts, machine-readable summaries, QC evidence and manifests for that case remain local. The reporting code requires an explicit local `--input` package. This restriction does not remove previously published data for other studies.
 

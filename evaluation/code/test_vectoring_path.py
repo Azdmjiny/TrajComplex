@@ -18,6 +18,12 @@ def reference(radius=3.,epoch=0.,curve=0.):
 
 
 class ContinuousPathTests(unittest.TestCase):
+    def setUp(self):
+        # These legacy regression fixtures explicitly exercise the 5 km stage;
+        # the production default is now 15 km. Restore it after each test.
+        patcher=patch.object(p,'PEAK',5000.)
+        patcher.start();self.addCleanup(patcher.stop)
+
     def test_offset_derivatives_match_independent_power_polynomials(self):
         ref=reference();times=np.array([0.,.001,5.,123.456,300.,599.999,600.])
         u=Polynomial([0.,1.]);one=Polynomial([1.,-1.])

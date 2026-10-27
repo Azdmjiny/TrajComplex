@@ -1,22 +1,19 @@
 # Evaluation
 
 Start with the [current report](report.md). The active evaluation includes the
-15 km segmented Vectoring run and the [Changi hourly application case](runs/changi-hourly/report.md); the previous 5 km report is archived as
+[repaired 20-second Vectoring comparison](runs/vectoring-20s-repaired/report.md) and the [Changi hourly application case](runs/changi-hourly/report.md); the previous 5 km report is archived as
 [archive/report-5km-2026-10-24.md](archive/report-5km-2026-10-24.md).
 
 ## Current status
 
 - **Changi hourly application:** complete 24h displays for September 11 and September 8, combining D, aircraft counts before/after QC, and estimability. The deduplicated main result has accepted D in 15/24 and 14/24 hours respectively; the original 14/24 and 11/24 results remain an appendix comparator. NA is retained and lines never bridge failed hours. This is an application case with explicit availability limits, not a claim of 24 reliable D values or causal weather validation. Fixed-N and weather comparisons remain descriptive supplements. See the [case report](runs/changi-hourly/report.md).
-- **Vectoring (active):** fixed 15 km peak, segmented trapezoid injection
-  (150 s out / 300 s plateau / 150 s back, 30 s corner blend), original
-  9-feature Encoder, `min_r_squared=0.94`, no STAR. Result: 13/15 positive
-  curves, median rho 0.829, 3/3 estimable scenes positive. The smooth 15 km
-  control is 9/15, median 0.600, 1/3 scenes positive.
-- **Holding:** unchanged equal-duration terminal control. At the same archived
-  cutoffs and jointly valid doses, median rho is 0.661 for Holding and 0.598
-  for straight flight; six of seven comparable scene summaries have positive
-  Holding-minus-Straight D differences. Conditional descriptive results, not
-  validation of operational complexity.
+- **Vectoring (latest):** repaired 20-second quality matching, 26 candidates,
+  the same 157 backgrounds, 15 km target and R²≥0.94. Segmented: 14/20 positive,
+  5 negative and 1 zero, median rho 0.887; smooth: 12/20 positive and 8 negative,
+  median 0.625. These aggregate values are unchanged from the prior 25-candidate
+  version; September 15 improves slightly. All four scenes and full doses are
+  retained. See [the before/after report](runs/vectoring-20s-repaired/report.md).
+- **Holding response:** corrected 10-second midpoint results, now with primary R² >= 0.94 and unchanged archived pre-peak ranges: 34/35 positive order coefficients, median rho 0.884. Five baseline-valid scenes support delta-D panels (24/25 positive; median 0.866). The prior 0.98 presentation is archived. These are outcome-selected exploratory ranges. Complete injected tails are retained, not clipped to the source hour. The separate endpoint duration control remains unchanged (matched retained medians 0.661 Holding, 0.598 straight). See the [midpoint report](holding-midpoint-response.md).
 - **STAR:** inactive. The STAR-relative Encoder and official-STAR pilot are
   archived; do not mix their numbers with this report. See
   [STAR_INACTIVE.md](STAR_INACTIVE.md).
@@ -27,7 +24,10 @@ Start with the [current report](report.md). The active evaluation includes the
 |---|---|
 | [report.md](report.md) | Active maneuver results and hourly application case |
 | [runs/changi-hourly](runs/changi-hourly/README.md) | 1h results, QC counts, complete 24h status figures and reproducible reporting |
-| [runs/segmented-15km](runs/segmented-15km/) | Frozen population, source scripts, full diagnostics and figures |
+| [runs/vectoring-20s-repaired](runs/vectoring-20s-repaired/report.md) | Latest Vectoring, 26 versus 25 candidates; reports/figures/source only |
+| [runs/vectoring-certificate-repair](runs/vectoring-certificate-repair/report.md) | Numerical certificate repair and screening, no correlation run |
+| [runs/vectoring-time-window-sensitivity](runs/vectoring-time-window-sensitivity/report.md) | Earlier 10/15/20-second comparison, before the certificate repair |
+| [runs/segmented-15km](runs/segmented-15km/) | Historical 10-second quality-matching reference, 19 candidates |
 | [runs/README.md](runs/README.md) | Index of every result package |
 | [code/README.md](code/README.md) | Explicit-input screening, inference and diagnostic commands |
 | [archive](archive/) | Superseded reports and legacy snapshots |
@@ -51,4 +51,12 @@ or authentication caches are added by this publication.
 
 ## Current presentation update
 
-The [four all-scene maneuver figures](figures/README.md) retain full dose ranges, negative correlations and unavailable results. Reproduce with `code/make_review_figures.py`; no D rerun is needed.
+The [figure index](figures/README.md) separates current midpoint Holding, latest repaired Vectoring and older endpoint/10-second views. All retained scopes, negative correlations and unavailable results are disclosed. Latest Vectoring execution/reporting snapshots are in its run package; `code/make_review_figures.py` reproduces the earlier endpoint/10-second presentation.
+
+## Holding paper layout
+
+The earlier endpoint presentation uses the [historical-range figure](figures/holding-historical-range-main.png) with [Appendix H](holding-paper-appendix.md). The main panels retain the original cutoff ranges and negative order coefficients; full-range tails are shown in Appendix H. Equal-duration control results are disclosed in the main report and detailed in the appendix. This presentation introduces no experiment or new cutoff.
+
+## Corrected midpoint Holding presentation (2026-10-27)
+
+The [midpoint response report](holding-midpoint-response.md) presents saved 10-second midpoint results: five baseline-valid delta panels, seven archived pre-peak ranges with correlations, and all 12 full-range scenes. The primary fit gate is R² >= 0.94; archived 0.98 fits are re-screened without changing slopes or finding new peaks. Reproduce with `code/plot_holding_primary.py --output NEW_DIRECTORY`. Source-hour selection retains complete injected tails; it does not enforce a post-injection hour boundary. The [endpoint control appendix](holding-paper-appendix.md) remains separate. No experiments were rerun.

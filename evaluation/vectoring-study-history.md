@@ -2,6 +2,12 @@
 
 This report inventories existing evidence; no new experiment was run to write it. Screening, numerical repair, correlation evaluation and estimator diagnosis are different activities. They must not be counted as independent positive validation experiments. All counts are aircraft-hours unless stated otherwise. Orders within a scene are dependent repeats.
 
+## Latest result (2026-10-27)
+
+The [repaired 20-second comparison](runs/vectoring-20s-repaired/report.md) is the latest Vectoring run: 26 candidates, four scenes, 157 backgrounds, 15 km offset, strict 10-second input, R²≥0.94. Segmented remains 14/20 positive (median 0.887); smooth remains 12/20 positive (median 0.625). Only September 15 improves slightly. The [time-window study](runs/vectoring-time-window-sensitivity/report.md) and [certificate repair](runs/vectoring-certificate-repair/report.md) document how the cohort changed from 19 to 25 to 26. New derived data stay local.
+
+The detailed 5 km tables and conclusions below are historical, not the current 15 km result. Neither the latest run nor those historical results establishes universally positive response to real Vectoring.
+
 ## Timeline and evidence
 
 | Stage | What was done | Recorded result | What it establishes |
@@ -22,7 +28,7 @@ This report inventories existing evidence; no new experiment was run to write it
 
 The older committed snapshot and local snapshot are separately preserved because they contain different stages. Their before/after statistics are not a controlled comparison: Encoder, reference treatment, candidate populations and generation methods changed across stages. The archive inventory records exact file provenance. Missing stage-specific artifacts must not be reconstructed from conversational counts or silently treated as equivalent runs.
 
-## Current full-range evaluation
+## Historical 5 km full-range evaluation (R²≥0.98)
 
 | Scene start UTC (UTC+08) | Background | Injectable | Accepted / attempted D | Baseline R² |
 |---|---:|---:|---:|---:|
@@ -57,7 +63,7 @@ Attempt counts repeat the shared baseline across orders; they are not independen
 
 These are conditional engineering guarantees under the adopted reference and uncertainty model. NACp-derived engineering disks are not deterministic truth bounds; fitted between-observation motion is not directly observed; ground-motion proxies are not aircraft-specific flight certification. Solver failure is not proof that every possible maneuver is infeasible. The current tests do not establish universal flight realism.
 
-## Paper implications
+## Historical 5 km paper implications
 
 The current Vectoring evidence can be reported as a transparent negative/inconclusive validation result and an estimator-sensitivity study. It documents rejection-only input validation, preserved baselines, complete unsuccessful results and sensitivity to scale eligibility. It cannot support stable strong positive Vectoring correlation or complete validation of operational complexity. The old positive numbers must not replace the corrected results merely because they are larger.
 

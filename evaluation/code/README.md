@@ -1,5 +1,29 @@
 # Current evaluation code
 
+## Vectoring certificate repair (2026-10-27)
+
+`vectoring_path.py` now delegates continuous motion and projection verification
+to `vectoring_certification.py`. Derivative polynomials survive subdivision;
+same-parameter Bernstein products tighten the projection convexity enclosure;
+both reference and query intervals can be refined. Witnessed branch conflicts,
+motion violations, unresolved numerical precision and exhausted work budgets
+have separate rejection reasons. Peak, motion and projection witnesses feed
+back to the existing route family under the shared 100-iteration solver budget.
+All physical acceptance limits and reference-geometry guards remain unchanged.
+
+This update was screened against the saved four-scene populations without any
+Encoder or D calls. The 20-second quality-matching arm gained `3c6709` (25 → 26);
+the 15-second arm remains 22 and the 10-second arm remains 19. All previously
+accepted routes remain accepted and their saved output coordinates reproduce
+exactly. This is a local screening result, not an updated correlation result;
+published evaluation results remain unchanged. Derived screening data stay local.
+
+Run the numerical regressions with
+`python -m unittest discover -s evaluation/code -p "test_vectoring*.py"`, or run
+`test_vectoring_path` and `test_vectoring_certification` directly with
+`evaluation/code` on `PYTHONPATH`. The legacy path tests explicitly select their
+5 km fixture; this does not change the production default or run configuration.
+
 ## Changi hourly application report
 
 ```bash
@@ -94,12 +118,14 @@ Standalone postprocessing copies the existing dose records, assignments, policy 
 `refresh_outputs.py --runs ROOT --output NEW_DIRECTORY` expects the package layout listed in `runs/README.md`, not a single inference run. It exports a combined overview. The authored `evaluation/report.md` retains its detailed interpretation and is checked against the saved packages; it is not overwritten by this command. Historical snapshots in `archive/` are not runtime inputs. Internal five-second optimizer collocation and legacy helpers do not change the strict ten-second Encoder input cadence.
 
 
-Read-only consistency check (saved-record summaries, current report tables, archive/publication hashes and navigation):
+Historical integration audit (saved-record summaries and the older publication snapshot; this checker is not synchronized with the current presentation):
 
 ```bash
 python evaluation/code/check_consistency.py
 python -m unittest discover -s evaluation/code -p "test_postprocessing.py"
 ```
+
+`check_consistency.py` still expects the older publication hashes and 5 km report tables, so it does not certify the current 15 km / midpoint 0.94 presentation. Current midpoint numerical assertions and source hashes are checked by `plot_holding_primary.py`; its local render manifest records those checks. Do not refresh old evidence hashes merely to make the historical check pass.
 
 The targeted integration tests do not call the Encoder or D estimator. The broader historical test suite includes saved-embedding D replay and is a separate software check.
 
@@ -112,3 +138,26 @@ python evaluation/code/make_review_figures.py --output /new/local/maneuver-figur
 ```
 
 The hourly builder delegates version-aware text to `hourly_report_text.py`. It reads 6,600 saved draws for the deduplicated main result, or 6,200 for the original appendix with `--preprocessing original`. The frozen 1,697/1,434 aircraft-hour population must match the selected version. It does not change screening or rerun inference. The maneuver renderer includes all 12 Holding and 4 Vectoring scenes, negative correlations and unavailable states, with source hashes checked after rendering. Only code, reviewed reports and figures may be published; generated manifests and hourly evidence remain local. Historical compact figure scripts are provenance, not the preferred all-scene renderer.
+
+## Holding historical-range paper layout
+
+`python evaluation/code/plot_holding_historical_ranges.py --output /new/local/holding-main-figure` reads only saved Holding results and historical cutoffs. It renders all seven cutoff-available scenes plus every estimable order coefficient, including negative values and explicit unavailable orders. The default main figure shows only the original cutoff range; later doses remain in Appendix H. `--show-full-tail` reproduces the earlier grey-tail view. NA breaks lines and the straight-control aggregate is disclosed. It verifies source hashes and writes a local-only render manifest; it does not change any result or rerun estimation. See [Appendix H](../holding-paper-appendix.md) for all twelve scenes and controls.
+
+## Historical midpoint response renderer (R² ≥ 0.98)
+
+`plot_holding_midpoint_response.py --output <new-directory>` reads the immutable strict-10s-reference QC500 results. It reuses saved cutoffs, verifies saved means and valid counts, renders delta/all-range/full-range companion figures, and checks source hashes. No inference, D estimation, new sample or cutoff selection is performed. Only figures and Markdown should be copied to the publication tree; the render manifest stays local.
+
+
+## Current midpoint Holding primary renderer (R² ≥ 0.94)
+
+`plot_holding_primary.py --output <new-directory>` replays final fit-quality screening through `audit_holding_r2_sensitivity.py`, then produces the seven-scene absolute-D main figure, five-scene ΔD companion, twelve-scene full-range appendix, and the current report. The final gate is explicitly 0.94; all other gates, fit slopes, orders and archived endpoints remain unchanged. The shared screening helper retains historical sensitivity naming internally; the user-selected primary status is defined by the new report and render manifest. No inference or new D fit occurs. Outputs are checked against recomputed per-order coefficient summaries and original source hashes. Publish only reviewed figures and Markdown; keep derived JSON and screening records local. The older midpoint renderer reproduces the archived 0.98 presentation and must not overwrite the current primary figures.
+
+## Latest repaired 20-second correlation comparison
+
+The [run package](../runs/vectoring-20s-repaired/README.md) contains execution,
+reporting and verification snapshots for the completed 26-versus-25 comparison.
+These require the private local frozen inputs described there. The numerical
+implementation is `vectoring_path.py` plus `vectoring_certification.py`; the
+latest correlation result is separate from the 19-candidate historical package.
+New population arrays, embeddings, assignments, fit records and manifests are
+not included in this publication.

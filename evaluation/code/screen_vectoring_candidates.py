@@ -54,7 +54,7 @@ def main():
     args.output.mkdir(parents=True,exist_ok=False)
     code = Path(__file__).resolve().parent
     code_names = ['screen_vectoring_candidates.py','vectoring_population.py','vectoring_reference.py',
-                  'vectoring_inputs.py','vectoring_path.py','run_vectoring_eval.py',
+                  'vectoring_inputs.py','vectoring_path.py','vectoring_certification.py','run_vectoring_eval.py',
                   'vectoring_uncertainty.py','trajectory_quality.py','position_timeline.py']
     manifest = dict(state='running',scenes=SCENES,input_sample_s=10,altitude_field='baroaltitude',
                     source_sha256={'data_zip':sha(args.data_zip),'quality':sha(args.quality)},

@@ -1,6 +1,6 @@
 # Evaluation: current paper presentation
 
-Updated 2026-10-26 from saved results only. No new experiment, Encoder call, D fit, sampling or threshold change was performed for this update. The 24h deduplicated result is now the main result; the original is preserved as an appendix. Maneuver results are unchanged and re-plotted with every scene retained.
+Updated 2026-10-27. Primary midpoint Holding uses R²≥0.94 with its archived exploratory pre-peak ranges. Latest Vectoring uses the repaired 20-second quality-matching version with 26 candidates, compared against the prior 25-candidate version. The hourly application and endpoint duration-control studies remain separate. This publication packages completed work; no experiment was rerun during publication.
 
 ## 1. Changi: complete 24h application display
 
@@ -21,49 +21,50 @@ All three schemes use the deduplicated results consistently. Fixed-N valid draws
 
 **Paper claim:** an auditable real-airport-area application with hourly estimates and explicit availability limits. A complete 24h display is not 24 reliable D estimates. No causal storm effect or independence from traffic volume is established. The 100 km area includes overflights and traffic from other airports.
 
-## 2. Holding: dose response and equal-duration paired difference
+## 2. Holding: midpoint dose response at R² ≥ 0.94
 
-All 12 scenes and 5 orders per scene are shown. Both arms append 240 seconds at the trajectory endpoint; original points remain unchanged. The saved Holding study uses R²≥0.98, unlike the R²≥0.94 hourly and current Vectoring studies. These gates are not retrospectively made uniform.
+The primary midpoint Holding fit gate is now **R² ≥ 0.94**, following the explicit decision to replace 0.98 for this presentation. The original 0.98 experiment and [previous presentation](archive/holding-midpoint-r098/holding-midpoint-response.md) remain historical evidence. The saved final slopes are re-screened; trajectories, adaptive fit scales, five orders and archived peak endpoints are unchanged.
 
-![Holding: all scenes and both arms](figures/holding-all-scenes-dose.png)
+![Midpoint Holding dose response](figures/holding-midpoint-prepeak-all-scenes.png)
 
-Blue is Holding; orange is straight flight. Thin curves are individual orders; thick curves are the median of available orders at each dose. Crosses at the bottom mark rejected order-dose estimates; their vertical position is a status marker, not D. Dashed vertical lines show the archived common cutoff where available. Full later-dose results remain visible. Four scenes have too few aircraft and no accepted D.
+[Main vector PDF](figures/holding-midpoint-prepeak-all-scenes.pdf) · [Full caption, methods and scene table](holding-midpoint-response.md)
 
-| Scope, jointly valid doses | Median order rho: Holding | Straight | Orders |
-|---|---:|---:|---:|
-| Full range | 0.196 | 0.065 | 37 |
-| Same archived cutoff in both arms | 0.661 | 0.598 | 33 |
+All seven scenes with archived pre-peak endpoints are shown. **34/35 per-order coefficients are positive; median Spearman ρ = 0.884.** The negative coefficient remains in panel H. These are dependent repeats within seven scenes, not 35 independent experiments. Dark curves are unsmoothed means of available orders; coefficients are calculated per order, not from the mean curve. The absolute-D panels have individually labelled vertical scales.
 
-The two rows involve different eligible order sets. Among the same 33 cutoff-eligible orders, the full-range medians are 0.217 and 0.187. Cutoffs came from earlier midpoint results, not an independently established operational limit, and were not re-selected for these plots. Correlation is calculated per order on jointly valid doses, not from the thick plotted median curve.
+Aircraft were selected from natural-hour files; a corrected 240-second racetrack was inserted at the trajectory midpoint at a 10-second input cadence. Complete original tails were retained, so synthetic trajectories can extend beyond the source hour. This is not a post-injection fixed-hour reconstruction.
 
-![Holding: paired differences at each dose](figures/holding-all-scenes-paired-difference.png)
+![Midpoint Holding change from baseline](figures/holding-midpoint-prepeak-delta.png)
 
-The vertical axis is D(Holding) minus D(Straight) for the same scene, order and dose. Both fits must pass. Positive values favor Holding; negative values favor straight flight. Full-range paired scene summaries are positive in 7/8 comparable scenes, with an equal-scene median difference of 0.034. Within the common historical cutoffs they are positive in 6/7 scenes, median 0.030. These are medians across scene/order summaries, not a pooled causal effect. All 12 scene panels remain visible, including unavailable pairs and scenes without an archived cutoff.
+Five scenes now have an accepted baseline. Their ΔD companion uses a common vertical scale: 24/25 order coefficients are positive, median ρ = 0.866. Two other pre-peak scenes have no accepted baseline and remain in absolute D in the main figure. Accepted order-dose estimates increase from 933/1,980 to 1,371/1,980; aircraft counts do not change.
 
-**Paper claim:** D responds to the tested trajectory extensions, with a generally small additional Holding-versus-straight difference. Both groups can rise, so the strong truncated Holding correlation alone does not establish a maneuver-specific effect. The equal-duration design controls duration and point count, but straight extension also changes spatial extent; it cannot assign a percentage of the response to length. Only three scenes have valid zero-dose baselines, so the plots use absolute D and paired arm differences rather than inventing baseline-relative values.
+**Range and control disclosure.** Endpoints are inherited unchanged from the earlier outcome-selected peaks. No new peak is chosen at 0.94. The [all-twelve-scene, complete-range appendix](figures/holding-midpoint-full-range-appendix.pdf) retains unavailable scenes and later responses: full-range median ρ = 0.218, with 28/40 coefficients positive. This is an exploratory range-conditional association, not a globally monotonic result or a validated operating limit. The gate revision is post-analysis and is explicitly documented.
 
-Evidence: [full equal-duration study](runs/holding-equal-duration/report.md), [shared historical cutoffs](runs/holding-equal-duration-old-cutoff/report.md).
+The [endpoint equal-duration control](holding-paper-appendix.md) remains a separate, unchanged experiment at its archived gate: matched retained-range medians were 0.661 for Holding and 0.598 for straight continuation. It shows that trajectory duration remains a concern, but cannot quantify the exact length contribution to midpoint Holding because insertion locations differ.
 
-## 3. Vectoring: all scenes, dose curves and correlations
+**Suggested manuscript statement.** With R² ≥ 0.94, the corrected midpoint Holding intervention showed predominantly positive dose–dimension associations within seven archived pre-peak ranges (34/35 per-order coefficients positive; median Spearman ρ = 0.884). The ranges were inherited from an earlier analysis, and complete-range responses were weaker and included negative associations. These results do not isolate Holding geometry from the additional trajectory duration.
 
-The active saved study is **15 km segmented Vectoring versus smooth 15 km control**, not the older 5 km pilot. There are four scene-hours, 157 background tracks and 19 injectable candidates. Both use the frozen epoch-90 9-feature 10-second Encoder, R²≥0.94 and the full dose range. No STAR features are used.
+The [current renderer](code/plot_holding_primary.py) reproduces the gate-only screening and figures from saved fits; no new inference, D estimation or trajectory generation is performed. See the [version comparison](holding-version-comparison.md) for the distinct 5-second pilot, corrected midpoint study and endpoint control.
 
-![Vectoring: every scene and both shapes](figures/vectoring-all-scenes-dose.png)
+## 3. Vectoring: repaired 20-second version, complete ranges
 
-Columns are all four scenes; rows are segmented and smooth shapes. Colors identify the five orders, and the black curve is the available-order median. All panels use a common D axis to show the absolute change without magnifying small effects. All 115 saved D fits per arm pass. September 14 has only three candidates and four dose levels: its D values can be displayed, but its five order correlations are NA because at least five valid doses are required. This is distinct from a failed D fit.
+The latest run has **26 injectable candidates and 157 background tracks in four scenes**. It retains the frozen 10-second Encoder, exact prior baseline radius grids, R²≥0.94, five master orders and their side assignments, 15 km target, full dose ranges and all physical limits. The newly restored `3c6709` is the only added intervention; baseline arrays and the 25 old intervention arrays remain exactly unchanged. The 20-second parameter is a quality-message matching sensitivity, not the trajectory cadence or a standards-certified validity interval.
 
-![Vectoring: all correlations and unavailable orders](figures/vectoring-all-scenes-correlations.png)
+![Latest Vectoring dose response](runs/vectoring-20s-repaired/figures/vectoring-full-range-before-after.png)
 
-| Shape | Estimable order correlations | Positive | Median order rho | Median of scene medians |
-|---|---:|---:|---:|---:|
-| Segmented 15 km | 15/20 | 13/15 | 0.829 | 0.714 |
-| Smooth 15 km | 15/20 | 9/15 | 0.600 | −0.086 |
+| Shape | Median order rho, 25 → 26 candidates | Positive / 20 | Negative / 20 | Zero / 20 | Valid D records, before → after |
+|---|---:|---:|---:|---:|---:|
+| Segmented 15 km | 0.887 → 0.887 | 14 → 14 | 5 → 5 | 1 → 1 | 145/145 → 150/150 |
+| Smooth 15 km | 0.625 → 0.625 | 12 → 12 | 8 → 8 | 0 → 0 | 145/145 → 150/150 |
 
-The segmented negative curves are September 19 **display order 5** (saved replicate 4), rho −0.943, and September 27 **display order 4** (saved replicate 3), rho −0.086. Display orders are consistently 1–5; stored replicates are 0–4. No negative curve or unavailable scene is removed. Five orders are dependent within-scene repeats, not five independent scenes; no confirmatory p-values or confidence intervals are claimed.
+Only September 15 gains a candidate. Its segmented median rises 0.964 → 0.976 and smooth median 0.929 → 0.952; other scenes reproduce exactly. September 19's smooth median remains −0.571. These are 20 dependent order coefficients within four scenes, not 20 independent experiments. All 290 prior dose records were reproduced exactly, including complete diagnostics. No failed D or unavailable correlation occurs in the new run, and all negative and zero coefficients remain visible.
 
-**Paper claim:** a predominantly positive dose–D association for this particular segmented 15 km stimulus in the three correlation-estimable scenes. This does not establish universal positive response to real vectoring, and a high rank correlation need not mean a large absolute D change. Differences between shapes could involve geometry, speed/time allocation and the pooled representation; the saved comparison does not isolate a causal mechanism.
+![Every order correlation](runs/vectoring-20s-repaired/figures/vectoring-order-correlations-before-after.png)
 
-The segmented shape is a schematic stress stimulus: 150 s outward, 300 s at 15 km, 150 s return, with a 30 s corner blend. Its workflow skips deformed-kinematics rejection and it does **not** carry the smooth generator's C2 / 2 m s⁻² longitudinal / 35° bank certificate. The smooth control remains physically screened. Do not describe the segmented stimulus as a certified flyable maneuver or 15 km as routine vectoring. See [study evidence and methods](runs/segmented-15km/README.md), [geometry illustration](figures/injection-geometry-smooth-vs-segmented.png), and [inactive STAR note](STAR_INACTIVE.md).
+**Interpretation:** the numerical repair restores one candidate and slightly strengthens an already positive scene. It does not improve the aggregate median or establish a stable, universally positive Vectoring response. A high median for the segmented stimulus coexists with negative orders. No truncation or favorable-scene selection was used.
+
+The segmented stimulus is schematic and does not inherit the smooth trajectory's C2/motion certificate. Smooth routes undergo continuous peak, motion, projection and joining checks. The [numerical repair report](runs/vectoring-certificate-repair/report.md) distinguishes actual conflicts, numerical uncertainty and solver feedback. The eight reference/chord-geometry rejections remain unchanged.
+
+See the [latest detailed report and full ledger](runs/vectoring-20s-repaired/report.md), [prior time-window comparison](runs/vectoring-time-window-sensitivity/report.md), and [historical 19-candidate 10-second reference](runs/segmented-15km/README.md). Newly generated embeddings, route arrays, assignments and machine-readable results remain local; only code, reports and figures are published.
 
 ## Reporting, figures and preserved history
 
@@ -73,8 +74,8 @@ The segmented shape is a schematic stress stimulus: 150 s outward, 300 s at 15 k
 - [Workflow documentation](code/README.md) and [all run packages](runs/README.md).
 - [Historical 5 km report](archive/report-5km-2026-10-24.md): retained evidence, not the current 15 km result.
 
-Hourly position deduplication is not retroactively applied to Holding or Vectoring. Their saved data, thresholds and experimental definitions remain unchanged. Earlier maneuver figures remain historical views; the four all-scene figures above are the preferred current presentation. No experiments were rerun to produce this report.
+Hourly position deduplication is not retroactively applied to Holding or Vectoring. Their saved source data and experimental definitions remain unchanged; only the primary midpoint Holding fit-acceptance gate is revised to 0.94 as described above. The midpoint pre-peak figures are the current Holding response presentation, with its complete ranges and the distinct endpoint equal-duration control linked explicitly. The repaired 20-second before/after figures are the current Vectoring presentation. Earlier 10-second Vectoring figures remain historical evidence. No experiments were rerun during this publication step.
 
 ## Additional compact overview preserved from the concurrent update
 
-The teammate's [Holding-versus-Vectoring overview](figures/holding-vs-vectoring-comparison.png) ([PDF](figures/holding-vs-vectoring-comparison.pdf)) is retained unchanged, along with its [renderer](figures/make_combined_figure.py). It shows three Holding scenes (September 1, 4 and 10) and the three correlation-estimable Vectoring scenes (September 15, 19 and 27). Pastel points are individual orders; black lines are means, and the dashed grey Holding-side line is the straight-flight mean. This is a compact selected-scene view, not the complete scene inventory. The all-scene figures above remain the preferred evidence for unavailable scenes, negative responses and full coverage. These curves use means, whereas the new complete-scene figures use medians.
+The teammate's [Holding-versus-Vectoring overview](figures/holding-vs-vectoring-comparison.png) ([PDF](figures/holding-vs-vectoring-comparison.pdf)) is retained unchanged, along with its [renderer](figures/make_combined_figure.py). It shows three Holding scenes (September 1, 4 and 10) and the three correlation-estimable Vectoring scenes (September 15, 19 and 27). Pastel points are individual orders; black lines are means, and the dashed grey Holding-side line is the straight-flight mean. This is a compact selected-scene view, not the complete scene inventory. The all-scene figures above remain the preferred evidence for unavailable scenes, negative responses and full coverage. That overview remains an earlier endpoint-control presentation. It must not be read as the current midpoint 0.94 result; the current midpoint figures use available-order means.
