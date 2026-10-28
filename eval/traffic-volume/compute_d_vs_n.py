@@ -27,9 +27,10 @@ def raw_slope(V, radii=GRID):
     return slope
 
 rows=[]; t0=time.time()
-for fi,path in enumerate(sorted((BASE/'embeddings').glob('*.npz')),1):
-    key=path.stem; m=bykey[key]
-    z=np.load(path); V=np.asarray(z['embeddings'],float); N=len(V)
+archive=np.load(BASE/'embeddings.npz')
+for fi,key in enumerate(sorted(archive.files),1):
+    m=bykey[key]
+    V=np.asarray(archive[key],float); N=len(V)
     rng=np.random.default_rng(20261026+fi)
     orders=[rng.permutation(N) for _ in range(ORDERS)]
     curve=[]; valid=[]

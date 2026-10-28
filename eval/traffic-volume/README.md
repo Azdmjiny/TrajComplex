@@ -14,8 +14,8 @@ point cloud changes as aircraft are added within an hourly scene.
   It has no `C(r)` bound, radius-ratio gate or `R^2` threshold. It is a raw
   estimator, not the quality-gated `D` used elsewhere.
 - Radii are fixed in `radius-grid.json`; scene keys, local dates, hours and
-  counts are in `encoding-summary.json`; `embeddings/` contains one saved
-  16-dimensional vector per aircraft.
+  counts are in `encoding-summary.json`; `embeddings.npz` stores one array per
+  scene, each containing one 16-dimensional vector per aircraft.
 
 ## Files
 
@@ -24,7 +24,7 @@ point cloud changes as aircraft are added within an hourly scene.
 | `compute_d_vs_n.py` | Computes the raw slope for every scene and every `n`; writes `results/d-vs-n-no-gate.json` |
 | `radius-grid.json` | Fixed 64-radius grid used by the slope calculation |
 | `encoding-summary.json` | Scene key, local date, local hour and aircraft count |
-| `embeddings/` | 720 saved `.npz` files, one per hourly scene |
+| `embeddings.npz` | 720 scene arrays, each with one 16-dimensional vector per aircraft |
 
 `results/` is generated at runtime and is not part of this folder. No figures
 or optional outputs are stored here.
