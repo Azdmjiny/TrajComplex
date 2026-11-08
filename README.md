@@ -20,6 +20,11 @@ The Encoder maps an individual trajectory to a vector; `Complexity` estimates th
 | `doc/` | Methodology, training plans, and integration notes |
 | `requirements.txt` | The single dependency manifest for the project, including PyTorch |
 
+### Evaluations
+
+- [Cross-airport arrival evaluation](eval/cross_airport/) uses a separate frozen encoder for each airport.
+- [Changi encoder comparison](eval/encoder_comparison/) compares reference-group separation across encoder settings on fixed scenes.
+
 <a id="installation"></a>
 ## Installation
 

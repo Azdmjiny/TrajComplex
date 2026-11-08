@@ -1,68 +1,60 @@
-# Cross-Airport Complexity Evaluation
+# Cross-Airport Arrival Evaluation
 
-This experiment compares hourly D distributions across Singapore Changi (WSSS), Tokyo Haneda (RJTT), Hong Kong (VHHH), and Incheon (RKSI), using OpenSky trajectory data from September 2026. We examine whether typical D ranges can be shared across airports while keeping the Encoder and computation procedure fixed.
+This evaluation describes the hourly $D$ distributions at Singapore Changi
+(WSSS), Tokyo Haneda (RJTT), Kuala Lumpur (WMKK), and Incheon (RKSI) during
+September 2026. Each airport contributes 720 local hourly scenes and uses its
+own frozen epoch-60 encoder. The distributions provide airport-specific
+references for interpreting $D$.
 
-## Experimental setup
+## Setup
 
-- **Trajectories:** airport-related arrivals and departures within a 100 km airport-centered region, with strict 10-second sampling and trajectory quality checks. The longest eligible segment is retained for each flight-hour.
-- **Representation:** airport-centered ENU coordinates with barometric altitude, followed by the frozen epoch-90 Encoder (seed 43, 16 dimensions, sum pooling). Training feature standardization is retained; no airport-specific retraining or normalization is applied.
-- **Hourly D:** one embedding per flight-hour forms each hourly point cloud. D is the log-log OLS slope of the correlation integral, using exact pairwise distances and 64 geometric radii.
+- **Arrival scenes.** Use OpenSky arrivals within 100 km of the airport. Match
+  observations uniquely to flight records, resample to a 10-second grid and
+  keep the longest eligible fragment with at least 25 points per flight-hour.
+  Repeated position updates are interpolated between supported positions
+  in ENU, with unsupported tails trimmed. The preparation uses a 15-second
+  source age limit, a 20-second update and snapshot gap limit, and speed
+  limits of 500 m/s horizontally and 100 m/s vertically. Coordinates are
+  airport-centered ENU metres with barometric altitude as the vertical proxy.
+- **Representation.** Rebase the prepared positions to the checkpoint's ENU
+  origin when available. Standardize features with the checkpoint's training
+  statistics and sum-pool token vectors to one 16-dimensional embedding per
+  flight-hour.
+- **Hourly $D$.** Count exact Euclidean pairs at 64 geometric radii between
+  the minimum positive and maximum pairwise distances. Fit the log–log slope
+  over all scales with $0<C(r)<1$. Retain the slope whenever the fit is
+  mathematically defined and leave undefined values missing.
 
-The current analysis uses the **unfiltered full-scale** estimator: all radii with positive correlation counts enter the fit, without D acceptance gates or the original correlation-window selection. Trajectory quality checks remain in place. Mathematically undefined D values remain missing. This version differs from the repository's quality-gated dimension estimate.
+## Code
 
-## Shared intervals and validation
-
-Shared central 50%, 75%, and 90% intervals correspond to Q25–Q75, Q12.5–Q87.5, and Q05–Q95. Quantiles are estimated from an airport-balanced empirical distribution, assigning equal total weight to each airport. The 75% interval was added after the initial 50% and 90% analysis.
-
-September 1–20 is the calibration period; September 21–30 is the evaluation period, using each airport's local dates.
-
-- **Temporal validation:** estimate a shared interval from all four calibration airports, then evaluate it separately at each airport.
-- **Leave-one-airport-out validation:** estimate the interval from three calibration airports, then evaluate the omitted airport. Repeat for all four airports.
-
-Two metrics are reported:
-
-- **Coverage:** the percentage of computable evaluation hours inside the shared interval. The reference is the corresponding nominal 50%, 75%, or 90% coverage.
-- **Width ratio:** shared interval width divided by the evaluation airport's own interval width at the same central proportion. A ratio of 1 indicates equal widths. The airport-specific evaluation interval is used only as a reference, not to adjust the shared interval.
-
-Uncertainty is estimated using 2,000 day-block bootstrap replicates with seed 43. Calibration and evaluation dates are resampled independently, with synchronized date draws across airports and recalibration in each replicate.
-
-## Code and execution
-
-| File | Role |
-|---|---|
-| `preprocess.py` | Flight assignment, trajectory filtering, sampling, and ENU conversion |
-| `run_complexity.py` | Frozen Encoder inference, hourly point clouds, and D estimation |
-| `run_intervals.py` | Shared intervals, validation metrics, bootstrap intervals, and the distribution histogram |
-| `config.json` | Airport references and experiment settings |
-| `requirements.txt` | Python dependencies |
-
-Run from the repository root:
+`run_complexity.py` computes hourly $D$ and the airport-specific median and
+central 50% and 90% intervals. From the repository root, with the root
+requirements installed:
 
 ```bash
-python -m pip install -r eval/cross_airport/requirements.txt
-
-python eval/cross_airport/preprocess.py \
-  --hours hours.csv --flights flights.csv --output prepared
-
-python eval/cross_airport/run_complexity.py \
-  --hours prepared/prepared_hours.csv \
-  --checkpoint Encoder/encoder/encoder.pt --output complexity
-
-python eval/cross_airport/run_intervals.py \
-  --input complexity/hourly_D.csv --output intervals
+python -m eval.cross_airport.run_complexity --prepared data/prepared --checkpoints data/airport-encoders --output eval/results/cross_airport
 ```
 
-Output directories must be new. Paths are supplied through command-line arguments; additional options are listed by `--help`. Encoder source is reused from `Encoder/trajectory_encoder/`, and the checkpoint hash is recorded in `config.json`.
+Each airport directory under `--prepared` contains `prepared_hours.csv`
+with `airport,hour_utc,hour_local,prepared_path`, `cleaning_rules.json`
+with the ENU `origin` (`lat`, `lon`, `elevation_m`), and an `hours/`
+directory. The hourly NPZ files contain `enu_m`, `offsets`, `time` (UTC Unix
+seconds), and `flight_ids`. Each manifest path's basename identifies its
+file in `hours/`.
 
-### Input format
+The checkpoint directory contains the original Changi `epoch_60.pt` and
+`RJTT_encoder_60.pt`, `WMKK_encoder_60.pt`, and `RKSI_encoder_60.pt`. The
+last three can be trained with `train_encoder.py` using the corresponding
+cleaned training archive (`<ICAO>_CLEANED.jsonl.gz`, `<ICAO>_INDEX.csv`, and
+`manifest.json`). The training input is a 1 Hz trajectory archive in ENU
+coordinates scaled by 120,000 m. Training preserves the original splits,
+selects 22,386 training, 2,821 validation, and 2,730 test trajectories
+proportionally by month within each split, and saves the fixed epoch-60
+checkpoint. Training requires a BF16-capable CUDA GPU.
 
-- **Hourly manifest:** `airport,hour_utc,hour_utc_iso,hour_local,raw_path`. UTC times are Unix seconds; local timestamps include the UTC offset. Raw paths are absolute or relative to the manifest.
-- **Raw hourly CSV/CSV.gz:** `time,icao24,lat,lon,baroaltitude,onground,lastposupdate,lastcontact,hour`. Observations use a UTC 10-second grid, coordinates in degrees, and altitude in meters.
-- **Flight metadata:** `icao24,firstseen,lastseen,estdepartureairport,estarrivalairport`.
-- **Interval analysis input:** `airport,hour_local,dimension`. Missing D is left empty; all expected hourly rows are retained.
+```bash
+python -m eval.cross_airport.train_encoder RJTT --source data/rjtt-training --output artifacts/rjtt-encoder
+```
 
-Preprocessing produces a prepared-hour manifest and trajectory arrays. Complexity estimation produces hourly D and point clouds. Interval analysis produces shared bounds, validation metrics, input counts, and one four-airport histogram. The histogram displays D from 0 to 2.5 with a common bin width of 0.1; statistics use all finite D values.
-
-## Scope
-
-Only experiment code and configuration are included here; data, weights, and generated results are not included. Incheon is the Encoder training-source airport. Agreement in numerical ranges alone does not establish equal operational complexity or a universal high/low complexity threshold.
+Prepared scenes and checkpoints are external inputs. The evaluation writes
+`hourly_D.csv` and `airport_summary.csv` to the chosen output directory.
