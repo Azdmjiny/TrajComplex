@@ -1,23 +1,24 @@
 # Trajectory Injection Evaluation
 
-This directory evaluates how Holding and Vectoring injections change the embedding-space dimension `D` produced by the frozen Encoder. Both runners read Changi 10-second trajectory data and use the frozen Encoder and dimension estimator.
+Unified Holding and Vectoring injection experiment for the full WSSS 2 arrival-only archive (720 hourly scenes). Both modes use the fixed epoch-60 Encoder and the same correlation-dimension estimator. Holding uses the midpoint anchor with **no minimum distance cutoff** from WSSS ARP; Vectoring retains the calibrated 600-second, 61-point, 15 km offset segment.
 
 ## Run
 
-From the repository root:
+From the repository root, with the WSSS 2 archives and checkpoint available locally:
 
 ```bash
-.venv/bin/python eval/trajectory_injection/run_holding.py
-.venv/bin/python eval/trajectory_injection/run_vectoring.py
+.venv/bin/python eval/trajectory_injection/run_experiment.py --output eval/results/wsss2-injection
 .venv/bin/python -m unittest eval/trajectory_injection/test_holding.py
 ```
 
-Results are written by default to a dated directory under `eval/results/`. Use `--output <directory>` to choose another path; the target directory must not already exist.
+The output directory must not already exist. Use `--limit-scenes N` only for a smoke test. The runner requires exactly 720 `.npz` archives and verifies checkpoint/preprocessor hashes before processing. Data and model weights are external inputs and are not stored in Git.
 
-## Experiments
+## Metrics and files
 
-- `run_holding.py`: inserts a 240-second closed racetrack at the trajectory midpoint and trims 240 seconds from the end, preserving the total trajectory length.
-- `run_vectoring.py`: replaces a 600-second window with a laterally offset segment while preserving the sample count. If an aircraft is selected more than once, each event uses a different window. The paths are not certified for aircraft-motion feasibility; the data also lack NIC/NACp, so positional uncertainty cannot be certified.
-- `test_holding.py`: checks Holding injection length, repeated insertions, and tail trimming.
+For each scene and repeat, `delta_D = D(k)-D(0)` and `delta_D_percent = 100*(D(k)-D(0))/D(0)`. The runner always writes the absolute D/Delta-D curve and, by default, percentage-scale dose, sequence, and scene metrics. Use `--no-percent-metrics` to omit percentage CSVs. Dose-average response is the trapezoidal signed area over the contiguous valid dose prefix divided by its maximum dose; Theil–Sen slope is reported in D/event or percentage points/event. Failed estimates remain missing; sequences with no valid positive-dose support are excluded from direction counts, not counted as zero. Direction counts are descriptive and uncalibrated, not detection rates.
 
-Both experiments use the uninjected scene as the baseline and recompute `D` by event dose. Outputs include dose-level results, summaries, audits, plots, and run configuration. `Delta D` is the change from the same-scene baseline; Spearman rho describes the monotonic association between dose and summarized `Delta D`.
+The output contains `dose-repeat-results.csv`, `sequence-metrics.csv`, `scene-metrics.csv`, `dose-repeat-percent-results.csv`, `sequence-percent-metrics.csv`, `scene-percent-metrics.csv`, `injection-events.csv`, and a run manifest with input, checkpoint, preprocessor, and source hashes.
+
+## Scope and limitations
+
+Each run uses ten repeats and up to 15 events per sequence. Holding inserts a closed 360-second racetrack (36 points) and trims 36 tail points, preserving track length; no aircraft repeats within a Holding sequence. Vectoring replaces non-overlapping 61-point windows. The synthetic maneuver geometry is an evaluation intervention, not proof of operational feasibility. No sham calibration is included, so response signs are not detection probabilities or significance claims.
