@@ -174,5 +174,9 @@
     "paired_increased_hours": 170,
     "paired_decreased_hours": 29,
     "paired_tied_hours": 0
+  },
+  "cached_embeddings": {
+    "file": "embeddings.npz",
+    "sha256": "ebd584789ceacba58be9444c926be7d6450d27f8e14d4d969c5e95eb24931d5d"
   }
 }

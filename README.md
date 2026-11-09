@@ -65,7 +65,6 @@ The Changi sample-size embedding cache is included, so its published curves and 
 ```bash
 python eval/traffic-volume/run_experiment.py \
   --embeddings eval/traffic-volume/embeddings.npz \
-  --metadata eval/traffic-volume/encoding-summary.json \
   --output eval/results/traffic-volume/reproduction
 ```
 
