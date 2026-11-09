@@ -14,7 +14,190 @@ import numpy as np
 
 
 HERE = Path(__file__).resolve().parent
-DEFAULT_CONFIG = HERE / "config.json"
+EXPERIMENT_CONFIG = json.loads(r'''
+{
+  "schema_version": 1,
+  "experiment": "Experiment IV-A: sample-size sensitivity within hourly Changi arrival scenes",
+  "airport": "WSSS",
+  "local_timezone": "Asia/Singapore",
+  "utc_offset_hours": 8,
+  "local_date_start": "2026-09-01",
+  "local_date_end_exclusive": "2026-10-01",
+  "data": {
+    "expected_sha256": "568556ab1924b8228bc189b933e2cb483d0c6f933a9e2cade95b747c5fe9c6db",
+    "hour_member_prefix": "WSSS/hours/",
+    "integrity_manifest_member": "WSSS/output_hashes.json",
+    "expected_source_fragments": 16899,
+    "minimum_source_points": 25,
+    "minimum_encoder_points": 30,
+    "sample_interval_seconds": 10
+  },
+  "encoder": {
+    "checkpoint_epoch": 60,
+    "checkpoint_sha256": "c0d98e6cde14baf99d28b7d336c282eb245f1ce485c248c32a58fd9ccf5358e5",
+    "training_airport": "WSSS",
+    "dimensions": 16,
+    "pooling": "sum",
+    "post_pooling_normalization": false,
+    "preprocessor_id": "cee1251c8b373994d009bcda89ee14811623849e762f858b0abe0bb7fbd5b8a5"
+  },
+  "sampling": {
+    "orders_per_hour": 20,
+    "seed_base": 20261026,
+    "start_n": 5,
+    "seed_rule": "seed_base plus the chronological one-based index among all 720 hours; hours below start_n still occupy an index"
+  },
+  "estimator": {
+    "metric": "euclidean",
+    "strict_pair_rule": "distance < radius",
+    "eligible_correlation_sum": "0 < C(r) < 1",
+    "minimum_scales": 2,
+    "fit_quality_gate": false,
+    "radii": [
+      0.21153999267980197,
+      0.23823095699572105,
+      0.26828964184093024,
+      0.3021409678525847,
+      0.34026346983989136,
+      0.3831960615283777,
+      0.43154565384275434,
+      0.48599573442322275,
+      0.5473160296584303,
+      0.6163733858211284,
+      0.6941440231262737,
+      0.7817273359394488,
+      0.8803614342204328,
+      0.9914406459014895,
+      1.116535227620434,
+      1.2574135624466645,
+      1.416067158395385,
+      1.594738801118217,
+      1.7959542587470096,
+      2.0225579870821875,
+      2.277753339867326,
+      2.5651478525772102,
+      2.888804239867669,
+      3.253297827605916,
+      3.6637812313617357,
+      4.126057195678469,
+      4.646660623806555,
+      5.232950957502158,
+      5.893216212805728,
+      6.636790142488538,
+      7.474184181418739,
+      8.417236040075169,
+      9.479277046781531,
+      10.67532060427246,
+      12.02227442468279,
+      13.539179543192013,
+      15.247479489108866,
+      17.171323419497597,
+      19.337907500554326,
+      21.77785936262659,
+      24.52567106367366,
+      27.62018668169839,
+      31.105151428937027,
+      35.02983005028733,
+      39.44970324788248,
+      44.42725197672555,
+      50.03284069847627,
+      56.34571207939035,
+      63.45510719382841,
+      71.46152706894364,
+      80.47815340420767,
+      90.63244854959012,
+      102.06795736027215,
+      114.9463363995747,
+      129.44963917566295,
+      145.78288971697359,
+      164.176980867374,
+      184.89193827242252,
+      208.22059619764116,
+      234.492737141519,
+      264.07975376234367,
+      297.3998990215735,
+      334.9241987617081,
+      377.183110301039
+    ],
+    "radius_grid_sha256": "5e2031edb2d4dc75ce4fcdd53712b5c96dda16953c1b2a4c0be422441d1dfa25"
+  },
+  "display": {
+    "paper_range": [
+      5,
+      35
+    ],
+    "paper_bins": [
+      [
+        5,
+        6
+      ],
+      [
+        7,
+        9
+      ],
+      [
+        10,
+        11
+      ],
+      [
+        12,
+        14
+      ],
+      [
+        15,
+        16
+      ],
+      [
+        17,
+        19
+      ],
+      [
+        20,
+        22
+      ],
+      [
+        23,
+        24
+      ],
+      [
+        25,
+        27
+      ],
+      [
+        28,
+        29
+      ],
+      [
+        30,
+        32
+      ],
+      [
+        33,
+        35
+      ]
+    ],
+    "full_range_diagnostic": true,
+    "paper_range_selection": "post hoc in the manuscript; retain and report the complete observed n range separately"
+  },
+  "expected_results": {
+    "hours": 720,
+    "eligible_fragments": 16308,
+    "unique_flights": 14394,
+    "eligible_sample_points": 1331063,
+    "hours_below_five_fragments": 18,
+    "maximum_hourly_fragments": 49,
+    "paired_hours_n5_to_n30": 199,
+    "paired_median_difference_n30_minus_n5": 0.27016854949001057,
+    "paired_increased_hours": 170,
+    "paired_decreased_hours": 29,
+    "paired_tied_hours": 0
+  },
+  "cached_embeddings": {
+    "file": "embeddings.npz",
+    "sha256": "ebd584789ceacba58be9444c926be7d6450d27f8e14d4d969c5e95eb24931d5d"
+  }
+}
+''')
 REPO_ROOT = HERE.parents[1]
 
 
@@ -30,8 +213,16 @@ def sha256_bytes(value: bytes) -> str:
     return hashlib.sha256(value).hexdigest()
 
 
-def read_json(path: Path) -> dict:
+def read_json(path: Path | None = None) -> dict:
+    if path is None:
+        return json.loads(json.dumps(EXPERIMENT_CONFIG))
     return json.loads(Path(path).read_text(encoding="utf-8-sig"))
+
+
+def sha256_config(value: dict) -> str:
+    canonical = json.dumps(value, sort_keys=True, separators=(",", ":"),
+                         ensure_ascii=False, allow_nan=False)
+    return hashlib.sha256(canonical.encode("utf-8")).hexdigest()
 
 
 def write_json(path: Path, value: dict) -> None:
@@ -76,7 +267,7 @@ def _validate_internal_manifest(archive: zipfile.ZipFile, member: str) -> int:
 def prepare_archive(
     archive_path: Path,
     output_dir: Path,
-    config_path: Path = DEFAULT_CONFIG,
+    config_path: Path | None = None,
     *,
     enforce_paper_counts: bool = True,
 ) -> dict:
@@ -93,7 +284,7 @@ def prepare_archive(
     archive_hash = sha256_file(archive_path)
     expected_hash = data_cfg.get("expected_sha256")
     if expected_hash and archive_hash != expected_hash:
-        raise ValueError("Prepared trajectory archive SHA-256 does not match config.json")
+        raise ValueError("Prepared trajectory archive SHA-256 does not match the experiment protocol")
 
     output_dir.mkdir(parents=True)
     scene_dir = output_dir / "scenes"
@@ -272,7 +463,7 @@ def encode_prepared_scenes(
     prepared_dir: Path,
     checkpoint_path: Path,
     output_dir: Path,
-    config_path: Path = DEFAULT_CONFIG,
+    config_path: Path | None = None,
     *,
     device: str = "auto",
 ) -> dict:
@@ -302,15 +493,15 @@ def encode_prepared_scenes(
 
     state = torch.load(checkpoint_path, map_location="cpu", weights_only=False)
     if int(state.get("epoch", -1)) != int(encoder_cfg["checkpoint_epoch"]):
-        raise ValueError("Checkpoint epoch does not match config.json")
+        raise ValueError("Checkpoint epoch does not match embedded experiment protocol")
     settings = state.get("settings", {})
     preprocess = state.get("preprocess", {})
     if int(settings.get("dimension", -1)) != int(encoder_cfg["dimensions"]):
-        raise ValueError("Checkpoint embedding dimension does not match config.json")
+        raise ValueError("Checkpoint embedding dimension does not match embedded experiment protocol")
     if preprocess.get("airport") != encoder_cfg["training_airport"]:
-        raise ValueError("Checkpoint training airport does not match config.json")
+        raise ValueError("Checkpoint training airport does not match embedded experiment protocol")
     if preprocess.get("preprocessor_id") != encoder_cfg["preprocessor_id"]:
-        raise ValueError("Checkpoint preprocessor ID does not match config.json")
+        raise ValueError("Checkpoint preprocessor ID does not match embedded experiment protocol")
     torch.set_num_threads(2)
     torch.manual_seed(43)
     torch.use_deterministic_algorithms(True)

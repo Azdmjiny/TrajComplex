@@ -16,8 +16,8 @@ import numpy as np
 from scipy.spatial.distance import pdist
 
 from prepare_encode import (
-    DEFAULT_CONFIG, _hour_datetime, encode_prepared_scenes, prepare_archive,
-    read_json, sha256_file, write_json,
+    _hour_datetime, encode_prepared_scenes, prepare_archive,
+    read_json, sha256_config, sha256_file, write_json,
 )
 
 
@@ -134,7 +134,7 @@ def summarize_rows(rows: list[dict], display_bins: list[list[int]]) -> tuple[dic
 def compute_results(
     embeddings_path: Path,
     output_dir: Path,
-    config_path: Path = DEFAULT_CONFIG,
+    config_path: Path | None = None,
     *,
     encoding_metadata: dict | None = None,
     enforce_paper_counts: bool = True,
@@ -207,12 +207,12 @@ def compute_results(
     if len(metadata.get("rows", [])) != int(expected_counts["hours"]):
         raise ValueError("Embedding metadata does not contain all 720 hourly scenes")
     if metadata.get("source_archive_sha256") != config["data"]["expected_sha256"]:
-        raise ValueError("Embedding metadata source archive hash does not match config.json")
+        raise ValueError("Embedding metadata source archive hash does not match embedded experiment protocol")
 
     radii_spec = config["estimator"]["radii"]
     grid_hash = hashlib.sha256(np.asarray(radii_spec, dtype="<f8").tobytes()).hexdigest()
     if grid_hash != config["estimator"]["radius_grid_sha256"]:
-        raise ValueError("Fixed radius values do not match their hash in config.json")
+        raise ValueError("Fixed radius values do not match their hash in embedded experiment protocol")
     radii = np.asarray(radii_spec, dtype=np.float64)
     if radii.shape != (64,) or not np.isfinite(radii).all() or np.any(radii <= 0) or np.any(np.diff(radii) <= 0):
         raise ValueError("Expected 64 finite, positive, increasing fixed radii")
@@ -340,7 +340,7 @@ def _git_head() -> str | None:
         return None
 
 
-def plot_results(results_dir: Path, output_dir: Path, config_path: Path = DEFAULT_CONFIG) -> list[Path]:
+def plot_results(results_dir: Path, output_dir: Path, config_path: Path | None = None) -> list[Path]:
     try:
         import matplotlib
         matplotlib.use("Agg")
@@ -464,7 +464,7 @@ def plot_results(results_dir: Path, output_dir: Path, config_path: Path = DEFAUL
 
 def run_experiment(
     output_dir: Path,
-    config_path: Path = DEFAULT_CONFIG,
+    config_path: Path | None = None,
     *,
     archive_path: Path | None = None,
     checkpoint_path: Path | None = None,
@@ -472,7 +472,7 @@ def run_experiment(
     device: str = "auto",
 ) -> dict:
     output_dir = Path(output_dir).resolve()
-    config_path = Path(config_path).resolve()
+    config_path = Path(config_path).resolve() if config_path is not None else None
     config = read_json(config_path)
     if output_dir.exists():
         raise FileExistsError(f"Output already exists: {output_dir}")
@@ -494,7 +494,7 @@ def run_experiment(
         ),
         "git_head": _git_head(),
         "python": platform.python_version(),
-        "config_sha256": sha256_file(config_path),
+        "config_sha256": sha256_config(config),
         "config": config,
         "input_mode": "prepared_archive_and_checkpoint" if full_inputs else "cached_embeddings",
         "started_unix": started,
@@ -561,7 +561,7 @@ def main() -> None:
     group.add_argument("--embeddings", type=Path, help="Cached NPZ with one 16-D vector array per hour")
     parser.add_argument("--checkpoint", type=Path, help="Frozen WSSS epoch-60 checkpoint; required with --archive")
     parser.add_argument("--output", type=Path, required=True, help="New run directory; existing directories are never overwritten")
-    parser.add_argument("--config", type=Path, default=DEFAULT_CONFIG)
+    parser.add_argument("--config", type=Path, help="Optional JSON override for the embedded experiment protocol")
     parser.add_argument("--device", default="auto", help="auto, cpu, or cuda")
     args = parser.parse_args()
     if args.archive is not None and args.checkpoint is None:

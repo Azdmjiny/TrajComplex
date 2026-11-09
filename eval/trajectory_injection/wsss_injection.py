@@ -1,12 +1,12 @@
 #!/usr/bin/env python3
-"""WSSS 2 trajectory loading and Holding/Vectoring injection primitives."""
+"""WSSS trajectory loading and Holding/Vectoring injection primitives."""
 from __future__ import annotations
 import hashlib, math
 from pathlib import Path
 import numpy as np
 
 ROOT = Path(__file__).resolve().parents[2]
-DATA = ROOT / 'data/WSSS 2'
+DATA = ROOT / 'data/WSSS'
 HOURS = DATA / 'hours'
 CHECKPOINT = ROOT / 'Encoder/encoder/encoder.pt'
 ARP_E, ARP_N = 0.0, 0.0  # Archive ENU is centered on the WSSS ARP.

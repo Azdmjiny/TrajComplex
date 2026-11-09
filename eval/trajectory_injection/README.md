@@ -1,13 +1,13 @@
 # Trajectory Injection Evaluation
 
-Unified Holding and Vectoring injection experiment for the full WSSS 2 arrival-only archive (720 hourly scenes). Both modes use the fixed epoch-60 Encoder and the same correlation-dimension estimator. Holding uses the midpoint anchor with **no minimum distance cutoff** from WSSS ARP; Vectoring retains the calibrated 600-second, 61-point, 15 km offset segment.
+Unified Holding and Vectoring injection experiment for the full WSSS arrival-only archive (720 hourly scenes). Both modes use the fixed epoch-60 Encoder and the same correlation-dimension estimator. Holding uses the midpoint anchor with **no minimum distance cutoff** from WSSS ARP; Vectoring retains the calibrated 600-second, 61-point, 15 km offset segment.
 
 ## Run
 
-From the repository root, place the 720 WSSS 2 hourly archives under `data/WSSS 2/hours/`:
+From the repository root, place the 720 WSSS hourly archives under `data/WSSS/hours/`:
 
 ```bash
-python eval/trajectory_injection/run_experiment.py --output eval/results/wsss2-injection
+python eval/trajectory_injection/run_experiment.py --output eval/results/wsss-injection
 python -m unittest eval/trajectory_injection/test_holding.py
 ```
 

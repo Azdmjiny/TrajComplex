@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""WSSS 2 Holding/Vectoring experiment with absolute and percent metrics.
+"""WSSS Holding/Vectoring experiment with absolute and percent metrics.
 
 Uses the fixed epoch-60 Encoder, no Holding distance cutoff, and persists dose-level
 D plus sequence and scene summaries for both absolute and relative response."""
@@ -14,7 +14,7 @@ from scipy.stats import theilslopes
 ROOT = Path(__file__).resolve().parents[2]
 sys.path.insert(0, str(ROOT))
 sys.path.insert(1, str(Path(__file__).resolve().parent))
-import wsss2_injection as W
+import wsss_injection as W
 
 REPEATS = W.REPEATS
 SEED = W.SEED

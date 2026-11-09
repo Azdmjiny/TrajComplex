@@ -75,7 +75,7 @@ The other evaluations require prepared trajectory scenes and/or training archive
 | Changi sample-size sensitivity | The embedding cache is included. For preparation and re-encoding from the authorized archive, see [`eval/traffic-volume/README.md`](eval/traffic-volume/README.md). |
 | Cross-airport comparison | Prepared hourly scenes for WSSS, RJTT, WMKK, and RKSI, plus three non-WSSS checkpoints. See [`eval/cross_airport/README.md`](eval/cross_airport/README.md). |
 | Encoder comparison | WSSS training archive and prepared common scenes; training requires BF16-capable CUDA. See [`eval/encoder_comparison/README.md`](eval/encoder_comparison/README.md). |
-| Holding and Vectoring | 720 prepared WSSS 2 hourly scene archives. See [`eval/trajectory_injection/README.md`](eval/trajectory_injection/README.md). |
+| Holding and Vectoring | 720 prepared WSSS arrival-only hourly scene archives. See [`eval/trajectory_injection/README.md`](eval/trajectory_injection/README.md). |
 
 The frozen WSSS checkpoint is at `Encoder/encoder/encoder.pt`; its configuration, checksum, preprocessing identity, and example input/output are documented under `Encoder/`. Experiment outputs are written to new directories under `eval/results/`, which Git ignores. Raw trajectory data and generated results are not included unless stated above.
 

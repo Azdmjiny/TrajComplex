@@ -6,7 +6,7 @@ This experiment measures how the raw finite-grid correlation-integral slope chan
 
 - The bundled epoch-60 encoder produces one 16-dimensional, sum-pooled vector per trajectory with at least 30 samples at 10-second intervals.
 - Each hour uses 20 deterministic random permutations and nested subsets for every integer `n = 5, ..., N`. Hours with fewer than five eligible trajectories remain in the results.
-- The slope uses the fixed 64-radius grid in `config.json`, all scales with `0 < C(r) < 1`, and at least two fit scales. Pair counts use strict `distance < radius`; no fit-quality gate is applied.
+- The fixed protocol is embedded in `prepare_encode.py`. The slope uses its 64-radius grid, all scales with `0 < C(r) < 1`, and at least two fit scales. Pair counts use strict `distance < radius`; no fit-quality gate is applied.
 - The paper figure reports the manuscript's selected bins within `n = 5–35`. A second figure preserves the complete observed range through `n = 49`.
 
 ## Reproduce
@@ -29,7 +29,7 @@ python eval/traffic-volume/run_experiment.py \
   --device auto
 ```
 
-The ZIP is the input boundary for this experiment; upstream OpenSky collection, flight identification, and cleaning are not rerun. It must contain 720 hourly WSSS scenes and the archive integrity manifest. The runner checks the archive, sampling cadence, trajectory eligibility, checkpoint, expected counts, and cache hash against `config.json`. Choose a new output directory for every run.
+The ZIP is the input boundary for this experiment; upstream OpenSky collection, flight identification, and cleaning are not rerun. It must contain 720 hourly WSSS scenes and the archive integrity manifest. The runner checks the archive, sampling cadence, trajectory eligibility, checkpoint, expected counts, and cache hash against the embedded experiment protocol. Choose a new output directory for every run.
 
 ## Outputs
 
