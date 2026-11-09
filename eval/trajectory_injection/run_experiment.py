@@ -61,7 +61,7 @@ def main():
     if checkpoint_sha != W.CHECKPOINT_SHA_EXPECTED: raise RuntimeError('Checkpoint SHA mismatch')
     import torch
     from Encoder.trajectory_encoder.inference import FrozenEncoder
-    from Complexity.calculator import ComplexityConfig, estimate_complexity
+    from complexity.calculator import ComplexityConfig, estimate_complexity
     torch.set_num_threads(2)
     try: torch.use_deterministic_algorithms(True)
     except Exception: pass

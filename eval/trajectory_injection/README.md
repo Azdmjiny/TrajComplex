@@ -4,14 +4,14 @@ Unified Holding and Vectoring injection experiment for the full WSSS 2 arrival-o
 
 ## Run
 
-From the repository root, with the WSSS 2 archives and checkpoint available locally:
+From the repository root, place the 720 WSSS 2 hourly archives under `data/WSSS 2/hours/`:
 
 ```bash
-.venv/bin/python eval/trajectory_injection/run_experiment.py --output eval/results/wsss2-injection
-.venv/bin/python -m unittest eval/trajectory_injection/test_holding.py
+python eval/trajectory_injection/run_experiment.py --output eval/results/wsss2-injection
+python -m unittest eval/trajectory_injection/test_holding.py
 ```
 
-The output directory must not already exist. Use `--limit-scenes N` only for a smoke test. The runner requires exactly 720 `.npz` archives and verifies checkpoint/preprocessor hashes before processing. Data and model weights are external inputs and are not stored in Git.
+The output directory must not already exist. Use `--limit-scenes N` only for a smoke test. The runner requires exactly 720 `.npz` archives and verifies checkpoint/preprocessor hashes before processing. Trajectory archives are external inputs; the matching checkpoint is included at `Encoder/encoder/encoder.pt`.
 
 ## Metrics and files
 

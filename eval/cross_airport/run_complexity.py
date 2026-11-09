@@ -33,7 +33,7 @@ def rebase_enu(source, target):
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--prepared", type=Path, required=True, help="Root of the prepared airport directories")
-    parser.add_argument("--checkpoints", type=Path, required=True, help="Directory of the four epoch-60 checkpoints")
+    parser.add_argument("--checkpoints", type=Path, required=True, help="Directory containing the three non-WSSS epoch-60 checkpoints")
     parser.add_argument("--output", type=Path, required=True, help="New output directory")
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     args = parser.parse_args()
@@ -47,8 +47,11 @@ def main():
     for airport in AIRPORTS:
         directory = args.prepared / airport
         plan = load_plan(directory, airport)
-        filename = "epoch_60.pt" if airport == "WSSS" else f"{airport}_encoder_60.pt"
-        encoder = HourlyEncoder(args.checkpoints / filename, airport, 16, args.device)
+        if airport == "WSSS":
+            checkpoint = Path(__file__).resolve().parents[2] / "Encoder/encoder/encoder.pt"
+        else:
+            checkpoint = args.checkpoints / f"{airport}_encoder_60.pt"
+        encoder = HourlyEncoder(checkpoint, airport, 16, args.device)
         rules = json.loads((directory / "cleaning_rules.json").read_text(encoding="utf-8-sig"))
         origin = rules["origin"]
         target = encoder.preprocess.get("origin")

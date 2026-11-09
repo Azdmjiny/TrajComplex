@@ -53,21 +53,6 @@ def compare_hourly(scores):
     return common, panels
 
 
-def compare_epochs(path):
-    # The archived checkpoint-epoch comparison used a separate sample and estimator.
-    columns = ["D_30", "D_60", "D_90"]
-    scores = pd.read_csv(path)
-    if not scores.scene.is_unique:
-        raise ValueError("Expected unique scene identifiers in the epoch score table")
-    common = scores.loc[np.isfinite(scores[columns]).all(axis=1)].sort_values(["D_60", "scene"])
-    count = len(common) // 4
-    if count == 0:
-        raise ValueError("Need at least four jointly computable scenes in the epoch comparison")
-    order = np.arange(len(common))
-    low, high = order < count, order >= len(common) - count
-    return [comparison(f"{epoch} epochs", common[f"D_{epoch}"], low, high) for epoch in (30, 90)]
-
-
 def plot(panels, output):
     fig, axes = plt.subplots(1, len(panels), figsize=(max(6, len(panels) * 1.25), 2.8), sharey=True)
     for ax, panel in zip(axes, panels):
@@ -96,7 +81,6 @@ def main():
     parser.add_argument("--prepared", type=Path, required=True, help="Prepared WSSS directory")
     parser.add_argument("--baseline", type=Path, required=True, help="Original 16-D epoch-60 checkpoint")
     parser.add_argument("--variants", type=Path, required=True, help="Directory of the five variant runs")
-    parser.add_argument("--epoch-scores", type=Path, help="Optional archived epoch score CSV")
     parser.add_argument("--output", type=Path, required=True, help="New output directory")
     parser.add_argument("--device", choices=("cuda", "cpu"), default="cuda")
     args = parser.parse_args()
@@ -118,8 +102,6 @@ def main():
         print(f"Scored {name}: {len(frame)} hours", flush=True)
 
     common, panels = compare_hourly(scores)
-    if args.epoch_scores:
-        panels = compare_epochs(args.epoch_scores) + panels
     args.output.mkdir(parents=True)
     scores.to_csv(args.output / "hourly_D.csv", index=False)
     common.to_csv(args.output / "reference_groups.csv", index=False)

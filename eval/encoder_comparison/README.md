@@ -13,10 +13,6 @@ data.
   March, April, and May 2025. Each month uses the same number of trajectories
   per split (4,522 training, 566 validation, and 521 test), selected
   deterministically from the original splits.
-- **Training epochs.** The separate historical 30- and 90-epoch comparison
-  uses its original Changi scenes and epoch-60 reference scores. The epoch
-  panels can be regenerated from the original score table.
-
 The dimension and month variants encode the same 720 September 2026 Changi
 arrival scenes as the reference. Each model uses its saved training
 standardization, sum pooling, and the same ungated hourly $D$ estimator as the
@@ -42,13 +38,10 @@ variants, then writes the common-scene groups, AUCs and a violin plot. Run from
 the repository root with the root requirements installed.
 
 ```bash
-python -m eval.encoder_comparison.train --source data/WSSS_CLEANED.jsonl.gz --baseline data/epoch_60.pt --output artifacts/changi-variants
-python -m eval.encoder_comparison.evaluate --prepared data/prepared/WSSS --baseline data/epoch_60.pt --variants artifacts/changi-variants --output eval/results/encoder_comparison
+python -m eval.encoder_comparison.train --source data/WSSS_CLEANED.jsonl.gz --baseline Encoder/encoder/encoder.pt --output artifacts/changi-variants
+python -m eval.encoder_comparison.evaluate --prepared data/prepared/WSSS --baseline Encoder/encoder/encoder.pt --variants artifacts/changi-variants --output eval/results/encoder_comparison
 ```
 
 The prepared input has the same format as the Changi directory in the
-cross-airport evaluation. To add the historical epoch panels, pass
-`--epoch-scores` with the original CSV containing unique `scene` identifiers
-and `D_30`, `D_60`, and `D_90`. The historical panels retain their own
-sample and group assignment. Data, checkpoints and generated outputs are
-supplied or written separately.
+cross-airport evaluation. Training archives, prepared scenes, and generated
+checkpoints and outputs are supplied or written separately.

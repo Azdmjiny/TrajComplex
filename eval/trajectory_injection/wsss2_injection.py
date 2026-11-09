@@ -8,7 +8,7 @@ import numpy as np
 ROOT = Path(__file__).resolve().parents[2]
 DATA = ROOT / 'data/WSSS 2'
 HOURS = DATA / 'hours'
-CHECKPOINT = ROOT / 'Encoder/encoder/4_encoder_60/WSSS_epoch_60.pt'
+CHECKPOINT = ROOT / 'Encoder/encoder/encoder.pt'
 ARP_E, ARP_N = 0.0, 0.0  # Archive ENU is centered on the WSSS ARP.
 DT = 10.0
 REPEATS = 10

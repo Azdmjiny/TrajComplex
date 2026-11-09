@@ -42,9 +42,9 @@ directory. The hourly NPZ files contain `enu_m`, `offsets`, `time` (UTC Unix
 seconds), and `flight_ids`. Each manifest path's basename identifies its
 file in `hours/`.
 
-The checkpoint directory contains the original Changi `epoch_60.pt` and
-`RJTT_encoder_60.pt`, `WMKK_encoder_60.pt`, and `RKSI_encoder_60.pt`. The
-last three can be trained with `train_encoder.py` using the corresponding
+The bundled WSSS checkpoint is `Encoder/encoder/encoder.pt`. The `--checkpoints`
+directory must contain `RJTT_encoder_60.pt`, `WMKK_encoder_60.pt`, and
+`RKSI_encoder_60.pt`. The latter three can be trained with `train_encoder.py` using the corresponding
 cleaned training archive (`<ICAO>_CLEANED.jsonl.gz`, `<ICAO>_INDEX.csv`, and
 `manifest.json`). The training input is a 1 Hz trajectory archive in ENU
 coordinates scaled by 120,000 m. Training preserves the original splits,

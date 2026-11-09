@@ -1,13 +1,14 @@
 {
-  "run_id": "encoder_10s_fixed90_seed43",
+  "training_airport": "WSSS",
+  "training_period": "2025-03 to 2025-05",
+  "selected_epoch": 60,
   "dimension": 16,
+  "pooling": "sum",
+  "seed": 43,
+  "sample_interval_s": 10,
+  "include_endpoint": false,
   "epsilon_m": 300.0,
   "temperature": 1.0,
-  "seed": 43,
-  "batch_size": 16,
-  "amp": "bf16",
-  "epochs": 90,
-  "pooling": "sum",
   "model": {
     "input_dim": 9,
     "model_dim": 256,
@@ -17,43 +18,17 @@
     "dropout": 0.35,
     "mask_probability": 0.1
   },
-  "training": {
-    "epochs": 90,
-    "learning_rate": 1e-05,
-    "weight_decay": 1e-05,
-    "temperatures": [
-      1.0
+  "checkpoint_sha256": "c0d98e6cde14baf99d28b7d336c282eb245f1ce485c248c32a58fd9ccf5358e5",
+  "preprocessor_id": "cee1251c8b373994d009bcda89ee14811623849e762f858b0abe0bb7fbd5b8a5",
+  "training_data_sha256": "84031a6fdc8969ba02b0ad583d98567e14f5b0858f21bd19e856417e2263856f",
+  "code_sha256": "fbe90dbe918bb8eb0e98ab5eb401e8ec4322a33a0874a1b04856333c65c027b9",
+  "runner_sha256": "c4172c60924a85ef6095db229ac0feef6409563a3cb8da607aee569443f31825",
+  "selection": {
+    "criterion": "Earliest checkpoint within 0.01 of the highest validation mean R2 and within 0.02 on each target",
+    "validation_targets": [
+      "path_length_km",
+      "total_turn_rad"
     ],
-    "seeds": [
-      43
-    ],
-    "dimensions": [
-      16
-    ],
-    "batch_candidates": [
-      16
-    ],
-    "amp": "bf16",
-    "gradient_clip": 1.0,
-    "loss_chunk_size": 512,
-    "full_loss_token_limit": 7000,
-    "cpu_threads_per_worker": 2,
-    "max_parallel_training_workers": 1
-  },
-  "code_sha256": "c47ec9a009447d794d183b1e6da210db7bc1768738c8919859fd380aa08e1c5f",
-  "runner_sha256": "376c3856dee03ddafefbead61fc2e813692c9955c537b1002aa847197903062f",
-  "data_sha256": "12700c8050ad776837116db95e960bc5d320d1891c39996ddb29c2a27c04130b",
-  "preprocessor_id": "52fabdb80ff5221882becc2e326e0e51089dbcf324a155bf7330f41442fa1477",
-  "checkpoint_selection": "fixed epoch90; not selected by loss",
-  "from_scratch": true,
-  "device": "NVIDIA GeForce RTX 5060 Laptop GPU",
-  "torch": "2.14.0+cu130",
-  "numpy": "2.5.3",
-  "python": "3.14.5",
-  "cuda": "13.0",
-  "sample_interval_s": 10,
-  "include_endpoint": false,
-  "test_used_for_training_or_selection": false,
-  "source_revision": "a8a5b352012276cfaf35c32c0ca7a86a92e3ac6b",
-  "runtime_difference": "Reference used torch 2.7.1+cu128 / numpy 2.2.6; not a bitwise reproduction."
+    "test_used_for_selection": false
+  }
 }
