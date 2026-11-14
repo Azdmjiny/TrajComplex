@@ -26,6 +26,26 @@ the five new variants. The month variants are matched to one another in sample
 size and differ from the pooled reference in both training period and sample
 size.
 
+## $D$ estimator configuration
+
+All six encoders are scored with the ungated estimator `raw_dimension` in
+[`eval/_hourly.py`](../_hourly.py), identical to the
+[cross-airport configuration](../cross_airport/README.md#d-estimator-configuration).
+
+| Setting | Value |
+|---|---|
+| Trajectory eligibility | Prepared fragments with at least 25 points at 10 s; no additional 30-point check at encoding |
+| Embedding | 8-, 16- or 32-D (per encoder), temporal sum pooling, no post-pooling normalization |
+| Distance and pairs | Euclidean; all unordered pairs, including zero-distance pairs; strict `distance < r` |
+| Radius grid | 64 geometric radii from the scene's minimum positive to maximum pairwise distance, computed separately for each encoder and scene |
+| Fit scales | Every radius with $0 < C(r) < 1$ |
+| Fit | Ordinary least squares on $\log C(r)$ versus $\log r$; slope is $D$ |
+| Minimum requirements | At least 2 embeddings, a positive distance range, and at least 2 fit scales |
+| Quality gates | None: no minimum scene size, no $C(r)$ bounds, no $R^2$ threshold |
+| Common scenes | Hours with finite $D$ for all six encoders |
+| Reference groups | Reference ($d=16$, pooled) $D \le Q_{25}$ is low, $D \ge Q_{75}$ is high |
+| Score | Percentile rank `rank / (n + 1)` within common scenes; AUC from the Mann–Whitney $U$ statistic |
+
 ## Code
 
 `train.py` trains the five variants from the cleaned 1 Hz Changi training

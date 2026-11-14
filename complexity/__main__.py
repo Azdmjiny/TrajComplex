@@ -11,15 +11,21 @@ from .calculator import ComplexityConfig, estimate_complexity
 
 
 def main(argv=None):
-    parser = argparse.ArgumentParser(description="Estimate correlation dimension of pooled scene embeddings")
+    defaults = ComplexityConfig()
+    parser = argparse.ArgumentParser(
+        description="Estimate correlation dimension of pooled scene embeddings",
+        formatter_class=argparse.ArgumentDefaultsHelpFormatter,
+    )
     parser.add_argument("input", type=Path, help=".npy: one (N,D) scene; .npz: scene_id -> (N,D)")
     parser.add_argument("-o", "--output", type=Path, help="JSON file; default stdout")
     parser.add_argument("--normalize", action="store_true", help="L2 normalize each embedding before Euclidean distance")
-    parser.add_argument("--fit-range", nargs=2, type=float, metavar=("R_MIN", "R_MAX"))
-    parser.add_argument("--min-samples", type=int, default=30)
-    parser.add_argument("--n-radii", type=int, default=64)
-    parser.add_argument("--min-r-squared", type=float, default=0.98)
-    parser.add_argument("--max-pairs", type=int, default=5_000_000)
+    parser.add_argument("--fit-range", nargs=2, type=float, metavar=("R_MIN", "R_MAX"),
+                        help="fit this radius range instead of the C(r) bounds")
+    # Defaults come from ComplexityConfig so the CLI and Python API cannot drift apart.
+    parser.add_argument("--min-samples", type=int, default=defaults.min_samples, help="minimum embeddings per scene")
+    parser.add_argument("--n-radii", type=int, default=defaults.n_radii, help="number of geometric radii")
+    parser.add_argument("--min-r-squared", type=float, default=defaults.min_r_squared, help="log-log fit quality gate")
+    parser.add_argument("--max-pairs", type=int, default=defaults.max_pairs, help="maximum pairwise distances")
     args = parser.parse_args(argv)
     try:
         if args.output and args.output.resolve() == args.input.resolve():

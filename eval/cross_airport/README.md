@@ -25,6 +25,24 @@ references for interpreting $D$.
   over all scales with $0<C(r)<1$. Retain the slope whenever the fit is
   mathematically defined and leave undefined values missing.
 
+## $D$ estimator configuration
+
+This experiment uses the ungated estimator `raw_dimension` in
+[`eval/_hourly.py`](../_hourly.py), not the gated defaults of the
+`complexity` package. The encoder comparison uses the same configuration.
+
+| Setting | Value |
+|---|---|
+| Trajectory eligibility | Prepared fragments with at least 25 points at 10 s; no additional 30-point check at encoding |
+| Embedding | 16-D, temporal sum pooling, no post-pooling normalization |
+| Distance and pairs | Euclidean; all unordered pairs, including zero-distance pairs; strict `distance < r` |
+| Radius grid | 64 geometric radii from the scene's minimum positive to maximum pairwise distance (per scene) |
+| Fit scales | Every radius with $0 < C(r) < 1$ |
+| Fit | Ordinary least squares on $\log C(r)$ versus $\log r$; slope is $D$ |
+| Minimum requirements | At least 2 embeddings, a positive distance range, and at least 2 fit scales |
+| Quality gates | None: no minimum scene size, no $C(r)$ bounds, no $R^2$ threshold ($R^2$ is reported only) |
+| Undefined fits | Reported as missing (`status=unestimable`) and excluded from the airport summaries |
+
 ## Code
 
 `run_complexity.py` computes hourly $D$ and the airport-specific median and

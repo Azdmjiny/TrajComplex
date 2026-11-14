@@ -1,6 +1,6 @@
 # Trajectory Injection Evaluation
 
-Unified Holding and Vectoring injection experiment for the full WSSS arrival-only archive (720 hourly scenes). Both modes use the fixed epoch-60 Encoder and the same correlation-dimension estimator. Holding uses the midpoint anchor with **no minimum distance cutoff** from WSSS ARP; Vectoring retains the calibrated 600-second, 61-point, 15 km offset segment.
+Unified Holding and Vectoring injection experiment for the full WSSS arrival-only archive (720 hourly scenes). Both modes use the fixed epoch-60 Encoder and the same gated correlation-dimension configuration, listed below. This configuration differs from the ungated estimator used in the other three evaluations. Holding uses the midpoint anchor with **no minimum distance cutoff** from WSSS ARP; Vectoring retains the calibrated 600-second, 61-point, 15 km offset segment.
 
 ## Run
 
@@ -12,6 +12,23 @@ python -m unittest eval/trajectory_injection/test_holding.py
 ```
 
 The output directory must not already exist. Use `--limit-scenes N` only for a smoke test. The runner requires exactly 720 `.npz` archives and verifies checkpoint/preprocessor hashes before processing. Trajectory archives are external inputs; the matching checkpoint is included at `Encoder/encoder/encoder.pt`.
+
+## $D$ estimator configuration
+
+$D$ is computed with `complexity.estimate_complexity` and an explicit `ComplexityConfig`, set in [`run_experiment.py`](run_experiment.py). Every value is passed explicitly, so changes to the package defaults do not affect this experiment.
+
+| Setting | Value |
+|---|---|
+| Trajectory eligibility | Fragments with at least 30 finite points at exactly 10 s spacing; positions rounded to float32 before encoding |
+| Embedding | 16-D, temporal sum pooling, no post-pooling normalization (`normalize=False`) |
+| Distance and pairs | Euclidean; all unordered pairs, including zero-distance pairs; strict `distance < r` |
+| Radius grid | 64 geometric radii from the baseline scene's minimum positive to maximum pairwise distance; held fixed for every dose and repeat of that scene |
+| Fit scales | Radii with $0.02 \le C(r) \le 0.30$, $0 < C(r) < 1$ and at least 10 pairs (`min_pairs=10`) |
+| Fit | Ordinary least squares on $\log C(r)$ versus $\log r$; slope is $D$ |
+| Minimum requirements | `min_samples=15` trajectories, `min_fit_points=8` fit scales, fit radius span ratio `min_radius_ratio=2.0`, positive slope |
+| Quality gate | $R^2 \ge 0.90$ (`min_r_squared=0.90`) |
+| Pair limit | `max_pairs=5,000,000` |
+| Scene inclusion | Only scenes whose baseline (dose 0) estimate passes every gate; a dose whose estimate fails is reported missing, not zero |
 
 ## Metrics and files
 

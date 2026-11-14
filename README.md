@@ -56,7 +56,20 @@ python -m complexity eval/results/scene-embeddings.npy \
   --output eval/results/scene-complexity.json
 ```
 
-The estimator computes the empirical correlation sum over unordered pairs and fits a finite-scale log–log slope. A scene for which the fit is undefined is reported as missing, not as zero. The estimator options and defaults are available with `python -m complexity --help`.
+The estimator computes the empirical correlation sum over unordered pairs and fits a finite-scale log–log slope. A scene for which the fit is undefined is reported as missing, not as zero. By default it fits the scales with $0.02 \le C(r) \le 0.30$ and requires at least 30 embeddings and $R^2 \ge 0.90$. The estimator options and defaults are available with `python -m complexity --help`.
+
+The evaluations fix their own estimator settings, which do not depend on these defaults:
+
+| Evaluation | Estimator | Fit scales | Quality gates |
+|---|---|---|---|
+| Changi sample-size sensitivity | Ungated, fixed shared radius grid | All $0 < C(r) < 1$ | None |
+| Cross-airport comparison | Ungated, per-scene radius grid | All $0 < C(r) < 1$ | None |
+| Encoder comparison | Ungated, per-scene radius grid | All $0 < C(r) < 1$ | None |
+| Holding and Vectoring | Gated `complexity` configuration, baseline radius grid | $0.02 \le C(r) \le 0.30$ | ≥15 embeddings, ≥8 scales, $R^2 \ge 0.90$ |
+
+The Holding and Vectoring experiment uses a gated configuration because not every scene is suitable for trajectory injection. When a scene's baseline embedding cloud contains only a few trajectories, a single injected maneuver can change $D$ substantially, and the result depends heavily on which trajectory receives it, making the evaluation highly unstable. After weighing these factors, we restrict this experiment to scenes whose baseline estimate meets the minimum sample size and fit-quality thresholds above.
+
+Each experiment README lists its complete configuration under "$D$ estimator configuration".
 
 ## Reproduce the evaluations
 
